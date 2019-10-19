@@ -1,0 +1,217 @@
+\documentclass[12pt]{extarticle}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage[top=1 in,bottom=1in, left=1 in, right=1 in]{geometry}
+\graphicspath{ {images/} }
+
+\newcommand{\matlab}{{\sc Matlab} }
+\newcommand{\cvec}[1]{{\mathbf #1}}
+\newcommand{\rvec}[1]{\vec{\mathbf #1}}
+\newcommand{\ihat}{\hat{\textbf{\i}}}
+\newcommand{\jhat}{\hat{\textbf{\j}}}
+\newcommand{\khat}{\hat{\textbf{k}}}
+\newcommand{\minor}{{\rm minor}}
+\newcommand{\trace}{{\rm trace}}
+\newcommand{\spn}{{\rm Span}}
+\newcommand{\rem}{{\rm rem}}
+\newcommand{\ran}{{\rm range}}
+\newcommand{\range}{{\rm range}}
+\newcommand{\mdiv}{{\rm div}}
+\newcommand{\proj}{{\rm proj}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\renewcommand{\emptyset}{\varnothing}
+\newcommand{\attn}[1]{\textbf{#1}}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{note}{Note}
+\newtheorem{exercise}{Exercise}
+\newcommand{\bproof}{\bigskip {\bf Proof. }}
+\newcommand{\eproof}{\hfill\qedsymbol}
+\newcommand{\Disp}{\displaystyle}
+\newcommand{\qe}{\hfill\(\bigtriangledown\)}
+\setlength{\columnseprule}{1 pt}
+
+
+\title{\textbf{\LARGE Solutions to Principles of Mathematical Analysis(Walter Rudin)}}
+\author{\Large Zhen Yao}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{The Real and Complex Number Systems}
+\begin{exercise}\label{ex1}
+If $r$ is rational ($r \neq 0$) and $x$ is irrational, prove that $r+x$ and $rx$ are irrational.
+\end{exercise}
+\begin{proof}
+(1)If $r+x$ is irrational, then $r+x-x=x$ is irrational. Contradiction. \\
+\hspace*{3em}(2)If $rx$ is rational, then $\frac{rx}{r} = x$ is rational. Contradiction.
+\end{proof}
+
+\medskip
+
+\begin{exercise}\label{ex2}
+Prove that there is no rational number whose square is $12$.
+\end{exercise}
+\begin{proof}
+$\sqrt{12} = 2 \sqrt{3}$. We only need to show that $\sqrt{3}$ is irrational. \\
+(1)Firstly, if $p$ is an even number, and the square of an even number is still even, so $3q^2$ is an even number. The $q^2$ is an even number since $3$ is odd, then we have $q$ is also an even number. Thus, $p$ and $q$ are all even number and have common factor $2$, which contradicts our assumption. \\
+(2)Secondly, if $p$ is an odd number, and the square of an odd number is still odd, so $3q^2$ is an odd number. The $q^2$ is an odd number since $3$ is odd, then we have $q$ is also an odd number. Now both $p$ and $q$ are odd number, then we can set $p = 2n + 1$ and $q = 2m + 1$ where $n$ and $m$ are some positive integers. And we have
+\begin{align*}
+    4n^2 + 4n + 1 &= 3(4m^2 + 4m + 1) \\
+    \Rightarrow 2n^2 + 2n &= 6m^2 + 6m + 1
+\end{align*}
+The left side is even and the right side is odd, which is impossible. Also this condition contradicts our assumption. So $\sqrt{3}$ is not a rational number.
+\end{proof}
+
+\medskip
+
+\begin{exercise}\label{ex3}
+Prove proposition $1.15$. The axioms for multiplication implying the following statements: \\
+\hspace*{3em}(a)If $x\neq 0$ and $xy=xz$, then $y=z$.\\
+\hspace*{3em}(b)If $x\neq 0$ and $xy=x$, then $y=1$.\\
+\hspace*{3em}(c)If $x\neq 0$ and $xy=1$, then $y=1/x$.\\
+\hspace*{3em}(d)If $x\neq 0$, then $1/(1/x) = x$.
+\end{exercise}
+\begin{proof}
+(a)\begin{align*}
+    y = 1\cdot y = x \cdot \frac{1}{x}\cdot y = x y \cdot \frac{1}{x} = xz \cdot \frac{1}{x} = x\frac{1}{x}\cdot z = z
+\end{align*}
+\hspace*{3em}(b)Applying (a), and set $z = 1$, we have $y=1$.\\
+\hspace*{3em}(c)Applying (a), and set $z = 1/x$, we have $y=1/x$.\\
+\hspace*{3em}(d)
+\begin{align*}
+    x \cdot \frac{1}{x} = 1 \Rightarrow \frac{1}{x} \frac{1}{\frac{1}{x}} = 1
+\end{align*}
+Applying (a), and we have $1/(1/x) = x$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}\label{ex4}
+Let $E$ be nonempty subset of an ordered set, suppose $\alpha$ is a lower bound of $E$ and $\beta$ is an upper bound of $E$. Prove that $\alpha \leq \beta$.
+\end{exercise}
+\begin{proof}
+Since $\alpha$ is a lower bound of $E$, and $E$ is nonempty, then there exists a $x\in E$ such that $\alpha \leq x$. Also, $\beta$ is the upper bound, which means $x\leq \beta$. Then $\alpha \leq x \leq \beta$
+\end{proof}
+
+
+\medskip
+
+\begin{exercise}
+Let $A$ be a nonempty set of real numbers which is bounded below. Let $-A$ be the set of all numbers $-x$, where $x\in A$. Prove that 
+$$\inf A = - \sup (-A)$$
+\end{exercise}
+\begin{proof}
+We denote $- \sup (-A)$ by $M$, then for any $x \in A$, we have $-x \in -A$, and $-x \leq \sup (-A) = -M$. Then we have $x \geq M$, for $\forall x \in A$, then $M$ is a lower bound of $A$.\\
+\hspace*{3em} Then we need to prove that $M$ is the greatest lower bound of $A$. Since $M = - \sup (-A)$, then we have $-M = \sup (-A)$. Then for $\forall \varepsilon > 0$, there exists $-x \in -A$, such that $-x > -M - \varepsilon$. From this, we can have $x < M + \varepsilon$, for $\forall \varepsilon > 0$. According to the definition, $M$ is the greatest lower bound of $A$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Fix $b>1$.\\
+\hspace*{3em}(a)If $m,n,p,q$ are integers, $n>0, q>0$, and $r=m/n=p/q$, prove that 
+$$(b^m)^{1/n}=(b^p)^{1/q}$$
+Hence it makes sense to define $b^r=(b^m)^{1/q}$.\\
+\hspace*{3em}(b)Prove that $b^{r+s}=b^r b^s$ if $r$ and $s$ are rational.\\
+\hspace*{3em}(c)If $x$ is real, define $B(x)$ to be the set of all numbers $b^t$, where $t$ is rational and $t\leq x$. Prove that 
+$$b^r=\sup B(r)$$
+where $r$ is rational. Hence it makes sense to define
+$$b^x=\sup B(x)$$
+for every real $x$.\\
+\hspace*{3em}(d)Prove that $b^{x+y}=b^x b^y$ for all real $x$ and $y$.
+\end{exercise}
+\begin{proof}
+(a)Let $k=mq=np$, then for $b^k$, there exists only one real number $x$ such that $x^{nq}=b^k$. And we only need to prove that both $(b^m)^{1/n}$ and $(b^p)^{1/q}$ satisfy this condition. Then we have $\left((b^m)^{1/n}\right)^{nq} = b^{mq} = b^k$ and $\left((b^p)^{1/q}\right)^{nq} = b^{np} = b^k$. Thus, we have  $(b^m)^{1/n}=(b^p)^{1/q}$.\\
+\hspace*{3em}(b)Since $r$ and $s$ are rational, then set $r = \frac{m}{n}$ and $s = \frac{p}{q}$. Then we have
+\begin{align*}
+    b^{r+s} = b^{\frac{mq+np}{nq}} = \left(b^{mq+np} \right)^{1/nq} = (b^{mq} b^{np})^{1/nq}
+\end{align*}
+According to Corollary after Theorem 1.21, we have
+\begin{align*}
+    b^{r+s} = (b^{mq})^{1/nq} (b^{np})^{1/nq} = b^r b^s
+\end{align*}
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Fix $b>0$, $y>0$, and prove that there is a unique real $x$ such that $b^x = y$ by completing the following outline.\\
+(a)For any positive integer $n$, $b^n-1\geq n(b-1)$. \\
+(b)Hence $b-1\geq n(b^{1/n})-1$. \\
+(c)If $t>1$ and $n>(b-1)(t-1)$, then $b^{1/n}<t$. \\
+(d)If $w$ is such that $b^w<y$, then $b^{w+1/n}<y$ for sufficiently large $n$. \\
+(e)If $b^w>y$, then $b^{w-1/n}>y$ for sufficiently large $n$. \\
+(f)Let $A$ be the set of all $w$ such that $b^w<y$, and show that $x=\sup A$ satisfies $b^x=y$. \\
+(g)Prove that this $x$ is unique.
+\begin{proof}
+(a)We have 
+\begin{align*}
+    b^n-1 & = (b-1+1)^n-1 \\
+    & = 1+n(b-1)+\frac{n(n-1)}{2}(b-1)^2+\cdots +(b-1)^n-1\\
+    & \geq n(b-1)
+\end{align*}
+The proof is complete. \\
+\hspace*{3em}(b)Replacing $b$ in (a) with $b^{1/n}$, and we can have $b-1\geq n(b^{1/n})-1$.\\
+\hspace*{3em}(c)From (b), we have $b-1\geq n(b^{1/n})-1$. With $n>(b-1)(t-1)$, we have 
+\begin{align*}
+    b^{1/n}-1 & \leq \frac{b-1}{n} \\
+    & < \frac{b-1}{\frac{b-1}{t-1}} \\
+    & < t-1 \\
+    \Rightarrow & b^{1/n}<t
+\end{align*}
+\hspace*{3em}(d)Take $t=y\cdot b^{-w}$. then we have
+\begin{align*}
+    b^{1/n}b^w < t b^w = y
+\end{align*}
+\hspace*{3em}(e)Take $y = b^w t^{-1}$ since $t>1$. Then we have
+\begin{align*}
+    b^w b^{-1/n} > b^w t^{-1} = y
+\end{align*}
+\hspace*{3em}We have $x=\sup A = \sup \{w| b^w<y \}$, then there are three relations between $b^x$ and $y$, which are 
+\begin{align*}
+    b^x < y, \quad b^x = y, \text{or} \quad b^x > y
+\end{align*}
+If $b^x<y$, then according to (d), there exists an $N_1$ such that $b^{x+1/N_1}<y$. Thus, $x+1/N_1 \in A$. Then, $x+1/N_1 < \sup A = x$, which is a contradiction. If $b^x>y$, then there exists an $N_2$ such that $b^{x-1/N_2}>y$, then $x-1/N_2 \notin A$. Thus, $x-1/N_2 > \sup A = x$, which is a contradiction. Thus, the only way is that $b^x = y$. \\
+\hspace*{3em}(g)If there are two real numbers $x_1$ and $x_2$ such that $b^{x_1} = b^{x_2} = y$, then the set $A$ in (f) has two supremum, which is impossible. The proof is complete.
+\end{proof}
+\end{exercise}
+
+\medskip
+
+\begin{exercise}
+Prove that no order can be defined in the complex field that turns it into an ordered field. Hint, $-1$ is a square.
+\end{exercise}
+\begin{proof}
+We know that $-1 = i^2 = (-i)^2$, so $-1$ must be positive. Also, $1 = (-1)^2$, then $1$ must be positive. But $-1$ and $1$ cannot be positive at the same time, so there is no order in complex field. 
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Suppose $z=a+bi, w=c+di$. Define $z<w$ if $a<c$, and also if $a=c$ but $b<d$. Prove that this turns the set of all complex numbers into an ordered set.
+\end{exercise}
+\begin{proof}
+We need to show that either $z<w$ or $z>w$ or $z=w$. Since real numbers are ordered, we have either $a<c$ or $a>c$ or $a=c$. For $a<c$, we have $z<w$; for $a>c$, we have $z>w$. If $a=c$, there are still three conditions, which are $b<d$, or $b>d$ or $b=d$. For $b<d$, we have $z<w$; for $b>d$, we have $z>w$; for $b=d$, we have $z=w$. Thus, this turns the set of all complex numbers into an ordered set.
+\end{proof}
+
+
+
+\end{document}

@@ -69,7 +69,7 @@ $$
 then the series $a_1+a_2+a_3+\ldots$ converges.
 
 \begin{proof}
-Since $\lim_{n\to\infty} n \Big( \frac{a_n}{a_{n+1}} - 1\Big) >1$, then there exists a $r_1$ such that $\lim_{n\to\infty} n \Big( \frac{a_n}{a_{n+1}} - 1\Big) >r_1>1$. Then there exists an $N_1>0$, such that for $\forall n>N_1$, $\frac{a_n}{a_{n+1}}>1+\frac{r_1}{n}$. \\
+{\bf Method 1:}Since $\lim_{n\to\infty} n \Big( \frac{a_n}{a_{n+1}} - 1\Big) >1$, then there exists a $r_1$ such that $\lim_{n\to\infty} n \Big( \frac{a_n}{a_{n+1}} - 1\Big) >r_1>1$. Then there exists an $N_1>0$, such that for $\forall n>N_1$, $\frac{a_n}{a_{n+1}}>1+\frac{r_1}{n}$. \\
 \hspace*{3em}We take $r_2$ such that $1<r_2<r_1$. And we consider function $f(x)=1+r_1x-(1+x)^{r_2}$, which satisfies $f(0)=0$. Also, $f'(x)=r_1-r_2(1+x)^{r_2-1}>0$ in a small neighborhood of $x=0$. Then there exists an $N_2>0$ such that for $\forall n>N_2$, we have
 \begin{align*}
     & \frac{a_n}{a_{n+1}}> 1+\frac{r_1}{n} > \left(1+\frac{1}{n} \right)^{r_2} = \frac{(n+1)^{r_2}}{n^{r_2}} \\
@@ -79,7 +79,23 @@ as $x$ substituted by $\frac{1}{n}$. Then for $n>N_2$, we have
 \begin{align*}
     a_n < \frac{N_2^{r_2}a_{N_2}}{n^{r_2}}
 \end{align*}
-By comparison test, $\sum^\infty_{k=1} a_k$ converges since $r_2>1$ and $\sum^\infty_{n=1} 1/n^{r_2}$.
+By comparison test, $\sum^\infty_{k=1} a_k$ converges since $r_2>1$ and $\sum^\infty_{n=1} 1/n^{r_2}$. \\
+\medskip
+{\bf Method 2:} Since $\lim_{n\to\infty} n\, \Big( \frac{a_n}{a_{n+1}} - 1\Big) >1$, then there exists $N>0$, such that $\forall n>N$, $n\left(\frac{a_n}{a_{n+1}}-1 \right)=L>0$. Thus, we have
+\begin{align*}
+    & \frac{na_n}{a_{n+1}}-n = L\\
+    \Rightarrow & na_n - na_{n+1} = L a_{n+1} \\
+    \Rightarrow & na_n - (n+1)a_{n+1} + a_{n+1} = La_{n+1} \\
+    \Rightarrow & na_n - (n+1)a_{n+1}  = (L-1)a_{n+1}
+\end{align*}
+Wiht this equation, we have 
+\begin{align*}
+    1 a_1 - 2a_2 & > (L-1)a_2 \\
+    2 a_2 - 3a_3 & > (L-1)a_3 \\
+    \vdots \\
+    (n-1)a_{n-1} - na_n & > (L-1)a_n
+\end{align*}
+Adding these equations gives us $a_1 \geq a_1 - na_n = (L-1)\sum^n_{n=1}a_n$. With $a_k >0, k=1,2,3,\cdots$, we konw that $\sum^n_{n=1}a_n$ is increasing and bounded above, thus it converges.
 \end{proof}
 
 \medskip

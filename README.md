@@ -16,10 +16,10 @@ The solution and proof in some problems are not perfect, and welcome any disscus
 - Exponential and logarithmic functions
 - Subsequences, series and the Cauchy condition
 
-### HW3,4
+### HW3,4,5
 - Subsequences, series and the Cauchy condition
 - Limits and continuity
 
-### HW5,6,7
+### HW6,7
 - Derivative
 - Integral

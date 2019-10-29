@@ -42,13 +42,14 @@
 Prove that if a sequence $\{ a_n\}$ is bounded and $\displaystyle a_{n+1}\geq a_n-\frac{1}{2^n}$
 for all $n$, then the sequence $\{a_n\}$ is convergent.
 \begin{proof}
-Since $\{a_n\}$ is bounded, then sequence $\{a_n\}$ has a least upper bound, denoted by $M = \sup \{a_n\}$. Then for $\forall \varepsilon > 0$, there exists $a_n$ such that $a_n > M - \varepsilon$. And  for fixed $\varepsilon$, suppose $a_k$ is the first element in $\{a_n\}$ such that $a_k > M - \varepsilon$. And for $\forall n > k$, we have  
+Since $\{a_n\}$ is bounded, then sequence $\{a_n\}$ has a least upper bound, denoted by $M = \sup \{a_n\}$. And for $\forall m \in \mathbb{N}$ and $n>m$, we have  
 \begin{align*}
-    a_k - \frac{1}{2^{k+1}} + \frac{1}{2^{n+1}} = a_k - \frac{1}{2^k} - \frac{1}{2^{k+1}} - \cdots - \frac{1}{2^{n-1}} \leq a_n \leq M
+    M \geq a_n \geq a_m - \frac{1}{2^m} - \frac{1}{2^{m+1}} - \cdots - \frac{1}{2^{n-1}} \geq a_m - \sum^\infty_{i=m}\frac{1}{2^i}
 \end{align*}
-then there exists $N$ such that for $\forall n > N$, $\frac{1}{2^{k+1}} - \frac{1}{2^{N+1}} \leq \varepsilon$. Then for $\varepsilon > 0$, set $n_0 = \min \{k, N\}$, then for $\forall n, m > n_0$, we have
+then there exists $N$ such that for $\forall m > N$, $\sum^\infty_{i=m}\frac{1}{2^i} \leq \varepsilon/2$, which implies $\forall n > m > N$, $|a_n - a_m| < \varepsilon/2$. \\
+\hspace*{3em}For $\forall n > N$, we can find the first $a_K, K > N$ such that $a_K > M - \varepsilon/2$. Then for $\varepsilon > 0$ and $\forall n > K$, we have
 \begin{align*}
-    |a_n - a_m| \leq \varepsilon
+    |a_n - M| \leq |a_n - a_K| + |a_K - M| < \varepsilon
 \end{align*}
 Then $\{a_n\}$ is convergent.
 \end{proof}

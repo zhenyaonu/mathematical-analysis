@@ -290,12 +290,12 @@ so we have $r$ must be $0$. Also, we can know that $W_n(0)=1\neq 0$, then we kno
 {\bf Problem 69.}
 Suppose that $f\in C^\infty(\mathbb{R})$ and $f(a)=0$. Prove that there is $g\in C^\infty(\mathbb{R})$ such that $f(x)=(x-a)g(x)$ for all $x\in\mathbb{R}$.
 \begin{proof}
-We define $g(x)=0, x=a$ and $g(x)=f(x)/(x-a)$. And we need to prove that $g(x)$ is differential at $x=a$, since it is differentiable at other points. It satisfies $f'(a)=g(a)+(a-a)g'(a)=0$. Also, consider the derivative of $g(x)$ around point $x=a$
+Since $f(x)\in C^\infty(\mathbb{R})$, we can know that $f(x)$ can be expressed as polynomial, with $f(a) = 0$
 \begin{align*}
-    g'(x) &= \lim_{x\to a}\frac{g(x)-g(a)}{x-a} = \lim_{x\to a}\frac{f(x)}{(x-a)^2} \\
-    &= \lim_{x\to a}\frac{f'(x)}{2(x-a)} = \lim_{x\to a}\frac{f''(x)}{2}
+    f(x) & = f(a) + f'(a)(x-a) + \frac{f''(a)}{2}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \cdots \\
+    & = (x-a)\sum^\infty_{n=2}\frac{f^{(n)}(a)}{n!}(x-a)^{n-1}
 \end{align*}
-then the derivative $g(x)$ at $x=a$ exists. Thus, $g(x)\in C^\infty(\mathbb{R})$ exists.
+Then we can define $g(x) = \sum^\infty_{n=2}\frac{f^{(n)}(a)}{n!}(x-a)^{n-1}$ and it is easy to see that $g(x)\in C^\infty(\mathbb{R})$.
 \end{proof}
 
 \medskip
@@ -303,24 +303,46 @@ then the derivative $g(x)$ at $x=a$ exists. Thus, $g(x)\in C^\infty(\mathbb{R})$
 \noindent
 {\bf Problem 70.}
 Let $f(x)=e^{-1/x^2}$ for $x\neq 0$ and $f(0)=0$. Prove that $f\in C^\infty(\mathbb{R})$ and $f^{(n)}(0)=0$ for all $n=0,1,2,\ldots$\\
-{\bf Hint:} {\em Use induction to prove that $f$ is $n$-times differentiable, $f^{(n)}(0)=0$ and $f(x)=W_n(1/x)e^{-1/x^2}$ for $x\neq 0$, where $W_n$ is a polynomial.}
+{\bf Hint:} {\em Use induction to prove that $f$ is $n$-times differentiable, $f^{(n)}(0)=0$ and $f^{(n)}(x)=W_n(1/x)e^{-1/x^2}$ for $x\neq 0$, where $W_n$ is a polynomial.}
 
 \noindent
 {\bf Remark.}
 This is a very important example. Since all derivatives at $0$ are equal zero, Maclaurin's series of $f$ equals zero. However, $f(x)>0$ for $x\neq 0$ so it is not equal to the Maclaurin series at any point except $x=0$. Another reason why this is so important is that it allows to construct compactly supported smooth functions, see Problem~71.
 \begin{proof}
-We only need to prove the derivative of $f(x)$ at point $0$ exists, we have 
+First, we have $f'(x) = 2\left(\frac{1}{x}\right)^3 e^{-1/x^2}, x \neq 0$. Then $f'(x) = W_1(1/x)e^{-1/x^2}$ with $W_1(1/x) = 2\left(\frac{1}{x}\right)^3$ being a polynomial of $1/x$. Suppose that for $k>1$, $f^{(k)}(x) = W_k(1/x) e^{-1/x^2}$, we need to prove that $f^{(k+1)}(x)$ still has the form of $W_{k+1}(1/x)e^{-1/x^2}$. We can know 
+\begin{align*}
+    f^{(k+1)}(x) & = (f^{(k)}(x))' \\
+    & = -\left(\frac{1}{x}\right)^2 W_k'(1/x)e^{-1/x^2} + 2\left(\frac{1}{x}\right)^3 W_k(1/x) e^{-1/x^2} \\
+    & = \left(-\left(\frac{1}{x}\right)^2 W_k'(1/x) + 2\left(\frac{1}{x}\right)^3 W_k(1/x) \right)e^{-1/x^2} 
+\end{align*}
+Since the derivative of polynomial is still a polynomial, then we can know $f^{(k+1)}(x)$ is indeed of form of $W_{k+1}(1/x)e^{-1/x^2}$ with
+\begin{align*}
+    W_{k+1}(1/x) = \left(-\left(1/x\right)^2 W_k'(1/x) + 2\left(1/x\right)^3 W_k(1/x) \right)
+\end{align*}
+Then, we concluded that $f(x)\in C^\infty(\mathbb{R}\setminus \{0\})$.\\
+\hspace*{3em}Second, we prove the derivative of $f(x)$ at point $0$ exists, we have 
 \begin{align*}
     f'(0)=\lim_{x\rightarrow 0}\frac{e^{-\frac{1}{x^2}}-0}{x-0} = \lim_{x\rightarrow 0}\frac{1}{x e^{1/x^2}} = \lim_{t\to\infty}\frac{t}{e^{t^2}} = \lim_{t\to\infty}\frac{1}{2te^{t^2}} = 0
 \end{align*}
-Then $f(x)$ is differential at point $x=0$, thus, $f\in C^\infty(\mathbb{R})$. Also, we have $f'(x)=2x^{-3}e^{-1/x^2}$, and we have $f'(0)=0$. Then, we have $f^{n}(x)$ has the form of $W_n(x^{-1})e^{-1/x^2} = W_n(t)e^{-t^2}, t=1/x$, then we can know that $f^{(n)}(0)=0$, for $\forall n$.
+Then $f(x)$ is differential at point $x=0$, thus, $f\in C^1(\mathbb{R})$. Then, we assume that $f^{(K)}(0) = 0$, and we want to prove that $f^{(k+1)}(x) = 0$. By definition of derivative, we have 
+\begin{align*}
+    f^{(K+1)}(0) & = \lim_{x\to 0}\frac{f^{(K)}(x) - f^{(K)}(0)}{x - 0}\\
+    & = \lim_{x\to 0}\frac{f^{(K)}(x)}{x} \\
+    & = \lim_{x\to 0}\frac{W_K(1/x)e^{-1/x^2}}{x} \\
+    & = \lim_{x\to 0}\frac{\left(W_K(1/x)e^{-1/x^2}\right)'}{1} \\
+    & = \lim_{x\to 0} - \frac{1}{x^2}W_K'(1/x)e^{-1/x^2} + \frac{2}{x^4} W_K(1/x)e^{-1/x^2} \\
+    & = \lim_{x\to 0} - \frac{W_K'(1/x)}{x^2 e^{1/x^2}} + \frac{2 W_K(1/x)}{x^4 e^{1/x^2}} \\
+    & = 0
+\end{align*}
+In the last step, we could use L'Hospital's rule to determine the limit, and in limit steps, saying there exists $k_1$ and $k_2$ such that $(W_K'(1/x))^{(k_1)}$ and $(W_K(1/x))^{(k_2)}$ are constants, while the denominator always has the term $e^{1/x^2}$, and we already know that $\lim_{x\to 0}e^{1/x^2} = \infty$. Thus, we can know that $f^{(K+1)}(0) = 0$. \\
+\hspace*{3em}
 \end{proof}
 
 \medskip
 
 \noindent
 {\bf Problem 71.}
-Use the function from Problem~63 to construct $f\in C^\infty(a,b)$ such that $f(x)=0$ for $x\in\mathbb{R}\setminus (a,b)$.
+Use the function from Problem~70 to construct $f\in C^\infty(a,b)$ such that $f(x)=0$ for $x\in\mathbb{R}\setminus (a,b)$.
 \begin{proof}
 Set the function in Problem 63 as $g(x):[0,1]\rightarrow \mathbb{R}$, then $g$ is continuous on $[0,1]$ and differentiable on $(0,1)$. Also, $g(0)<0<g(1)$ and $g'(x)\neq 0, \forall x\in(0,1)$.\\
 \hspace*{3em}Now consider $f(x)=g\left(\frac{x-a}{b-a}\right), x\in [a,b]$ and $f(x)=0, x\in \mathbb{R}\setminus [a,b]$. And for $f(x)$, using Taylor Theorem, we have 
@@ -351,8 +373,8 @@ $$
 \begin{proof}
 With Taylor Theorem, we have
 \begin{align*}
-    f(h) & = f(0) + f'(0)h + \frac{f''(0)}{2!}h^2 + \cdots + \frac{f^{(n)}(0)}{n!}h^n + H^{n+1}\psi(h) \\
-    f'(\theta) & = f'(\theta) + f''(\theta)h + \frac{f^{(3)}(0)}{2!}h^2 + \cdots + \frac{f^{(n)}(0)}{(n-1)!}\theta^{n-1}
+    f(h) & = f(0) + f'(0)h + \frac{f''(0)}{2!}h^2 + \cdots + \frac{f^{(n)}(0)}{n!}h^n + h-[^{n+1}\psi(h)] \\
+    f'(\theta) & = f'(0) + f''(0)h + \frac{f^{(3)}(0)}{2!}h^2 + \cdots + \frac{f^{(n)}(0)}{(n-1)!}\theta^{n-1}
 \end{align*}
 With $f(h)-f(0)=hf'(\theta(h))$, $f^{(k)}(0)=0,k=2,3,\dots,n-1$ and $f^{(n)}(0)\neq 0$, we have 
 \begin{align*}

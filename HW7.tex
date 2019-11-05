@@ -91,7 +91,16 @@ t_n=\frac{1}{2n+1}-\frac{1}{2n+2}+\frac{1}{2n+3}-\frac{1}{2n+4}+\cdots+\frac{1}{
 $$
 Find, with proof, the limit $\lim_{n\to\infty} nt_n$.
 \begin{proof}
-WRITE YOUR SOLUTION HERE.
+We have 
+\begin{align*}
+    \lim_{n\to\infty}nt_n = & n \left(\frac{1}{2n+1}-\frac{1}{2n+2}+\frac{1}{2n+3}-\frac{1}{2n+4}+\cdots+\frac{1}{4n-1}-\frac{1}{4n} \right) \\
+    = & n \left(\frac{1}{2n+1}+\frac{1}{2n+2}+\frac{1}{2n+3}-\frac{1}{2n+4}+\cdots+\frac{1}{4n-1}+\frac{1}{4n} \right)\\
+    & - 2n \left(\frac{1}{2n+2} + \frac{1}{2n+4} + \cdots + \frac{1}{4n}\right) \\
+    = & n \int_0^2 \frac{1}{2+x}dx - n \int^1_0 \frac{1}{1+x}dx \\
+    = & n\ln 4 - n\ln 2 - n\ln 2 \\
+    = & 0
+\end{align*}
+The proof is complete.
 \end{proof}
 
 \medskip
@@ -246,7 +255,11 @@ $$
 $$
 {\bf Hint:} {\em Estimate the integral of $\ln x$ by Riemann sums both from above and from below.}
 \begin{proof}
-WRITE YOUR SOLUTION HERE.
+Take $\ln$ function to both sides, and we have the left side as $\frac{1}{2}x\ln x - \frac{1}{2}x$, while $x = 2n - 1$, this is equal to $\int^{2n-1}_1\ln x dx$. And the right side will become $\frac{1}{2}x\ln x - \frac{1}{2}x$, while $x = 2n+1$, and this is equal to $\int^{2n+1}_1\ln x dx$. The middle one is actually equal to one half of Riemann sum of integral of $\ln x$ from $1$ to $2n$, since $\int^{2n}_1 \ln x dx = 2 (f(1) + f(3) + f(5) + \cdots + f(2n-1)) = 2 (\ln 1 + \ln 3 + \cdots + \ln(2n-1))$. Since $\int^{2n-1}_1\ln x dx<\int^{2n}_1\ln x dx<\int^{2n+1}_1\ln x dx$, then we have 
+\begin{align*}
+    \frac{2n-1}{2}\ln \left(\frac{2n-1}{e}\right) < \ln(1 \cdot 3\cdot 5\cdots(2n-1)) < \frac{2n+1}{2}\ln \left(\frac{2n+1}{e}\right)
+\end{align*}
+which is exactly the inequality above.
 \end{proof}
 
 

@@ -69,8 +69,7 @@ The proof is complete.
 Let $f:(-\infty,\infty)\rightarrow\mathbb R$ be continuous and $\lim\limits_{x\rightarrow\infty}f(f(x))=\infty$.
 Prove that $\displaystyle \lim\limits_{x\rightarrow\infty}|f(x)|=\infty$.
 \begin{proof}
-Suppose $\lim_{x\to\infty}f(x) = a<\infty$ which is finite. This means that for $\forall \varepsilon>0$, there exists $\delta >0$, such that $\forall x>\delta$, $|f(x)-a|<\varepsilon$. W e can pick a sequence $\{x_k\}$ such that $\lim_{k\to\infty}x_k=a$, since $f$ is continuous, then we have $\lim_{k\to\infty}f(x_k)=f(a)$. \\
-\hspace*{3em}Also, we can pick a sequence $\{y_k\}\rightarrow \infty$ such that $f(y_k)=x_k$. Then we have $f(f(y_k))\rightarrow f(a)\neq \infty$, which is a contradiction.
+Suppose $\lim_{x\to\infty}|f(x)| \leq M <\infty$ which is finite. Then there exists a sequence $\{x_n\}\to\infty$, such that $|f(x_n)|\leq M$. Since the sequence $\{f(x_n)\}$ is bounded, then there exists a subsequcne $\{x_{n_k}\}\to\infty$ such that $\lim_{x_{n_k}\to\infty}f(x_{n_k}) = a$. Since $f$ is continuous, then we have $\lim_{x_{n_k}\to\infty}f(f(x_{n_k})) = f(a)$, which is a contradiction. The proof is complete.
 \end{proof}
 
 \medskip
@@ -127,13 +126,18 @@ $$
 \lim_{x\to\infty} f'(x) = g,\text{ then }\lim_{x\to\infty }\frac{f(x)}{x} = g.
 $$
 \begin{proof}
-Since $\lim_{x\to\infty} f'(x) = g$, then for $\forall \varepsilon >0$, there exists $M>0$, such that $\forall x>M$, $|f'(x)-g |<\varepsilon$, which means, for fixed $x_0\in(1,\infty)$, we have
+Since $\lim_{x\to\infty} f'(x) = g$, then for $\forall \varepsilon >0$, there exists $M>1$, such that $\forall x>M$, $|f'(x)-g |<\varepsilon$. For fixed $x_0>M$, we can know that, if $x>x_0>M$, we have 
 \begin{align*}
-    &\lim_{x\to\infty}\frac{f(x)-f(x_0)}{x-x_0}=g \\
-    \Rightarrow & \lim_{x\to\infty} f(x)-f(x_0)=g x-gx_0 \\
-    \Rightarrow & \lim_{x\to\infty} \frac{f(x)}{x}=g+\frac{f(x_0)}{x}-\frac{f(x_0)}{gx}
+    &\frac{f(x)-f(x_0)}{x-x_0} = f'(\xi) 
 \end{align*}
-Taking $x\to\infty$, then we have $\lim_{x\to\infty }\frac{f(x)}{x} = g$.
+where $x_0<\xi<x$. Then we have $\left|\frac{f(x)-f(x_0)}{x-x_0} - g\right|<\varepsilon$, then we can know 
+\begin{align*}
+    \left|\frac{f(x)}{x}-g\right| & = \left|\frac{f(x)-f(x_0)-g(x-x_0)+f(x_0)+gx_0}{x}\right|\\
+    & \leq \left|\frac{f(x)-f(x_0)-g(x-x_0)}{x}\right| + \left|\frac{f(x_0)+gx_0}{x}\right| \\
+    & \leq \left|\frac{f(x)-f(x_0)-g(x-x_0)}{x-x_0}\right| + \left|\frac{f(x_0)+gx_0}{x}\right| \\
+    & <  \varepsilon + \left|\frac{f(x_0)+gx_0}{x}\right|
+\end{align*}
+Taking $x\to\infty$, and we can have $\lim_{x\to\infty}\left|\frac{f(x_0)+gx_0}{x}\right| = 0$, then we have $\lim_{x\to\infty}\left|\frac{f(x)}{x}-g\right|<\varepsilon$, which gives us $\lim_{x\to\infty }\frac{f(x)}{x} = g$.
 \end{proof}
 
 \medskip
@@ -290,7 +294,7 @@ so we have $r$ must be $0$. Also, we can know that $W_n(0)=1\neq 0$, then we kno
 {\bf Problem 69.}
 Suppose that $f\in C^\infty(\mathbb{R})$ and $f(a)=0$. Prove that there is $g\in C^\infty(\mathbb{R})$ such that $f(x)=(x-a)g(x)$ for all $x\in\mathbb{R}$.
 \begin{proof}
-Since $f(x)\in C^\infty(\mathbb{R})$, we can know that $f(x)$ can be expressed as polynomial, with $f(a) = 0$
+Since $f(x)\in C^\infty(\mathbb{R})$, we can know that $f(x)$ can be expressed as polynomial, with $f(a) = 0$, we have
 \begin{align*}
     f(x) & = f(a) + f'(a)(x-a) + \frac{f''(a)}{2}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \cdots \\
     & = (x-a)\sum^\infty_{n=2}\frac{f^{(n)}(a)}{n!}(x-a)^{n-1}

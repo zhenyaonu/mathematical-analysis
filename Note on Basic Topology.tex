@@ -1,0 +1,663 @@
+\documentclass[12pt,leqno]{amsart}
+\pagestyle{plain}
+%\documentclass{article}
+%\usepackage[utf8]{inputenc}
+%\usepackage[english]{babel}
+
+\usepackage{latexsym,amsmath,amssymb}
+\usepackage{amsthm}
+%\usepackage[notref,notcite]{showkeys}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{pifont}
+\graphicspath{ {images/} }
+
+\setlength{\oddsidemargin}{1pt}
+\setlength{\evensidemargin}{1pt}
+\setlength{\marginparwidth}{30pt} % these gain 53pt width
+\setlength{\topmargin}{1pt}       % gains 26pt height
+\setlength{\headheight}{1pt}      % gains 11pt height
+\setlength{\headsep}{1pt}         % gains 24pt height
+%\setlength{\footheight}{12 pt} 	  % cannot be changed as number must fit
+\setlength{\footskip}{24pt}       % gains 6pt height
+\setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
+\setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
+
+
+\title{Sections and Chapters}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}{Proposition}[section]
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+
+\def\dsp{\def\baselinestretch{1.35}\large
+\normalsize}
+%%%%This makes a double spacing. Use this with 11pt style. If you
+%%%%want to use this just insert \dsp after the \begin{document}
+%%%%The correct baselinestretch for double spacing is 1.37. However
+%%%%you can use different parameter.
+
+
+\def\U{{\mathcal U}}
+
+\begin{document}
+
+\centerline{\bf Note on Basic Topology}
+\centerline{Zhen Yao}
+
+\bigskip
+
+\section{Euclidean Spaces}
+\hspace*{1em}$\mathbb{R}^n$ is the $n$-field Cartesian product of $\mathbb{R}$, i.e., $\mathbb{R}^n = \mathbb{R}\times\mathbb{R}\times\cdots\mathbb{R} = \{(x_1,x_2,\cdots,x_n)|x_i\in\mathbb{R}, i=1,2,\cdots,n\}$. Also, $\mathbb{R}^n$ is a linear space with respect to the addition and multiplication  of points by scalars (i.e., real numbers) which are defined for $x=(x_1,x_2,\cdots,x_n)$ and $y=(y_1,y_2,\cdots,y_n), c\in\mathbb{R}$ as follows:
+\begin{align*}
+    x+y & = (x_1+y_1, x_2+y_2, \cdots, x_n+y_n)\\
+    cx & = (cx_1,cx_2,\cdots,cx_n)
+\end{align*}
+so that $x+y \in\mathbb{R}^n$ and $cx \in\mathbb{R}^n$. We also define the inner product (or scalar product) of $x$ and $y$
+\begin{align*}
+    (x,y) = x\cdot y = \sum^n_{i=1}x_iy_i
+\end{align*}
+and the norm of $x$ by
+\begin{align*}
+    \left\|x\right\| = (x\cdot x)^{\frac{1}{2}} = \left(\sum^n_{i=1}x_i^2 \right)^{\frac{1}{2}}
+\end{align*}
+The structure now defined is called euclidean $n$-spaces. \\
+
+\begin{theorem}
+Suppose $x,y,z\in\mathbb{R}^n$ and $\alpha$ is real. Then \medskip \\
+\hspace*{1em}(a)\,$\left\|x\right\|\geq 0$;\\
+\hspace*{1em}(b)\,$\left\|x\right\| = 0$ if and only if $x = 0$;\\
+\hspace*{1em}(c)\,$\left\|\alpha x\right\| = |\alpha|\left\|x\right\|$;\\
+\hspace*{1em}(d)\,$\left\|x\cdot y\right\| \leq \left\|x\right\|  \left\|y\right\|$, this is called Cauchy-Schwarz inequality;\\
+\hspace*{1em}(e)\,$\left\|x + y\right\| \leq \left\|x\right\| + \left\|y\right\|$, this is called Triangle inequality;\\
+\hspace*{1em}(f)\,$\left\|x - z\right\| \leq \left\|x - y\right\| + \left\|y - z\right\|$.
+\end{theorem}
+\begin{proof}
+We only proof (d). If $x = (0,0,\cdots,0) = 0$, or $y = 0$, then it is obvious. If $x \neq 0$ and $y\neq 0$, then for $t\in\mathbb{R}$, we have 
+\begin{align*}
+    0 \leq \left\|x+ty\right\| & = (x+ty, x+ty) \\
+    & = (x,x) + 2t (x,y) + t^2(y,y)
+\end{align*}
+And we know that $(x,x) + 2t (x,y) + t^2(y,y)$ is a quadratic function which is not negative. Hence, we have 
+\begin{align*}
+    & \Delta = \left(2(x,y)\right)^2 - 4 (x,x)(y,y) \leq 0 \\
+    \Rightarrow & \left\|(x,y)\right\| \leq \left\|x\right\|  \left\|y\right\|
+\end{align*}
+\end{proof}
+
+\section{Metric Spaces}
+\begin{definition}
+A set $X$, whose elements we call points, is said to be a metric space if with any two points $x$ and $y$ of $X$ there is associated a real number $d(x,y): \mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}$ called the distance from $x$ to $y$, which is defined as 
+\begin{align*}
+    d(x,y) = \left\|x - z\right\|
+\end{align*}
+which has the following properties\\
+\hspace*{1em}(a)\,$d(x,y) > 0$ if $x\neq y$;\\
+\hspace*{1em}(b)\,$d(x,y) = 0$ if $x = y$;\\ 
+\hspace*{1em}(c)\,$d(x,y) = d(y,x)$;\\ 
+\hspace*{1em}(c)\,$d(x,y) \leq d(x,z) + d(z,y)$.
+\end{definition}\\
+
+\begin{definition}
+Let $\{x_i\}^\infty_{i=1}$ be a sequence of points in $\mathbb{R}^n$ and $y\in\mathbb{R}^n$. We say that $\{x_i\}^\infty_{i=1}$ converges to $y$ if 
+\begin{align*}
+    \lim_{i\to\infty}\left\|x_i - y \right\| = 0
+\end{align*}
+Then we write $\lim_{i\to\infty}x_i = y$. Equivalently, $\lim_{i\to\infty}x_i = y$ if \begin{align*}
+    \forall \varepsilon > 0, \exists N > 0, \forall n > N, d(x_n, y) < \varepsilon.
+\end{align*}
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+Let $x_i = (x_{1i}, x_{2i}, \cdots, x_{ni}) \in \mathbb{R}^n$, and $y = (y_{1}, y_{2}, \cdots, y_{n}) \in \mathbb{R}^n$. Then 
+$$\lim_{i\to\infty}x_i = y$$ if and only if $$\lim_{i\to\infty}x_{ki} = y_k,k = 1,2,\cdots,n.$$
+\end{theorem}
+\begin{proof}
+We have 
+\begin{align*}
+    \left\|x_i - y\right\| & = \sqrt{(x_{1i}-y_1)^2 + \cdots + (x_{ni}-y_1)^2} \\
+    & \geq \sqrt{(x_{ki}-y_k)^2} = |x_{ki} - y_k|
+\end{align*}
+Hence, $$\left\|x_i - y\right\| \to 0 \Rightarrow |x_{ki} - y_k| \to 0$$
+On the other hand, if $|x_{ki} - y_k|$ as $i\to\infty$ for $k = 1,2,\cdots, n$, then 
+\begin{align*}
+    \max_k |x_{ki} - y_k| \to 0 \quad \text{as}\quad i\to\infty
+\end{align*}
+and hence
+\begin{align*}
+    \left\|x_i - y\right\| & = \sqrt{(x_{1i}-y_1)^2 + \cdots + (x_{ni}-y_1)^2} \\
+    & \leq \sqrt{n \max_k (x_{ki}-y_k)^2} \\
+    & \leq \sqrt{n} \max_k |x_{ki} - y_k| \to 0.
+\end{align*}
+\end{proof}
+
+\begin{definition}
+Let $(X,d)$ be a metric space and let $x_i\in X, i = 1,2,\cdots,$ and $x\in X$. We say that the sequence $\{x_n\}^\infty_{i=1}$ converges to $x$, saying
+$\lim_{i\to\infty}x_i = x$ if $\lim_{i\to\infty}d(x_i, x) = 0$.
+\end{definition}\\
+
+\begin{example}
+Examples of metric spaces:\\
+\hspace*{1em}(1)\,$(\mathbb{R}^n,\rho_1)$, where $\rho_1(x,y) = \max_i |x_i-y_i|$. \\
+\hspace*{1em}(2)\,$(\mathbb{R}^n,\rho_2)$, where $\rho_2(x,y) = \sum^n_{i=1} |x_i-y_i|$, this is called taxi metric or New York metric.\\
+\hspace*{1em}(3)\,$(\mathbb{R}^n,\rho_3)$, where $\rho_3(x,y) = \left\|x-y\right\|$, this is called standard euclidean space.\\
+\hspace*{1em}(4)\,$(\mathbb{R}^n,\rho_4)$, where $\rho_4(x,y) = \left\|x-y\right\|^{1/2}$.\\
+\hspace*{1em}(5)\,$(X,d)$, where $X$ is arbitrary set and 
+\begin{align*}
+    d(x,y) = \left\{
+    \begin{aligned}
+    & 1, \text{if} \quad x = y\\
+    & 0, \text{if} \quad x \neq y
+    \end{aligned}
+    \right.
+\end{align*}
+\hspace*{2.5em}This is called discrete metric space. \\
+\hspace*{1em}(6)\,One can prove that every continuous function on $[0,1]$ is bounded. This fact implies that $(C,d)$, where $C([0,1]) = \{f:[0,1]\rightarrow \mathbb{R}, f \, \text{is continuous}\}$ with $d(f,g) = \left\|f-g\right\|_\infty = \sup \{|f(x) - g(x)|: x,y\in[0,1]\}$ is a metric space.\\
+\hspace*{1em}(7)\,Let $l^1 = \{x = \{x_n\}^\infty_{n=1}: \sum^\infty_{n=1}|x_n| < \infty\}$, i.e., $l^1$ is the space of all absolutely convergent sequences. For $x = \{x_n\}^\infty_{n=1}, y = \{y_n\}^\infty_{n=1} \in l^1$, we define 
+\begin{align*}
+    d(x,y) = \sum^\infty_{n=1} |x_n - y_n|
+\end{align*}
+We will prove that $(l^1,d)$ is a metric space.\\
+\hspace*{2.5em}First we have $d(x,y) < \infty$ for $\forall x,y \in l^1$. And we have $|x_n-y_n|\leq |x_n|+|y_n|$, and hence
+\begin{align*}
+    d(x,y) = \sum^\infty_{n=1} |x_n - y_n| \leq \sum^\infty_{n=1} |x_n| + \sum^\infty_{n=1} |y_n| < \infty
+\end{align*}
+\hspace*{2.5em}Now we have $(1):d(x,y) \geq 0$ and $(2):d(x,y) = d(y,x)$, which is obvious. And $(3): d(x,y) = 0 \Leftrightarrow \forall x_n = y_n \Leftrightarrow x = y$. Finally, we have 
+\begin{align*}
+    |x_n - y_n| \leq |x_n - z_n| + |z_n - y_n|
+\end{align*}
+and hence 
+\begin{align*}
+    \sum^\infty_{n=1}|x_n - y_n| & \leq \sum^\infty_{n=1}|x_n - z_n| + \sum^\infty_{n=1}|z_n - y_n|\\
+    \Rightarrow d(x,y) & \leq d(x,z) + d(z,y).
+\end{align*}
+\hspace*{1em}(8)\,Let $l^2 = \{x = \{x_n\}^\infty_{n=1}: \sum^\infty_{n=1}|x_n|^2 < \infty\}$. For $x = \{x_n\}^\infty_{n=1}, y = \{y_n\}^\infty_{n=1} \in l^1$, we define
+\begin{align*}
+    d_2(x,y) = \sqrt{\sum^\infty_{n=1} (x_n - y_n)^2}
+\end{align*}
+Thus, $(l^2, d_x)$ is a metric space and this space is call Hilbert space.
+\end{example} 
+
+\medskip
+
+\begin{theorem}
+If $x_n\rightarrow x$ and $y_n\rightarrow y$ in a metric space, then $d(x_n, y_n) \rightarrow d(x,y)$.
+\end{theorem}
+\begin{proof}
+The triangle inequality yields 
+\begin{align*}
+    d(x,y) \leq d(x,x_n) + d(x_n,y_n) + d(y_n,y)
+\end{align*}
+Then, we have $d(x,y) - d(x_n,y_n) \leq d(x,x_n) + d(y_n,y)$. Also, we have 
+\begin{align*}
+    d(x_n,y_n)\leq d(x_n,x) + d(x,y) + d(y,y_n)
+\end{align*}
+and then $d(x_n,y_n) - d(x,y)\leq d(x_n,x) + d(y,y_n)$. These two inequalities yield 
+\begin{align*}
+    |d(x,y) - d(x_n,y_n)| \leq d(x,x_n) + d(y_n,y) \to 0 
+\end{align*}
+and hence $$|d(x,y) - d(x_n,y_n)| \to 0 $$ which implies $d(x,y) \to d(x_n,y_n)$.
+\end{proof}
+
+\medskip
+
+\section{Elements of Topology}
+\hspace*{1em}Let $(X,d)$ be a metric space. For $x\in X$ and $r>0$, we define 
+\begin{align*}
+    B(x,r) = \{y\in X: d(x,y) < r\}
+\end{align*}
+and call it the ball of radius $r$ centered at $x$. For example, if $(X,d)$ is a discrete metric space, then $B(x,1/2) = \{x\}$, $B(x,1) = \{x\}$ and $B(x,2) = X$.
+
+\begin{definition}\label{openset}
+We say that a set $U\subset X$ is open if $$\forall x\in X, \exists r > 0, B(x,r)\subset U.$$
+\end{definition}
+
+\begin{definition}[Definition in Rudin's Principle of Mathematical Analysis]Let $X$ be a metric space. \medskip \\
+\hspace*{1em}\,(a)A neighborhood or a ball of $x$ is a set $N_r(x)$ consisting of all $y$ such that $d(x,y)<r$, \hspace*{2.3em}for some $r>0$. The number $r$ is called the radius of $N_r(x)$.\\
+\hspace*{1em}\,(b)A point $x$ is a limit point of set $E$ if every neighborhood of $x$ contains a point $y\neq x$ \hspace*{2.3em}such that $y\in E$.\\
+\hspace*{1em}\,(c)If $x\in E$ and $x$ is not a limit point of $E$, then $x$ is called an isolated point of $E$.\\
+\hspace*{1em}\,(d)$E$ is closed if every limit point of $E$ is a point of $E$.\\
+\hspace*{1em}\,(e)A point $x$ is an interior point of $E$ if there is a neighborhood(or ball) $N_r(x)$ of $x$ such \hspace*{2.3em}that $N_r(x)\in E$.\\
+\hspace*{1em}\,(f)$E$ is open if every point of $E$ is an interior point of $E$.\\
+\hspace*{1em}\,(g)The complement of $E$ (denoted by $E^c$) is the set of all points $x\in X$ such that $x\notin E$.\\
+\hspace*{1em}\,(h)$E$ is perfect if $E$ is closed and if every point of $E$ is a limit point of $E$.\\
+\hspace*{1em}\,(i)$E$ is bounded if there is a real number $M$ and a point $x\in X$ such that $d(x, y) < M$ \hspace*{2.3em} for all $y\in E$.\\
+\hspace*{1em}\,(j)$E$ is dense in $X$ if every point of $X$ is a limit point of $E$, or a point of $E$(or both).
+\end{definition}
+
+\begin{theorem}
+Every ball $B(x,r)$ is open.
+\end{theorem}
+\begin{proof}
+Let $B(x_0,r_0)$ be a ball. We will prove it is open. If $x\in B(x_0, y_0)$, then $d(x, x_0)<r_0$, then there exists a $r>0$, such that $$d(x,x_0)+r < r_0$$
+We will now prove that $B(x,r)\subset B(x_0,r_0)$. Indeed, if $y\in B(x,r)$, then we have 
+\begin{align*}
+    d(x_0,y) & \leq d(x_0,x) + d(x,y) \\
+    & \leq d(x_0,x) + r < r_0
+\end{align*}
+Since every point of $B(x,r)$ belongs to $B(x_0,r_0)$, we can conclude that $B(x,r)\subset B(x_0,r_0)$. According to Definition \ref{openset}, we proved that $B(x_0,r_0)$ is open.
+\end{proof}
+
+
+\begin{theorem}
+Let $(X,d)$ be a metric space, then\\
+\hspace*{1em}\,(a)$\varnothing, X$ are open;\\
+\hspace*{1em}\,(b)Intersection of a finite family $U_1, \cdots, U_n \subset X$ of open sets, $\bigcap^n_{i=1}U_i$ is open;\\
+\hspace*{1em}\,(c)Union of an arbitrary family $U_i,i\in I$ of open sets, $\bigcup^n_{i\in I}U_i$ is open.
+\end{theorem}
+\begin{proof}
+$ $\newline 
+\hspace*{1em}\,(a)This is obvious.\\
+\hspace*{1em}\,(b)Suppose $U_1, \cdots, U_n \subset X$ are open. Let $x\in \bigcap^n_{i=1}U_i$, we need to show $B(x,r)\subset \bigcap^n_{i=1}U_i$ for some $r>0$. We have 
+\begin{align*}
+    x\in U_1 \Rightarrow B(x,r_1) & \subset U_1, \text{for some} \, r_1 > 0 \\
+    x\in U_2 \Rightarrow B(x,r_2) & \subset U_2, \text{for some} \, r_2 > 0 \\
+    & \vdots \\
+    x\in U_n \Rightarrow B(x,r_n) & \subset U_n, \text{for some} \, r_n > 0
+\end{align*}
+\hspace*{1em}Hence, we can pick $r = \min\{r_1, r_2\cdots,r_n\}$, and it follows that $B(x,r) \subset \bigcap^n_{i=1}U_i$.\\
+\hspace*{1em}\,(c)Let $\{U_i\}_{i\in I}$ be an arbitrary family of open sets and let $x\in \bigcup_{i\in I}U_i$. Then there exists a $i_0\in I$ such that $x\in U_{i_0}$, and hence $B(x,r) \subset U_{i_0} \subset \bigcup_{i\in I}U_i$ for some $r>0$. The proof is complete.
+\end{proof}
+
+\medskip
+
+\begin{definition}
+Given $A\subset X$, where $X$ is a metric space. The interior of the set $A$ is defines as 
+$$\text{int}A = \{x\in A: \exists r > 0, B(x,r)\subset A\}$$
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+int$A$ is always open. It is the largest open set contained in $A$ in the sense that if $U\subset A$ is open, then $U \subset \text{int}A$.
+\end{theorem}
+\begin{proof}
+$ $ \newline
+\hspace*{1em}(a)If $U\subset A$, then for $\forall x\in U$, there exists $r>0$ such that $B(x,r)\subset U \subset \text{int}A$. This implies that $x\in \text{int}A$. Thus, $U\subset \text{int}A$. \\
+\hspace*{1em}(b)If $x\in \text{int}A$, then there exists $r>0$ such that $B(x,r)\subset A$. Since $B(x,r)$ is open and $B(x,r)\subset A$, we have $\text{int}A$ is open.
+\end{proof}
+
+\begin{definition}
+Let $(X,d)$ be a metric space. We say that $A\subset X$ is closed if $X\setminus A$ is open.
+\end{definition}
+
+\medskip
+
+\begin{theorem}[Theorem 2.23 in Rudin's book]
+A set $A$ is open if and only if it complement is closed.
+\end{theorem}
+\begin{proof}
+First, suppose $A^c$ is closed. For $x\in A$, then $x\notin A^c$, and $x$ is not a limit point of $E^c$. Then there exists $r>0$ such that $B(x,r) \cap A^c = \varnothing$. Then, we have $B(x,r) \subset A$. Thus $x$ is an interior point of $A$ and it follows that $A$ is open.\\
+\hspace*{3em}Next, suppose $A$ is open. Let $x$ be a limit point of $A^c$. Then every neighborhood of $x$ contains a point of $A^c$, so $x$ is not a interior point of $A$. Since $A$ is open, then $x\notin A$, which means $x\in A^c$. Since $x$ is a limit point of $A^c$, then $A^c$ is closed. The proof is complete.
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+Let $(X,d)$ be a metric space, then\\
+\hspace*{1em}\,(a)$\varnothing, X$ are closed;\\
+\hspace*{1em}\,(b)Intersection of an arbitrary family $U_i,i\in I$ of closed sets, $\bigcap^n_{i\in I}U_i$ is closed;\\
+\hspace*{1em}\,(c)Union of a finite family $U_1, \cdots, U_n \subset X$ of closed sets, $\bigcup^n_{i=1}U_i$ is open.
+\end{theorem}
+\begin{proof}
+$ $\newline 
+\hspace*{1em}\,(a)$\varnothing$ is closed, since $X\setminus \varnothing = X$ is open. Also, $X$ is closed, since $X\setminus X = \varnothing$ is open.\\
+\hspace*{1em}\,(b)Suppose $\{U_i\}_{i\in I}$ is an arbitrary family of closed sets. Then the set $X\setminus U_i$ are open, and we have 
+\begin{align*}
+    \bigcup_{i\in I} (X\setminus U_i) = X \setminus \bigcap_{i\in I} U_i
+\end{align*}
+is open and hence $\bigcap_{i\in I} U_i$ is closed.\\
+\hspace*{1em}\,(c)Suppose the set $U_1, \cdots, U_n \subset X$ are closed. Then the sets $X\setminus U_i$ are open and hence
+\begin{align*}
+    \bigcap^n_{i=1} (X\setminus U_i) = X \setminus \bigcup^n_{i=1} U_i
+\end{align*}
+is open and it follows that $\bigcup^n_{i=1} U_i$ is closed.
+\end{proof}
+
+\begin{definition}[Definition 2.26 in Rudin's book]
+If $X$ is a metric space, if $E\subset X$, and if $E'$ denotes the set of all limit points(or accumulation points) of $E$ in $X$, the closure of $E$ is the set $\bar{E} = E \bigcup E'$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+In any metric space, the set $\bar{B}(x,r) = \{y\in X: d(x,y)\leq r\}$ is closed.
+\end{theorem}
+\begin{proof}
+We can prove this theorem by proving that $X\setminus \bar{B}(x_0,r_0) = \{y\in X: d(x_0,y) > r\}$ is open.If $x\in X\setminus\bar{B}(x_0,r_0)$, then $d(x_0,x) > r$ and hence there exists $r > 0$ such that
+\begin{align*}
+    d(x_0,x) > r_0 + r
+\end{align*}
+And with triangle inequality, for $\forall y\in B(x,r)$, we have $d(x_0,y) \geq d(x,x_0) - d(x,y) > r_0$, since $d(x,y) < r$. Thus, we have $B(x,r)\subset X\setminus \bar{B}(x_0,r_0)$, which implies that $X\setminus \bar{B}(x_0,r_0)$ is open.
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+A set $A\subset U$ is closed if and only if the following implication is true: if a sequence $\{x_n\}_{n=1}^\infty\in A$ such that $x_n\rightarrow x$, then $x\in A$, i.e., if for every convergent sequence of $A$, its limit belongs to $A$.
+\end{theorem}
+\begin{proof}
+$ $ \newline
+\hspace*{1em}\,(a)Suppose $A$ is closed. We need to prove that if $x_n \in A$, then $x\in A$. Suppose by contradiction that $x_n\in A \rightarrow x$, but $x\notin A$. Then, $x\in X\setminus A$. Since $X\setminus A$ is open, there exists a $\varepsilon > 0$ such that $B(x,\varepsilon) \subset X\setminus A$. Then $d(x_n,x) > \varepsilon$ for all $n$ and thus $x_n$ does not converges to $x$, which is a contradiction. \\
+\hspace*{1em}\,(b)Suppose that a set $A\subset X$ has the property that if $X_n \in A$ which converges to $x$, then $x\in A$. We need to prove that $A$ is closed. And we only need to prove that $X\setminus A$ is open. Then, we need to prove that, for $x\in X\setminus A$
+\begin{align*}
+    \exists \varepsilon > 0, B(x, \varepsilon)\subset X\setminus A
+\end{align*}
+\hspace*{1em}Suppose by contradiction that the above statement is not true, i.e., 
+\begin{align*}
+    \forall \varepsilon > 0, B(x,\varepsilon)\not\subset X\setminus A
+\end{align*}
+which means $B(x,\varepsilon)\bigcap A \neq \varnothing$. Then, taking $\varepsilon = 1/n$, $B(x,1/n)\bigcap A \neq \varnothing$. Then we take $x_n\in B(x,1/n)\bigcap A$. Then $x_n\in A$ and $d(x,x_n) < 1/n$, so $x_n\rightarrow x$. Since we assume $x\notin A$, and we get a contradiction. The proof is complete.
+\end{proof}
+
+\begin{definition}
+Let $(X,d)$ be a metric space. We say that $x\in X$ is an accumulation point(or cluster point, or limit point) of a set $A\subset X$ if there is a sequence $\{x_n\}^\infty_{n=0}$ such that $x_n\neq x$ and $x_n \rightarrow x$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+$x\in X$ is an accumulation point if and only if every open set containing $x$ contains an element of $A$ different than $x$.
+\end{theorem}
+\begin{proof}
+$ $\newline
+\hspace*{1em}\,(a)First, let $x \in U$ and $U$ is open. Then $B(x,\varepsilon)\subset U$ for some $\varepsilon > 0$. Let $x_n\in A$, $x_n \neq x$ and $x_n\to x$. Then there exists $n$ such that $x_n\in B(x,\varepsilon)\subset U$, where $x_n \neq x$. \\
+\hspace*{1em}\,(b)Second, for each ball $B(x, 1/n)$, there is a $x_n\in B(x,1/n)\bigcap A$ and $x_n \neq x$. Then it follows that $x_n\to x$. The proof is complete.
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+$A$ is closed if and only if all accumulation points of $A$ belong to $A$.
+\end{theorem}
+\begin{proof}
+$ $\newline
+\hspace*{1em}\,(a)First, suppose $A$ is closed, then $X\setminus A$ is open. So if $x\notin A$, then $B(x,\varepsilon)\subset X\setminus A$ for some $\varepsilon>0$. Then $B(x,\varepsilon)$ contains no point of $A$ and hence $x$ cannot be an accumulation point. Therefore, every accumulation point must belong to $A$.\\
+\hspace*{1em}\,(b)Suppose all accumulation points of $A$ belong to $A$. We need to show that $A$ is closed, it suffices to prove that $X\setminus A$ is open. Let $x\in X\setminus A$, then $x$ is not an accumulation point of $A$, then there exists a open set $U$ such that $x\in U$ and $U$ contains no point of $A$. Hence, $U\subset X\setminus A$, and it follows $B(x,\varepsilon)\subset U\subset X\setminus A$ for some $\varepsilon > 0$. Thus, $X\setminus A$ is open. The proof is complete.
+\end{proof}
+
+\medskip
+
+\begin{theorem}[Theorem 2.27 in Rudin's book]
+The closure of $A$: $\text{cl}(A)$ is intersection of all closed sets that contain $A$. Therefore, $\text{cl}(A)$ is closed. Moreover, $\text{cl}(A)$ is the smallest closed set that contains $A$ in the sense that if $E$ is another closed set such that $A\subset E$, then $\text{cl}(A)\subset E$.
+\end{theorem}
+\begin{proof}
+First, if $x\in X$ and $x\notin \text{cl}(A)$, then $x$ is neither a point of $A$ nor a accumulation point of $A$. Hence, for $x$ there exists a $B(x,\varepsilon) \bigcap A = \varnothing$, for some $\varepsilon > 0$. Then we have that $X\setminus \text{cl}(A)$ is open, which implies $\text{cl}(A)$ is closed. \\
+\hspace*{3em}Second, If $E$ is closed and $A\subset E$, since $\text{cl}(A)$ is the intersection of all closed sets that contain $A$, and $E$ is in the family whose intersection we take, and hence $\text{cl}(A)\subset E$.
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+The closure of $A\subset X$ is $\text{cl}(A) = \{x\in X|\exists x_n\in A, n = 1,2,\cdots, x_n\to x\}$.
+\end{theorem}
+\begin{remark}
+We do not assume $x_n \neq x$ here.
+\end{remark}
+\begin{proof}
+If $x\in A$, then $x_n = x$ satisfies that $x_n\to x$. If $x$ is an accumulation point of $A$, then there is a sequence $x_n\in A$ such that $x_n\to x$. Therefore, we have 
+\begin{align*}
+    \text{cl}(A) \subset \{x\in X|\exists x_n\in A,  x_n\to x\}
+\end{align*}
+On the other hand, if $x_n\in A$ and $x_n\to x$, then either all $x_n \neq x$ and $x$ is an accumulation point of $A$ or $x_n  = x$ for some $n$ and $x\in A$, which implies $$\{x\in X|\exists x_n\in A,  x_n\to x\}\subset \text{cl}(A)$$
+The proof is complete.
+\end{proof}
+
+\medskip
+
+\subsection{Boundary of a set}
+
+\begin{definition}
+Let $(X,d)$ be a metric space, and $A\subset X$. Boundary of $A$ is defined as $\text{bd}(A) =  \text{cl}(A)\bigcap  \text{cl}(X\setminus A)$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+$x\in \text{bd}(A)$ if and only if there exists a sequence in $A$ and a sequence of $X\setminus A$ such that they both converge to $x$.
+\end{theorem}
+\begin{proof}
+It is an obvious result following the definition above.
+\end{proof}
+
+Another theorem follows this theorem immediately.
+
+\begin{theorem}
+$x\in \text{bd}(A)$ if and only if $\forall \varepsilon > 0$, $B(x,\varepsilon)\bigcap A\neq\varnothing$ and $B(x,\varepsilon)\bigcap (X\setminus A)\neq\varnothing$.
+\end{theorem}
+
+\medskip
+
+\subsection{Complete metric space}
+\begin{definition}
+Let $(X,d)$ be a metric space. We say that a sequence $\{x_n\}^\infty_{n=1}$ of $X$ is a Cauchy sequence if $\forall\varepsilon > 0$, there $\exists N > 0$, such that $\forall n,m \geq N$, $d(x_n,x_m) < \varepsilon$.
+\end{definition}
+
+\begin{definition}
+A sequence $\{x_n\}^\infty_{n=1}\in X$ is called bounded if $x_n\in B(x_0,R)$ for some ball $B(x_0,R)$ and $\forall n = 1,2,3,\cdots$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+$ $ \newline
+\hspace*{1em}\,(a)Every convergent sequence in a metric space is a Cauchy sequence. \\
+\hspace*{1em}\,(b)Every Cauchy sequence in a metric space is bounded.\\
+\hspace*{1em}\,(c)If a subsequence of a Cauchy sequence in a metric space is convergent, then the whole sequence is convergent to the same limit.
+\end{theorem}
+\begin{proof}
+$ $ \newline
+\hspace*{1em}\,(a) and (b) are obvious.\\
+\hspace*{1em}\,(c)Suppose $\{x_n\}$ is a Cauchy sequence and $x_{n_k}\to x$. We need to prove that $x_n\to x$. For $\{x_{n_k}\}$, we have $\forall \varepsilon > 0$, there exists a $N_1$ such that for $\forall k \geq N_1$, $d(x_{n_k},x)<\varepsilon/2$. Also, since $\{x_n\}$ is a Cauchy sequence, then for $\forall \varepsilon > 0$, there exists a $N_2$ such that for $\forall n,m \geq N_1$, $d(x_n,x_m)<\varepsilon/2$. Take $N = \max\{N_1, N_2\}$, since $n_N \geq N$ , we have for $n \geq N$,
+\begin{align*}
+    d(x,x_n) \leq d(x_n, x_{n_N}) + d(x_{n_N}, x) < \varepsilon
+\end{align*}
+which means $x_n\to x$. The proof is complete.
+\end{proof}
+
+\medskip
+
+\begin{definition}
+We say that a metric space is complete if every Cauchy sequence is convergent. For example, $\mathbb{R}$ is complete, but $\mathbb{Q}$ is not.
+\end{definition}
+
+\medskip
+
+\begin{theorem}
+$\mathbb{R}^n$ is complete.
+\end{theorem}
+\begin{proof}
+We have 
+\begin{align*}
+    & \{x_k\}_k = ((x_{k1},x_{k2},\cdots, x_{kn}))\,\text{is Cauchy sequence} \\
+    \Leftrightarrow & \{x_{ki}\}_k, i = 1,2,\cdots, n \,\text{is Cauchy sequence} \\
+    \Leftrightarrow & \{x_{ki}\}_k, i = 1,2,\cdots, n \,\text{is convergent} \\
+    \Leftrightarrow & \{x_k\}_k\,\text{is convergent}
+\end{align*}
+The proof is complete.
+\end{proof}
+
+\begin{definition}
+Let $\{x_n\}$ be a sequence in a metric space. We say that $x\in X$ is a cluster point of $\{x_n\}$ if $x$ is the limit of a sbusequence of $\{x_n\}$.
+\end{definition}
+\begin{remark}
+$ $
+\begin{itemize}
+  \item $x\in X$ is an accumulation point of a set $A\subset X$ if there is a sequence $\{x_n\}^\infty_{n=0}\in A$ such that $x_n\neq x$ and $x_n \rightarrow x$.
+  \item $x\in X$ is a limit point of set $A\subset X$ if every neighborhood of $x$ contains a point $y\neq x$ such that $y\in A$.
+\end{itemize}
+\end{remark}
+
+\medskip
+
+\begin{theorem}
+The set of cluster points is closed.
+\end{theorem}
+\begin{proof}
+Suppose $a_k$ is a cluster point of $\{x_n\}$ and $a_k\to a$. We need to prove that $a$ is a cluster point of $x_n$. Each $a_k$ is a cluster point of a subsequence $x_{n_k}$, then in any neighborhood of $a$ there are infinitely many elements of $x_n$, and hence we can select a subsequence $x_{n_k}$ that converges to $a$.
+\end{proof}
+
+\begin{theorem}
+Let $A\subset X$ be a closed subspace of a complete metric space $(X,d)$, then $(A,d)$ is a complete metric space as well.
+\end{theorem}
+\begin{proof}
+If $\{x_n\}$ is a Cauchy sequence in $A$, then it is a Cauchy sequence in $X$, so it converges to some point in $X$. Since $A$ is closed, then $x\in A$, which proves that $(A,d)$ is complete.
+\end{proof}
+
+\begin{theorem}
+In a metric space, $x_n\to x$ if and only if every subsequence of $x_n$ has a further subsequence that converges to $x$. 
+\end{theorem}
+\begin{proof}
+$ $\newline
+\hspace*{1em}\,($\Rightarrow$) This is obvious result of convergence. \\
+\hspace*{1em}\,($\Leftarrow$) Suppose that $\{x_n\}$ has the property above, but $x_n$ does not converge, that is $\exists \varepsilon > 0$, for $\forall N > 0$, there exists $n \geq N$ such that $d(x_n,x)\geq\varepsilon$. Thus we can pick a subsequence $\{x_{n_k}\}$ of $\{x_n\}$ such that
+$$d(x_{n_k},x)\geq\varepsilon$$
+Clearly, we can know $\{x_{n_k}\}$ has no sequence converging to $x$, which is a contradiction.
+\end{proof}
+
+\medskip
+
+\subsection{Compact spaces}
+\begin{definition}
+We say that a subset $A\subset X$ of a metric space is compact if every sequence in $A$ has a subsequence converging to a point in $A$.
+\end{definition}
+
+\begin{definition}[Definition 2.31 \& 2.32 in Rudin's book]
+$ $
+\begin{itemize}
+  \item By an open cover of a set $A$ in a metric space $X$ we mean a collection $\{G_\alpha\}$ of open subsets of $X$ such that $A\subset \bigcup_\alpha G_\alpha$.
+  \item A subset $A$ of a metric space $X$ is said to be compact if every open vector of $A$ contains a finite subcover.
+\end{itemize}
+\end{definition}
+
+\begin{proposition}
+If $A$ is compact, then $A$ is bounded and closed.
+\end{proposition}
+\begin{proof}
+Let $A\subset X$ be compact. To prove that $A$ is closed we need to prove that 
+\begin{align*}
+    A\ni x_n\to x \Rightarrow x\in A
+\end{align*}
+Since $x_n\in A$ and $A$ is compact, then it has a subsequence $\{x_{n_k}\}$ convergenting to a point $x$, then clearly $x\in A$. \\
+\hspace*{3em}Now we prove that $A$ is bounded. Suppose $A$ is not bounded, we fixed $x_0\in X$ and find a sequence $\{x_n\}\in A$ such that $d(x_n, x_0) \geq n$. Then no subsequence of $\{x_n\}$ converges, which is a contradiction.
+\end{proof}
+
+\begin{theorem}[Heine-Borel Theorem]
+$A\subset \mathbb{R}^n$ is compact if and only if $A$ is bounded and closed.
+\end{theorem}
+\begin{proof}
+$ $\newline
+\hspace*{1em}\,($\Rightarrow$) This is a result of proposition above. \\
+\hspace*{1em}\,($\Leftarrow$) We prove it for $n = 3$. Let $x_k\in A, k = 1,2,3,\cdots$. Since $A$ is bounded, we can know that all three elements of $x_k = (x_{1k},x_{2k},x_{3k})$ are bounded in $\mathbb{R}$. Then the sequence $\{x_{1k}\}_k$ is bounded, so Bolzano-Weierstrass theorem, it has a convergent subsequence. Then $x_{1k_n}\to x_1$ and $x_1\in A$ since $A$ is closed. Similiarly, $\{x_{2k_n}\}$ also has a convergent subsequence $\{x_{2k_{n_m}}\}$ converging to $x_2\in A$, and $\{x_{3k_{n_m}}\}$ also has a convergent subsequence $\{x_{3k_{n_{m_l}}}\}$ converging to $x_3\in A$. Thus, we have 
+\begin{align*}
+    x_{k_{n_{m_l}}} = \left(x_{1k_{n_{m_l}}},x_{2k_{n_{m_l}}},x_{3k_{n_{m_l}}}\right)\to (x_1,x_2,x_3)\in A
+\end{align*}
+Then $A$ is compact.
+\end{proof}
+
+\medskip
+
+\begin{definition}
+Let $(X,d)$ be a metric space and $A\subset U$ a subset. We say that a family of open sets $\{U_i\}_{i\in I}$ forms a open covering of $A$ if $A\subset \bigcup_{i\in I} U_i$. Now, $\{U_{i_k}\}_{i_k\in I}, k = 1,2,\cdtos,N$ forms a finite subcovering of $A$ if $A\subset \bigcup_{i_k=1}^N U_{i_k}$.
+\end{definition}
+
+\medskip
+
+\begin{theorem}[Bolzano-Weierstrass theorem]
+Let $(X,d)$ be a metric space and $A\subset X$ a subset. Then $(X,d)$ is compact if and only if every open covering of $A$ has a finite subcovering.
+\end{theorem}
+\begin{remark}
+We denote balls in metric space $(X,d)$ and $(A,d)$ by $B^X(x,r)$ and $B^A(x,r)$ respectively. Clearly, $B^A(x,r) = B^X(x,r)\bigcap A$.
+\end{remark}
+
+Before we prove the Bolzano-Weierstrass theorem, we need to mention some other theorem and lemma. 
+
+\begin{theorem}[Theorem 2.30 in Rudin's book]
+$U\subset A$ is open in $(A,d)$ if and only if there is $W \subset X$ open in $(X,d)$ such that $U = W\bigcap A$.
+\end{theorem}
+\begin{proof}
+$ $\newline
+\hspace*{1em}\,($\Leftarrow$) Suppose $W\subset X$ open in $X$ and $U = W\bigcap A$. Then for $\forall x\in U$, there exists a $r>0$ such that $B^X(x,r)\subset W$ and hence $B(x,r)^X\bigcap A\subset U\bigcap A = U$, where $B(x,r)^X\bigcap A$ is a ball in $A$. Then $U$ is open in $(A,d)$.\\
+\hspace*{1em}\,($\Rightarrow$) Suppose $U\subset A$ is open in $(A,d)$. Then for $\forall x\in U$, there exists a $r>0$ such that $B^X(x,r)\bigcap A\subset U$, where $B^X(x,r)\bigcap A$ is a ball in $A$. Clearly, $U = \bigcup_{x\in X}B^X(x,r)\bigcap A$.\\
+\hspace*{1em}\,Now we set $W = \bigcup_{x\in X}B^X(x,r)$ and $W$ is open in $(X,d)$ and $$W\bigcup A = \bigcup_{x\in X}B^X(x,r)\bigcap A = U$$
+The proof is complete.
+\end{proof}
+
+\begin{corollary}
+$E\subset A$ is closed in $(A,d)$ is and only if there is a set $F\subset X$ closed in $(X,d)$ such that $E = F\bigcap A$.
+\end{corollary}
+
+\begin{theorem}\label{finitcover}
+A metric space $X$ is compact if and only if every open covering of $X$ has a finite subcovering.
+\end{theorem}
+\begin{proof}
+$ $\newline
+\hspace*{1em}\,($\Leftarrow$) Suppose that every open covering of $X$ has a finite subcovering. We need to prove that every sequence $\{x_n\}$ in $X$ has a convergent subsequence. \\
+\hspace*{1em}\,By contradiction, we suppose that $\{x_n\}\in X$ does not has convergent subseqnece(Note that $\{x_n\}$ has infinitely many different values, otherwise we would have a constant, and thus convergent subsequence). Therefore we can select a subsequence $\{x_{n_k}\}$ such that $x_{n_k} \neq x_{n_l}$ for $k\neq l$ and $\{x_{n_k}\}$ does not converge. Observe that the set $\{x_{n_1},x_{n_2},x_{n_3},\cdots\}$ is closed and the set has no accumulation point.\\
+\hspace*{1em}\,In particular, every $x_{n_k}$ is not a accumulation point of the sequence $\{x_{n_k}\}$, and hence there is a $\varepsilon_k>0$ such that the ball $B(x_{n_k}, \varepsilon_k)$ contains no points of this sequence other than $x_{n_k}$, i.e., 
+\begin{align*}
+    x_{n_l}\notin B(x_{n_k}, \varepsilon_k), \text{if}\,l\neq k
+\end{align*}
+Clearly, $X\setminus \{x_{n_1},x_{n_2},x_{n_3},\cdots\}$ is open and hence $$X = \bigcup^\infty_{k=1}B(x_{n_k},\varepsilon_k) \cup \left(X\setminus \{x_{n_1},x_{n_2},x_{n_3},\cdots\}\right)$$ 
+is an open covering of $X$. Thus, this covering has no finite subcovering.  \\
+\hspace*{1em}\,($\Rightarrow$) We need a lemma.
+\begin{lemma}
+Let $\bigcup_{i\in I}U_i$ be an open covering of a compact metric space of $X$ such that $X = \bigcup_{i\in I}U_i$. Then there is $r>0$(called Lebesgue number of the covering) such that $\forall x\in X$, $\exists i\in I$ such that $B(x,r)\subset U_i$.
+\end{lemma}
+\begin{proof}
+Prove by contradiction. Then we can find $x_n\in X$ such that $B(x_n,1/n)$ is not contained in any of the open set $U_i$. Since $X$ is compact, $\{x_n\}$ has a cinvergent subsequence $x_{n_k}\to x_0\in U_{i_0}$ for some $i_0\in I$. Then we have $B(x_0, \varepsilon)\subset U_{i_0}$ for some $\varepsilon>0$. Since $x_n\to x_0$, it is clear that $B(x_n,1/n)\subset B(x_0, \varepsilon)$, which is a contradiction.
+\end{proof}
+We need one definition and one more lemma and.
+\begin{definition}
+A metric space $X$ is said totally bounded if $\forall \varepsilon>0$, there exists a finite covering of $X$ by balls of radius $\varepsilon$.
+\end{definition}
+\begin{lemma}
+If a metric space $X$ is compact, then $x$ is totally bounded.
+\end{lemma}
+\begin{proof}Prove by contradiction. Then there is a $\varepsilon>0$ such that no finite family of balls with radius $\varepsilon$ covers $X$. Let $x_1\in X$, then $B(x_1,\varepsilon)\neq X$. Then there exists $x_2\notin B(x_1,\varepsilon)$, and $B(x_1,\varepsilon)\cup B(x_2,\varepsilon)\neq X$. Then there exists $x_3\notin B(x_1,\varepsilon)\cup B(x_2,\varepsilon)$, and $B(x_1,\varepsilon)\cup B(x_2,\varepsilon)\cup\neq X$. We can continue this process and construct a sequence $\{x_1,x_2,x_3,\cdots\}$ in $X$ such that $d(x_k,x_l)\geq \varepsilon$ for $k\neq l$. Clearly, $\{x_n\}$ has no convergent subsequence, which is contradicted with compactness of $X$.
+\end{proof}
+
+Now we continue the proof of the implication ($\Rightarrow$) of theorem \ref{finitcover}. \\
+\hspace*{1em}\,($\Rightarrow$) Suppose that $X$ is compact, i.e., every sequence in $x$ has a convergent subsequence. We need to prove that every open covering of $X$ has a finite subcovering. \\
+\hspace*{1em}\,Let $X = \bigcup_{i\in I}U_i$ and let $r>0$ be a Lebesgue number of the covering. Since $X$ is totally bounded, $X$ has finite coverings by balls of radius $r$, i.e.,
+\begin{align*}
+    X = \bigcup^N_{i=1}B(x_i,r)
+\end{align*}
+By the definition of Lebesgue number, we have $B(x_i,r)\subset U_{k_i}$. Then,
+\begin{align*}
+    X = \bigcup^N_{i=1}B(x_i,r) \subset \bigcup^N_{i=1}U_{k_i}
+\end{align*}
+which gives a finite open subcovering of $X$. The proof of theorem \ref{finitcover} is complete. This also completes the proof is Bolzano-Weierstrass theorem.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+

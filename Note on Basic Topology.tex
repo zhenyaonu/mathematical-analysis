@@ -12,7 +12,10 @@
 \usepackage{graphicx}
 \usepackage{lmodern}
 \usepackage{pifont}
+\usepackage{tikz}
+\usepackage{pgfplots}
 \graphicspath{ {images/} }
+
 
 \setlength{\oddsidemargin}{1pt}
 \setlength{\evensidemargin}{1pt}
@@ -28,12 +31,12 @@
 
 \title{Sections and Chapters}
 
+\newtheorem{definition}{Definition}[section]
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}{Proposition}[section]
-
-\newtheorem{definition}{Definition}[section]
+\newtheorem{exercise}{Exercise}[section]
 \newtheorem{remark}{Remark}[section]
 
 \theoremstyle{definition}
@@ -149,8 +152,20 @@ $\lim_{i\to\infty}x_i = x$ if $\lim_{i\to\infty}d(x_i, x) = 0$.
 
 \begin{example}
 Examples of metric spaces:\\
-\hspace*{1em}(1)\,$(\mathbb{R}^n,\rho_1)$, where $\rho_1(x,y) = \max_i |x_i-y_i|$. \\
-\hspace*{1em}(2)\,$(\mathbb{R}^n,\rho_2)$, where $\rho_2(x,y) = \sum^n_{i=1} |x_i-y_i|$, this is called taxi metric or New York metric.\\
+\hspace*{1em}(1)\,$(\mathbb{R}^n,\rho_1)$, where $\rho_1(x,y) = \max_i |x_i-y_i|$. And $B(0,1)$ in $(\mathbb{R}^2,\rho_1)$ is shown as bellow\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{unit_ball_norm_1}
+    \caption{$B(0,1)$ in $(\mathbb{R}^2,\rho_1)$}
+    \label{fig:unit_ball_norm_1}
+\end{figure}\\
+\hspace*{1em}(2)\,$(\mathbb{R}^n,\rho_2)$, where $\rho_2(x,y) = \sum^n_{i=1} |x_i-y_i|$, this is called taxi metric or New York metric. And $B(0,1)$ in $(\mathbb{R}^2,\rho_2)$ is shown as bellow\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{unit_ball_norm_2}
+    \caption{$B(0,1)$ in $(\mathbb{R}^2,\rho_2)$}
+    \label{fig:unit_ball_norm_2}
+\end{figure}\\
 \hspace*{1em}(3)\,$(\mathbb{R}^n,\rho_3)$, where $\rho_3(x,y) = \left\|x-y\right\|$, this is called standard euclidean space.\\
 \hspace*{1em}(4)\,$(\mathbb{R}^n,\rho_4)$, where $\rho_4(x,y) = \left\|x-y\right\|^{1/2}$.\\
 \hspace*{1em}(5)\,$(X,d)$, where $X$ is arbitrary set and 
@@ -493,10 +508,10 @@ Let $\{x_n\}$ be a sequence in a metric space. We say that $x\in X$ is a cluster
 \end{definition}
 \begin{remark}
 $ $
-\begin{itemize}
+\begin{enumerate}
   \item $x\in X$ is an accumulation point of a set $A\subset X$ if there is a sequence $\{x_n\}^\infty_{n=0}\in A$ such that $x_n\neq x$ and $x_n \rightarrow x$.
   \item $x\in X$ is a limit point of set $A\subset X$ if every neighborhood of $x$ contains a point $y\neq x$ such that $y\in A$.
-\end{itemize}
+\end{enumerate}
 \end{remark}
 
 \medskip
@@ -618,7 +633,7 @@ Let $\bigcup_{i\in I}U_i$ be an open covering of a compact metric space of $X$ s
 \begin{proof}
 Prove by contradiction. Then we can find $x_n\in X$ such that $B(x_n,1/n)$ is not contained in any of the open set $U_i$. Since $X$ is compact, $\{x_n\}$ has a cinvergent subsequence $x_{n_k}\to x_0\in U_{i_0}$ for some $i_0\in I$. Then we have $B(x_0, \varepsilon)\subset U_{i_0}$ for some $\varepsilon>0$. Since $x_n\to x_0$, it is clear that $B(x_n,1/n)\subset B(x_0, \varepsilon)$, which is a contradiction.
 \end{proof}
-We need one definition and one more lemma and.
+We need one definition and one more lemma.
 \begin{definition}
 A metric space $X$ is said totally bounded if $\forall \varepsilon>0$, there exists a finite covering of $X$ by balls of radius $\varepsilon$.
 \end{definition}
@@ -641,10 +656,133 @@ By the definition of Lebesgue number, we have $B(x_i,r)\subset U_{k_i}$. Then,
 which gives a finite open subcovering of $X$. The proof of theorem \ref{finitcover} is complete. This also completes the proof is Bolzano-Weierstrass theorem.
 \end{proof}
 
+\medskip
 
+\begin{theorem}
+A metric space $X$ is compact if and only if it is complete and totally bounded.
+\end{theorem}
+\begin{proof}
+$ $\newline
+\hspace*{1em}\,($\Rightarrow$) Suppose $X$ is compact. Then $X$ is totally bounded. To prove it is complete, let $\{x_n\}$ be a Cauchy sequence in $X$.  The by compactness, we can know some subsequence of $\{x_{n_k}\}$ is convergent, such that $x_{n_k}\to x_0$. Then $\{x_n\}$ also converges to $x_0$. Thus, $X$ is complete. \\
+\hspace*{1em}\,($\Leftarrow$) Suppose that $X$ is complete and totally bounded. We need to prove that every sequence $\{x_n\}$ in $X$ has a convergent subsequence. \\
+\hspace*{1em}\, Since $X$ is totally bounded , then it has a finite open covering of balls with radius $1$, i.e.,
+\begin{align*}
+    X = \bigcup^{N_1}_{i=1}B(x_i^{(1)},1)
+\end{align*}
+Hence, infinitely many elements of sequence $\{x_n\}$ belong to at least one of the balls, saying $B(x_{i_1}^{(1)},1)$. This ball has a finite open covering by balls with radius of $\frac{1}{2}$, i.e.,
+\begin{align*}
+    B(x_{i_1}^{(1)},1) = \bigcup^{N_2}_{i=1}B\left(x_i^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1) 
+\end{align*}
+Still, infinitely many elements of the sequence belong to at least one of the set on the right hand side, saying $B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1)$. And this set has a finite open covering by balls of radius of $\frac{1}{3}$, i.e.,
+\begin{align*}
+    B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1) = \bigcup^{N_3}_{i=1} B\left(x_{i}^{(3)},\frac{1}{3}\right)\cap B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1)
+\end{align*}
+Still, infinitely many elements of the sequence belong to at least one of the set on the right hand side, and we continue this process and pick a subsequence from the given sequence $\{x_n\}$ such that 
+\begin{align*}
+    x_{n_1} &\in B(x_{i_1}^{(1)},1) \\
+    x_{n_2} &\in B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1) \\
+    x_{n_3} &\in B\left(x_{i_3}^{(3)},\frac{1}{3}\right)\cap B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1)\\
+    & \vdots
+\end{align*}
+Therefore, for $k,;l\geq N$, we have $x_{n_k},x_{n_l}\in B\left(x_{i_N}^{(2)},\frac{1}{N}\right)$ and hence
+\begin{align*}
+    d(x_{n_k},x_{n_l}) < \frac{2}{N}
+\end{align*}
+\hspace*{1em}\,Thus the sequence is Cauchy sequence and therefore convergent, it follows that $X$ is complete.
+\end{proof}
 
+\begin{theorem}
+If $F_k\subset X$ are nonempty compact sets such that $F_1\supset F_2\supset F_3\supset\cdots$, then $\bigcap^\infty_{k=1}F_k\neq\varnothing$.
+\end{theorem}
+\begin{proof}
+Let $x_k\in F_k$ for $k = 1,2,3,\cdots$. Then $X_n\in F_k$ for all $n\geq k$. In particular, $x_n\in F_1$ for all $n$. Hence $x_n$ has a convergent subsequence  in $F_1$($F_1$ is compact), saying $x_{n_l}\to x_0\in F_1$. Now, we have $x_{n_l}\in F_k$ for all $n_l \geq k$, and hence the limit $x_0$ of $\{x_{n_l}\}$ must belong to every $F_k$, i.e., $x_0\in \bigcup^\infty_{k=1}F_k$ which proves the intersection is not empty.
+\end{proof}
+\begin{remark}
+The claim is not true if $F_k$ are open or closed but unbounded, for example
+\begin{align*}
+    \bigcap^\infty_{k=1}\left(0,\frac{1}{k}\right) &= \varnothing \\
+    \bigcap^\infty_{k=1}\left[k,\infty\right) &= \varnothing
+\end{align*}
+\end{remark}
 
+\medskip
 
+\subsection{Cantor set}
+\begin{definition}
+By the segment $(a,b)$ we mean the set of all real numbers $x$ such that $a<x<b$. By the interval $[a,b]$ we mean the set of all real numbers $x$ such that $a\leq x\leq b$
+\end{definition}
+The set which we are now constructing shows that there exists perfect sets in $\mathbb{R}^1$ which contain no segment. \\
+\hspace*{1em}\, (1)Let $E_0$ be the interval $[0,1]$. \\
+\hspace*{1em}\, (2)Remove the segment $\left(\frac{1}{3},\frac{2}{3}\right)$, and let $E_1$ be the union of the interval of $$\left[0,\frac{1}{3}\right],\left[\frac{1}{3},1\right]$$. \\
+\hspace*{1em}\, (3)Remove the middle thirds of these two intervals and let $E_2$ be the union of $$\left[0,\frac{1}{9}\right],\left[\frac{2}{9},\frac{1}{3}\right],\left[\frac{6}{9},\frac{7}{9}\right],\left[\frac{8}{9},1\right]$$. \\
+\hspace*{1em}\, (4)Continue this way and we can get a sequence of compact sets $E_n$, such that $E_1\supset E_2\supset E_3\supset\cdots$ and $E_n$ is the union of $2^n$ intervals with length $3^{-n}$. We show the Cantor set in seven iterations as below 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Cantor_set_in_seven_iterations}
+    \caption{Cantor set in seven iterations}
+    \label{fig:Cantor_set}
+\end{figure}\\
+\hspace*{1em}\, The set
+\begin{align*}
+    P = \bigcap^\infty_{n=1}E_1
+\end{align*}
+is called the Cantor set. $P$ is clearly compact and $P$ is not empty. And one can prove that $P$ is uncountable.
+
+\medskip
+
+\subsection{Connected sets}
+\begin{definition}$ $\\
+\begin{enumerate}
+  \item $\varphi:[a,b]\to X$ is called continuous if $x_n\to t$, then $\varphi(x_n)\to\varphi(x)$ for every sequence $\{x_n\}$ in $[a,b]$. 
+  \item If $A\subset X$ is a subset of a metric space, a continuous path connecting $x,y\in A$ inside $A$ is any continuous function $\varphi:[a,b]\to A$ such that $\varphi(a) = x, \varphi(b) = y$.
+  \item A set $A$ is called path connected if every two points in $A$ can be connected by a continuous path inside $A$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+A set $A\subset X$ is called disconnected if there exists open sets $U, V$ in $X$ such that 
+\begin{enumerate}
+    \item $A\subset U\cup V$;
+    \item $A\cap U\neq \varnothing$ and $A\cap V\neq \varnothing$;
+    \item $A\cap (U\cap V) = \varnothing$
+\end{enumerate}
+\end{definition}
+Disconnected set is shown as below which is union of two sets, which are contained in two open sets $U$ and $V$: \\
+\def\firstcircle{(0,0) circle (1cm)}
+\def\secondcircle{(2.7,0) circle (1cm)}
+\def\thirdcircle{(0,0) circle (1.5cm)}
+\def\forthcircle{(0,0) circle (1.5cm)}
+\colorlet{circle edge}{black!90}
+\colorlet{circle area}{black!20}
+\tikzset{filled/.style={fill=circle area, draw=circle edge, thick},
+    outline/.style={draw=circle edge, thick}}
+\setlength{\parskip}{5mm}
+% Set A and B
+\begin{center}
+    \begin{tikzpicture}
+    \centering
+    \draw[filled] \firstcircle node {$A$}
+                  \secondcircle node {$A$};
+    %\node[anchor=south] at (current bounding box.north) {$A \cap B$};
+    \draw[black,thick,dashed] (2.7,0) circle (1.5cm);
+    \draw[black,thick,dashed] (0,0) circle (1.5cm);
+    \label{fig:disconnected}
+    \end{tikzpicture}\\
+    \caption{$U\qquad\qquad\qquad V$}
+\end{center}
+
+\medskip
+
+\begin{exercise}
+Prove that the space $X$ is connected if and only if the only subsets of $X$ that are open and closed at the same time are $\varnothing$ and $X$.
+\end{exercise}
+\begin{proof}
+$ $\newline
+\hspace*{1em}\,($\Rightarrow$) Suppose $X$ is connected. We want to show that if $E\subset X$ is open and closed at the same time, then $E = X$ or $E = \varnothing$. \\
+\hspace*{1em}\, Suppose by contraction that there exists a $E\subset X$ such that $E\neq X$, $E\neq\varnothing$ and $E$ is open and closed at the same time. Then $U = E$, $V = X\setminus E$ are both open. And we have $X = U\cup V$, $X\cap U \neq \varnothing$, $X\cap V \neq \varnothing$, $X\cap U = V \neq \varnothing$ and $X\cap (U\cap V) = X\cap E\cap (X\setminus E) = \varnothing$. Thus, $X$ is disconnected, which is a contradiction. \\
+\hspace*{1em}\,($\Leftarrow$) Suppose that the only subsets of $X$ that are open and closed at the same time are $\varnothing$ and $X$. We need to show that $X$ is connected. \\
+\hspace*{1em}\, By contradiction that $X$ is not connected. Then, there exists two open sets $U$ and $V$ such that $X = U\cup V$, $X\cap U \neq \varnothing$, $X\cap V \neq \varnothing$, $X\cap U = V \neq \varnothing$. Then $U\neq \varnothing$ and it is also closed since $X\setminus U = V$ is open, then this is a contradiction with the fact that $X$ and $\varnothing$ are only sets that are open and closed at the same time.
+\end{proof}
 
 
 

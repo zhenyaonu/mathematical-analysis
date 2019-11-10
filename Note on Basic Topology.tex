@@ -14,6 +14,9 @@
 \usepackage{pifont}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usepackage{thmtools}
+\usepackage{wrapfig}
+\usepackage{extarrows}
 \graphicspath{ {images/} }
 
 
@@ -27,7 +30,6 @@
 \setlength{\footskip}{24pt}       % gains 6pt height
 \setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
 \setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
-
 
 \title{Sections and Chapters}
 
@@ -77,12 +79,12 @@ The structure now defined is called euclidean $n$-spaces. \\
 
 \begin{theorem}
 Suppose $x,y,z\in\mathbb{R}^n$ and $\alpha$ is real. Then \medskip \\
-\hspace*{1em}(a)\,$\left\|x\right\|\geq 0$;\\
-\hspace*{1em}(b)\,$\left\|x\right\| = 0$ if and only if $x = 0$;\\
-\hspace*{1em}(c)\,$\left\|\alpha x\right\| = |\alpha|\left\|x\right\|$;\\
-\hspace*{1em}(d)\,$\left\|x\cdot y\right\| \leq \left\|x\right\|  \left\|y\right\|$, this is called Cauchy-Schwarz inequality;\\
-\hspace*{1em}(e)\,$\left\|x + y\right\| \leq \left\|x\right\| + \left\|y\right\|$, this is called Triangle inequality;\\
-\hspace*{1em}(f)\,$\left\|x - z\right\| \leq \left\|x - y\right\| + \left\|y - z\right\|$.
+\hspace*{1em}\, (a)\,$\left\|x\right\|\geq 0$;\\
+\hspace*{1em}\, (b)\,$\left\|x\right\| = 0$ if and only if $x = 0$;\\
+\hspace*{1em}\, (c)\,$\left\|\alpha x\right\| = |\alpha|\left\|x\right\|$;\\
+\hspace*{1em}\, (d)\,$\left\|x\cdot y\right\| \leq \left\|x\right\|  \left\|y\right\|$, this is called Cauchy-Schwarz inequality;\\
+\hspace*{1em}\, (e)\,$\left\|x + y\right\| \leq \left\|x\right\| + \left\|y\right\|$, this is called Triangle inequality;\\
+\hspace*{1em}\, (f)\,$\left\|x - z\right\| \leq \left\|x - y\right\| + \left\|y - z\right\|$.
 \end{theorem}
 \begin{proof}
 We only proof (d). If $x = (0,0,\cdots,0) = 0$, or $y = 0$, then it is obvious. If $x \neq 0$ and $y\neq 0$, then for $t\in\mathbb{R}$, we have 
@@ -104,11 +106,11 @@ A set $X$, whose elements we call points, is said to be a metric space if with a
     d(x,y) = \left\|x - z\right\|
 \end{align*}
 which has the following properties\\
-\hspace*{1em}(a)\,$d(x,y) > 0$ if $x\neq y$;\\
-\hspace*{1em}(b)\,$d(x,y) = 0$ if $x = y$;\\ 
-\hspace*{1em}(c)\,$d(x,y) = d(y,x)$;\\ 
-\hspace*{1em}(c)\,$d(x,y) \leq d(x,z) + d(z,y)$.
-\end{definition}\\
+\hspace*{1em}\, (a)\,$d(x,y) > 0$ if $x\neq y$;\\
+\hspace*{1em}\, (b)\,$d(x,y) = 0$ if $x = y$;\\ 
+\hspace*{1em}\, (c)\,$d(x,y) = d(y,x)$;\\ 
+\hspace*{1em}\, (d)\,$d(x,y) \leq d(x,z) + d(z,y)$.
+\end{definition}
 
 \begin{definition}
 Let $\{x_i\}^\infty_{i=1}$ be a sequence of points in $\mathbb{R}^n$ and $y\in\mathbb{R}^n$. We say that $\{x_i\}^\infty_{i=1}$ converges to $y$ if 
@@ -132,8 +134,8 @@ We have
     \left\|x_i - y\right\| & = \sqrt{(x_{1i}-y_1)^2 + \cdots + (x_{ni}-y_1)^2} \\
     & \geq \sqrt{(x_{ki}-y_k)^2} = |x_{ki} - y_k|
 \end{align*}
-Hence, $$\left\|x_i - y\right\| \to 0 \Rightarrow |x_{ki} - y_k| \to 0$$
-On the other hand, if $|x_{ki} - y_k|$ as $i\to\infty$ for $k = 1,2,\cdots, n$, then 
+Hence, $\left\|x_i - y\right\| \to 0 \Rightarrow |x_{ki} - y_k| \to 0$.\\
+\hspace*{1em}\, On the other hand, if $|x_{ki} - y_k|$ as $i\to\infty$ for $k = 1,2,\cdots, n$, then 
 \begin{align*}
     \max_k |x_{ki} - y_k| \to 0 \quad \text{as}\quad i\to\infty
 \end{align*}
@@ -148,27 +150,27 @@ and hence
 \begin{definition}
 Let $(X,d)$ be a metric space and let $x_i\in X, i = 1,2,\cdots,$ and $x\in X$. We say that the sequence $\{x_n\}^\infty_{i=1}$ converges to $x$, saying
 $\lim_{i\to\infty}x_i = x$ if $\lim_{i\to\infty}d(x_i, x) = 0$.
-\end{definition}\\
+\end{definition}
 
 \begin{example}
 Examples of metric spaces:\\
-\hspace*{1em}(1)\,$(\mathbb{R}^n,\rho_1)$, where $\rho_1(x,y) = \max_i |x_i-y_i|$. And $B(0,1)$ in $(\mathbb{R}^2,\rho_1)$ is shown as bellow\\
+\hspace*{1em}\, (1)$(\mathbb{R}^n,\rho_1)$, where $\rho_1(x,y) = \max_i |x_i-y_i|$. And $B(0,1)$ in $(\mathbb{R}^2,\rho_1)$ is shown as above.\\
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{unit_ball_norm_1}
     \caption{$B(0,1)$ in $(\mathbb{R}^2,\rho_1)$}
     \label{fig:unit_ball_norm_1}
 \end{figure}\\
-\hspace*{1em}(2)\,$(\mathbb{R}^n,\rho_2)$, where $\rho_2(x,y) = \sum^n_{i=1} |x_i-y_i|$, this is called taxi metric or New York metric. And $B(0,1)$ in $(\mathbb{R}^2,\rho_2)$ is shown as bellow\\
+\hspace*{1em}\, (2)$(\mathbb{R}^n,\rho_2)$, where $\rho_2(x,y) = \sum^n_{i=1} |x_i-y_i|$, this is called taxi metric or New York metric. And $B(0,1)$ in $(\mathbb{R}^2,\rho_2)$ is shown as bellow\\
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{unit_ball_norm_2}
     \caption{$B(0,1)$ in $(\mathbb{R}^2,\rho_2)$}
     \label{fig:unit_ball_norm_2}
 \end{figure}\\
-\hspace*{1em}(3)\,$(\mathbb{R}^n,\rho_3)$, where $\rho_3(x,y) = \left\|x-y\right\|$, this is called standard euclidean space.\\
-\hspace*{1em}(4)\,$(\mathbb{R}^n,\rho_4)$, where $\rho_4(x,y) = \left\|x-y\right\|^{1/2}$.\\
-\hspace*{1em}(5)\,$(X,d)$, where $X$ is arbitrary set and 
+\hspace*{1em}\, (3)$(\mathbb{R}^n,\rho_3)$, where $\rho_3(x,y) = \left\|x-y\right\|$, this is called standard euclidean space.\\
+\hspace*{1em}\, (4)$(\mathbb{R}^n,\rho_4)$, where $\rho_4(x,y) = \left\|x-y\right\|^{1/2}$.\\
+\hspace*{1em}\, (5)$(X,d)$, where $X$ is arbitrary set and 
 \begin{align*}
     d(x,y) = \left\{
     \begin{aligned}
@@ -177,18 +179,18 @@ Examples of metric spaces:\\
     \end{aligned}
     \right.
 \end{align*}
-\hspace*{2.5em}This is called discrete metric space. \\
-\hspace*{1em}(6)\,One can prove that every continuous function on $[0,1]$ is bounded. This fact implies that $(C,d)$, where $C([0,1]) = \{f:[0,1]\rightarrow \mathbb{R}, f \, \text{is continuous}\}$ with $d(f,g) = \left\|f-g\right\|_\infty = \sup \{|f(x) - g(x)|: x,y\in[0,1]\}$ is a metric space.\\
-\hspace*{1em}(7)\,Let $l^1 = \{x = \{x_n\}^\infty_{n=1}: \sum^\infty_{n=1}|x_n| < \infty\}$, i.e., $l^1$ is the space of all absolutely convergent sequences. For $x = \{x_n\}^\infty_{n=1}, y = \{y_n\}^\infty_{n=1} \in l^1$, we define 
+\hspace*{1em}\, This is called discrete metric space. \\
+\hspace*{1em}\, (6)One can prove that every continuous function on $[0,1]$ is bounded. This fact implies that $(C,d)$, where $C([0,1]) = \{f:[0,1]\rightarrow \mathbb{R}, f \, \text{is continuous}\}$ with $d(f,g) = \left\|f-g\right\|_\infty = \sup \{|f(x) - g(x)|: x,y\in[0,1]\}$ is a metric space.\\
+\hspace*{1em}\, (7)Let $l^1 = \{x = \{x_n\}^\infty_{n=1}: \sum^\infty_{n=1}|x_n| < \infty\}$, i.e., $l^1$ is the space of all absolutely convergent sequences. For $x = \{x_n\}^\infty_{n=1}, y = \{y_n\}^\infty_{n=1} \in l^1$, we define 
 \begin{align*}
     d(x,y) = \sum^\infty_{n=1} |x_n - y_n|
 \end{align*}
 We will prove that $(l^1,d)$ is a metric space.\\
-\hspace*{2.5em}First we have $d(x,y) < \infty$ for $\forall x,y \in l^1$. And we have $|x_n-y_n|\leq |x_n|+|y_n|$, and hence
+\hspace*{1em}\, First we have $d(x,y) < \infty$ for $\forall x,y \in l^1$. And we have $|x_n-y_n|\leq |x_n|+|y_n|$, and hence
 \begin{align*}
     d(x,y) = \sum^\infty_{n=1} |x_n - y_n| \leq \sum^\infty_{n=1} |x_n| + \sum^\infty_{n=1} |y_n| < \infty
 \end{align*}
-\hspace*{2.5em}Now we have $(1):d(x,y) \geq 0$ and $(2):d(x,y) = d(y,x)$, which is obvious. And $(3): d(x,y) = 0 \Leftrightarrow \forall x_n = y_n \Leftrightarrow x = y$. Finally, we have 
+\hspace*{1em}\, Now we have $(1):d(x,y) \geq 0$ and $(2):d(x,y) = d(y,x)$, which is obvious. And $(3): d(x,y) = 0 \Leftrightarrow \forall x_n = y_n \Leftrightarrow x = y$. Finally, we have 
 \begin{align*}
     |x_n - y_n| \leq |x_n - z_n| + |z_n - y_n|
 \end{align*}
@@ -197,7 +199,7 @@ and hence
     \sum^\infty_{n=1}|x_n - y_n| & \leq \sum^\infty_{n=1}|x_n - z_n| + \sum^\infty_{n=1}|z_n - y_n|\\
     \Rightarrow d(x,y) & \leq d(x,z) + d(z,y).
 \end{align*}
-\hspace*{1em}(8)\,Let $l^2 = \{x = \{x_n\}^\infty_{n=1}: \sum^\infty_{n=1}|x_n|^2 < \infty\}$. For $x = \{x_n\}^\infty_{n=1}, y = \{y_n\}^\infty_{n=1} \in l^1$, we define
+\hspace*{1em}\, (8)Let $l^2 = \{x = \{x_n\}^\infty_{n=1}: \sum^\infty_{n=1}|x_n|^2 < \infty\}$. For $x = \{x_n\}^\infty_{n=1}, y = \{y_n\}^\infty_{n=1} \in l^1$, we define
 \begin{align*}
     d_2(x,y) = \sqrt{\sum^\infty_{n=1} (x_n - y_n)^2}
 \end{align*}
@@ -228,7 +230,7 @@ and hence $$|d(x,y) - d(x_n,y_n)| \to 0 $$ which implies $d(x,y) \to d(x_n,y_n)$
 \medskip
 
 \section{Elements of Topology}
-\hspace*{1em}Let $(X,d)$ be a metric space. For $x\in X$ and $r>0$, we define 
+Let $(X,d)$ be a metric space. For $x\in X$ and $r>0$, we define 
 \begin{align*}
     B(x,r) = \{y\in X: d(x,y) < r\}
 \end{align*}
@@ -241,14 +243,14 @@ We say that a set $U\subset X$ is open if $$\forall x\in X, \exists r > 0, B(x,r
 \begin{definition}[Definition in Rudin's Principle of Mathematical Analysis]Let $X$ be a metric space. \medskip \\
 \hspace*{1em}\,(a)A neighborhood or a ball of $x$ is a set $N_r(x)$ consisting of all $y$ such that $d(x,y)<r$, \hspace*{2.3em}for some $r>0$. The number $r$ is called the radius of $N_r(x)$.\\
 \hspace*{1em}\,(b)A point $x$ is a limit point of set $E$ if every neighborhood of $x$ contains a point $y\neq x$ \hspace*{2.3em}such that $y\in E$.\\
-\hspace*{1em}\,(c)If $x\in E$ and $x$ is not a limit point of $E$, then $x$ is called an isolated point of $E$.\\
-\hspace*{1em}\,(d)$E$ is closed if every limit point of $E$ is a point of $E$.\\
-\hspace*{1em}\,(e)A point $x$ is an interior point of $E$ if there is a neighborhood(or ball) $N_r(x)$ of $x$ such \hspace*{2.3em}that $N_r(x)\in E$.\\
-\hspace*{1em}\,(f)$E$ is open if every point of $E$ is an interior point of $E$.\\
-\hspace*{1em}\,(g)The complement of $E$ (denoted by $E^c$) is the set of all points $x\in X$ such that $x\notin E$.\\
-\hspace*{1em}\,(h)$E$ is perfect if $E$ is closed and if every point of $E$ is a limit point of $E$.\\
-\hspace*{1em}\,(i)$E$ is bounded if there is a real number $M$ and a point $x\in X$ such that $d(x, y) < M$ \hspace*{2.3em} for all $y\in E$.\\
-\hspace*{1em}\,(j)$E$ is dense in $X$ if every point of $X$ is a limit point of $E$, or a point of $E$(or both).
+\hspace*{1em}\, (c)If $x\in E$ and $x$ is not a limit point of $E$, then $x$ is called an isolated point of $E$.\\
+\hspace*{1em}\, (d)$E$ is closed if every limit point of $E$ is a point of $E$.\\
+\hspace*{1em}\, (e)A point $x$ is an interior point of $E$ if there is a neighborhood(or ball) $N_r(x)$ of $x$ \hspace*{2.3em} such that $N_r(x)\in E$.\\
+\hspace*{1em}\, (f)$E$ is open if every point of $E$ is an interior point of $E$.\\
+\hspace*{1em}\, (g)The complement of $E$ (denoted by $E^c$) is the set of all points $x\in X$ such that $x\notin E$.\\
+\hspace*{1em}\, (h)$E$ is perfect if $E$ is closed and if every point of $E$ is a limit point of $E$.\\
+\hspace*{1em}\, (i)$E$ is bounded if there is a real number $M$ and a point $x\in X$ such that $d(x, y) < M$ \hspace*{2.3em} for all $y\in E$.\\
+\hspace*{1em}\, (j)$E$ is dense in $X$ if every point of $X$ is a limit point of $E$, or a point of $E$(or both).
 \end{definition}
 
 \begin{theorem}
@@ -267,22 +269,21 @@ Since every point of $B(x,r)$ belongs to $B(x_0,r_0)$, we can conclude that $B(x
 
 \begin{theorem}
 Let $(X,d)$ be a metric space, then\\
-\hspace*{1em}\,(a)$\varnothing, X$ are open;\\
-\hspace*{1em}\,(b)Intersection of a finite family $U_1, \cdots, U_n \subset X$ of open sets, $\bigcap^n_{i=1}U_i$ is open;\\
-\hspace*{1em}\,(c)Union of an arbitrary family $U_i,i\in I$ of open sets, $\bigcup^n_{i\in I}U_i$ is open.
+\hspace*{1em}\, (a)$\varnothing, X$ are open;\\
+\hspace*{1em}\, (b)Intersection of a finite family $U_1, \cdots, U_n \subset X$ of open sets, $\bigcap^n_{i=1}U_i$ is open;\\
+\hspace*{1em}\, (c)Union of an arbitrary family $U_i,i\in I$ of open sets, $\bigcup^n_{i\in I}U_i$ is open.
 \end{theorem}
 \begin{proof}
-$ $\newline 
-\hspace*{1em}\,(a)This is obvious.\\
-\hspace*{1em}\,(b)Suppose $U_1, \cdots, U_n \subset X$ are open. Let $x\in \bigcap^n_{i=1}U_i$, we need to show $B(x,r)\subset \bigcap^n_{i=1}U_i$ for some $r>0$. We have 
+(a)This is obvious.\\
+\hspace*{1em}\, (b)Suppose $U_1, \cdots, U_n \subset X$ are open. Let $x\in \bigcap^n_{i=1}U_i$, we need to show $B(x,r)\subset \bigcap^n_{i=1}U_i$ for some $r>0$. We have 
 \begin{align*}
     x\in U_1 \Rightarrow B(x,r_1) & \subset U_1, \text{for some} \, r_1 > 0 \\
     x\in U_2 \Rightarrow B(x,r_2) & \subset U_2, \text{for some} \, r_2 > 0 \\
     & \vdots \\
     x\in U_n \Rightarrow B(x,r_n) & \subset U_n, \text{for some} \, r_n > 0
 \end{align*}
-\hspace*{1em}Hence, we can pick $r = \min\{r_1, r_2\cdots,r_n\}$, and it follows that $B(x,r) \subset \bigcap^n_{i=1}U_i$.\\
-\hspace*{1em}\,(c)Let $\{U_i\}_{i\in I}$ be an arbitrary family of open sets and let $x\in \bigcup_{i\in I}U_i$. Then there exists a $i_0\in I$ such that $x\in U_{i_0}$, and hence $B(x,r) \subset U_{i_0} \subset \bigcup_{i\in I}U_i$ for some $r>0$. The proof is complete.
+\hspace*{1em}\, Hence, we can pick $r = \min\{r_1, r_2\cdots,r_n\}$, and it follows that $B(x,r) \subset \bigcap^n_{i=1}U_i$.\\
+\hspace*{1em}\, (c)Let $\{U_i\}_{i\in I}$ be an arbitrary family of open sets and let $x\in \bigcup_{i\in I}U_i$. Then there exists a $i_0\in I$ such that $x\in U_{i_0}$, and hence $B(x,r) \subset U_{i_0} \subset \bigcup_{i\in I}U_i$ for some $r>0$. The proof is complete.
 \end{proof}
 
 \medskip
@@ -299,8 +300,8 @@ int$A$ is always open. It is the largest open set contained in $A$ in the sense 
 \end{theorem}
 \begin{proof}
 $ $ \newline
-\hspace*{1em}(a)If $U\subset A$, then for $\forall x\in U$, there exists $r>0$ such that $B(x,r)\subset U \subset \text{int}A$. This implies that $x\in \text{int}A$. Thus, $U\subset \text{int}A$. \\
-\hspace*{1em}(b)If $x\in \text{int}A$, then there exists $r>0$ such that $B(x,r)\subset A$. Since $B(x,r)$ is open and $B(x,r)\subset A$, we have $\text{int}A$ is open.
+\hspace*{1em}\, (a)If $U\subset A$, then for $\forall x\in U$, there exists $r>0$ such that $B(x,r)\subset U \subset \text{int}A$. This implies that $x\in \text{int}A$. Thus, $U\subset \text{int}A$. \\
+\hspace*{1em}\, (b)If $x\in \text{int}A$, then there exists $r>0$ such that $B(x,r)\subset A$. Since $B(x,r)$ is open and $B(x,r)\subset A$, we have $\text{int}A$ is open.
 \end{proof}
 
 \begin{definition}
@@ -314,26 +315,25 @@ A set $A$ is open if and only if it complement is closed.
 \end{theorem}
 \begin{proof}
 First, suppose $A^c$ is closed. For $x\in A$, then $x\notin A^c$, and $x$ is not a limit point of $E^c$. Then there exists $r>0$ such that $B(x,r) \cap A^c = \varnothing$. Then, we have $B(x,r) \subset A$. Thus $x$ is an interior point of $A$ and it follows that $A$ is open.\\
-\hspace*{3em}Next, suppose $A$ is open. Let $x$ be a limit point of $A^c$. Then every neighborhood of $x$ contains a point of $A^c$, so $x$ is not a interior point of $A$. Since $A$ is open, then $x\notin A$, which means $x\in A^c$. Since $x$ is a limit point of $A^c$, then $A^c$ is closed. The proof is complete.
+\hspace*{1em}\, Next, suppose $A$ is open. Let $x$ be a limit point of $A^c$. Then every neighborhood of $x$ contains a point of $A^c$, so $x$ is not a interior point of $A$. Since $A$ is open, then $x\notin A$, which means $x\in A^c$. Since $x$ is a limit point of $A^c$, then $A^c$ is closed. The proof is complete.
 \end{proof}
 
 \medskip
 
 \begin{theorem}
 Let $(X,d)$ be a metric space, then\\
-\hspace*{1em}\,(a)$\varnothing, X$ are closed;\\
-\hspace*{1em}\,(b)Intersection of an arbitrary family $U_i,i\in I$ of closed sets, $\bigcap^n_{i\in I}U_i$ is closed;\\
-\hspace*{1em}\,(c)Union of a finite family $U_1, \cdots, U_n \subset X$ of closed sets, $\bigcup^n_{i=1}U_i$ is open.
+\hspace*{1em}\, (a)$\varnothing, X$ are closed;\\
+\hspace*{1em}\, (b)Intersection of an arbitrary family $U_i,i\in I$ of closed sets, $\bigcap^n_{i\in I}U_i$ is closed;\\
+\hspace*{1em}\, (c)Union of a finite family $U_1, \cdots, U_n \subset X$ of closed sets, $\bigcup^n_{i=1}U_i$ is open.
 \end{theorem}
 \begin{proof}
-$ $\newline 
-\hspace*{1em}\,(a)$\varnothing$ is closed, since $X\setminus \varnothing = X$ is open. Also, $X$ is closed, since $X\setminus X = \varnothing$ is open.\\
-\hspace*{1em}\,(b)Suppose $\{U_i\}_{i\in I}$ is an arbitrary family of closed sets. Then the set $X\setminus U_i$ are open, and we have 
+(a)$\varnothing$ is closed, since $X\setminus \varnothing = X$ is open. Also, $X$ is closed, since $X\setminus X = \varnothing$ is open.\\
+\hspace*{1em}\, (b)Suppose $\{U_i\}_{i\in I}$ is an arbitrary family of closed sets. Then the set $X\setminus U_i$ are open, and we have 
 \begin{align*}
     \bigcup_{i\in I} (X\setminus U_i) = X \setminus \bigcap_{i\in I} U_i
 \end{align*}
 is open and hence $\bigcap_{i\in I} U_i$ is closed.\\
-\hspace*{1em}\,(c)Suppose the set $U_1, \cdots, U_n \subset X$ are closed. Then the sets $X\setminus U_i$ are open and hence
+\hspace*{1em}\, (c)Suppose the set $U_1, \cdots, U_n \subset X$ are closed. Then the sets $X\setminus U_i$ are open and hence
 \begin{align*}
     \bigcap^n_{i=1} (X\setminus U_i) = X \setminus \bigcup^n_{i=1} U_i
 \end{align*}
@@ -363,9 +363,8 @@ And with triangle inequality, for $\forall y\in B(x,r)$, we have $d(x_0,y) \geq 
 A set $A\subset U$ is closed if and only if the following implication is true: if a sequence $\{x_n\}_{n=1}^\infty\in A$ such that $x_n\rightarrow x$, then $x\in A$, i.e., if for every convergent sequence of $A$, its limit belongs to $A$.
 \end{theorem}
 \begin{proof}
-$ $ \newline
-\hspace*{1em}\,(a)Suppose $A$ is closed. We need to prove that if $x_n \in A$, then $x\in A$. Suppose by contradiction that $x_n\in A \rightarrow x$, but $x\notin A$. Then, $x\in X\setminus A$. Since $X\setminus A$ is open, there exists a $\varepsilon > 0$ such that $B(x,\varepsilon) \subset X\setminus A$. Then $d(x_n,x) > \varepsilon$ for all $n$ and thus $x_n$ does not converges to $x$, which is a contradiction. \\
-\hspace*{1em}\,(b)Suppose that a set $A\subset X$ has the property that if $X_n \in A$ which converges to $x$, then $x\in A$. We need to prove that $A$ is closed. And we only need to prove that $X\setminus A$ is open. Then, we need to prove that, for $x\in X\setminus A$
+(a)Suppose $A$ is closed. We need to prove that if $x_n \in A$, then $x\in A$. Suppose by contradiction that $x_n\in A \rightarrow x$, but $x\notin A$. Then, $x\in X\setminus A$. Since $X\setminus A$ is open, there exists a $\varepsilon > 0$ such that $B(x,\varepsilon) \subset X\setminus A$. Then $d(x_n,x) > \varepsilon$ for all $n$ and thus $x_n$ does not converges to $x$, which is a contradiction. \\
+\hspace*{1em}\, (b)Suppose that a set $A\subset X$ has the property that if $X_n \in A$ which converges to $x$, then $x\in A$. We need to prove that $A$ is closed. And we only need to prove that $X\setminus A$ is open. Then, we need to prove that, for $x\in X\setminus A$
 \begin{align*}
     \exists \varepsilon > 0, B(x, \varepsilon)\subset X\setminus A
 \end{align*}
@@ -386,9 +385,8 @@ Let $(X,d)$ be a metric space. We say that $x\in X$ is an accumulation point(or 
 $x\in X$ is an accumulation point if and only if every open set containing $x$ contains an element of $A$ different than $x$.
 \end{theorem}
 \begin{proof}
-$ $\newline
-\hspace*{1em}\,(a)First, let $x \in U$ and $U$ is open. Then $B(x,\varepsilon)\subset U$ for some $\varepsilon > 0$. Let $x_n\in A$, $x_n \neq x$ and $x_n\to x$. Then there exists $n$ such that $x_n\in B(x,\varepsilon)\subset U$, where $x_n \neq x$. \\
-\hspace*{1em}\,(b)Second, for each ball $B(x, 1/n)$, there is a $x_n\in B(x,1/n)\bigcap A$ and $x_n \neq x$. Then it follows that $x_n\to x$. The proof is complete.
+(a)First, let $x \in U$ and $U$ is open. Then $B(x,\varepsilon)\subset U$ for some $\varepsilon > 0$. Let $x_n\in A$, $x_n \neq x$ and $x_n\to x$. Then there exists $n$ such that $x_n\in B(x,\varepsilon)\subset U$, where $x_n \neq x$. \\
+\hspace*{1em}\, (b)Second, for each ball $B(x, 1/n)$, there is a $x_n\in B(x,1/n)\bigcap A$ and $x_n \neq x$. Then it follows that $x_n\to x$. The proof is complete.
 \end{proof}
 
 \medskip
@@ -397,9 +395,8 @@ $ $\newline
 $A$ is closed if and only if all accumulation points of $A$ belong to $A$.
 \end{theorem}
 \begin{proof}
-$ $\newline
-\hspace*{1em}\,(a)First, suppose $A$ is closed, then $X\setminus A$ is open. So if $x\notin A$, then $B(x,\varepsilon)\subset X\setminus A$ for some $\varepsilon>0$. Then $B(x,\varepsilon)$ contains no point of $A$ and hence $x$ cannot be an accumulation point. Therefore, every accumulation point must belong to $A$.\\
-\hspace*{1em}\,(b)Suppose all accumulation points of $A$ belong to $A$. We need to show that $A$ is closed, it suffices to prove that $X\setminus A$ is open. Let $x\in X\setminus A$, then $x$ is not an accumulation point of $A$, then there exists a open set $U$ such that $x\in U$ and $U$ contains no point of $A$. Hence, $U\subset X\setminus A$, and it follows $B(x,\varepsilon)\subset U\subset X\setminus A$ for some $\varepsilon > 0$. Thus, $X\setminus A$ is open. The proof is complete.
+(a)First, suppose $A$ is closed, then $X\setminus A$ is open. So if $x\notin A$, then $B(x,\varepsilon)\subset X\setminus A$ for some $\varepsilon>0$. Then $B(x,\varepsilon)$ contains no point of $A$ and hence $x$ cannot be an accumulation point. Therefore, every accumulation point must belong to $A$.\\
+\hspace*{1em}\, (b)Suppose all accumulation points of $A$ belong to $A$. We need to show that $A$ is closed, it suffices to prove that $X\setminus A$ is open. Let $x\in X\setminus A$, then $x$ is not an accumulation point of $A$, then there exists a open set $U$ such that $x\in U$ and $U$ contains no point of $A$. Hence, $U\subset X\setminus A$, and it follows $B(x,\varepsilon)\subset U\subset X\setminus A$ for some $\varepsilon > 0$. Thus, $X\setminus A$ is open. The proof is complete.
 \end{proof}
 
 \medskip
@@ -409,7 +406,7 @@ The closure of $A$: $\text{cl}(A)$ is intersection of all closed sets that conta
 \end{theorem}
 \begin{proof}
 First, if $x\in X$ and $x\notin \text{cl}(A)$, then $x$ is neither a point of $A$ nor a accumulation point of $A$. Hence, for $x$ there exists a $B(x,\varepsilon) \bigcap A = \varnothing$, for some $\varepsilon > 0$. Then we have that $X\setminus \text{cl}(A)$ is open, which implies $\text{cl}(A)$ is closed. \\
-\hspace*{3em}Second, If $E$ is closed and $A\subset E$, since $\text{cl}(A)$ is the intersection of all closed sets that contain $A$, and $E$ is in the family whose intersection we take, and hence $\text{cl}(A)\subset E$.
+\hspace*{1em}\, Second, If $E$ is closed and $A\subset E$, since $\text{cl}(A)$ is the intersection of all closed sets that contain $A$, and $E$ is in the family whose intersection we take, and hence $\text{cl}(A)\subset E$.
 \end{proof}
 
 \medskip
@@ -467,14 +464,13 @@ A sequence $\{x_n\}^\infty_{n=1}\in X$ is called bounded if $x_n\in B(x_0,R)$ fo
 
 \begin{theorem}
 $ $ \newline
-\hspace*{1em}\,(a)Every convergent sequence in a metric space is a Cauchy sequence. \\
-\hspace*{1em}\,(b)Every Cauchy sequence in a metric space is bounded.\\
-\hspace*{1em}\,(c)If a subsequence of a Cauchy sequence in a metric space is convergent, then the whole sequence is convergent to the same limit.
+\hspace*{1em}\, (a)Every convergent sequence in a metric space is a Cauchy sequence. \\
+\hspace*{1em}\, (b)Every Cauchy sequence in a metric space is bounded.\\
+\hspace*{1em}\, (c)If a subsequence of a Cauchy sequence in a metric space is convergent, then the whole sequence is convergent to the same limit.
 \end{theorem}
 \begin{proof}
-$ $ \newline
-\hspace*{1em}\,(a) and (b) are obvious.\\
-\hspace*{1em}\,(c)Suppose $\{x_n\}$ is a Cauchy sequence and $x_{n_k}\to x$. We need to prove that $x_n\to x$. For $\{x_{n_k}\}$, we have $\forall \varepsilon > 0$, there exists a $N_1$ such that for $\forall k \geq N_1$, $d(x_{n_k},x)<\varepsilon/2$. Also, since $\{x_n\}$ is a Cauchy sequence, then for $\forall \varepsilon > 0$, there exists a $N_2$ such that for $\forall n,m \geq N_1$, $d(x_n,x_m)<\varepsilon/2$. Take $N = \max\{N_1, N_2\}$, since $n_N \geq N$ , we have for $n \geq N$,
+(a) and (b) are obvious.\\
+\hspace*{1em}\, (c)Suppose $\{x_n\}$ is a Cauchy sequence and $x_{n_k}\to x$. We need to prove that $x_n\to x$. For $\{x_{n_k}\}$, we have $\forall \varepsilon > 0$, there exists a $N_1$ such that for $\forall k \geq N_1$, $d(x_{n_k},x)<\varepsilon/2$. Also, since $\{x_n\}$ is a Cauchy sequence, then for $\forall \varepsilon > 0$, there exists a $N_2$ such that for $\forall n,m \geq N_1$, $d(x_n,x_m)<\varepsilon/2$. Take $N = \max\{N_1, N_2\}$, since $n_N \geq N$ , we have for $n \geq N$,
 \begin{align*}
     d(x,x_n) \leq d(x_n, x_{n_N}) + d(x_{n_N}, x) < \varepsilon
 \end{align*}
@@ -534,9 +530,8 @@ If $\{x_n\}$ is a Cauchy sequence in $A$, then it is a Cauchy sequence in $X$, s
 In a metric space, $x_n\to x$ if and only if every subsequence of $x_n$ has a further subsequence that converges to $x$. 
 \end{theorem}
 \begin{proof}
-$ $\newline
-\hspace*{1em}\,($\Rightarrow$) This is obvious result of convergence. \\
-\hspace*{1em}\,($\Leftarrow$) Suppose that $\{x_n\}$ has the property above, but $x_n$ does not converge, that is $\exists \varepsilon > 0$, for $\forall N > 0$, there exists $n \geq N$ such that $d(x_n,x)\geq\varepsilon$. Thus we can pick a subsequence $\{x_{n_k}\}$ of $\{x_n\}$ such that
+($\Rightarrow$) This is obvious result of convergence. \\
+\hspace*{1em}\, ($\Leftarrow$) Suppose that $\{x_n\}$ has the property above, but $x_n$ does not converge, that is $\exists \varepsilon > 0$, for $\forall N > 0$, there exists $n \geq N$ such that $d(x_n,x)\geq\varepsilon$. Thus we can pick a subsequence $\{x_{n_k}\}$ of $\{x_n\}$ such that
 $$d(x_{n_k},x)\geq\varepsilon$$
 Clearly, we can know $\{x_{n_k}\}$ has no sequence converging to $x$, which is a contradiction.
 \end{proof}
@@ -572,9 +567,8 @@ Since $x_n\in A$ and $A$ is compact, then it has a subsequence $\{x_{n_k}\}$ con
 $A\subset \mathbb{R}^n$ is compact if and only if $A$ is bounded and closed.
 \end{theorem}
 \begin{proof}
-$ $\newline
-\hspace*{1em}\,($\Rightarrow$) This is a result of proposition above. \\
-\hspace*{1em}\,($\Leftarrow$) We prove it for $n = 3$. Let $x_k\in A, k = 1,2,3,\cdots$. Since $A$ is bounded, we can know that all three elements of $x_k = (x_{1k},x_{2k},x_{3k})$ are bounded in $\mathbb{R}$. Then the sequence $\{x_{1k}\}_k$ is bounded, so Bolzano-Weierstrass theorem, it has a convergent subsequence. Then $x_{1k_n}\to x_1$ and $x_1\in A$ since $A$ is closed. Similiarly, $\{x_{2k_n}\}$ also has a convergent subsequence $\{x_{2k_{n_m}}\}$ converging to $x_2\in A$, and $\{x_{3k_{n_m}}\}$ also has a convergent subsequence $\{x_{3k_{n_{m_l}}}\}$ converging to $x_3\in A$. Thus, we have 
+($\Rightarrow$) This is a result of proposition above. \\
+\hspace*{1em}\, ($\Leftarrow$) We prove it for $n = 3$. Let $x_k\in A, k = 1,2,3,\cdots$. Since $A$ is bounded, we can know that all three elements of $x_k = (x_{1k},x_{2k},x_{3k})$ are bounded in $\mathbb{R}$. Then the sequence $\{x_{1k}\}_k$ is bounded, so Bolzano-Weierstrass theorem, it has a convergent subsequence. Then $x_{1k_n}\to x_1$ and $x_1\in A$ since $A$ is closed. Similiarly, $\{x_{2k_n}\}$ also has a convergent subsequence $\{x_{2k_{n_m}}\}$ converging to $x_2\in A$, and $\{x_{3k_{n_m}}\}$ also has a convergent subsequence $\{x_{3k_{n_{m_l}}}\}$ converging to $x_3\in A$. Thus, we have 
 \begin{align*}
     x_{k_{n_{m_l}}} = \left(x_{1k_{n_{m_l}}},x_{2k_{n_{m_l}}},x_{3k_{n_{m_l}}}\right)\to (x_1,x_2,x_3)\in A
 \end{align*}
@@ -602,10 +596,9 @@ Before we prove the Bolzano-Weierstrass theorem, we need to mention some other t
 $U\subset A$ is open in $(A,d)$ if and only if there is $W \subset X$ open in $(X,d)$ such that $U = W\bigcap A$.
 \end{theorem}
 \begin{proof}
-$ $\newline
-\hspace*{1em}\,($\Leftarrow$) Suppose $W\subset X$ open in $X$ and $U = W\bigcap A$. Then for $\forall x\in U$, there exists a $r>0$ such that $B^X(x,r)\subset W$ and hence $B(x,r)^X\bigcap A\subset U\bigcap A = U$, where $B(x,r)^X\bigcap A$ is a ball in $A$. Then $U$ is open in $(A,d)$.\\
-\hspace*{1em}\,($\Rightarrow$) Suppose $U\subset A$ is open in $(A,d)$. Then for $\forall x\in U$, there exists a $r>0$ such that $B^X(x,r)\bigcap A\subset U$, where $B^X(x,r)\bigcap A$ is a ball in $A$. Clearly, $U = \bigcup_{x\in X}B^X(x,r)\bigcap A$.\\
-\hspace*{1em}\,Now we set $W = \bigcup_{x\in X}B^X(x,r)$ and $W$ is open in $(X,d)$ and $$W\bigcup A = \bigcup_{x\in X}B^X(x,r)\bigcap A = U$$
+($\Leftarrow$) Suppose $W\subset X$ open in $X$ and $U = W\bigcap A$. Then for $\forall x\in U$, there exists a $r>0$ such that $B^X(x,r)\subset W$ and hence $B(x,r)^X\bigcap A\subset U\bigcap A = U$, where $B(x,r)^X\bigcap A$ is a ball in $A$. Then $U$ is open in $(A,d)$.\\
+\hspace*{1em}\, ($\Rightarrow$) Suppose $U\subset A$ is open in $(A,d)$. Then for $\forall x\in U$, there exists a $r>0$ such that $B^X(x,r)\bigcap A\subset U$, where $B^X(x,r)\bigcap A$ is a ball in $A$. Clearly, $U = \bigcup_{x\in X}B^X(x,r)\bigcap A$.\\
+\hspace*{1em}\, Now we set $W = \bigcup_{x\in X}B^X(x,r)$ and $W$ is open in $(X,d)$ and $$W\bigcup A = \bigcup_{x\in X}B^X(x,r)\bigcap A = U$$
 The proof is complete.
 \end{proof}
 
@@ -617,16 +610,15 @@ $E\subset A$ is closed in $(A,d)$ is and only if there is a set $F\subset X$ clo
 A metric space $X$ is compact if and only if every open covering of $X$ has a finite subcovering.
 \end{theorem}
 \begin{proof}
-$ $\newline
-\hspace*{1em}\,($\Leftarrow$) Suppose that every open covering of $X$ has a finite subcovering. We need to prove that every sequence $\{x_n\}$ in $X$ has a convergent subsequence. \\
-\hspace*{1em}\,By contradiction, we suppose that $\{x_n\}\in X$ does not has convergent subseqnece(Note that $\{x_n\}$ has infinitely many different values, otherwise we would have a constant, and thus convergent subsequence). Therefore we can select a subsequence $\{x_{n_k}\}$ such that $x_{n_k} \neq x_{n_l}$ for $k\neq l$ and $\{x_{n_k}\}$ does not converge. Observe that the set $\{x_{n_1},x_{n_2},x_{n_3},\cdots\}$ is closed and the set has no accumulation point.\\
-\hspace*{1em}\,In particular, every $x_{n_k}$ is not a accumulation point of the sequence $\{x_{n_k}\}$, and hence there is a $\varepsilon_k>0$ such that the ball $B(x_{n_k}, \varepsilon_k)$ contains no points of this sequence other than $x_{n_k}$, i.e., 
+($\Leftarrow$) Suppose that every open covering of $X$ has a finite subcovering. We need to prove that every sequence $\{x_n\}$ in $X$ has a convergent subsequence. \\
+\hspace*{1em}\, By contradiction, we suppose that $\{x_n\}\in X$ does not has convergent subseqnece(Note that $\{x_n\}$ has infinitely many different values, otherwise we would have a constant, and thus convergent subsequence). Therefore we can select a subsequence $\{x_{n_k}\}$ such that $x_{n_k} \neq x_{n_l}$ for $k\neq l$ and $\{x_{n_k}\}$ does not converge. Observe that the set $\{x_{n_1},x_{n_2},x_{n_3},\cdots\}$ is closed and the set has no accumulation point.\\
+\hspace*{1em}\, In particular, every $x_{n_k}$ is not a accumulation point of the sequence $\{x_{n_k}\}$, and hence there is a $\varepsilon_k>0$ such that the ball $B(x_{n_k}, \varepsilon_k)$ contains no points of this sequence other than $x_{n_k}$, i.e., 
 \begin{align*}
     x_{n_l}\notin B(x_{n_k}, \varepsilon_k), \text{if}\,l\neq k
 \end{align*}
 Clearly, $X\setminus \{x_{n_1},x_{n_2},x_{n_3},\cdots\}$ is open and hence $$X = \bigcup^\infty_{k=1}B(x_{n_k},\varepsilon_k) \cup \left(X\setminus \{x_{n_1},x_{n_2},x_{n_3},\cdots\}\right)$$ 
 is an open covering of $X$. Thus, this covering has no finite subcovering.  \\
-\hspace*{1em}\,($\Rightarrow$) We need a lemma.
+\hspace*{1em}\, ($\Rightarrow$) We need a lemma.
 \begin{lemma}
 Let $\bigcup_{i\in I}U_i$ be an open covering of a compact metric space of $X$ such that $X = \bigcup_{i\in I}U_i$. Then there is $r>0$(called Lebesgue number of the covering) such that $\forall x\in X$, $\exists i\in I$ such that $B(x,r)\subset U_i$.
 \end{lemma}
@@ -643,9 +635,9 @@ If a metric space $X$ is compact, then $x$ is totally bounded.
 \begin{proof}Prove by contradiction. Then there is a $\varepsilon>0$ such that no finite family of balls with radius $\varepsilon$ covers $X$. Let $x_1\in X$, then $B(x_1,\varepsilon)\neq X$. Then there exists $x_2\notin B(x_1,\varepsilon)$, and $B(x_1,\varepsilon)\cup B(x_2,\varepsilon)\neq X$. Then there exists $x_3\notin B(x_1,\varepsilon)\cup B(x_2,\varepsilon)$, and $B(x_1,\varepsilon)\cup B(x_2,\varepsilon)\cup\neq X$. We can continue this process and construct a sequence $\{x_1,x_2,x_3,\cdots\}$ in $X$ such that $d(x_k,x_l)\geq \varepsilon$ for $k\neq l$. Clearly, $\{x_n\}$ has no convergent subsequence, which is contradicted with compactness of $X$.
 \end{proof}
 
-Now we continue the proof of the implication ($\Rightarrow$) of theorem \ref{finitcover}. \\
-\hspace*{1em}\,($\Rightarrow$) Suppose that $X$ is compact, i.e., every sequence in $x$ has a convergent subsequence. We need to prove that every open covering of $X$ has a finite subcovering. \\
-\hspace*{1em}\,Let $X = \bigcup_{i\in I}U_i$ and let $r>0$ be a Lebesgue number of the covering. Since $X$ is totally bounded, $X$ has finite coverings by balls of radius $r$, i.e.,
+\, Now we continue the proof of the implication ($\Rightarrow$) of theorem \ref{finitcover}. \\
+\hspace*{1em}\, ($\Rightarrow$) Suppose that $X$ is compact, i.e., every sequence in $x$ has a convergent subsequence. We need to prove that every open covering of $X$ has a finite subcovering. \\
+\hspace*{1em}\, Let $X = \bigcup_{i\in I}U_i$ and let $r>0$ be a Lebesgue number of the covering. Since $X$ is totally bounded, $X$ has finite coverings by balls of radius $r$, i.e.,
 \begin{align*}
     X = \bigcup^N_{i=1}B(x_i,r)
 \end{align*}
@@ -662,8 +654,7 @@ which gives a finite open subcovering of $X$. The proof of theorem \ref{finitcov
 A metric space $X$ is compact if and only if it is complete and totally bounded.
 \end{theorem}
 \begin{proof}
-$ $\newline
-\hspace*{1em}\,($\Rightarrow$) Suppose $X$ is compact. Then $X$ is totally bounded. To prove it is complete, let $\{x_n\}$ be a Cauchy sequence in $X$.  The by compactness, we can know some subsequence of $\{x_{n_k}\}$ is convergent, such that $x_{n_k}\to x_0$. Then $\{x_n\}$ also converges to $x_0$. Thus, $X$ is complete. \\
+($\Rightarrow$) Suppose $X$ is compact. Then $X$ is totally bounded. To prove it is complete, let $\{x_n\}$ be a Cauchy sequence in $X$.  The by compactness, we can know some subsequence of $\{x_{n_k}\}$ is convergent, such that $x_{n_k}\to x_0$. Then $\{x_n\}$ also converges to $x_0$. Thus, $X$ is complete. \\
 \hspace*{1em}\,($\Leftarrow$) Suppose that $X$ is complete and totally bounded. We need to prove that every sequence $\{x_n\}$ in $X$ has a convergent subsequence. \\
 \hspace*{1em}\, Since $X$ is totally bounded , then it has a finite open covering of balls with radius $1$, i.e.,
 \begin{align*}
@@ -684,7 +675,7 @@ Still, infinitely many elements of the sequence belong to at least one of the se
     x_{n_3} &\in B\left(x_{i_3}^{(3)},\frac{1}{3}\right)\cap B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1)\\
     & \vdots
 \end{align*}
-Therefore, for $k,;l\geq N$, we have $x_{n_k},x_{n_l}\in B\left(x_{i_N}^{(2)},\frac{1}{N}\right)$ and hence
+\hspace*{1em}\, Therefore, for $k,;l\geq N$, we have $x_{n_k},x_{n_l}\in B\left(x_{i_N}^{(2)},\frac{1}{N}\right)$ and hence
 \begin{align*}
     d(x_{n_k},x_{n_l}) < \frac{2}{N}
 \end{align*}
@@ -709,13 +700,14 @@ The claim is not true if $F_k$ are open or closed but unbounded, for example
 
 \subsection{Cantor set}
 \begin{definition}
-By the segment $(a,b)$ we mean the set of all real numbers $x$ such that $a<x<b$. By the interval $[a,b]$ we mean the set of all real numbers $x$ such that $a\leq x\leq b$
+By the segment $(a,b)$ we mean the set of all real numbers $x$ such that $a<x<b$. By the interval $[a,b]$ we mean the set of all real numbers $x$ such that $a\leq x\leq b$.
 \end{definition}
 The set which we are now constructing shows that there exists perfect sets in $\mathbb{R}^1$ which contain no segment. \\
 \hspace*{1em}\, (1)Let $E_0$ be the interval $[0,1]$. \\
-\hspace*{1em}\, (2)Remove the segment $\left(\frac{1}{3},\frac{2}{3}\right)$, and let $E_1$ be the union of the interval of $$\left[0,\frac{1}{3}\right],\left[\frac{1}{3},1\right]$$. \\
-\hspace*{1em}\, (3)Remove the middle thirds of these two intervals and let $E_2$ be the union of $$\left[0,\frac{1}{9}\right],\left[\frac{2}{9},\frac{1}{3}\right],\left[\frac{6}{9},\frac{7}{9}\right],\left[\frac{8}{9},1\right]$$. \\
-\hspace*{1em}\, (4)Continue this way and we can get a sequence of compact sets $E_n$, such that $E_1\supset E_2\supset E_3\supset\cdots$ and $E_n$ is the union of $2^n$ intervals with length $3^{-n}$. We show the Cantor set in seven iterations as below 
+\hspace*{1em}\, (2)Remove the segment $\left(\frac{1}{3},\frac{2}{3}\right)$, and let $E_1$ be the union of the interval of $$\left[0,\frac{1}{3}\right],\left[\frac{1}{3},1\right].$$ \\
+\hspace*{1em}\, (3)Remove the middle thirds of these two intervals and let $E_2$ be the union of $$\left[0,\frac{1}{9}\right],\left[\frac{2}{9},\frac{1}{3}\right],\left[\frac{6}{9},\frac{7}{9}\right],\left[\frac{8}{9},1\right].$$ \\
+\hspace*{1em}\, (4)Continue this way and we can get a sequence of compact sets $E_n$, such that $E_1\supset E_2\supset E_3\supset\cdots$ and $E_n$ is the union of $2^n$ intervals with length $3^{-n}$. \\
+\hspace*{1em}\, We show the Cantor set in seven iterations as below:
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{Cantor_set_in_seven_iterations}
@@ -746,8 +738,9 @@ A set $A\subset X$ is called disconnected if there exists open sets $U, V$ in $X
     \item $A\cap U\neq \varnothing$ and $A\cap V\neq \varnothing$;
     \item $A\cap (U\cap V) = \varnothing$
 \end{enumerate}
+Moreover, $A$ is called connected if it is not disconnected.
 \end{definition}
-Disconnected set is shown as below which is union of two sets, which are contained in two open sets $U$ and $V$: \\
+Disconnected set is shown as below, $A$ is the grey area, which is contained in two open sets $U$ and $V$, which are plotted by dotted line: \\
 \def\firstcircle{(0,0) circle (1cm)}
 \def\secondcircle{(2.7,0) circle (1cm)}
 \def\thirdcircle{(0,0) circle (1.5cm)}
@@ -756,33 +749,257 @@ Disconnected set is shown as below which is union of two sets, which are contain
 \colorlet{circle area}{black!20}
 \tikzset{filled/.style={fill=circle area, draw=circle edge, thick},
     outline/.style={draw=circle edge, thick}}
-\setlength{\parskip}{5mm}
+%\setlength{\parskip}{5mm}
 % Set A and B
-\begin{center}
-    \begin{tikzpicture}
-    \centering
-    \draw[filled] \firstcircle node {$A$}
-                  \secondcircle node {$A$};
-    %\node[anchor=south] at (current bounding box.north) {$A \cap B$};
-    \draw[black,thick,dashed] (2.7,0) circle (1.5cm);
-    \draw[black,thick,dashed] (0,0) circle (1.5cm);
+\begin{figure}[h]
     \label{fig:disconnected}
-    \end{tikzpicture}\\
-    \caption{$U\qquad\qquad\qquad V$}
-\end{center}
+    \begin{center}
+        \begin{tikzpicture}
+            \centering
+            \draw[filled] \firstcircle node {$A$}
+            \secondcircle node {$A$};
+            \draw[black,thick,dashed] (2.7,0) circle (1.5cm);
+            \draw[black,thick,dashed] (0,0) circle (1.5cm);
+            \node[anchor=south] at (current bounding box.north) {$A \subset U\cup V$};
+        \end{tikzpicture}
+    \end{center}
+    \caption{Disconnected set}
+\end{figure}
 
 \medskip
 
 \begin{exercise}
 Prove that the space $X$ is connected if and only if the only subsets of $X$ that are open and closed at the same time are $\varnothing$ and $X$.
 \end{exercise}
+
 \begin{proof}
-$ $\newline
-\hspace*{1em}\,($\Rightarrow$) Suppose $X$ is connected. We want to show that if $E\subset X$ is open and closed at the same time, then $E = X$ or $E = \varnothing$. \\
-\hspace*{1em}\, Suppose by contraction that there exists a $E\subset X$ such that $E\neq X$, $E\neq\varnothing$ and $E$ is open and closed at the same time. Then $U = E$, $V = X\setminus E$ are both open. And we have $X = U\cup V$, $X\cap U \neq \varnothing$, $X\cap V \neq \varnothing$, $X\cap U = V \neq \varnothing$ and $X\cap (U\cap V) = X\cap E\cap (X\setminus E) = \varnothing$. Thus, $X$ is disconnected, which is a contradiction. \\
-\hspace*{1em}\,($\Leftarrow$) Suppose that the only subsets of $X$ that are open and closed at the same time are $\varnothing$ and $X$. We need to show that $X$ is connected. \\
+($\Rightarrow$) Suppose $X$ is connected. We want to show that if $E\subset X$ is open and closed at the same time, then $E = X$ or $E = \varnothing$. \\
+\hspace*{1em}\, Suppose by contraction that there exists a $E\subset X$ such that $E\neq X$, $E\neq\varnothing$ and $E$ is open and closed at the same time. Then $U = E$, $V = X\setminus E$ are both open. And we have $X \subset U\cup V$, $X\cap U \neq \varnothing$, $X\cap V \neq \varnothing$, $X\cap U = V \neq \varnothing$ and $X\cap (U\cap V) = X\cap E\cap (X\setminus E) = \varnothing$. Thus, $X$ is disconnected, which is a contradiction. \\
+\hspace*{1em}\, ($\Leftarrow$) Suppose that the only subsets of $X$ that are open and closed at the same time are $\varnothing$ and $X$. We need to show that $X$ is connected. \\
 \hspace*{1em}\, By contradiction that $X$ is not connected. Then, there exists two open sets $U$ and $V$ such that $X = U\cup V$, $X\cap U \neq \varnothing$, $X\cap V \neq \varnothing$, $X\cap U = V \neq \varnothing$. Then $U\neq \varnothing$ and it is also closed since $X\setminus U = V$ is open, then this is a contradiction with the fact that $X$ and $\varnothing$ are only sets that are open and closed at the same time.
 \end{proof}
+
+\medskip
+
+\begin{theorem}
+If $A\subset X$ is path connected, then $A$ is connected.
+\end{theorem}
+\begin{proof}
+Prove by contradiction and suppose $A$ is path connected but not connected. Then $A \subset U\cup V$, $A\cap U\neq\varnothing$, $A\cap V\neq\varnothing$, and $A\cap (U\cap V)=\varnothing$. \\
+\hspace*{1em}\, Let $x\in A\cap U$, $y\in A\cap V$, and let $\varphi:[a,b]\rightarrow A$ be a continuous path such that $\varphi(a) = x, \varphi(b) = y$. Define $c = \sup\{t\in[a,b]|\, \varphi\left([a,t]\right)\subset A\cap U\}$. If $\varphi(c)\in A\cap U$, then $c\neq b$\,(otherwise it would implies $\varphi(c) = \varphi(b) = y \in A\cap U$, which is impossible). \\
+\hspace*{1em}\, Since $\varphi(c)\in A\cap U$ and $c<b$, it follows from the continuity of $\varphi$ that there exists a $\varepsilon > 0$ such that $\varphi\left([c,c+\varepsilon]\right)\subset U$, which contradicts the definition of $c$. Therefore, $\varphi(c)\in A\cup V$. Then by the same argument as above, that there exists a $\varepsilon>0$ such that $\varphi([c-\varepsilon,c])\in V$ implying $\varphi(c-\varepsilon)\in V$, which contradicts the definition of $c$.
+\end{proof}
+
+\medskip
+
+\begin{theorem}
+If $A$ is connected, then the closure $\text{cl}(A)$ of $A$ is also connected.
+\end{theorem}
+\begin{proof}
+Prove by contradiction and suppose that $A$ is connected while $\text{cl}(A)$ is not closed. Then there exists open sets $U,V$ such that $\text{cl}(A)\subset U\cup V, \text{cl}(A)\cap U \neq\varnothing, \text{cl}(A)\cap V \neq\varnothing$, and $\text{cl}(A)\cup (U \cup V) = \varnothing$. Then we have 
+\begin{enumerate}
+    \item $A\subset U\cup V$.
+    \item $A\cup U \neq\varnothing$.
+    \item $A\cup V \neq\varnothing$.
+    \item $A\cup (U \cup V) = \varnothing$.
+\end{enumerate}
+which means that $A$ is disconnected. Contradiction. \\
+\hspace*{1em}\, The properties $(1)$ and $(4)$ are obvious. Now we prove property $(2)$. Since $\text{cl}(A)\cap U \neq\varnothing$, then there is a $x\in \text{cl}(A)\cap U$. Hence there is a sequence $\{x_n\}\in A$ such that $$x_n\to x\in \text{cl}(A)\cap U$$
+Since $U$ is open, then there exists sufficiently large $N > 0$ such that $\forall n>N$, $x_n\in A\cap U$, wchich proves that $A\cap U\neq\varnothing$.
+\end{proof}
+
+\begin{example}
+The graph of the function $y = \sin \frac{1}{x}, 0\leq x\leq \pi$, i.e., the set  $$G = \left\{(x, \sin \frac{1}{x})|\, 0< x\leq \pi\right\}$$
+is path connected, hence $G$ is connected. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.55\textwidth]{function_sin_x}
+    \caption{$y = \sin(1/x)$}
+    \label{fig:function_sin_x}
+\end{figure}\\
+Therefore, $\text{cl}(G)$ is connected. However, $\text{cl}(G)$ is the union of $G$ and the segment $[-1,1]$ on the $y-$axis. It is clear that this set is not path connected. \\
+\hspace*{1em}\, $\text{cl}(G)$ is an example of a set which is connected but not path connected.
+\end{example}
+
+\medskip
+
+\begin{theorem}[Theorem 2.47 in Rudin's book]
+A subset $E$ of the real line $\mathbb{R}^1$ is connected if and only if it has the following property: If $x\in E, y\in E$ and $x<z<y$, then $z\in E$.
+\end{theorem}
+\begin{proof}
+($\Rightarrow$) Prove by contradiction and suppose that if there exists a $z\in (x,y)$ and $z\in E$, then $E = U\cup V$, where 
+\begin{align*}
+    U = E\cap (-\infty,z), V = E\cap(x,\infty)
+\end{align*}
+Since $x\in U, y\in V$, $U$ and $V$ are not nonempty. Since $U\subset (-\infty, z)$ and $V\subset (z,\infty)$, then they are separated. Also, we can have $E\cap(U\cap V) = \varnothing$, which means $E$ is not connected. This is a contradiction.\\
+\hspace*{1em}\, ($\Leftarrow$) Supposed that $E$ is not connected. Then there exist sets $U$ and $V$ separating $E$ such that $E\subset U\cup V, E\cap U\neq\varnothing, E\cap V\neq\varnothing$ and $E\cap(U\cap V) = \varnothing$. Now we pick $x\in U$ and $y\in V$ and without losing generality, assume that $x < y$. Define 
+\begin{align*}
+    z = \sup\{(U\setminus V)\cap[x,y]\}
+\end{align*}
+Then $z\in \text{cl}(U)$ and $z\notin V$. In particular, $x\leq z < y$. If $z\notin U\setminus V$, then $z$ certainly does not belong to $E$. If $z\in U\setminus V$, then $z\notin \text{cl}(V)$, hence there exists a $z_1$ such that $z<z_1<y$ and $z_1\notin V$. Then $x<z_1<y$ and $z\notin E$. This is a contradiction.
+\end{proof}
+
+
+\medskip
+
+\subsection{Continuity}
+\begin{definition}
+Let $(X,d), (Y,\rho)$ be two metric spaces and $A\subset X$. Consider a mapping $f:A\to Y$. If $x_0$ is an accumulation point of $A$, then we say that $\lim_{x\to x_0}f(x) = b \in Y$, if 
+\begin{align*}
+    \forall\varepsilon>0, \exists\delta>0, 0<d(x,x_0)<\delta \Rightarrow \rho(f(x),b)<\varepsilon
+\end{align*}
+Equivalently, $\lim_{x\to x_0}f(x) = b$, if
+\begin{align*}
+    x_0 \neq x_n (x_n\in A) \to x_0 \Rightarrow f(x_n) \to b
+\end{align*}
+\end{definition}
+
+\begin{definition}
+We say that a mapping $f:A\to Y$ is continuous at point $x_0\in A$, if $A\ni x_n\to x_0$ then $f(x_n)\to f(x_0)$(no need of condition: $x_n\neq x_0$). \\
+\hspace*{1em}\, If $x_0$ is not an accumulation point of $A$, i.e., $x_0$ is an isolated point, then $f$ is always continuous at $x_0$.
+\end{definition}
+
+\begin{definition}
+We say that $f:A\to Y$ is continuous if $f$ is continuous at every point in $A$. Equivalently, $f:A\to Y$ is continuous if for every $x\in A$ and $\forall\varepsilon>0$, there exists a $\delta>0$ such that 
+\begin{align*}
+    d(x,y)<\delta \Rightarrow \rho(f(x),f(y))<\varepsilon.
+\end{align*}
+This is Definition 4.5 in Rudin's book. 
+\end{definition}
+
+\begin{example}
+$ $\newline
+\begin{enumerate}
+    \item If $X$ is a discrete metric space, then every function $f:X\to Y$ is continuous.
+    \item $f:\mathbb{Z}\to Y$ or $f:\mathbb{N}\to Y$ is always continuous.
+\end{enumerate}
+\end{example}
+
+\medskip
+
+\begin{theorem}[Theorem 4.8 in Rudin's book]
+A mapping $f:X\to Y$ is continuous if and only if for every open set $U\subset Y$, $f^{-1}(U)$ is an open set in $X$.
+\end{theorem}
+\begin{proof}
+($\Rightarrow$) Suppose $f$ is continuous and $U\subset Y$ is a open set. We want to prove that $f^{-1}(U)$ is open. \\
+\hspace*{1em}\, If $x\in f^{-1}(U)$, then $f(x)\in U$ and hence $B(f(x),\varepsilon)\subset U$ for some $\varepsilon > 0$. It follows from the continuity of $f$ there exists a $\delta > 0$ such that $d_Y(f(x),f(y))<\varepsilon$, if $d_X(x,y) < \delta$. Hence, $B(x,\delta)\subset f^{-1}(U)$ and then $f^{-1}(U)$ is open. \\
+\hspace*{1em}\, ($\Rightarrow$) Suppose now that $f^{-1}(U)$ is open for every open set $U\subset Y$. We need to prove that $f$ is continuous. \\
+\hspace*{1em}\, Let $\varepsilon>0$ be given, then $B(f(x_0),\varepsilon)$ is open. Hence $x_0\in f^{-1}(B(f(x_0),\varepsilon))$, which is open. Then there exists a $\delta>0$ such that $B(x_0,\delta)\subset f^{-1}(B(f(x_0),\varepsilon))$. And hence if $d_X(x_0,x)<\delta$, then $d_Y(f(x_0),f(x))<\varepsilon$, which proves the continuity of $f$.
+\end{proof}
+
+\medskip
+
+\begin{definition}
+We say that a mapping $f:X\to Y$ is $L-Lipschitz$ if $\forall x,y\in X$, $d_Y(f(x),f(y))\leq L d_X(x,y)$. \\
+\hspace*{1em}\, We say that a mapping $f:X\to Y$ is Lipschitz if it is $L-Lipschitz$ for some $L>0$.
+\end{definition}
+
+\medskip
+
+\begin{proposition}
+Every Lipschitz mapping is continuous.
+\end{proposition}
+\begin{proof}
+Suppose $f:X\to Y$ is Lipschitz, then for $x_n\to x$, we have $$d_Y(f(x_n),f(x))\leq L d_X(x_n,x)\to 0$$ 
+and hence $f(x_n)\to f(x)$.
+\end{proof}
+Now we use different method to prove this theorem by showing that $f^{-1}(U)$ is open for every open set $U\subset Y$.
+\begin{proof}
+Let $U\subset Y$ be given, and let $x\in f^{-1}(U)$. We will prove that 
+\begin{align*}
+    B\left(x, \frac{\varepsilon}{L}\right)\subset f^{-1}(U)
+\end{align*}
+where $\varepsilon$ is taken such that $B(f(x),\varepsilon)\subset U$. Now we have
+\begin{align*}
+    y\in B\left(x, \frac{\varepsilon}{L}\right) \Rightarrow d_X(x,y) < \frac{\varepsilon}{L}
+\end{align*}
+with $f$ being Lipschitz mapping, we have 
+\begin{align*}
+    d_Y(f(x),f(y))\leq L d_X(x,y) \leq \varepsilon
+\end{align*}
+then $f(y)\in B(f(x),\varepsilon)\subset U$. Then $B\left(x, \frac{\varepsilon}{L}\right)\in f^{-1}(U)$.
+\end{proof}
+
+\medskip
+
+\begin{example}[Riemann function]
+$f$ is defined as below
+\begin{align*}
+    f(x) = \left\{
+    \begin{aligned}
+    & 0, \text{if} \quad x \in \mathbb{R}\setminus\mathbb{Q}\\
+    & \frac{1}{q}, \text{if} \quad x \in \mathbb{Q}, x = \frac{p}{q}, q > 0
+    \end{aligned}
+    \right.
+\end{align*}
+and where the greatest common divisor of $p$ and $q$ is $1$. Then $f$ is continuous at all irrational points and discontinuous at all rational points.
+\end{example}
+
+\begin{example}
+$f(x,y)$ is defined as below
+\begin{align*}
+    f(x) = \left\{
+    \begin{aligned}
+    & 0, \text{if} \quad x \in \mathbb{R}\setminus\mathbb{Q} \\
+    & 1, \text{if} \quad x \in \mathbb{Q}
+    \end{aligned}
+    \right.
+\end{align*}
+and $f$ is discontinuous everywhere.
+\end{example}
+
+\begin{remark}
+Practical way of proving continuity of a function of two(or more) variables at a given point is based on the following observation: If
+\begin{align*}
+    |f(x,y) - L| \leq g(x,y)\rightarrow 0
+\end{align*}
+where $(x,y)\to(x_0,y_0), (x,y)\neq(x_0,y_0)$, then $\lim_{(x,y)\to(x_0,y_0)}f(x,y) = L$.
+\end{remark}
+
+\medskip
+
+\begin{theorem}
+If $f:X\to Y$ is continuous and $A\subset X$ is compact, then $f(A)\subset Y$ is compact.
+\end{theorem}
+\begin{proof}
+Let $y_n\in f(A), n = 1,2,\cdots$ be a sequence. Then $y_n = f(x_n)$ for some $x_n\in A$. Since $A$ is compact, then there is a convergent subsequence $\{x_{n_k}\}$ such that $x_{n_k}\to x_0\in A$. Hence, $y_{n_k} = f(x_{n_k})\to f(x_0) \in f(A)$.
+\end{proof}
+
+\begin{theorem}
+If $f:X\to Y$ is continuous and $A\subset X$ is connected,then $f(A)\subset Y$ is connected.
+\end{theorem}
+\begin{proof}
+Suppose $f(A)$ is not connected. Then there exist open sets $U$ and $V$ such that $f(A)\subset U\cup V, f(A)\cap U\neq\varnothing, f(A)\cap V\neq\varnothing$ and $f(A)\cap (U\cap V)=\varnothing$. \\
+\hspace*{1em}\, Then we have $A\subset f^{-1}(U), A\subset f^{-1}(U), A \cap f^{-1}(U)\neq\varnothing, A \cap f^{-1}(V)\neq\varnothing$ and $A\cap (f^{-1}(U)\cap f^{-1}(V))=\varnothing$, which implies that $A$ is disconnected. This is a contradiction.
+\end{proof}
+
+\begin{theorem}
+If $f:X\to Y$ is continuous and $A\subset X$ is path connected,then $f(A)\subset Y$ is also path connected.
+\end{theorem}
+\begin{proof}
+Let $y_1, y_2\in f(A)$. Then $y_1 = f(x_1), y_2 = f(x_2)$ for some $x_1, x_2\in A$. Since $A$ is connected, then there exists a continuous mapping $\varphi:[a,b]\to A$, such that $\varphi(a) = x_1$ and $\varphi(b) = x_2$. Then we have $\psi = f\circ \varphi: [a,b]\to f(A)$ and $\psi(a) = y_1$, $\psi(b) = y_2$, this is continuous path connecting $y_1$ and $y_2$ in $f(A)$. Thus, $f(A)$ is path connected.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

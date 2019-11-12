@@ -174,8 +174,8 @@ Examples of metric spaces:\\
 \begin{align*}
     d(x,y) = \left\{
     \begin{aligned}
-    & 1, \text{if} \quad x = y\\
-    & 0, \text{if} \quad x \neq y
+    & 1, \text{if} \quad x \neq y\\
+    & 0, \text{if} \quad x = y
     \end{aligned}
     \right.
 \end{align*}
@@ -578,7 +578,7 @@ Then $A$ is compact.
 \medskip
 
 \begin{definition}
-Let $(X,d)$ be a metric space and $A\subset U$ a subset. We say that a family of open sets $\{U_i\}_{i\in I}$ forms a open covering of $A$ if $A\subset \bigcup_{i\in I} U_i$. Now, $\{U_{i_k}\}_{i_k\in I}, k = 1,2,\cdtos,N$ forms a finite subcovering of $A$ if $A\subset \bigcup_{i_k=1}^N U_{i_k}$.
+Let $(X,d)$ be a metric space and $A\subset U$ a subset. We say that a family of open sets $\{U_i\}_{i\in I}$ forms a open covering of $A$ if $A\subset  \bigcup_{i\in I} U_i$. Now, $\{U_{i_k}\}_{i_k\in I}, k = 1,2,\cdots,N$ forms a finite subcovering of $A$ if $A\subset \bigcup_{i_k=1}^N U_{i_k}$.
 \end{definition}
 
 \medskip
@@ -710,7 +710,7 @@ The set which we are now constructing shows that there exists perfect sets in $\
 \hspace*{1em}\, We show the Cantor set in seven iterations as below:
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{Cantor_set_in_seven_iterations}
+    \includegraphics[width=0.9\textwidth]{Cantor_set_in_seven_iterations}
     \caption{Cantor set in seven iterations}
     \label{fig:Cantor_set}
 \end{figure}\\
@@ -805,7 +805,7 @@ Prove by contradiction and suppose that $A$ is connected while $\text{cl}(A)$ is
 \end{enumerate}
 which means that $A$ is disconnected. Contradiction. \\
 \hspace*{1em}\, The properties $(1)$ and $(4)$ are obvious. Now we prove property $(2)$. Since $\text{cl}(A)\cap U \neq\varnothing$, then there is a $x\in \text{cl}(A)\cap U$. Hence there is a sequence $\{x_n\}\in A$ such that $$x_n\to x\in \text{cl}(A)\cap U$$
-Since $U$ is open, then there exists sufficiently large $N > 0$ such that $\forall n>N$, $x_n\in A\cap U$, wchich proves that $A\cap U\neq\varnothing$.
+Since $U$ is open, then there exists sufficiently large $N > 0$ such that $\forall n>N$, $x_n\in A\cap U$, which proves that $A\cap U\neq\varnothing$.
 \end{proof}
 
 \begin{example}
@@ -883,7 +883,7 @@ A mapping $f:X\to Y$ is continuous if and only if for every open set $U\subset Y
 \begin{proof}
 ($\Rightarrow$) Suppose $f$ is continuous and $U\subset Y$ is a open set. We want to prove that $f^{-1}(U)$ is open. \\
 \hspace*{1em}\, If $x\in f^{-1}(U)$, then $f(x)\in U$ and hence $B(f(x),\varepsilon)\subset U$ for some $\varepsilon > 0$. It follows from the continuity of $f$ there exists a $\delta > 0$ such that $d_Y(f(x),f(y))<\varepsilon$, if $d_X(x,y) < \delta$. Hence, $B(x,\delta)\subset f^{-1}(U)$ and then $f^{-1}(U)$ is open. \\
-\hspace*{1em}\, ($\Rightarrow$) Suppose now that $f^{-1}(U)$ is open for every open set $U\subset Y$. We need to prove that $f$ is continuous. \\
+\hspace*{1em}\, ($\Leftarrow$) Suppose now that $f^{-1}(U)$ is open for every open set $U\subset Y$. We need to prove that $f$ is continuous. \\
 \hspace*{1em}\, Let $\varepsilon>0$ be given, then $B(f(x_0),\varepsilon)$ is open. Hence $x_0\in f^{-1}(B(f(x_0),\varepsilon))$, which is open. Then there exists a $\delta>0$ such that $B(x_0,\delta)\subset f^{-1}(B(f(x_0),\varepsilon))$. And hence if $d_X(x_0,x)<\delta$, then $d_Y(f(x_0),f(x))<\varepsilon$, which proves the continuity of $f$.
 \end{proof}
 
@@ -980,28 +980,172 @@ If $f:X\to Y$ is continuous and $A\subset X$ is path connected,then $f(A)\subset
 Let $y_1, y_2\in f(A)$. Then $y_1 = f(x_1), y_2 = f(x_2)$ for some $x_1, x_2\in A$. Since $A$ is connected, then there exists a continuous mapping $\varphi:[a,b]\to A$, such that $\varphi(a) = x_1$ and $\varphi(b) = x_2$. Then we have $\psi = f\circ \varphi: [a,b]\to f(A)$ and $\psi(a) = y_1$, $\psi(b) = y_2$, this is continuous path connecting $y_1$ and $y_2$ in $f(A)$. Thus, $f(A)$ is path connected.
 \end{proof}
 
+\begin{theorem}
+If $f:A\to \mathbb{R}$ is continuous, where $A\subset X$ is compact, then $f$ attains maximum and minimum in $A$, i.e.,
+\begin{align*}
+    \exists x_1\in A, \forall x\in A, f(x_1)\geq f(x) \\
+    \exists x_2\in A, \forall x\in A, f(x_2)\leq f(x)
+\end{align*}
+\end{theorem}
+\begin{proof}
+There is a sequence $\{x_n\}\in A$ such that $f(x_n)\to \sup\{f(x)|x\in A\}$. Since $A$ is compact, then there exists a subsequence $\{x_{n_k}\}$ of $x_n$ such that $x_{n_k}\to x_1$. Then we have $f(x_1) = \sup\{f(x)|x\in A\}$. \\
+\hspace*{1em}\, Similar argument works with minimum.
+\end{proof}
 
+\begin{corollary}
+If $f:[a,b]\to \mathbb{R}$ is continuous, then $f$ is bounded.
+\end{corollary}
 
+\medskip
 
+\begin{example}
+Consider $f(x) = \frac{1}{x}, x\in (0,1]$ is continuous but unbounded on its domain, since $(a,b]$ is not closed, so the corollary does not apply.
+\end{example}
 
+\medskip
 
+Now we classify all connected subsets. 
 
+\begin{lemma}\label{inter_value_connected}
+If $A\subset X$ is connected, and $a<c<b, a,b\in A$, then $c\in A$.
+\end{lemma}
+\begin{proof}
+By contradiction and suppose $c\notin A$. Then we can know that $A\subset (-\infty,c)\cup(c,\infty), A\cap (-\infty,c)\neq\varnothing, A\cap (c,\infty)\neq\varnothing$ and $A\cap((-\infty,c)\cap(c,\infty)) = \varnothing$. Thus, $A$ is disconnected, which is a contradiction.
+\end{proof}
 
+\begin{theorem}
+$A\subset \mathbb{R}$ is connected if and only if $A$ is an interval.
+\end{theorem}
+\begin{proof}
+($\Leftarrow$) Any interval is connected since it is path connected. \\
+\hspace*{1em}\, ($\Rightarrow$) Let $a = \inf\{x|x\in A\}$ and $b = \sup\{x|x\in A\}$. Then there exist sequence $\{a_n\}\in A$ and $\{b_n\}\in A$ such that $a_n\to a$ and $b_b\to b$. It follows from Lemma \ref{inter_value_connected} that $[a_n, b_n]\subset A$. Hence $(a,b) = \bigcup^\infty_{n=1}[a_n,b_n]\subset A$. With the definition of $a$ and $b$ that no number less than $a$ belongs to $A$ and no number bigger than $b$ belongs to $A$. Thus, $A$ is an interval with endpoints $a$ and $b$,
+\end{proof}
 
+\begin{theorem}[Intermediate Value Theorem]
+If $f:A\to \mathbb{R}$ is continuous, $A\subset X$ is connected and $f(x) = a < c < b = f(y)$, then there exists a $z\in A$ such that $f(z) = c$.
+\end{theorem}
+\begin{proof}
+Since $f$ is continuous, then $f(A)$ is an interval that contains $a$ and $b$, so it must contains $c$. 
+\end{proof}
 
+\begin{theorem}
+Let $f:A\to \mathbb{R}^n$, $f(x) = (f_1(x), f_2(x), \cdots, f_n(x))$. Then $f$ is continuous if and only if the functions $f_i$ are continuous for $i = 1,2,\cdots, n$.
+\end{theorem}
+\begin{proof}
+If $x_k\to x_0$, then $(f_1(x_k), f_2(x_k), \cdots, f_n(x_k))\to (f_1(x_0), f_2(x_0), \cdots, f_n(x_0))$ if $f_i(x_k)\to f_i(x_0)$.
+\end{proof}
 
+\medskip
 
+Now we show a new method to prove the Arithmetic-Geometric mean inequality.
 
+\begin{theorem}[Arithmetic-Geometric mean inequality]
+Let $x_1,\cdots,x_n\geq 0$, then 
+\begin{align*}
+    \sqrt[n]{x_1 \cdots x_n}\leq \frac{x_1+\cdots+x_n}{n}
+\end{align*}
+and the equality holds if and only if $x_1=\cdots=x_n$.
+\end{theorem}
+\begin{proof}
+Let $x_1+\cdots+x_n = a$. We assume that $a > 0$ or otherwise the inequality is obvious. \\
+\hspace*{1em}\, Consider the set $A = \{(z_1,\cdots,z_n)\in\mathbb{R}^n|z_1+\cdots+z_n = a, z_1,\cdots,z_n\geq 0\}$. The set is bounded and closed, and therefore compact. Hence the function $f(z_1,\cdots,z_n) = \sqrt[n]{z_1,\cdots,z_n}$ has maximum in $A$ at some point $(z_1^0,\cdots,z_n^0)\in A$. We will prove that $z_1^0=\cdots=z_n^0$.\\
+\hspace*{1em}\, Observe first that $z_1^0,\cdots,z_n^0 \geq 0$ because $0$ cannot be maximum of $f$. Suppose that $z_i^0\neq z_j^0$ for some $i\neq j$, then 
+\begin{align*}
+    \left(\frac{z_i^0 + z_j^0}{2}\right)^2 > z_i^0 z_j^0
+\end{align*}
+and therefore
+\begin{align*}
+    \sqrt[n]{z_1^0\cdots\left(\frac{z_i^0 + z_j^0}{2}\right) \cdots \left(\frac{z_i^0 + z_j^0}{2}\right)\cdots  z_n^0} > \sqrt[n]{z_1^0\cdots z_j^0 \cdots z_j^0\cdots  z_n^0}
+\end{align*}
+and $\left( z_1^0,\cdots,\frac{z_i^0 + z_j^0}{2},\cdots,\frac{z_i^0 + z_j^0}{2},\cdots,z_n^0\right)\in A$, this is contradicted with the definition of $(z_1^0,\cdots,z_j^0,\cdots,z_j^0,\cdots,z_n^0)$. Thus $z_1^0 = \cdots = z_n^0 = \frac{a}{n}$, and we have 
+\begin{align*}
+    \sqrt[n]{x_1\cdots x_n} \leq \sqrt[n]{z_1^0 \cdots z_n^0} = \frac{a}{n} = \frac{x_1 + \cdots + x_n}{n}
+\end{align*}
+\end{proof}
 
+\medskip
 
+\subsection{Uniform continuity}
+\begin{definition}
+$f:A\to Y, A\subset X$ is called uniformly continuous, if for $\forall \varepsilon > 0$, there exists a $\delta > 0$ such that for $\forall x,y\in A$, if $d_X(x,y)<\delta$, then $d_Y(f(x),f(y))<\varepsilon$. 
+\end{definition}
 
+\medskip
 
+\begin{proposition}
+If $f:(a,b)\to \mathbb{R}$ is uniformly continuous, where $(a,b)$ is a bounded interval, then $f$ is bounded.
+\end{proposition}
+\begin{proof}
+By the definition of uniformly continuity, we take $\varepsilon = 1$. Then there is a $\delta > 0$ such that if $|x-y|\leq\delta$, then $|f(x)-f(y)| < 1$. Choose $N$ such that $N\delta > \frac{b-a}{2}$. \\
+\hspace*{1em}\, Let $x\geq \frac{a+b}{2}$, consider a sequence $x_k = \frac{a+b}{2}+\delta k, k=0,1,2\cdots$. Then there is $n<N$ such that $x_n \leq x$ but $x_{n+1}>x$. Thus we have 
+\begin{align*}
+    \left|f(x) - f\left(\frac{a+b}{2}\right)\right| & = \left|(f(x_n)-f(x_{n_1})) + (f(x_{n_1})-f(x_{n_2})) + \cdots + (f(x_1)-f(x_{n_0}))\right| \\
+    & \leq \left|f(x_n)-f(x_{n_1})\right|  + \left|f(x_{n_1})-f(x_{n_2})\right| + \cdots + \left|f(x_1)-f(x_{n_0})\right| \\
+    & \leq n+1 \leq N
+\end{align*}
+which proves $f$ is bounded. 
+\end{proof}
 
+\begin{exercise}
+Suppose $f:A\to \mathbb{R}$ is uniformly continuous, where $A\subset X$ is a bounded subset of a metric space. Dose it follow that $f$ is bounded? 
+\end{exercise}
 
+No. And we will provide a counterexample. 
 
+\begin{proof}
+If $X$ is a discrete metric space, then any function $f:X\to\mathbb{R}$ is uniformly continuous. Indeed, let arbitrary $\varepsilon > 0$, then take $\delta = 1$, then if $d_X(x,y)< \delta = 1$, it follows that $x = y$ and $|f(x)-f(y)| = 0 < \varepsilon$. \\
+\hspace*{1em}\, Now take $X = \mathbb{Z}$ with the metric metric. Then $X$ is bounded and and $f:X\to \mathbb{R}, f(n) = n$. Then $f$ is uniformly continuous, but not bounded.
+\end{proof}
 
+\medskip
 
+\begin{definition}
+We say that a function $f:A\to Y$, where $A\subset X$ is $\alpha-$Hölder continuous, $\alpha > 0$, if $\exists c > 0$ such that
+\begin{align*}
+    d_Y(f(x),f(y))\leq c d_X(x,y)^\alpha
+\end{align*}
+for all $x,y\in A$.
+\end{definition}
 
+\medskip
+
+\begin{theorem}
+If $f:A\to Y$ is continuous and $A\subset X$ is compact, then $f$ is uniformly continuous.
+\end{theorem}
+\begin{proof}
+Prove by contradiction, and suppose $\exists\varepsilon > 0$, $\forall \delta > 0$, there exist $x,y\in A$ such that if $d_X(x,y)<\delta$, then $d_Y(f(x),f(y)) < \varepsilon$. \\
+\hspace*{1em}\, In particular, there exist sequences $\{x_n\}, \{y_n\}\in A$ such that $d_X(x_n,y_n) < \frac{1}{n}$ and $d_Y(f(x_n),f(y_n))\geq \varepsilon$. Since $A$ is compact, there is a subsequence $\{x_{n_k}\}$ such that $x_{n_k}\to x_0\in A$. Since $d_X(x_{n_k},y_n) < \frac{1}{n_k}$, we also have $y_{n_k}\to x_0$. Hence, with $f$ being continuous, $f(x_{n_k})\to f(x_0)$ and $f(y_{n_k})\to f(x_0)$. Therefore, $d_Y(f(x_{n_k}),f(Y_{n_k}))\to 0$, which contradicts the inequality $d_Y(f(x_{n_k}),f(Y_{n_k})) > \varepsilon$.
+\end{proof}
+
+\medskip
+
+Recall that for $f:\mathbb{R}^n\to\mathbb{R}^m$, the graph is defined by
+\begin{align*}
+    G_f = \{(x,y)\in \mathbb{R}^n\times \mathbb{R}^m|= \mathbb{R}^{n+m}| y = f(x)\}
+\end{align*}
+
+\begin{exercise}
+Prove that if $f$ is continuous, then $G_f$ is a closed subset of $\mathbb{R}^{n+m}$. Is converse implication true? 
+\end{exercise}
+\begin{proof}
+(1) Let $f$ be continuous. We need to prove that if $G_f\ni (x_k,y_k)\to (x_0,y_))$, then $(x_0,y_)\in G_f$. We have $(x_k,y_k)\in G_f$, then $y_k = f(x_k)$. Now we have $x_k\to x_0\in \mathbb{R}$, then $f(x_k)\to y_0$. Since $f$ is continuous, then $f(x_k)\to f(x_0)$. Hence $y_0 = f(x_0)$ and therefore $(x_0,y_0) = (x_0, f(x_0)) \in G_f$. \\
+\hspace*{1em}\, (2) The converse implication is false. For example, consider function 
+\begin{align*}
+    f(x) = \left\{
+    \begin{aligned}
+    & \frac{1}{x}, \text{if} \quad x \neq 0 \\
+    & 0, \text{if} \quad x = 0
+    \end{aligned}
+    \right.
+\end{align*}
+which is discontinuous. But its graph is a closed subset of $\mathbb{R}^3$, which is shown as below.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.60\textwidth]{function_1_x}
+    \caption{$y = \sin(1/x)$}
+    \label{fig:function_1_x}
+\end{figure}\\
+\end{proof}
 
 
 

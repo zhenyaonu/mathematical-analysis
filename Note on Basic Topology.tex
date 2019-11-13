@@ -702,7 +702,7 @@ The claim is not true if $F_k$ are open or closed but unbounded, for example
 \begin{definition}
 By the segment $(a,b)$ we mean the set of all real numbers $x$ such that $a<x<b$. By the interval $[a,b]$ we mean the set of all real numbers $x$ such that $a\leq x\leq b$.
 \end{definition}
-The set which we are now constructing shows that there exists perfect sets in $\mathbb{R}^1$ which contain no segment. \\
+The set which we are now constructing shows that there exists perfect set in $\mathbb{R}^1$ which contain no segment. \\
 \hspace*{1em}\, (1)Let $E_0$ be the interval $[0,1]$. \\
 \hspace*{1em}\, (2)Remove the segment $\left(\frac{1}{3},\frac{2}{3}\right)$, and let $E_1$ be the union of the interval of $$\left[0,\frac{1}{3}\right],\left[\frac{1}{3},1\right].$$ \\
 \hspace*{1em}\, (3)Remove the middle thirds of these two intervals and let $E_2$ be the union of $$\left[0,\frac{1}{9}\right],\left[\frac{2}{9},\frac{1}{3}\right],\left[\frac{6}{9},\frac{7}{9}\right],\left[\frac{8}{9},1\right].$$ \\
@@ -810,19 +810,20 @@ Since $U$ is open, then there exists sufficiently large $N > 0$ such that $\fora
 
 \begin{example}
 The graph of the function $y = \sin \frac{1}{x}, 0\leq x\leq \pi$, i.e., the set  $$G = \left\{(x, \sin \frac{1}{x})|\, 0< x\leq \pi\right\}$$
-is path connected, hence $G$ is connected. 
+is path connected, hence $G$ is connected.\\
+\hspace*{1em}\, Therefore, $\text{cl}(G)$ is connected. However, $\text{cl}(G)$ is the union of $G$ and the segment $[-1,1]$ on the $y-$axis. It is clear that this set is not path connected. \\
+\hspace*{1em}\, $\text{cl}(G)$ is an example of a set which is connected but not path connected. The plot of $y = \sin \frac{1}{x}, 0\leq x\leq \pi$ is shown as below:
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.55\textwidth]{function_sin_x}
     \caption{$y = \sin(1/x)$}
     \label{fig:function_sin_x}
-\end{figure}\\
-Therefore, $\text{cl}(G)$ is connected. However, $\text{cl}(G)$ is the union of $G$ and the segment $[-1,1]$ on the $y-$axis. It is clear that this set is not path connected. \\
-\hspace*{1em}\, $\text{cl}(G)$ is an example of a set which is connected but not path connected.
+\end{figure}
 \end{example}
 
 \medskip
 
+\newpage
 \begin{theorem}[Theorem 2.47 in Rudin's book]
 A subset $E$ of the real line $\mathbb{R}^1$ is connected if and only if it has the following property: If $x\in E, y\in E$ and $x<z<y$, then $z\in E$.
 \end{theorem}
@@ -1128,7 +1129,7 @@ Recall that for $f:\mathbb{R}^n\to\mathbb{R}^m$, the graph is defined by
 Prove that if $f$ is continuous, then $G_f$ is a closed subset of $\mathbb{R}^{n+m}$. Is converse implication true? 
 \end{exercise}
 \begin{proof}
-(1) Let $f$ be continuous. We need to prove that if $G_f\ni (x_k,y_k)\to (x_0,y_))$, then $(x_0,y_)\in G_f$. We have $(x_k,y_k)\in G_f$, then $y_k = f(x_k)$. Now we have $x_k\to x_0\in \mathbb{R}$, then $f(x_k)\to y_0$. Since $f$ is continuous, then $f(x_k)\to f(x_0)$. Hence $y_0 = f(x_0)$ and therefore $(x_0,y_0) = (x_0, f(x_0)) \in G_f$. \\
+(1) Let $f$ be continuous. We need to prove that if $G_f\ni (x_k,y_k)\to (x_0,y_0)$, then $(x_0,y_0)\in G_f$. We have $(x_k,y_k)\in G_f$, then $y_k = f(x_k)$. Now we have $x_k\to x_0\in \mathbb{R}$, then $f(x_k)\to y_0$. Since $f$ is continuous, then $f(x_k)\to f(x_0)$. Hence $y_0 = f(x_0)$ and therefore $(x_0,y_0) = (x_0, f(x_0)) \in G_f$. \\
 \hspace*{1em}\, (2) The converse implication is false. For example, consider function 
 \begin{align*}
     f(x) = \left\{
@@ -1144,7 +1145,22 @@ which is discontinuous. But its graph is a closed subset of $\mathbb{R}^3$, whic
     \includegraphics[width=0.60\textwidth]{function_1_x}
     \caption{$y = \sin(1/x)$}
     \label{fig:function_1_x}
-\end{figure}\\
+\end{figure}
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if $f:\mathbb{R}^n\to \mathbb{R}^m$ is bounded, then $f$ is continuous if and only if $G_f$ is a closed subset of $\mathbb{R}^{n+m}$.
+\end{exercise}
+\begin{proof}
+($\Rightarrow$) is proved in the previous exercise.\\
+\hspace*{1em}\, ($\Leftarrow$) Suppose $G_f$ is closed, then we want to prove that if $x_n\to x_0$, then $f(x_n)\to f(x_0)$. We prove it by contradiction and assume that there is a sequence $x_n\to x_0$ such that $\lim_{x_n\to x_0}f(x_n)\neq f(x_0)$. \\
+\hspace*{1em}\, Then there is a $\varepsilon > 0$, and for $\forall N > 0$ such that if $n > N$, i.e., $\forall n > 0$, we will have $|f(x_n) - f(x_0)|\geq \varepsilon$. Then we can find a convergent subsequence $\{x_{n_k}\}$ such that $\forall k$, $|f(x_{n_k}) - f(x_0)|\geq \varepsilon$. The sequence $f(x_{n_k})$ is bounded in $\mathbb{R}^m$, then it has a convergent subsequence $\{f(x_{n_{k_l}})\}$ converging to $y_0$. And now we have 
+\begin{align*}
+    G_f \ni \left(x_{n_{k_l}},f(x_{n_{k_l}})\right) \to (x_0,y_0)
+\end{align*}
+and since $G_f$ is closed, then $(x_0,y_0)\in G_f$ and $y_0 = f(x_0)$. Therefore $f(x_{n_{k_l}})\to f(x_0)$, which is a contradiction.
 \end{proof}
 
 
@@ -1158,5 +1174,9 @@ which is discontinuous. But its graph is a closed subset of $\mathbb{R}^3$, whic
 
 
 
-\end{document}
 
+
+
+
+
+\end{document}

@@ -18,6 +18,18 @@
 \setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
 \setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
 
+\title{Sections and Chapters}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem{remark}{Remark}
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}
 
 
 \def\dsp{\def\baselinestretch{1.35}\large
@@ -173,7 +185,13 @@ We can set $x_2-x_1=N$ to be fixed and take $x_1,x_2\rightarrow \infty$, we can 
 {\bf Problem 61.}
 Suppose that a differentiable function $f:\mathbb{R}\to\mathbb{R}$ and its derivative $f'$ have no common zeros. Prove that $f$ has only finitely many zeros in $[0,1]$.
 \begin{proof}
-Set $Z=\{x\in[0,1];f(x)=0\}$ and suppose that $Z$ has infinitely many elements. Since there are infinitely many points in $[0,1]$, then there exists a point $p$ such that $x_k\rightarrow p, x_k\in Z$. Since $f$ is differential on $[0,1]$, then $f$ is continuous in this interval. Thus, we have $f(p)=\lim_{k\to\infty}f(x_k)=0$. Also, we have $f'(p)=\lim_{x_k\to\ p}\frac{f(x_k)-f(p)}{x_k-p}=0$, which is a contradiction.
+Set $Z=\{x\in[0,1];f(x)=0\}$ and suppose that $Z$ has infinitely many elements, then there is a sequence $\{x_n\}\in [0,1]$ such that $f(x_n) = 0$. Since $\{x_n\}$ is bounded, then there exists a convergent subsequence $\{x_{n_k}\}$ such that $x_{n_k}\to a$. Then since $f$ is differentiable  in $[0,1]$, then $f$ is continuous in $[0,1]$. Then we have $$0 = f(x_n)\to f(a) = 0$$
+and $f'(a) = 0$. \\
+\hspace*{1em}\, Now we pick a subsequence $\{x_{n_{k_l}}\}$ of $\{x_{n_k}\}$, such that $\{x_{n_{k_l}}\}$ is monotone converging to $a$, i.e., $x_{n_{k_l}}\to a$. For interval $(x_{n_{k_i}},x_{n_{k_{i+1}}})$, there exists a $z_i\in (x_{n_{k_i}},x_{n_{k_{i+1}}})$ such that 
+\begin{align*}
+    f'(z_i) = \frac{f(x_{n_{k_i}}) - f(x_{n_{k_{i+1}}})}{x_{n_{k_i}} - x_{n_{k_{i+1}}}} = 0
+\end{align*}
+and since $x_{n_{k_l}}\to a$, with continuity of $f$, we have $\lim_{i\to\infty}f'(z_i) = f'(a) = 0$, which is a contradiction.
 \end{proof}
 
 \medskip
@@ -183,7 +201,8 @@ Set $Z=\{x\in[0,1];f(x)=0\}$ and suppose that $Z$ has infinitely many elements. 
 {\bf Problem 62.}
 Suppose that $f:[0,\infty)\to\mathbb{R}$ is continuous on $[0,\infty)$ and differentiable on $(0,\infty)$, $f(0)=0$, and $\displaystyle\lim_{x\to\infty} f(x)=0$. Prove that there exists $c\in\mathbb{R}$ such that $f'(c)=0$.
 \begin{proof}
-Since $\lim_{x\to\infty}f(x)=0$, then $\forall \varepsilon>0$, there exists $M>0$, such that $\forall x>M$, $|f(x)|<\varepsilon$. With mean value theorem, we have $c\in(0,x)$ such that $f(c)=\frac{f(x)-f(0)}{x}<\varepsilon$. This holds for every $\varepsilon$, then we know there exists a $c$ such that $f(c)=0$.
+(1) If $f = 0$, then it holds.\\
+\hspace*{1em}\, (2) If $f\neq 0$, we can find $a\in (0,\infty)$ such that $f'(a)\neq 0$. Without losing generality, we can assume $f(a) > 0$. Let $\varepsilon = \frac{f(a)}{2}$, then there exists a $M > 0$, such that for $\forall x > M$, $f(x)<\frac{f(a)}{2}$. Now we pick $b > M$, such that $|f(b)|<\frac{f(a)}{2}$. For $f(b) > 0$, there exists $b'\in(0,a)$ such that $f'(b) = f(b)$. With intermediate value theorem, there exists a $c\in(b',b)$ such that $f'(c) = 0$. For $f(b) < 0$, there exists $b'\in(a,b)$ such that $f(b') = 0$. With $f(0) = 0$ and intermediate value theorem, there exists $c\in (0,b')$ such that $f'(c) = 0$.
 \end{proof}
 
 \medskip
@@ -196,7 +215,7 @@ Let $f:[0,1]\to\mathbb{R}$ be continuous on $[0,1]$ and differentiable on $(0,1)
 $S_1=\{x\in [0,1]:\,f(x)>0\}$ and $S_2=\{x\in [0,1]:\,   f(x)<0\}$. Prove that $\inf(S_1)=\sup(S_2)$.
 \begin{proof}
 Since $f(0)<0<f(1)$ and $f$ is continuous, then there exists a $c\in(0,1)$ such that $f(c)=0$. Now consider the interval $[0,c)$, we claim that $f$ is increasing in this interval. If not, then there exists a $x_1\in(0,c)$ such that $f(x_1)<f(0)<0$. Also, since $f$ is continuous, then there exists a $x_2\in(x_2,c)$ such that $f(x_2)=f(0)$. With Rolle Theorem, we can know that there must be a $\xi\in(0,x_2)\subset (0,c)$ such that $f'(\xi)=0$, which contradicts the fact that $f'(x)\neq 0, \forall x\in(0,1)$. Similarly, we can know that $f$ is increasing on interval $(c,1)$. Since $f$ is continuous, then $f$ is increasing on $[0,1]$. \\
-\hspace*{3em}We have know that $f(c)=0, c\in(0,1)$. We claim that $c=\inf (S_1)$ and $c=\sup (S_2)$. First, we consider $x\in S_1$ such that $f(x)>0$, with $f$ being continuous and increasing, we can know that $c<\forall x\in S_1$. Then, $c$ is a lower bound of $S_1$. Also, we can find a sequence $\{x_k\}\rightarrow c$ where $x_k\in S_1$. For $\forall \varepsilon>0$, then there exists a $K>0$, such that $k>K$, $x_k<0+\varepsilon$ and $0<f(x_k)<f(\varepsilon)$. Then we proved that $c$ is a greatest lower bound of $S_1$. Similarly, we can know $c$ is also a least upper bound of $S_2$. Thus, $\inf(S_1)=\sup(S_2)$.
+\hspace*{1em}We have know that $f(c)=0, c\in(0,1)$. We claim that $c=\inf (S_1)$ and $c=\sup (S_2)$. First, we consider $x\in S_1$ such that $f(x)>0$, with $f$ being continuous and increasing, we can know that $c<\forall x\in S_1$. Then, $c$ is a lower bound of $S_1$. Also, we can find a sequence $\{x_k\}\rightarrow c$ where $x_k\in S_1$. For $\forall \varepsilon>0$, then there exists a $K>0$, such that $k>K$, $x_k<0+\varepsilon$ and $0<f(x_k)<f(\varepsilon)$. Then we proved that $c$ is a greatest lower bound of $S_1$. Similarly, we can know $c$ is also a least upper bound of $S_2$. Thus, $\inf(S_1)=\sup(S_2)$.
 \end{proof}
 
 \medskip
@@ -212,7 +231,22 @@ f'(x)=\frac{1}{x^2+(f(x))^2}
 $$
 Prove that $\lim_{x\to\infty} f(x)$ exists and is finite.
 \begin{proof}
-Suppose $\lim_{\x\to\infty}f(x)$ exists and is not finite, then $\lim_{\x\to\infty}f(x)=\infty$. Also, with $f(0)>0$, we have $f'(0)=\frac{1}{f^2(0)}>0$, which means $f>0$ in a small interval $[0,\delta)$. Then we can know that $f$ is increasing in $[0,\infty)$. Also, we have 
+We have $f'(0) = 1/f^2(0) > 0$, and with $f'(x) = \frac{1}{x^2+(f(x))^2} \leq 1/x^2$, then 
+\begin{align*}
+    0 \leq \int^\infty_a f'(x) dx \leq \int^\infty_a \frac{1}{x^2} dx = \frac{1}{a} - \frac{1}{\infty}  = \frac{1}{a}
+\end{align*}
+Since $\int^x_0 f'(x)dx = f(x) - f(0)$, then we have 
+\begin{align*}
+    0 \leq \lim_{x\to\infty}f(x) & = \lim_{x\to\infty}\int^x_{a} f'(t) dt + f(a) \\
+    & \leq \lim_{x\to\infty}\int^x_{a} \frac{1}{t^2} dt + f(a) \\
+    & = \frac{1}{a} + f(a)
+\end{align*}
+Thus, we can know that $\lim_{x\to\infty} f(x)$ exists and is finite.
+\end{proof}
+
+\hspace*{1em} Below is original proof, and it is wrong. Since $\lim_{x\to\infty}f'(x) = 0$ does not imply that $\lim_{x\to\infty}f(x) = 0$, $f(x) = \ln x$ is a counterexmaple.
+\begin{proof}
+Suppose $\lim_{x\to\infty}f(x)$ exists and is not finite, then $\lim_{x\to\infty}f(x)=\infty$. Also, with $f(0)>0$, we have $f'(0)=\frac{1}{f^2(0)}>0$, which means $f>0$ in a small interval $[0,\delta)$. Then we can know that $f$ is increasing in $[0,\infty)$. Also, we have 
 \begin{align*}
     \lim_{x\to\infty}f'(x)=\lim_{x\to\infty}\frac{1}{x^2+f^2(x)}=0
 \end{align*}

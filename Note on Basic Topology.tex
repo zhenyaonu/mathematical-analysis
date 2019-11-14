@@ -1165,7 +1165,7 @@ and since $G_f$ is closed, then $(x_0,y_0)\in G_f$ and $y_0 = f(x_0)$. Therefore
 
 \medskip
  
-Next we give some important examples about continuity and metric space.
+Next we give some important examples and theorems about continuity and metric space.
 
 \begin{exercise}
 Let $\{f_n\}^\infty_{n=1}, f_n:[0,1]\to\mathbb{R}$ be a sequence of continuous functions such that:
@@ -1251,8 +1251,23 @@ Thus, we have
 which means $f(x_{n_k},t_{n_k})\to f(x_0,t_0)$, which is a contradiction.
 \end{proof}
 
+\begin{theorem}
+If $A\subset U$ is a dense subset of a metric space, i.e., $\text{cl}(A) = X$, and $f:A\to\mathbb{R}$ is uniformly continuous, then there is a unique continuous function $F:X\to\mathbb{R}$ such that $F(x) = f(x)$ for all $x\in A$. Moreover, $F$ is uniformly continuous.
+\end{theorem}
 
+Before we prove the theorem, we first introduce an exercise, then we provide the proof of theorem.
 
+\begin{exercise}
+If $f:(a,b)\to\mathbb{R}$ is uniformly continuous, and $-\infty < a < b < \infty$, then $f$ extends to a continuous function $F:[a,b)\to\mathbb{R}$. In particular, $F$ is bounded.
+\end{exercise}
+
+\begin{proof}
+For $x\in X$, we choose a unique $A\ni a_k^x\to x$. Since $f$ is uniformly continuous, then $\forall\varepsilon > 0$, there exists $\delta > 0$, and for $\forall x,y\in A$, if $d_X(x,y) < \delta$, then $|f(x) - f(y)| < \varepsilon$. For such $\delta > 0$, there exists a $N > 0$ such that $\forall k,l$, then $d_X(a_k^x, a_l^x) < \delta$, and hence $$|f(a_k^x) - f(a_l^x)| < \varepsilon$$
+then we can know that $\{f(a_k^x)\}^\infty_{k=1}$ is a Cauchy sequence. Thus it is convergent. \\
+\hspace*{1em}\, We now define $$F(x) = \lim_{k\to\infty}f(a_k^x)$$
+If $d_x(x,y) < \delta$, then $d_X(a_k^x,a_k^y) < \delta$. Then for some $K > 0$, if $\forall k \geq K$, then $$|f(a_k^x) - f(a_k^y)| < \varepsilon \Rightarrow |F(x) - F(y)| < \varepsilon$$
+Thus, $F$ is uniformly continuous.
+\end{proof}
 
 
 

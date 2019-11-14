@@ -1163,14 +1163,93 @@ Prove that if $f:\mathbb{R}^n\to \mathbb{R}^m$ is bounded, then $f$ is continuou
 and since $G_f$ is closed, then $(x_0,y_0)\in G_f$ and $y_0 = f(x_0)$. Therefore $f(x_{n_{k_l}})\to f(x_0)$, which is a contradiction.
 \end{proof}
 
+\medskip
+ 
+Next we give some important examples about continuity and metric space.
 
+\begin{exercise}
+Let $\{f_n\}^\infty_{n=1}, f_n:[0,1]\to\mathbb{R}$ be a sequence of continuous functions such that:
+\begin{enumerate}
+    \item $f_n \geq 0$.
+    \item $f_{n+1}\leq f_n$.
+    \item $\forall x\in [0,1], f_n(x)\to 0$.
+\end{enumerate}
+\end{exercise}
+Then $f_n$ uniformly converges to $0$.
+\begin{proof}
+Given $\varepsilon > 0$, we need to find $N > 0$ such that if $\forall n \geq N$ and $\forall x\in [0,1]$, then $0 < f_n(x) < \varepsilon$.\\
+\hspace*{1em}\, For $x\in [0,1]$, let $N_x$ be the least integer such that $f_{N_x} < \varepsilon$. Then for $\forall n \geq N_x$, $f_n(x) < \varepsilon$. Since $f_{N_x}$ is continuous function, so there exists an open neighborhood $U_x$ of $x$ in $[0,1]$ such that for $z\in U_x$, we have $f_{N_x}(x) < \varepsilon$. \\
+\hspace*{1em}\, Since $[0,1]$ is compact, then there exists a finite open covering such that $[0,1]\in U_{x_1}\cup U_{x_2} \cup \cdots \cup U_{x_k}$. Now we pick $N = \max\{N_{x_1},N_{x_2},\cdots,N_{x_k}\}$, where $N_{x_j}$ is the least number such that $f_{N_{x_j}}(x_j) < \varepsilon$. If $n\geq N$ and for $x\in[0,1]$, then $x\in U_{x_i}$ for some $i\in\{1,2,\cdots, k\}$, which implies $0 \leq f_n(x) \leq f_N(x) \leq f_{N_i}(x) < \varepsilon$.
+\end{proof}
 
+\begin{exercise}
+Let $F:\mathbb{R}^n\to\mathbb{R}$ be a norm, i.e., for $\forall x,y\in \mathbb{R}^n$ and $t\in\mathbb{R}$, we have
+\begin{enumerate}
+    \item $F(x)\geq 0$ and $F(x) = 0$ if and only if $x = 0$.
+    \item $F(x+y)\leq F(x) + F(y)$.
+    \item $F(tx) = |t|F(x)$
+\end{enumerate}
+Then there exist $A,B > 0$ such that $A\|x\|\leq F(x)\leq B\|x\|$ for all $x\mathbb{R}$.
+\end{exercise}
+\begin{proof}
+(1) We claim that $F$ is bounded on unit sphere $\{\|x\| = 1\}$. \\
+\hspace*{1em} Let $\{e_1,e_2,\cdots,e_n\}$ be orthonormal basis for $\mathbb{R}^n$, then any $x\in\mathbb{R}^n$ has a representation
+\begin{align*}
+    x = \sum^n_{i=1} c_ie_i
+\end{align*}
+If $\|x\| = 1$, then we have $|c_i| \leq 1$. And we have 
+\begin{align*}
+    F(x) = F\left(\sum^n_{i=1} c_ie_i\right) \leq \sum^n_{i=1} |c_i| F(e_i) \leq \sum^n_{i=1} F(e_i) = B
+\end{align*}
+Then there exists a $B > 0$. \\
+\hspace*{1em}\, (2) Now we claim $F$ is continuous. \\
+\hspace*{1em}\, If $x \neq y$, then we have $y = x + \|y-x\|\cdot \frac{y-x}{\|y-x\|}$. Thus, we have
+\begin{align*}
+    & F(y) \leq F(x) + \|y-x\| F \left(\frac{y-x}{\|y-x\|}\right) \\
+    \Rightarrow & F(y) - F(x) \leq B\|y-x\|
+\end{align*}
+Now we switch $x$ and $y$, then we have $F(x) - F(y) \leq B\|y-x\|$. Thus we have $|F(x) - F(y)|\leq B \|y-x\|$, which implies $F$ is continuous. \\
 
+Now we complete the proof of theorem. Since $F$ is continuous, so it obtains its minimum $A$ on the compact unit sphere, i.e.,
+\begin{align*}
+    & A = \inf_{\|x\| = 1}F(x) = F(x_0) > 0 \\
+    \Rightarrow & A\leq F(x) \leq B, \|x\| = 1
+\end{align*}
+Now if $\|x\|\neq 0$ is any point in $\mathbb{R}^n$, then 
+\begin{align*}
+    & F(x) = F\left(\|x\|\cdot\frac{x}{\|x\|}\right) = \|x\|\cdot F\left(\frac{x}{\|x\|}\right) \\
+    \Rightarrow & A\|x\|\leq F(x)\leq B\|x\|
+\end{align*}
+\end{proof}
 
-
-
-
-
+\begin{exercise}
+Prove that if $X$ is a metric space, and $f:X\times[0,1]\to\mathbb{R}$ is continuous, then $g:X\to\mathbb{R}$, which is defined by 
+\begin{align*}
+    g(x) = \sup_{t\in[0,1]}f(x,t)
+\end{align*}
+is continuous.
+\end{exercise}
+\begin{proof}
+Prove by contradiction, and suppose $g$ is not continuous, i.e., there exists $\varepsilon > 0$, for $\forall \delta > 0$, $\exists x$ such that if $d_X(x,x_0) < \delta$, then $|g(x) - g(x_0)|\geq\varepsilon$. \\
+\hspace*{1em}\, Fix such $\varepsilon > 0$, we pick $\delta = \frac{1}{n}$, then exists $x_n$ such that $d_X(x_n,x_0) < \frac{1}{n}$, then $|g(x_n) - g(x_0)| \geq \varepsilon$, which implies
+\begin{align*}
+    \left|\sup_t f(x_n,t) - \sup_t f(x_0,t)\right| \geq \varepsilon
+\end{align*}
+then there exist $t_n, t_0\in[0,1]$ such that 
+\begin{align*}
+    \left|f(x_n,t_n) - f(x_0,t_0)\right| \geq \varepsilon
+\end{align*}
+where $x_n\to x_0$. Then there exists a subsequence $t_{n_k}\to s$, such that $f(x_{n_k},t_{n_k})\to f(x_0,s)$. Then we have 
+\begin{align*}
+    f(x_{n_k},t_{n_k}) & = \sup_t f(x_{n_k},t) \geq f(x_{n_k},t_0) \\
+    f(x_0,t_0) & = \sup_t f(x_0,t) \geq f(x_0,s) 
+\end{align*}
+Thus, we have 
+\begin{align*}
+    f(x_0,t_0) \leftarrow f(x_{n_k},t_0) \leq f(x_{n_k},t_{n_k}) \rightarrow f(x_0,s) \leq f(x_0,t_0)
+\end{align*}
+which means $f(x_{n_k},t_{n_k})\to f(x_0,t_0)$, which is a contradiction.
+\end{proof}
 
 
 

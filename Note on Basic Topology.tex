@@ -17,6 +17,7 @@
 \usepackage{thmtools}
 \usepackage{wrapfig}
 \usepackage{extarrows}
+\usepackage{breqn}
 \graphicspath{ {images/} }
 
 
@@ -1743,10 +1744,70 @@ Now we have
 Hence the mapping $T:\mathbb{R}^n\to\mathbb{R}^n$ is a contraction and therefore it has a unique fixed point, which is the unique solution to (\ref{equ_4}).
 \end{proof}
 
+\begin{exercise}
+Prove that if $\left|a\right| < 1/2$, then the system of equations
+\begin{align*}
+    \left\{
+    \begin{aligned}
+        & x = a(\sin x + \cos y)\\
+        & y = a(\cos x + \sin y)
+    \end{aligned}
+    \right.
+\end{align*}
+has exactly one solution $(x,y)\in \mathbb{R}^2$.
+\end{exercise}
+\begin{proof}
+Consider the mapping $T:\mathbb{R}^2\to\mathbb{R}^2$ defined as $T(x,y) = \left(a(\sin x + \cos y), a(\cos x + \sin y)\right)$. And it suffices to prove that $T$ is a contraction. We have
+\begin{dmath}
+    \|T(x_1,y_1) - T(x_2,y_2)\| = |a|\sqrt{(\sin x_1 + \cos y_1 - \sin x_2 - \cos y_2)^2 
+    + (\cos x_1 + \sin y_1 - \cos x_2 - \sin y_2)^2}
+\end{dmath}
+and we denote the right hand side by $M$. We need following elementary inequality 
+\begin{align*}
+    \left|\sin a - \sin b\right| \leq \left|a - b\right|, \left|\cos a - \cos b\right| \leq \left|a - b\right|
+\end{align*}
+where the first one follows from the estimate 
+\begin{align*}
+    \left|\sin a - \sin b\right| = \left|\int^b_a \sin' t \,\text{dt} \right| \leq \int^b_a \left|\cos t \,\text{dt}\right| \leq \left|a - b\right|
+\end{align*}
+and the second one follows from the similar argument. These inequalities yield 
+\begin{align*}
+    \left|\sin x_1 + \cos y_1 - \sin x_2 - \cos y_2\right|^2 &\leq \left(\left|\sin x_1 - \sin x_2\right| + \left|\cos y_1 - \cos y_2\right|\right)^2 \\
+    &\leq \left(\left|x_1 - x_2\right| + \left|y_1 - y_2\right|\right)^2 \\
+    &\leq 2 \left(\left|x_1 - x_2\right|^2 + \left|y_1 - y_2\right|^2 \right)
+\end{align*}
+Similarly, we have 
+\begin{align*}
+    \left|\cos x_1 + \sin y_1 - \cos x_2 - \sin y_2\right|^2 \leq 2 \left(\left|x_1 - x_2\right|^2 + \left|y_1 - y_2\right|^2 \right)
+\end{align*}
+Hence, we have 
+\begin{align*}
+    M \leq |a| \sqrt{4 \left(\left|x_1 - x_2\right|^2 + \left|y_1 - y_2\right|^2 \right)} = 2|a| \cdot \|(x_1,y_1),(x_2,y_2)\|
+\end{align*}
+which implies that $T$ is a contraction.
+\end{proof}
 
+\begin{exercise}
+Let $g:[0,1]\to\mathbb{R}$ be continuous. Prove that there is a unique continuous function $f:[0,1]\to\mathbb{R}$ such that 
+\begin{align*}
+    f(x) - \int^x_0 f(x - t)e^{-t^2} \text{dt} = g(x), x\in [0,1]
+\end{align*}
+\end{exercise}
+\begin{proof}
+Consider the mapping $T:C([0,1],\mathbb{R})\to C([0,1],\mathbb{R})$ defined by 
+\begin{align*}
+    T(f)(x) = g(x) + \int^x_0 f(x - t)e^{-t^2} \text{dt} = f(x)
+\end{align*}
+Clearly, $f$ is a solution to the problem if and only if $T(f) = f$. Since the space $C([0,1],\mathbb{R})$ is compact, the existence of unique fixed point of $T$ will follows from the fact that $T$ is a contraction.
 
-
-
+Given $f,h\in C([0,1],\mathbb{R})$, we have 
+\begin{align*}
+    d_\infty \left(T(f), T(h)\right)  & = \sup_{x\in[0,1]} \left|\left(g(x) + \int^x_0 f(x - t)e^{-t^2} \text{dt}\right) -  \left(g(x) + \int^x_0 h(x - t)e^{-t^2} \text{dt}\right)\right| \\
+    & \leq \sup_{x\in[0,1]} \int^x_0 \left|f(x-t) - h(x-t)\right|e^{-t^2} \text{dt} \\
+    & \leq d_\infty(f,h) \underbrace{\int^1_0 e^{-t^2} \text{dt}}_{=\, k < 1}
+\end{align*}
+Thus, we proved that $T:C([0,1],\mathbb{R})\to C([0,1],\mathbb{R})$ is a contraction and hence there is a unique $f\in C([0,1],\mathbb{R})$ such that $T(f) = f$.
+\end{proof}
 
 
 

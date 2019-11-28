@@ -1710,8 +1710,38 @@ Now we prove the the uniqueness. If $x_1^*, x_2^*\in X$ are two fixed points of 
 Since $0<k<1$, we can know that $d(x_1^*, x_2^*) = 0$, which implies $x_1^* = x_2^*$.
 \end{proof}
 
+\medskip
 
+\begin{exercise}
+Prove that if $\left|a_{ij}\right| < 1/n$ for $i,j = 1,2,\cdots, n$, then for every $b_1,b_2,\cdots,b_n\in\mathbb{R}$, the system of linear equations 
+\begin{equation}\label{equ_4}
+    x_i = \sum^n_{j=1}a_{ij}x_j + b_i, i = 1,2,\cdots,n
+\end{equation}
+has unique solution $x = (x_1,x_2,\cdots,x_n)$.
+\end{exercise}
+\begin{proof}
+Define a mapping $T:\mathbb{R}^n\to\mathbb{R}^n$ by $T(x_1,x_2,\cdots,x_n) = (y_1,y_2,\cdots,y_n)$, where $y_i = \sum^n_{j=1}a_{ij}x_j + b_i$. Clearly, $x = (x_1,x_2,\cdots,x_n)$ is a solution to the system above if and only if $T(x) = x$. Thus, we need to prove that $T$ has a unique fixed point. 
 
+It suffice to prove that $T$ is a contraction. Let $M = \max\{|a_{ij}|,i,j = 1,2,\cdots,n\}$. Then $M < \frac{1}{n}$. Denote $T(x) = y, T(x') = y'$. We have
+\begin{align*}
+    \left|y_i - y_i'\right| & = \left|\sum^n_{j=1}a_{ij}(x_j - x_j')\right| \\
+    & \leq M \sum^n_{j=1}\left|x_j - x_j'\right| \\
+    & \leq M \sqrt{n} \|x - x'\|
+\end{align*}
+where the last step follows from Cauchy-Schwarz inequality, which is 
+\begin{align*}
+    \sum^n_{j=1}\left|x_j\right| = \sum^n_{j=1}\left|x_j\right|\cdot 1 \leq \left(\sum^n_{j=1}1\right)^{\frac{1}{2}} \left(\sum^n_{j=1}\left|x_j\right|^2\right)^{\frac{1}{2}} = \sqrt{n} \|x\|
+\end{align*}
+
+Now we have 
+\begin{align*}
+    \|T(x) - T(x')\| & = \|y - y'\| \\
+    & = \left(\sum^n_{i=1}|y-y'|^2\right)^{\frac{1}{2}} \\
+    & \leq \left(\sum^n_{i=1}(M \sqrt{n} \|x - x'\|)^2\right)^{\frac{1}{2}} \\
+    & = \underbrace{Mn}_{ =\, k < 1} \|x - x'\|
+\end{align*}
+Hence the mapping $T:\mathbb{R}^n\to\mathbb{R}^n$ is a contraction and therefore it has a unique fixed point, which is the unique solution to (\ref{equ_4}).
+\end{proof}
 
 
 

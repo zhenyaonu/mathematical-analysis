@@ -139,8 +139,9 @@ We have
     \left\|x_i - y\right\| & = \sqrt{(x_{1i}-y_1)^2 + \cdots + (x_{ni}-y_1)^2} \\
     & \geq \sqrt{(x_{ki}-y_k)^2} = |x_{ki} - y_k|
 \end{align*}
-Hence, $\left\|x_i - y\right\| \to 0 \Rightarrow |x_{ki} - y_k| \to 0$.\\
-\hspace*{1em}\, On the other hand, if $|x_{ki} - y_k|$ as $i\to\infty$ for $k = 1,2,\cdots, n$, then 
+Hence, $\left\|x_i - y\right\| \to 0 \Rightarrow |x_{ki} - y_k| \to 0$.
+
+On the other hand, if $|x_{ki} - y_k|$ as $i\to\infty$ for $k = 1,2,\cdots, n$, then
 \begin{align*}
     \max_k |x_{ki} - y_k| \to 0 \quad \text{as}\quad i\to\infty
 \end{align*}
@@ -191,7 +192,8 @@ Examples of metric spaces:
     \begin{align*}
         d(x,y) = \sum^\infty_{n=1} |x_n - y_n|
     \end{align*}
-    We will prove that $(l^1,d)$ is a metric space.\\
+    We will prove that $(l^1,d)$ is a metric space.
+    
     First we have $d(x,y) < \infty$ for $\forall x,y \in l^1$. And we   have $|x_n-y_n|\leq |x_n|+|y_n|$, and hence
     \begin{align*}
         d(x,y) = \sum^\infty_{n=1} |x_n - y_n| \leq \sum^\infty_{n=1} |x_n| + \sum^\infty_{n=1} |y_n| < \infty
@@ -249,15 +251,15 @@ We say that a set $U\subset X$ is open if $$\forall x\in X, \exists r > 0, B(x,r
 
 \begin{definition}[Definition in Rudin's Principle of Mathematical Analysis]Let $X$ be a metric space. 
 \begin{enumerate}
-    \item A neighborhood or a ball of $x$ is a set $N_r(x)$ consisting of all $y$ such that $d(x,y)<r$, \hspace*{2.3em}for some $r>0$. The number $r$ is called the radius of $N_r(x)$.
-    \item A point $x$ is a limit point of set $E$ if every neighborhood of $x$ contains a point $y\neq x$ \hspace*{2.3em}such that $y\in E$.
+    \item A neighborhood or a ball of $x$ is a set $N_r(x)$ consisting of all $y$ such that $d(x,y)<r$, for some $r>0$. The number $r$ is called the radius of $N_r(x)$.
+    \item A point $x$ is a limit point of set $E$ if every neighborhood of $x$ contains a point $y\neq x$ such that $y\in E$.
     \item If $x\in E$ and $x$ is not a limit point of $E$, then $x$ is called an isolated point of $E$.
     \item $E$ is closed if every limit point of $E$ is a point of $E$.
-    \item A point $x$ is an interior point of $E$ if there is a neighborhood(or ball) $N_r(x)$ of $x$ \hspace*{2.3em} such that $N_r(x)\in E$.
+    \item A point $x$ is an interior point of $E$ if there is a neighborhood(or ball) $N_r(x)$ of $x$ such that $N_r(x)\in E$.
     \item $E$ is open if every point of $E$ is an interior point of $E$.
     \item The complement of $E$ (denoted by $E^c$) is the set of all points $x\in X$ such that $x\notin E$.
     \item $E$ is perfect if $E$ is closed and if every point of $E$ is a limit point of $E$.
-    \item $E$ is bounded if there is a real number $M$ and a point $x\in X$ such that $d(x, y) < M$ \hspace*{2.3em} for all $y\in E$.
+    \item $E$ is bounded if there is a real number $M$ and a point $x\in X$ such that $d(x, y) < M$ for all $y\in E$.
     \item $E$ is dense in $X$ if every point of $X$ is a limit point of $E$, or a point of $E$(or both).
 \end{enumerate}
 \end{definition}
@@ -328,8 +330,9 @@ Let $(X,d)$ be a metric space. We say that $A\subset X$ is closed if $X\setminus
 A set $A$ is open if and only if it complement is closed.
 \end{theorem}
 \begin{proof}
-First, suppose $A^c$ is closed. For $x\in A$, then $x\notin A^c$, and $x$ is not a limit point of $E^c$. Then there exists $r>0$ such that $B(x,r) \cap A^c = \varnothing$. Then, we have $B(x,r) \subset A$. Thus $x$ is an interior point of $A$ and it follows that $A$ is open.\\
-\hspace*{1em}\, Next, suppose $A$ is open. Let $x$ be a limit point of $A^c$. Then every neighborhood of $x$ contains a point of $A^c$, so $x$ is not a interior point of $A$. Since $A$ is open, then $x\notin A$, which means $x\in A^c$. Since $x$ is a limit point of $A^c$, then $A^c$ is closed. The proof is complete.
+First, suppose $A^c$ is closed. For $x\in A$, then $x\notin A^c$, and $x$ is not a limit point of $E^c$. Then there exists $r>0$ such that $B(x,r) \cap A^c = \varnothing$. Then, we have $B(x,r) \subset A$. Thus $x$ is an interior point of $A$ and it follows that $A$ is open.
+
+Next, suppose $A$ is open. Let $x$ be a limit point of $A^c$. Then every neighborhood of $x$ contains a point of $A^c$, so $x$ is not a interior point of $A$. Since $A$ is open, then $x\notin A$, which means $x\in A^c$. Since $x$ is a limit point of $A^c$, then $A^c$ is closed. The proof is complete.
 \end{proof}
 
 \medskip
@@ -372,6 +375,7 @@ We can prove this theorem by proving that $X\setminus \bar{B}(x_0,r_0) = \{y\in 
 \begin{align*}
     d(x_0,x) > r_0 + r
 \end{align*}
+
 And with triangle inequality, for $\forall y\in B(x,r)$, we have $d(x_0,y) \geq d(x,x_0) - d(x,y) > r_0$, since $d(x,y) < r$. Thus, we have $B(x,r)\subset X\setminus \bar{B}(x_0,r_0)$, which implies that $X\setminus \bar{B}(x_0,r_0)$ is open.
 \end{proof}
 
@@ -385,8 +389,9 @@ A set $A\subset U$ is closed if and only if the following implication is true: i
     \item Suppose $A$ is closed. We need to prove that if $x_n \in A$, then $x\in A$. Suppose by contradiction that $x_n\in A \rightarrow x$, but $x\notin A$. Then, $x\in X\setminus A$. Since $X\setminus A$ is open, there exists a $\varepsilon > 0$ such that $B(x,\varepsilon) \subset X\setminus A$. Then $d(x_n,x) > \varepsilon$ for all $n$ and thus $x_n$ does not converges to $x$, which is a contradiction.
     \item Suppose that a set $A\subset X$ has the property that if $X_n \in A$ which converges to $x$, then $x\in A$. We need to prove that $A$ is closed. And we only need to prove that $X\setminus A$ is open. Then, we need to prove that, for $x\in X\setminus A$
     \begin{align*}
-        \exists \varepsilon > 0, B(x, \varepsilon)\subset X\setminus A
+        \exists \varepsilon > 0, B(x, \varepsilon)\subset X\setminus A.
     \end{align*}
+    
     Suppose by contradiction that the above statement is not true, i.e., 
     \begin{align*}
         \forall \varepsilon > 0, B(x,\varepsilon)\not\subset X\setminus A
@@ -448,6 +453,7 @@ If $x\in A$, then $x_n = x$ satisfies that $x_n\to x$. If $x$ is an accumulation
 \begin{align*}
     \text{cl}(A) \subset \{x\in X|\exists x_n\in A,  x_n\to x\}
 \end{align*}
+
 On the other hand, if $x_n\in A$ and $x_n\to x$, then either all $x_n \neq x$ and $x$ is an accumulation point of $A$ or $x_n  = x$ for some $n$ and $x\in A$, which implies $$\{x\in X|\exists x_n\in A,  x_n\to x\}\subset \text{cl}(A)$$
 The proof is complete.
 \end{proof}
@@ -589,8 +595,9 @@ Let $A\subset X$ be compact. To prove that $A$ is closed we need to prove that
 \begin{align*}
     A\ni x_n\to x \Rightarrow x\in A
 \end{align*}
-Since $x_n\in A$ and $A$ is compact, then it has a subsequence $\{x_{n_k}\}$ convergenting to a point $x$, then clearly $x\in A$. \\
-\hspace*{3em}Now we prove that $A$ is bounded. Suppose $A$ is not bounded, we fixed $x_0\in X$ and find a sequence $\{x_n\}\in A$ such that $d(x_n, x_0) \geq n$. Then no subsequence of $\{x_n\}$ converges, which is a contradiction.
+Since $x_n\in A$ and $A$ is compact, then it has a subsequence $\{x_{n_k}\}$ convergenting to a point $x$, then clearly $x\in A$. 
+
+Now we prove that $A$ is bounded. Suppose $A$ is not bounded, we fixed $x_0\in X$ and find a sequence $\{x_n\}\in A$ such that $d(x_n, x_0) \geq n$. Then no subsequence of $\{x_n\}$ converges, which is a contradiction.
 \end{proof}
 
 \begin{theorem}[Heine-Borel Theorem]
@@ -646,9 +653,11 @@ A metric space $X$ is compact if and only if every open covering of $X$ has a fi
 \end{theorem}
 \begin{proof}
 ~\begin{enumerate}
-    \item ($\Leftarrow$) Suppose that every open covering of $X$ has a finite subcovering. We need to prove that every sequence $\{x_n\}$ in $X$ has a convergent subsequence. \\
-    \hspace*{1em}\, By contradiction, we suppose that $\{x_n\}\in X$ does not has convergent subseqnece(Note that $\{x_n\}$ has infinitely many different values, otherwise we would have a constant, and thus convergent subsequence). Therefore we can select a subsequence $\{x_{n_k}\}$ such that $x_{n_k} \neq x_{n_l}$ for $k\neq l$ and $\{x_{n_k}\}$ does not converge. Observe that the set $\{x_{n_1},x_{n_2},x_{n_3},\cdots\}$ is closed and the set has no accumulation point.\\
-    \hspace*{1em}\, In particular, every $x_{n_k}$ is not a accumulation point of the sequence $\{x_{n_k}\}$, and hence there is a $\varepsilon_k>0$ such that the ball $B(x_{n_k}, \varepsilon_k)$ contains no points of this sequence other than $x_{n_k}$, i.e., 
+    \item ($\Leftarrow$) Suppose that every open covering of $X$ has a finite subcovering. We need to prove that every sequence $\{x_n\}$ in $X$ has a convergent subsequence. 
+    
+    By contradiction, we suppose that $\{x_n\}\in X$ does not has convergent subseqnece(Note that $\{x_n\}$ has infinitely many different values, otherwise we would have a constant, and thus convergent subsequence). Therefore we can select a subsequence $\{x_{n_k}\}$ such that $x_{n_k} \neq x_{n_l}$ for $k\neq l$ and $\{x_{n_k}\}$ does not converge. Observe that the set $\{x_{n_1},x_{n_2},x_{n_3},\cdots\}$ is closed and the set has no accumulation point.
+    
+    In particular, every $x_{n_k}$ is not a accumulation point of the sequence $\{x_{n_k}\}$, and hence there is a $\varepsilon_k>0$ such that the ball $B(x_{n_k}, \varepsilon_k)$ contains no points of this sequence other than $x_{n_k}$, i.e., 
     \begin{align*}
         x_{n_l}\notin B(x_{n_k}, \varepsilon_k), \text{if}\,l\neq k
     \end{align*}
@@ -670,7 +679,8 @@ A metric space $X$ is compact if and only if every open covering of $X$ has a fi
     \end{lemma}
     \begin{proof}Prove by contradiction. Then there is a $\varepsilon>0$ such that no finite family of balls with radius $\varepsilon$ covers $X$. Let $x_1\in X$, then $B(x_1,\varepsilon)\neq X$. Then there exists $x_2\notin B(x_1,\varepsilon)$, and $B(x_1,\varepsilon)\cup B(x_2,\varepsilon)\neq X$. Then there exists $x_3\notin B(x_1,\varepsilon)\cup B(x_2,\varepsilon)$, and $B(x_1,\varepsilon)\cup B(x_2,\varepsilon)\cup\neq X$. We can continue this process and construct a sequence $\{x_1,x_2,x_3,\cdots\}$ in $X$ such that $d(x_k,x_l)\geq \varepsilon$ for $k\neq l$. Clearly, $\{x_n\}$ has no convergent subsequence, which is contradicted with compactness of $X$.
     \end{proof}
-    Now we continue the proof of the implication ($\Rightarrow$) of theorem \ref{finitcover}. \\
+    Now we continue the proof of the implication ($\Rightarrow$) of theorem \ref{finitcover}. 
+    
     ($\Rightarrow$) Suppose that $X$ is compact, i.e., every sequence in $x$ has a convergent subsequence. We need to prove that every open covering of $X$ has a finite subcovering. \\
     Let $X = \bigcup_{i\in I}U_i$ and let $r>0$ be a Lebesgue number of the covering. Since $X$ is totally bounded, $X$ has finite coverings by balls of radius $r$, i.e.,
     \begin{align*}
@@ -692,8 +702,9 @@ A metric space $X$ is compact if and only if it is complete and totally bounded.
 \begin{proof}
 ~\begin{enumerate}
     \item ($\Rightarrow$) Suppose $X$ is compact. Then $X$ is totally bounded. To prove it is complete, let $\{x_n\}$ be a Cauchy sequence in $X$.  The by compactness, we can know some subsequence of $\{x_{n_k}\}$ is convergent, such that $x_{n_k}\to x_0$. Then $\{x_n\}$ also converges to $x_0$. Thus, $X$ is complete.
-    \item ($\Leftarrow$) Suppose that $X$ is complete and totally bounded. We need to prove that every sequence $\{x_n\}$ in $X$ has a convergent subsequence. \\
-    \hspace*{1em}\, Since $X$ is totally bounded , then it has a finite open covering of balls with radius $1$, i.e.,
+    \item ($\Leftarrow$) Suppose that $X$ is complete and totally bounded. We need to prove that every sequence $\{x_n\}$ in $X$ has a convergent subsequence. 
+    
+    Since $X$ is totally bounded , then it has a finite open covering of balls with radius $1$, i.e.,
     \begin{align*}
         X = \bigcup^{N_1}_{i=1}B(x_i^{(1)},1)
     \end{align*}
@@ -712,11 +723,12 @@ A metric space $X$ is compact if and only if it is complete and totally bounded.
         x_{n_3} &\in B\left(x_{i_3}^{(3)},\frac{1}{3}\right)\cap B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1)\\
         & \vdots
     \end{align*}
-    \hspace*{1em}\, Therefore, for $k,;l\geq N$, we have $x_{n_k},x_{n_l}\in B\left(x_{i_N}^{(2)},\frac{1}{N}\right)$ and hence
+    
+    Therefore, for $k,;l\geq N$, we have $x_{n_k},x_{n_l}\in B\left(x_{i_N}^{(2)},\frac{1}{N}\right)$ and hence
     \begin{align*}
         d(x_{n_k},x_{n_l}) < \frac{2}{N}
     \end{align*}
-    \hspace*{1em}\,Thus the sequence is Cauchy sequence and therefore convergent, it follows that $X$ is complete.
+    Thus the sequence is Cauchy sequence and therefore convergent, it follows that $X$ is complete.
 \end{enumerate}
 
 \end{proof}
@@ -755,7 +767,8 @@ We show the Cantor set in seven iterations as below:
     \includegraphics[width=0.9\textwidth]{Cantor_set_in_seven_iterations}
     \caption{Cantor set in seven iterations}
     \label{fig:Cantor_set}
-\end{figure}\\
+\end{figure}
+
 The set
 \begin{align*}
     P = \bigcap^\infty_{n=1}E_1
@@ -816,10 +829,12 @@ Prove that the space $X$ is connected if and only if the only subsets of $X$ tha
 
 \begin{proof}
 ~\begin{enumerate}
-    \item ($\Rightarrow$) Suppose $X$ is connected. We want to show that if $E\subset X$ is open and closed at the same time, then $E = X$ or $E = \varnothing$. \\
-    \hspace*{1em}\, Suppose by contraction that there exists a $E\subset X$ such that $E\neq X$, $E\neq\varnothing$ and $E$ is open and closed at the same time. Then $U = E$, $V = X\setminus E$ are both open. And we have $X \subset U\cup V$, $X\cap U \neq \varnothing$, $X\cap V \neq \varnothing$, $X\cap U = V \neq \varnothing$ and $X\cap (U\cap V) = X\cap E\cap (X\setminus E) = \varnothing$. Thus, $X$ is disconnected, which is a contradiction.
-    \item ($\Leftarrow$) Suppose that the only subsets of $X$ that are open and closed at the same time are $\varnothing$ and $X$. We need to show that $X$ is connected. \\
-    \hspace*{1em}\, By contradiction that $X$ is not connected. Then, there exists two open sets $U$ and $V$ such that $X = U\cup V$, $X\cap U \neq \varnothing$, $X\cap V \neq \varnothing$, $X\cap U = V \neq \varnothing$. Then $U\neq \varnothing$ and it is also closed since $X\setminus U = V$ is open, then this is a contradiction with the fact that $X$ and $\varnothing$ are only sets that are open and closed at the same time.
+    \item ($\Rightarrow$) Suppose $X$ is connected. We want to show that if $E\subset X$ is open and closed at the same time, then $E = X$ or $E = \varnothing$. 
+    
+    Suppose by contraction that there exists a $E\subset X$ such that $E\neq X$, $E\neq\varnothing$ and $E$ is open and closed at the same time. Then $U = E$, $V = X\setminus E$ are both open. And we have $X \subset U\cup V$, $X\cap U \neq \varnothing$, $X\cap V \neq \varnothing$, $X\cap U = V \neq \varnothing$ and $X\cap (U\cap V) = X\cap E\cap (X\setminus E) = \varnothing$. Thus, $X$ is disconnected, which is a contradiction.
+    \item ($\Leftarrow$) Suppose that the only subsets of $X$ that are open and closed at the same time are $\varnothing$ and $X$. We need to show that $X$ is connected. 
+    
+    By contradiction that $X$ is not connected. Then, there exists two open sets $U$ and $V$ such that $X = U\cup V$, $X\cap U \neq \varnothing$, $X\cap V \neq \varnothing$, $X\cap U = V \neq \varnothing$. Then $U\neq \varnothing$ and it is also closed since $X\setminus U = V$ is open, then this is a contradiction with the fact that $X$ and $\varnothing$ are only sets that are open and closed at the same time.
 \end{enumerate}
 \end{proof}
 
@@ -829,9 +844,11 @@ Prove that the space $X$ is connected if and only if the only subsets of $X$ tha
 If $A\subset X$ is path connected, then $A$ is connected.
 \end{theorem}
 \begin{proof}
-Prove by contradiction and suppose $A$ is path connected but not connected. Then $A \subset U\cup V$, $A\cap U\neq\varnothing$, $A\cap V\neq\varnothing$, and $A\cap (U\cap V)=\varnothing$. \\
-\hspace*{1em}\, Let $x\in A\cap U$, $y\in A\cap V$, and let $\varphi:[a,b]\rightarrow A$ be a continuous path such that $\varphi(a) = x, \varphi(b) = y$. Define $c = \sup\{t\in[a,b]|\, \varphi\left([a,t]\right)\subset A\cap U\}$. If $\varphi(c)\in A\cap U$, then $c\neq b$\,(otherwise it would implies $\varphi(c) = \varphi(b) = y \in A\cap U$, which is impossible). \\
-\hspace*{1em}\, Since $\varphi(c)\in A\cap U$ and $c<b$, it follows from the continuity of $\varphi$ that there exists a $\varepsilon > 0$ such that $\varphi\left([c,c+\varepsilon]\right)\subset U$, which contradicts the definition of $c$. Therefore, $\varphi(c)\in A\cup V$. Then by the same argument as above, that there exists a $\varepsilon>0$ such that $\varphi([c-\varepsilon,c])\in V$ implying $\varphi(c-\varepsilon)\in V$, which contradicts the definition of $c$.
+Prove by contradiction and suppose $A$ is path connected but not connected. Then $A \subset U\cup V$, $A\cap U\neq\varnothing$, $A\cap V\neq\varnothing$, and $A\cap (U\cap V)=\varnothing$. 
+
+Let $x\in A\cap U$, $y\in A\cap V$, and let $\varphi:[a,b]\rightarrow A$ be a continuous path such that $\varphi(a) = x, \varphi(b) = y$. Define $c = \sup\{t\in[a,b]|\, \varphi\left([a,t]\right)\subset A\cap U\}$. If $\varphi(c)\in A\cap U$, then $c\neq b$\,(otherwise it would implies $\varphi(c) = \varphi(b) = y \in A\cap U$, which is impossible). 
+
+Since $\varphi(c)\in A\cap U$ and $c<b$, it follows from the continuity of $\varphi$ that there exists a $\varepsilon > 0$ such that $\varphi\left([c,c+\varepsilon]\right)\subset U$, which contradicts the definition of $c$. Therefore, $\varphi(c)\in A\cup V$. Then by the same argument as above, that there exists a $\varepsilon>0$ such that $\varphi([c-\varepsilon,c])\in V$ implying $\varphi(c-\varepsilon)\in V$, which contradicts the definition of $c$.
 \end{proof}
 
 \medskip
@@ -847,15 +864,17 @@ Prove by contradiction and suppose that $A$ is connected while $\text{cl}(A)$ is
     \item $A\cup V \neq\varnothing$.
     \item $A\cup (U \cup V) = \varnothing$.
 \end{enumerate}
-which means that $A$ is disconnected. Contradiction. \\
-\hspace*{1em}\, The properties $(1)$ and $(4)$ are obvious. Now we prove property $(2)$. Since $\text{cl}(A)\cap U \neq\varnothing$, then there is a $x\in \text{cl}(A)\cap U$. Hence there is a sequence $\{x_n\}\in A$ such that $$x_n\to x\in \text{cl}(A)\cap U$$
+which means that $A$ is disconnected. Contradiction. 
+
+The properties $(1)$ and $(4)$ are obvious. Now we prove property $(2)$. Since $\text{cl}(A)\cap U \neq\varnothing$, then there is a $x\in \text{cl}(A)\cap U$. Hence there is a sequence $\{x_n\}\in A$ such that $$x_n\to x\in \text{cl}(A)\cap U$$
 Since $U$ is open, then there exists sufficiently large $N > 0$ such that $\forall n>N$, $x_n\in A\cap U$, which proves that $A\cap U\neq\varnothing$.
 \end{proof}
 
 \begin{example}
 The graph of the function $y = \sin \frac{1}{x}, 0\leq x\leq \pi$, i.e., the set  $$G = \left\{(x, \sin \frac{1}{x})|\, 0< x\leq \pi\right\}$$
-is path connected, hence $G$ is connected.\\
-\hspace*{1em}\, Therefore, $\text{cl}(G)$ is connected. However, $\text{cl}(G)$ is the union of $G$ and the segment $[-1,1]$ on the $y-$axis. It is clear that this set is not path connected. $\text{cl}(G)$ is an example of a set which is connected but not path connected. The plot of $y = \sin \frac{1}{x}, 0\leq x\leq \pi$ is shown as below:
+is path connected, hence $G$ is connected.
+
+Therefore, $\text{cl}(G)$ is connected. However, $\text{cl}(G)$ is the union of $G$ and the segment $[-1,1]$ on the $y-$axis. It is clear that this set is not path connected. $\text{cl}(G)$ is an example of a set which is connected but not path connected. The plot of $y = \sin \frac{1}{x}, 0\leq x\leq \pi$ is shown as below:
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.55\textwidth]{function_sin_x}
@@ -901,8 +920,9 @@ Equivalently, $\lim_{x\to x_0}f(x) = b$, if
 \end{definition}
 
 \begin{definition}
-We say that a mapping $f:A\to Y$ is continuous at point $x_0\in A$, if $A\ni x_n\to x_0$ then $f(x_n)\to f(x_0)$(no need of condition: $x_n\neq x_0$). \\
-\hspace*{1em}\, If $x_0$ is not an accumulation point of $A$, i.e., $x_0$ is an isolated point, then $f$ is always continuous at $x_0$.
+We say that a mapping $f:A\to Y$ is continuous at point $x_0\in A$, if $A\ni x_n\to x_0$ then $f(x_n)\to f(x_0)$(no need of condition: $x_n\neq x_0$). 
+
+If $x_0$ is not an accumulation point of $A$, i.e., $x_0$ is an isolated point, then $f$ is always continuous at $x_0$.
 \end{definition}
 
 \begin{definition}
@@ -927,18 +947,21 @@ A mapping $f:X\to Y$ is continuous if and only if for every open set $U\subset Y
 \end{theorem}
 \begin{proof}
 ~\begin{enumerate}
-    \item ($\Rightarrow$) Suppose $f$ is continuous and $U\subset Y$ is a open set. We want to prove that $f^{-1}(U)$ is open. \\
-    \hspace*{1em}\, If $x\in f^{-1}(U)$, then $f(x)\in U$ and hence $B(f(x),\varepsilon)\subset U$ for some $\varepsilon > 0$. It follows from the continuity of $f$ there exists a $\delta > 0$ such that $d_Y(f(x),f(y))<\varepsilon$, if $d_X(x,y) < \delta$. Hence, $B(x,\delta)\subset f^{-1}(U)$ and then $f^{-1}(U)$ is open.
-    \item ($\Leftarrow$) Suppose now that $f^{-1}(U)$ is open for every open set $U\subset Y$. We need to prove that $f$ is continuous. \\
-    \hspace*{1em}\, Let $\varepsilon>0$ be given, then $B(f(x_0),\varepsilon)$ is open. Hence $x_0\in f^{-1}(B(f(x_0),\varepsilon))$, which is open. Then there exists a $\delta>0$ such that $B(x_0,\delta)\subset f^{-1}(B(f(x_0),\varepsilon))$. And hence if $d_X(x_0,x)<\delta$, then $d_Y(f(x_0),f(x))<\varepsilon$, which proves the continuity of $f$.
+    \item ($\Rightarrow$) Suppose $f$ is continuous and $U\subset Y$ is a open set. We want to prove that $f^{-1}(U)$ is open. 
+    
+    If $x\in f^{-1}(U)$, then $f(x)\in U$ and hence $B(f(x),\varepsilon)\subset U$ for some $\varepsilon > 0$. It follows from the continuity of $f$ there exists a $\delta > 0$ such that $d_Y(f(x),f(y))<\varepsilon$, if $d_X(x,y) < \delta$. Hence, $B(x,\delta)\subset f^{-1}(U)$ and then $f^{-1}(U)$ is open.
+    \item ($\Leftarrow$) Suppose now that $f^{-1}(U)$ is open for every open set $U\subset Y$. We need to prove that $f$ is continuous. 
+    
+    Let $\varepsilon>0$ be given, then $B(f(x_0),\varepsilon)$ is open. Hence $x_0\in f^{-1}(B(f(x_0),\varepsilon))$, which is open. Then there exists a $\delta>0$ such that $B(x_0,\delta)\subset f^{-1}(B(f(x_0),\varepsilon))$. And hence if $d_X(x_0,x)<\delta$, then $d_Y(f(x_0),f(x))<\varepsilon$, which proves the continuity of $f$.
 \end{enumerate}
 \end{proof}
 
 \medskip
 
 \begin{definition}
-We say that a mapping $f:X\to Y$ is $L-Lipschitz$ if $\forall x,y\in X$, $d_Y(f(x),f(y))\leq L d_X(x,y)$. \\
-\hspace*{1em}\, We say that a mapping $f:X\to Y$ is Lipschitz if it is $L-Lipschitz$ for some $L>0$.
+We say that a mapping $f:X\to Y$ is $L-Lipschitz$ if $\forall x,y\in X$, $d_Y(f(x),f(y))\leq L d_X(x,y)$. 
+
+We say that a mapping $f:X\to Y$ is Lipschitz if it is $L-Lipschitz$ for some $L>0$.
 \end{definition}
 
 \medskip
@@ -1016,8 +1039,9 @@ Let $y_n\in f(A), n = 1,2,\cdots$ be a sequence. Then $y_n = f(x_n)$ for some $x
 If $f:X\to Y$ is continuous and $A\subset X$ is connected,then $f(A)\subset Y$ is connected.
 \end{theorem}
 \begin{proof}
-Suppose $f(A)$ is not connected. Then there exist open sets $U$ and $V$ such that $f(A)\subset U\cup V, f(A)\cap U\neq\varnothing, f(A)\cap V\neq\varnothing$ and $f(A)\cap (U\cap V)=\varnothing$. \\
-\hspace*{1em}\, Then we have $A\subset f^{-1}(U), A\subset f^{-1}(U), A \cap f^{-1}(U)\neq\varnothing, A \cap f^{-1}(V)\neq\varnothing$ and $A\cap (f^{-1}(U)\cap f^{-1}(V))=\varnothing$, which implies that $A$ is disconnected. This is a contradiction.
+Suppose $f(A)$ is not connected. Then there exist open sets $U$ and $V$ such that $f(A)\subset U\cup V, f(A)\cap U\neq\varnothing, f(A)\cap V\neq\varnothing$ and $f(A)\cap (U\cap V)=\varnothing$. 
+
+Then we have $A\subset f^{-1}(U), A\subset f^{-1}(U), A \cap f^{-1}(U)\neq\varnothing, A \cap f^{-1}(V)\neq\varnothing$ and $A\cap (f^{-1}(U)\cap f^{-1}(V))=\varnothing$, which implies that $A$ is disconnected. This is a contradiction.
 \end{proof}
 
 \begin{theorem}
@@ -1035,8 +1059,9 @@ If $f:A\to \mathbb{R}$ is continuous, where $A\subset X$ is compact, then $f$ at
 \end{align*}
 \end{theorem}
 \begin{proof}
-There is a sequence $\{x_n\}\in A$ such that $f(x_n)\to \sup\{f(x)|x\in A\}$. Since $A$ is compact, then there exists a subsequence $\{x_{n_k}\}$ of $x_n$ such that $x_{n_k}\to x_1$. Then we have $f(x_1) = \sup\{f(x)|x\in A\}$. \\
-\hspace*{1em}\, Similar argument works with minimum.
+There is a sequence $\{x_n\}\in A$ such that $f(x_n)\to \sup\{f(x)|x\in A\}$. Since $A$ is compact, then there exists a subsequence $\{x_{n_k}\}$ of $x_n$ such that $x_{n_k}\to x_1$. Then we have $f(x_1) = \sup\{f(x)|x\in A\}$. 
+
+Similar argument works with minimum.
 \end{proof}
 
 \begin{corollary}
@@ -1096,9 +1121,11 @@ Let $x_1,\cdots,x_n\geq 0$, then
 and the equality holds if and only if $x_1=\cdots=x_n$.
 \end{theorem}
 \begin{proof}
-Let $x_1+\cdots+x_n = a$. We assume that $a > 0$ or otherwise the inequality is obvious. \\
-\hspace*{1em}\, Consider the set $A = \{(z_1,\cdots,z_n)\in\mathbb{R}^n|z_1+\cdots+z_n = a, z_1,\cdots,z_n\geq 0\}$. The set is bounded and closed, and therefore compact. Hence the function $f(z_1,\cdots,z_n) = \sqrt[n]{z_1,\cdots,z_n}$ has maximum in $A$ at some point $(z_1^0,\cdots,z_n^0)\in A$. We will prove that $z_1^0=\cdots=z_n^0$.\\
-\hspace*{1em}\, Observe first that $z_1^0,\cdots,z_n^0 \geq 0$ because $0$ cannot be maximum of $f$. Suppose that $z_i^0\neq z_j^0$ for some $i\neq j$, then 
+Let $x_1+\cdots+x_n = a$. We assume that $a > 0$ or otherwise the inequality is obvious. 
+
+Consider the set $A = \{(z_1,\cdots,z_n)\in\mathbb{R}^n|z_1+\cdots+z_n = a, z_1,\cdots,z_n\geq 0\}$. The set is bounded and closed, and therefore compact. Hence the function $f(z_1,\cdots,z_n) = \sqrt[n]{z_1,\cdots,z_n}$ has maximum in $A$ at some point $(z_1^0,\cdots,z_n^0)\in A$. We will prove that $z_1^0=\cdots=z_n^0$.
+
+Observe first that $z_1^0,\cdots,z_n^0 \geq 0$ because $0$ cannot be maximum of $f$. Suppose that $z_i^0\neq z_j^0$ for some $i\neq j$, then 
 \begin{align*}
     \left(\frac{z_i^0 + z_j^0}{2}\right)^2 > z_i^0 z_j^0
 \end{align*}
@@ -1125,8 +1152,9 @@ $f:A\to Y, A\subset X$ is called uniformly continuous, if for $\forall \varepsil
 If $f:(a,b)\to \mathbb{R}$ is uniformly continuous, where $(a,b)$ is a bounded interval, then $f$ is bounded.
 \end{proposition}
 \begin{proof}
-By the definition of uniformly continuity, we take $\varepsilon = 1$. Then there is a $\delta > 0$ such that if $|x-y|\leq\delta$, then $|f(x)-f(y)| < 1$. Choose $N$ such that $N\delta > \frac{b-a}{2}$. \\
-\hspace*{1em}\, Let $x\geq \frac{a+b}{2}$, consider a sequence $x_k = \frac{a+b}{2}+\delta k, k=0,1,2\cdots$. Then there is $n<N$ such that $x_n \leq x$ but $x_{n+1}>x$. Thus we have 
+By the definition of uniformly continuity, we take $\varepsilon = 1$. Then there is a $\delta > 0$ such that if $|x-y|\leq\delta$, then $|f(x)-f(y)| < 1$. Choose $N$ such that $N\delta > \frac{b-a}{2}$. 
+
+Let $x\geq \frac{a+b}{2}$, consider a sequence $x_k = \frac{a+b}{2}+\delta k, k=0,1,2\cdots$. Then there is $n<N$ such that $x_n \leq x$ but $x_{n+1}>x$. Thus we have 
 \begin{align*}
     \left|f(x) - f\left(\frac{a+b}{2}\right)\right| & = \left|(f(x_n)-f(x_{n_1})) + (f(x_{n_1})-f(x_{n_2})) + \cdots + (f(x_1)-f(x_{n_0}))\right| \\
     & \leq \left|f(x_n)-f(x_{n_1})\right|  + \left|f(x_{n_1})-f(x_{n_2})\right| + \cdots + \left|f(x_1)-f(x_{n_0})\right| \\
@@ -1142,8 +1170,8 @@ Suppose $f:A\to \mathbb{R}$ is uniformly continuous, where $A\subset X$ is a bou
 No. And we will provide a counterexample. 
 
 \begin{proof}
-If $X$ is a discrete metric space, then any function $f:X\to\mathbb{R}$ is uniformly continuous. Indeed, let arbitrary $\varepsilon > 0$, then take $\delta = 1$, then if $d_X(x,y)< \delta = 1$, it follows that $x = y$ and $|f(x)-f(y)| = 0 < \varepsilon$. \\
-\hspace*{1em}\, Now take $X = \mathbb{Z}$ with the metric metric. Then $X$ is bounded and and $f:X\to \mathbb{R}, f(n) = n$. Then $f$ is uniformly continuous, but not bounded.
+If $X$ is a discrete metric space, then any function $f:X\to\mathbb{R}$ is uniformly continuous. Indeed, let arbitrary $\varepsilon > 0$, then take $\delta = 1$, then if $d_X(x,y)< \delta = 1$, it follows that $x = y$ and $|f(x)-f(y)| = 0 < \varepsilon$. 
+Now take $X = \mathbb{Z}$ with the metric metric. Then $X$ is bounded and and $f:X\to \mathbb{R}, f(n) = n$. Then $f$ is uniformly continuous, but not bounded.
 \end{proof}
 
 \medskip
@@ -1207,8 +1235,9 @@ Prove that if $f:\mathbb{R}^n\to \mathbb{R}^m$ is bounded, then $f$ is continuou
 \begin{proof}
 ~\begin{enumerate}
     \item ($\Rightarrow$) is proved in the previous exercise.
-    \item ($\Leftarrow$) Suppose $G_f$ is closed, then we want to prove that if $x_n\to x_0$, then $f(x_n)\to f(x_0)$. We prove it by contradiction and assume that there is a sequence $x_n\to x_0$ such that $\lim_{x_n\to x_0}f(x_n)\neq f(x_0)$. \\
-    \hspace*{1em}\, Then there is a $\varepsilon > 0$, and for $\forall N > 0$ such that if $n > N$, i.e., $\forall n > 0$, we will have $|f(x_n) - f(x_0)|\geq \varepsilon$. Then we can find a convergent subsequence $\{x_{n_k}\}$ such that $\forall k$, $|f(x_{n_k}) - f(x_0)|\geq \varepsilon$. The sequence $f(x_{n_k})$ is bounded in $\mathbb{R}^m$, then it has a convergent subsequence $\{f(x_{n_{k_l}})\}$ converging to $y_0$. And now we have 
+    \item ($\Leftarrow$) Suppose $G_f$ is closed, then we want to prove that if $x_n\to x_0$, then $f(x_n)\to f(x_0)$. We prove it by contradiction and assume that there is a sequence $x_n\to x_0$ such that $\lim_{x_n\to x_0}f(x_n)\neq f(x_0)$.
+    
+    Then there is a $\varepsilon > 0$, and for $\forall N > 0$ such that if $n > N$, i.e., $\forall n > 0$, we will have $|f(x_n) - f(x_0)|\geq \varepsilon$. Then we can find a convergent subsequence $\{x_{n_k}\}$ such that $\forall k$, $|f(x_{n_k}) - f(x_0)|\geq \varepsilon$. The sequence $f(x_{n_k})$ is bounded in $\mathbb{R}^m$, then it has a convergent subsequence $\{f(x_{n_{k_l}})\}$ converging to $y_0$. And now we have 
     \begin{align*}
         G_f \ni \left(x_{n_{k_l}},f(x_{n_{k_l}})\right) \to (x_0,y_0)
     \end{align*}
@@ -1230,9 +1259,11 @@ Let $\{f_n\}^\infty_{n=1}, f_n:[0,1]\to\mathbb{R}$ be a sequence of continuous f
 \end{exercise}
 Then $f_n$ uniformly converges to $0$.
 \begin{proof}
-Given $\varepsilon > 0$, we need to find $N > 0$ such that if $\forall n \geq N$ and $\forall x\in [0,1]$, then $0 < f_n(x) < \varepsilon$.\\
-\hspace*{1em}\, For $x\in [0,1]$, let $N_x$ be the least integer such that $f_{N_x} < \varepsilon$. Then for $\forall n \geq N_x$, $f_n(x) < \varepsilon$. Since $f_{N_x}$ is continuous function, so there exists an open neighborhood $U_x$ of $x$ in $[0,1]$ such that for $z\in U_x$, we have $f_{N_x}(x) < \varepsilon$. \\
-\hspace*{1em}\, Since $[0,1]$ is compact, then there exists a finite open covering such that $[0,1]\in U_{x_1}\cup U_{x_2} \cup \cdots \cup U_{x_k}$. Now we pick $N = \max\{N_{x_1},N_{x_2},\cdots,N_{x_k}\}$, where $N_{x_j}$ is the least number such that $f_{N_{x_j}}(x_j) < \varepsilon$. If $n\geq N$ and for $x\in[0,1]$, then $x\in U_{x_i}$ for some $i\in\{1,2,\cdots, k\}$, which implies $0 \leq f_n(x) \leq f_N(x) \leq f_{N_i}(x) < \varepsilon$.
+Given $\varepsilon > 0$, we need to find $N > 0$ such that if $\forall n \geq N$ and $\forall x\in [0,1]$, then $0 < f_n(x) < \varepsilon$.
+
+For $x\in [0,1]$, let $N_x$ be the least integer such that $f_{N_x} < \varepsilon$. Then for $\forall n \geq N_x$, $f_n(x) < \varepsilon$. Since $f_{N_x}$ is continuous function, so there exists an open neighborhood $U_x$ of $x$ in $[0,1]$ such that for $z\in U_x$, we have $f_{N_x}(x) < \varepsilon$. 
+
+Since $[0,1]$ is compact, then there exists a finite open covering such that $[0,1]\in U_{x_1}\cup U_{x_2} \cup \cdots \cup U_{x_k}$. Now we pick $N = \max\{N_{x_1},N_{x_2},\cdots,N_{x_k}\}$, where $N_{x_j}$ is the least number such that $f_{N_{x_j}}(x_j) < \varepsilon$. If $n\geq N$ and for $x\in[0,1]$, then $x\in U_{x_i}$ for some $i\in\{1,2,\cdots, k\}$, which implies $0 \leq f_n(x) \leq f_N(x) \leq f_{N_i}(x) < \varepsilon$.
 \end{proof}
 
 \begin{exercise}
@@ -1285,8 +1316,9 @@ Prove that if $X$ is a metric space, and $f:X\times[0,1]\to\mathbb{R}$ is contin
 is continuous.
 \end{exercise}
 \begin{proof}
-Prove by contradiction, and suppose $g$ is not continuous, i.e., there exists $\varepsilon > 0$, for $\forall \delta > 0$, $\exists x$ such that if $d_X(x,x_0) < \delta$, then $|g(x) - g(x_0)|\geq\varepsilon$. \\
-\hspace*{1em}\, Fix such $\varepsilon > 0$, we pick $\delta = \frac{1}{n}$, then exists $x_n$ such that $d_X(x_n,x_0) < \frac{1}{n}$, then $|g(x_n) - g(x_0)| \geq \varepsilon$, which implies
+Prove by contradiction, and suppose $g$ is not continuous, i.e., there exists $\varepsilon > 0$, for $\forall \delta > 0$, $\exists x$ such that if $d_X(x,x_0) < \delta$, then $|g(x) - g(x_0)|\geq\varepsilon$. 
+
+Fix such $\varepsilon > 0$, we pick $\delta = \frac{1}{n}$, then exists $x_n$ such that $d_X(x_n,x_0) < \frac{1}{n}$, then $|g(x_n) - g(x_0)| \geq \varepsilon$, which implies
 \begin{align*}
     \left|\sup_t f(x_n,t) - \sup_t f(x_0,t)\right| \geq \varepsilon
 \end{align*}
@@ -1318,8 +1350,9 @@ If $f:(a,b)\to\mathbb{R}$ is uniformly continuous, and $-\infty < a < b < \infty
 
 \begin{proof}
 For $x\in X$, we choose a unique $A\ni a_k^x\to x$. Since $f$ is uniformly continuous, then $\forall\varepsilon > 0$, there exists $\delta > 0$, and for $\forall x,y\in A$, if $d_X(x,y) < \delta$, then $|f(x) - f(y)| < \varepsilon$. For such $\delta > 0$, there exists a $N > 0$ such that $\forall k,l$, then $d_X(a_k^x, a_l^x) < \delta$, and hence $$|f(a_k^x) - f(a_l^x)| < \varepsilon$$
-then we can know that $\{f(a_k^x)\}^\infty_{k=1}$ is a Cauchy sequence. Thus it is convergent. \\
-\hspace*{1em}\, We now define $$F(x) = \lim_{k\to\infty}f(a_k^x)$$
+then we can know that $\{f(a_k^x)\}^\infty_{k=1}$ is a Cauchy sequence. Thus it is convergent. 
+
+We now define $$F(x) = \lim_{k\to\infty}f(a_k^x)$$
 If $d_x(x,y) < \delta$, then $d_X(a_k^x,a_k^y) < \delta$. Then for some $K > 0$, if $\forall k \geq K$, then $$|f(a_k^x) - f(a_k^y)| < \varepsilon \Rightarrow |F(x) - F(y)| < \varepsilon$$
 Thus, $F$ is uniformly continuous.
 \end{proof}
@@ -1334,8 +1367,9 @@ $$H = \{x = (x_1,x_2,\cdots) | 0\leq x_i \leq 2^{-i}, i = 1,2,\cdots\}$$
 is a compact subset of $l^\infty$.
 \end{exercise}
 \begin{proof}
-Let $x^{(n)} = \left(x_1^{(n)},x_2^{(n)},\cdots \right)\in H$, and using diagonal method, we can find a sequence $\{x^{(n_k)}\}$ such that for $\forall i$, $x_i^{(n_k)}$ converges, such that $x_i^{(n_k)}\to x_i$, with $0\leq x_i^{(n_k)}\leq 2^{-i}$. Then we have $0\leq x_i\leq 2^{-i}$, which implies that $x = \left(x_1, x_2, \cdots \right)\in H$. \\
-\hspace*{1em}\, It remains to show that $x^{(n_k)}\stackrel{l^\infty}{\longrightarrow}x$. Given $\varepsilon > 0$, let $N > 0$ be such that $2^{-N} < \varepsilon/2$. Also, there exists $K$, for $\forall k \geq K$, such that $\left|x_i^{(n_k)} - x_i\right| < \varepsilon/2, i = 1,2,\cdots, N$. Then for $i > N$, we have 
+Let $x^{(n)} = \left(x_1^{(n)},x_2^{(n)},\cdots \right)\in H$, and using diagonal method, we can find a sequence $\{x^{(n_k)}\}$ such that for $\forall i$, $x_i^{(n_k)}$ converges, such that $x_i^{(n_k)}\to x_i$, with $0\leq x_i^{(n_k)}\leq 2^{-i}$. Then we have $0\leq x_i\leq 2^{-i}$, which implies that $x = \left(x_1, x_2, \cdots \right)\in H$. 
+
+It remains to show that $x^{(n_k)}\stackrel{l^\infty}{\longrightarrow}x$. Given $\varepsilon > 0$, let $N > 0$ be such that $2^{-N} < \varepsilon/2$. Also, there exists $K$, for $\forall k \geq K$, such that $\left|x_i^{(n_k)} - x_i\right| < \varepsilon/2, i = 1,2,\cdots, N$. Then for $i > N$, we have 
 $\left|x_i^{(n_k)} - x_i\right| < \left|x_i^{(n_k)}\right| + |x_i| < \varepsilon$
 Thus, for $\forall k \geq K$ and $\forall n\in \mathbb{N}$, we have 
 \begin{align*}
@@ -1392,8 +1426,9 @@ Suppose $E\subset X$ is a compact subset and $f_n,f\in C(E,\mathbb{R}), n = 1,2,
 Suppose $E\subset X$ is a compact subset. Then $\left(C(E), d_\infty\right)$ is a complete metric space.
 \end{theorem}
 \begin{proof}
-Let $\{f_n\}_n\in C(E)$ be Cauchy sequence, i.e., for $\forall \varepsilon > 0$, $\exists N > 0$, such that $\forall n,m \geq N$, $d_\infty(f_n,f_m) < \varepsilon$, and this is equivalent to the statement that for $\forall \varepsilon > 0$, $\exists N > 0$, such that $\forall n,m \geq N$ and $\forall x\in E$, $\left|f_n(x) - f_m(x)\right| < \varepsilon$. \\
-\hspace*{1em}\, For $\forall x\in E$, $\{f_n(x)\}_n$ is a Cauchy sequence, then convergent. Let $f(x) = \lim_{n\to\infty}f_n(x)$, and for $n,m\geq N$, we have $\left|f_n(x) - f_m(x)\right| < \varepsilon$. Now we fix $n$ and let $m\to\infty$, then we have $\left|f_n(x) - f(x)\right| < \varepsilon$. Then for $\forall \varepsilon > 0$, there exists $N > 0$, such that for $\forall n\geq N$, $\left|f_n(x) - f(x)\right| < \varepsilon$, which implies $f_n\rightrightarrows f$ in $d_\infty$. Then $f$ is continuous, which means $f\in C(E)$. Thus, $\left(C(E), d_\infty\right)$ is a complete metric space.
+Let $\{f_n\}_n\in C(E)$ be Cauchy sequence, i.e., for $\forall \varepsilon > 0$, $\exists N > 0$, such that $\forall n,m \geq N$, $d_\infty(f_n,f_m) < \varepsilon$, and this is equivalent to the statement that for $\forall \varepsilon > 0$, $\exists N > 0$, such that $\forall n,m \geq N$ and $\forall x\in E$, $\left|f_n(x) - f_m(x)\right| < \varepsilon$. 
+
+For $\forall x\in E$, $\{f_n(x)\}_n$ is a Cauchy sequence, then convergent. Let $f(x) = \lim_{n\to\infty}f_n(x)$, and for $n,m\geq N$, we have $\left|f_n(x) - f_m(x)\right| < \varepsilon$. Now we fix $n$ and let $m\to\infty$, then we have $\left|f_n(x) - f(x)\right| < \varepsilon$. Then for $\forall \varepsilon > 0$, there exists $N > 0$, such that for $\forall n\geq N$, $\left|f_n(x) - f(x)\right| < \varepsilon$, which implies $f_n\rightrightarrows f$ in $d_\infty$. Then $f$ is continuous, which means $f\in C(E)$. Thus, $\left(C(E), d_\infty\right)$ is a complete metric space.
 \end{proof}
 
 \medskip
@@ -1432,8 +1467,9 @@ Then $\mathcal{A}$ is a dense subset of $C(E,\mathbb{R})$, i.e., $\text{cl}(A) =
 
 Observe that the set $\mathcal{A} = \{f:[a,b]\to\mathbb{R} | f\, \text{is a polynomial}\}$ has all three properties above and hence the Weierstrass theorem follows the Stone-Weieratrass theorem. 
 \begin{proof}
-We want to prove that $\text{cl}(A) = C(E,\mathbb{R})$. The set $\text{cl}(A)$ satisfies the properties $(1),(2)$ and $(3)$ as well. Indeed, properties $(2)$ and $(3)$ are obvious because they are already satisfied by elements of $\mathcal{A}$, which is a subset of $\text{cl}(A)$, and the property $(1)$ can be proved as follows: \\
-\hspace*{1em}\, Let $f,g\in \text{cl}(A), \alpha\in\mathbb{R}$. Then there are sequences $\{f_n\},\{g_n\}\in\mathcal{A}$ such that $f_n\rightrightarrows f$ and $g_n\rightrightarrows g$. And hence 
+We want to prove that $\text{cl}(A) = C(E,\mathbb{R})$. The set $\text{cl}(A)$ satisfies the properties $(1),(2)$ and $(3)$ as well. Indeed, properties $(2)$ and $(3)$ are obvious because they are already satisfied by elements of $\mathcal{A}$, which is a subset of $\text{cl}(A)$, and the property $(1)$ can be proved as follows: 
+
+Let $f,g\in \text{cl}(A), \alpha\in\mathbb{R}$. Then there are sequences $\{f_n\},\{g_n\}\in\mathcal{A}$ such that $f_n\rightrightarrows f$ and $g_n\rightrightarrows g$. And hence 
 \begin{align*}
     f_n+g_n \rightrightarrows f+g,
     f_n g_n \rightrightarrows fg,
@@ -1448,7 +1484,8 @@ provided $-n \leq f(x) \leq n$. If $f\in\text{cl}(A)$, then $f$ is continuous an
     \label{equ_1}
     \left||f(x)| - p_n(f(x))\right| < \frac{1}{n}, \forall x\in E
 \end{equation}
-\hspace*{1em}\, Since $\text{cl}(A)$  is an algebra, it follows that $p_n(f(x))\in\text{cl}(A)$ and hence (\ref{equ_1}) implies that $|f|$ is a limit of an uniformly convergent sequence of functions in $\text{cl}(A)$, i.e., the limit of a sequence in $\text{cl}(A)$ that converge in the metric space. Therefore, we have
+
+Since $\text{cl}(A)$  is an algebra, it follows that $p_n(f(x))\in\text{cl}(A)$ and hence (\ref{equ_1}) implies that $|f|$ is a limit of an uniformly convergent sequence of functions in $\text{cl}(A)$, i.e., the limit of a sequence in $\text{cl}(A)$ that converge in the metric space. Therefore, we have
 \begin{align*}
     |f| \in \text{cl}(A)
 \end{align*}
@@ -1462,10 +1499,13 @@ and since
     f \wedge g & = \frac{f+g}{2} + \frac{|f-g|}{2} \\
     f \vee g & = \frac{f+g}{2} - \frac{|f-g|}{2}
 \end{align*}
-we can conclude that if $f+g\in\text{cl}(A)$, then $f\wedge g, f\vee g\in \text{cl}(A)$. \\
-\hspace*{1em}\, Let $h\in C(E,\mathbb{R})$ be arbitrary. We need to prove that for every $\varepsilon > 0$, there exists $f\in\text{cl}(A)$ such that $|f(z) - h(z)| < \varepsilon$, for all $z\in E$. Indeed, this claim implies that $h\in \text{cl}(A)$.\\
-\hspace*{1em}\, Let $x_1, x_2\in E, x_1\neq x_2$. Then there exists a function in $\mathcal{A}$, denote it by $f_{x_1 x_2}$ such that $f_{x_1 x_2}(x_1) = h(x_1)$ and $f_{x_1 x_2}(x_2) = h(x_2)$. Indeed, choose $g\in\mathcal{A}$ such that $g(x_1)\neq g(x_2)$ and define $f_{x_1 x_2} = \alpha g+\beta$ for a suitable choice of $\alpha, \beta\in\mathbb{R}$. \\
-\hspace*{1em}\, Fix $\varepsilon > 0$. Let $x\in E$, and for $y\in E$, we have $f_{yx}(y) = h(y)$ and hence there is a neighborhood $U(y)$ of $y$ such that 
+we can conclude that if $f+g\in\text{cl}(A)$, then $f\wedge g, f\vee g\in \text{cl}(A)$. 
+
+Let $h\in C(E,\mathbb{R})$ be arbitrary. We need to prove that for every $\varepsilon > 0$, there exists $f\in\text{cl}(A)$ such that $|f(z) - h(z)| < \varepsilon$, for all $z\in E$. Indeed, this claim implies that $h\in \text{cl}(A)$.
+
+Let $x_1, x_2\in E, x_1\neq x_2$. Then there exists a function in $\mathcal{A}$, denote it by $f_{x_1 x_2}$ such that $f_{x_1 x_2}(x_1) = h(x_1)$ and $f_{x_1 x_2}(x_2) = h(x_2)$. Indeed, choose $g\in\mathcal{A}$ such that $g(x_1)\neq g(x_2)$ and define $f_{x_1 x_2} = \alpha g+\beta$ for a suitable choice of $\alpha, \beta\in\mathbb{R}$.
+
+Fix $\varepsilon > 0$. Let $x\in E$, and for $y\in E$, we have $f_{yx}(y) = h(y)$ and hence there is a neighborhood $U(y)$ of $y$ such that 
 \begin{align*}
     f_{yx}(z) > h(z) - \varepsilon
 \end{align*}
@@ -1473,7 +1513,8 @@ The sets $\{U(y)\}_{y\in E}$ form an open covering of $E$. Thus, there is a fini
 \begin{align*}
     E = \bigcup^n_{i=1}U(y_i)
 \end{align*}
-\hspace*{1em}\, Denote $f_x = f_{y_1 x}\vee \cdots f_{y_n x}$. Clearly, $f_x\in \text{cl}(A)$. We have if $z\in E$, then $z\in U(y_i)$ for some $i\in\{1,2,\cdots,n\}$, then we have $$f_{y_i x}(z) > h(z) - \varepsilon$$
+
+Denote $f_x = f_{y_1 x}\vee \cdots f_{y_n x}$. Clearly, $f_x\in \text{cl}(A)$. We have if $z\in E$, then $z\in U(y_i)$ for some $i\in\{1,2,\cdots,n\}$, then we have $$f_{y_i x}(z) > h(z) - \varepsilon$$
 which implies 
 \begin{align*}
     f_x(z) = \max\{f_{y_1 x}(z), \cdots, f_{y_n x}(z)\} \geq f_{y_i x}(z) > h(z) - \varepsilon
@@ -1482,8 +1523,9 @@ i.e., $f_x(z) > h(z) - \varepsilon$ for all $z\in E$. Also, we have
 \begin{align*}
     f_x(x) = \max\{\underbrace{f_{y_1 x}(x)}_{h(x)}, \cdots, \underbrace{f_{y_n x}(x)}_{h(x)}\} = h(x)
 \end{align*}
-which implies $f_x(x) = h(x)$. \\
-\hspace*{1em}\, Hence there is a neighborhood $V(x)$ of $x$ such that 
+which implies $f_x(x) = h(x)$. 
+
+Hence there is a neighborhood $V(x)$ of $x$ such that 
 \begin{align*}
     f_x(z) < h(z) + \varepsilon
 \end{align*}
@@ -1499,7 +1541,8 @@ i.e.,
 \begin{equation}\label{equ_2}
     f(z) > h(z) -\varepsilon, \forall z\in E
 \end{equation}
-\hspace*{1em}\, On the other hand, we have if $z\in E$, then $z\in V(x_i)$ for some $i$, and then $f_{x_i}(z) < h(z) + \varepsilon$. Thus, we have 
+
+On the other hand, we have if $z\in E$, then $z\in V(x_i)$ for some $i$, and then $f_{x_i}(z) < h(z) + \varepsilon$. Thus, we have 
 \begin{equation}\label{equ_3}
     f(z) = \min\{f_{x_1}(z), \cdots,f_{x_m}(z)\} \leq f_{x_i}(z) < h(z) + \varepsilon
 \end{equation}
@@ -1807,7 +1850,7 @@ Given $f,h\in C([0,1],\mathbb{R})$, we have
     & \leq d_\infty(f,h) \underbrace{\int^1_0 e^{-t^2} \text{dt}}_{=\, k < 1}
 \end{align*}
 Thus, we proved that $T:C([0,1],\mathbb{R})\to C([0,1],\mathbb{R})$ is a contraction and hence there is a unique $f\in C([0,1],\mathbb{R})$ such that $T(f) = f$.
-\end{proof}
+\end{proof} 
 
 
 

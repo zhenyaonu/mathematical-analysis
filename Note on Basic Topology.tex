@@ -1263,7 +1263,7 @@ Given $\varepsilon > 0$, we need to find $N > 0$ such that if $\forall n \geq N$
 
 For $x\in [0,1]$, let $N_x$ be the least integer such that $f_{N_x} < \varepsilon$. Then for $\forall n \geq N_x$, $f_n(x) < \varepsilon$. Since $f_{N_x}$ is continuous function, so there exists an open neighborhood $U_x$ of $x$ in $[0,1]$ such that for $z\in U_x$, we have $f_{N_x}(x) < \varepsilon$. 
 
-Since $[0,1]$ is compact, then there exists a finite open covering such that $[0,1]\in U_{x_1}\cup U_{x_2} \cup \cdots \cup U_{x_k}$. Now we pick $N = \max\{N_{x_1},N_{x_2},\cdots,N_{x_k}\}$, where $N_{x_j}$ is the least number such that $f_{N_{x_j}}(x_j) < \varepsilon$. If $n\geq N$ and for $x\in[0,1]$, then $x\in U_{x_i}$ for some $i\in\{1,2,\cdots, k\}$, which implies $0 \leq f_n(x) \leq f_N(x) \leq f_{N_i}(x) < \varepsilon$.
+Since $[0,1]$ is compact, then there exists a finite open covering such that $[0,1]\subset U_{x_1}\cup U_{x_2} \cup \cdots \cup U_{x_k}$. Now we pick $N = \max\{N_{x_1},N_{x_2},\cdots,N_{x_k}\}$, where $N_{x_j}$ is the least number such that $f_{N_{x_j}}(x_j) < \varepsilon$. If $n\geq N$ and for $x\in[0,1]$, then $x\in U_{x_i}$ for some $i\in\{1,2,\cdots, k\}$, which implies $0 \leq f_n(x) \leq f_N(x) \leq f_{N_i}(x) < \varepsilon$.
 \end{proof}
 
 \begin{exercise}
@@ -1278,7 +1278,7 @@ Then there exist $A,B > 0$ such that $A\|x\|\leq F(x)\leq B\|x\|$ for all $x\mat
 \begin{proof}
 ~\begin{enumerate}
     \item We claim that $F$ is bounded on unit sphere $\{\|x\| = 1\}$. \\
-    Let $\{e_1,e_2,\cdots,e_n\}$ be orthonormal basis for $\mathbb{R}^n$, then any $x\in\mathbb{R}^n$ has a representation
+    Let $\{e_1,e_2,\cdots,e_n\}$ be orthonormal basis for $\mathbb{R}^n$, then any $x\in\mathbb{R}^n$ can be written as
     \begin{align*}
         x = \sum^n_{i=1} c_ie_i
     \end{align*}
@@ -1295,7 +1295,7 @@ Then there exist $A,B > 0$ such that $A\|x\|\leq F(x)\leq B\|x\|$ for all $x\mat
     \end{align*}
     Now we switch $x$ and $y$, then we have $F(x) - F(y) \leq B\|y-x\|$. Thus we have $|F(x) - F(y)|\leq B \|y-x\|$, which implies $F$ is continuous. \\
 
-    Now we complete the proof of theorem. Since $F$ is continuous, so it obtains its minimum $A$ on the compact unit sphere, i.e.,
+    Now we complete the proof. Since $F$ is continuous, so it obtains its minimum $A$ on the compact unit sphere, i.e.,
     \begin{align*}
         & A = \inf_{\|x\| = 1}F(x) = F(x_0) > 0 \\
         \Rightarrow & A\leq F(x) \leq B, \|x\| = 1
@@ -1316,7 +1316,7 @@ Prove that if $X$ is a metric space, and $f:X\times[0,1]\to\mathbb{R}$ is contin
 is continuous.
 \end{exercise}
 \begin{proof}
-Prove by contradiction, and suppose $g$ is not continuous, i.e., there exists $\varepsilon > 0$, for $\forall \delta > 0$, $\exists x$ such that if $d_X(x,x_0) < \delta$, then $|g(x) - g(x_0)|\geq\varepsilon$. 
+Prove by contradiction, and suppose $g$ is not continuous, i.e., there exists $\varepsilon > 0$, for $\forall \delta > 0$, $\exists x_0 \in[0,1]$ such that if $d_X(x,x_0) < \delta$, then $|g(x) - g(x_0)|\geq\varepsilon$. 
 
 Fix such $\varepsilon > 0$, we pick $\delta = \frac{1}{n}$, then exists $x_n$ such that $d_X(x_n,x_0) < \frac{1}{n}$, then $|g(x_n) - g(x_0)| \geq \varepsilon$, which implies
 \begin{align*}
@@ -1335,7 +1335,7 @@ Thus, we have
 \begin{align*}
     f(x_0,t_0) \leftarrow f(x_{n_k},t_0) \leq f(x_{n_k},t_{n_k}) \rightarrow f(x_0,s) \leq f(x_0,t_0)
 \end{align*}
-which means $f(x_{n_k},t_{n_k})\to f(x_0,t_0)$, which is a contradiction.
+which means $f(x_{n_k},t_{n_k})\to f(x_0,t_0)$, and this is a contradiction to the assumption above.
 \end{proof}
 
 \begin{theorem}
@@ -1349,11 +1349,11 @@ If $f:(a,b)\to\mathbb{R}$ is uniformly continuous, and $-\infty < a < b < \infty
 \end{exercise}
 
 \begin{proof}
-For $x\in X$, we choose a unique $A\ni a_k^x\to x$. Since $f$ is uniformly continuous, then $\forall\varepsilon > 0$, there exists $\delta > 0$, and for $\forall x,y\in A$, if $d_X(x,y) < \delta$, then $|f(x) - f(y)| < \varepsilon$. For such $\delta > 0$, there exists a $N > 0$ such that $\forall k,l$, then $d_X(a_k^x, a_l^x) < \delta$, and hence $$|f(a_k^x) - f(a_l^x)| < \varepsilon$$
+For $x\in X$, we choose a unique $A\ni a_k^x\to x$. Since $f$ is uniformly continuous, then $\forall\varepsilon > 0$, there exists $\delta > 0$, and for $\forall x,y\in A$, if $d_X(x,y) < \delta$, then $|f(x) - f(y)| < \varepsilon$. For such $\delta > 0$, there exists a $N > 0$ such that $\forall k,l > N$, then $d_X(a_k^x, a_l^x) < \delta$, and hence $$|f(a_k^x) - f(a_l^x)| < \varepsilon$$
 then we can know that $\{f(a_k^x)\}^\infty_{k=1}$ is a Cauchy sequence. Thus it is convergent. 
 
 We now define $$F(x) = \lim_{k\to\infty}f(a_k^x)$$
-If $d_x(x,y) < \delta$, then $d_X(a_k^x,a_k^y) < \delta$. Then for some $K > 0$, if $\forall k \geq K$, then $$|f(a_k^x) - f(a_k^y)| < \varepsilon \Rightarrow |F(x) - F(y)| < \varepsilon$$
+If $d_X(x,y) < \delta$, then $d_X(a_k^x,a_k^y) < \delta$. Then for some $K > 0$, if $\forall k \geq K$, then $$|f(a_k^x) - f(a_k^y)| < \varepsilon \Rightarrow |F(x) - F(y)| < \varepsilon$$
 Thus, $F$ is uniformly continuous.
 \end{proof}
 

@@ -18,6 +18,7 @@
 \usepackage{wrapfig}
 \usepackage{extarrows}
 \usepackage{breqn}
+\usepackage{physics}
 \graphicspath{ {images/} }
 
 
@@ -76,7 +77,9 @@ and the norm of $x$ by
 \begin{align*}
     \left\|x\right\| = (x\cdot x)^{\frac{1}{2}} = \left(\sum^n_{i=1}x_i^2 \right)^{\frac{1}{2}}
 \end{align*}
-The structure now defined is called euclidean $n$-spaces. \\
+The structure now defined is called euclidean $n$-spaces. 
+
+\medskip
 
 \begin{theorem}
 Suppose $x,y,z\in\mathbb{R}^n$ and $\alpha$ is real. Then 
@@ -117,6 +120,8 @@ which has the following properties
 \end{enumerate}
 \end{definition}
 
+\medskip
+
 \begin{definition}
 Let $\{x_i\}^\infty_{i=1}$ be a sequence of points in $\mathbb{R}^n$ and $y\in\mathbb{R}^n$. We say that $\{x_i\}^\infty_{i=1}$ converges to $y$ if 
 \begin{align*}
@@ -153,15 +158,19 @@ and hence
 \end{align*}
 \end{proof}
 
+\medskip
+
 \begin{definition}
 Let $(X,d)$ be a metric space and let $x_i\in X, i = 1,2,\cdots,$ and $x\in X$. We say that the sequence $\{x_n\}^\infty_{i=1}$ converges to $x$, saying
 $\lim_{i\to\infty}x_i = x$ if $\lim_{i\to\infty}d(x_i, x) = 0$.
 \end{definition}
 
+\medskip
+
 \begin{example}
 Examples of metric spaces:
 \begin{enumerate}
-    \item $(\mathbb{R}^n,\rho_1)$, where $\rho_1(x,y) = \max_i |x_i-y_i|$. And $B(0,1)$ in $(\mathbb{R}^2,\rho_1)$ is shown as above.\\
+    \item $(\mathbb{R}^n,\rho_1)$, where $\rho_1(x,y) = \max_i |x_i-y_i|$. And $B(0,1)$ in $(\mathbb{R}^2,\rho_1)$ is shown as below\\
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.4\textwidth]{unit_ball_norm_1}
@@ -245,9 +254,13 @@ Let $(X,d)$ be a metric space. For $x\in X$ and $r>0$, we define
 \end{align*}
 and call it the ball of radius $r$ centered at $x$. For example, if $(X,d)$ is a discrete metric space, then $B(x,1/2) = \{x\}$, $B(x,1) = \{x\}$ and $B(x,2) = X$.
 
+\medskip
+
 \begin{definition}\label{openset}
 We say that a set $U\subset X$ is open if $$\forall x\in X, \exists r > 0, B(x,r)\subset U.$$
 \end{definition}
+
+\medskip
 
 \begin{definition}[Definition in Rudin's Principle of Mathematical Analysis]Let $X$ be a metric space. 
 \begin{enumerate}
@@ -264,6 +277,8 @@ We say that a set $U\subset X$ is open if $$\forall x\in X, \exists r > 0, B(x,r
 \end{enumerate}
 \end{definition}
 
+\medskip
+
 \begin{theorem}
 Every ball $B(x,r)$ is open.
 \end{theorem}
@@ -277,6 +292,7 @@ We will now prove that $B(x,r)\subset B(x_0,r_0)$. Indeed, if $y\in B(x,r)$, the
 Since every point of $B(x,r)$ belongs to $B(x_0,r_0)$, we can conclude that $B(x,r)\subset B(x_0,r_0)$. According to Definition \ref{openset}, we proved that $B(x_0,r_0)$ is open.
 \end{proof}
 
+\medskip
 
 \begin{theorem}
 Let $(X,d)$ be a metric space, then
@@ -319,6 +335,8 @@ int$A$ is always open. It is the largest open set contained in $A$ in the sense 
     \item If $x\in \text{int}A$, then there exists $r>0$ such that $B(x,r)\subset A$. Since $B(x,r)$ is open and $B(x,r)\subset A$, we have $\text{int}A$ is open.
 \end{enumerate}
 \end{proof}
+
+\medskip
 
 \begin{definition}
 Let $(X,d)$ be a metric space. We say that $A\subset X$ is closed if $X\setminus A$ is open.
@@ -1211,8 +1229,8 @@ Prove that if $f$ is continuous, then $G_f$ is a closed subset of $\mathbb{R}^{n
     \begin{align*}
         f(x) = \left\{
         \begin{aligned}
-        & \frac{1}{x}, \text{if} \quad x \neq 0 \\
-        & 0, \text{if} \quad x = 0
+        & \frac{1}{x}, \text{if}\,\, x \neq 0 \\
+        & 0, \text{if}\,\, x = 0
         \end{aligned}
         \right.
     \end{align*}
@@ -1412,7 +1430,7 @@ Suppose $f_n,f\in C([a,b])$. Then $f_n$ uniformly converges to $f$, i.e., $f_n \
 \end{proof}
 
 \begin{remark}
-Similarly, if $E\subset X$ is a compact subset, then $$C(E,\mathbb{R}) = \{f:E\to \mathbb{R} | f\, \text{is continuous}\}$$ 
+Similarly, if $E\subset X$ is a compact subset, then $$C(E,\mathbb{R}) = \{f:E\to \mathbb{R} | f\, {\rm is \,\, continuous}\}$$ 
 is a metric space, where $d_\infty(f,g) = \sup_{x\in E}\left(f(x)-g(x)\right)$.
 \end{remark}
 
@@ -1715,7 +1733,7 @@ Now we introduce the Banach Contraction Principle (theorem 9.23 in Rudin's book)
 \begin{theorem}[The Banach Contraction Principle]
 Suppose $T:X\to X$ is a contraction of a complete metric space $X$. Then there is a unique fixed point of $T$, i.e., a unique point $x^*\in X$ such that $T(x^*) = x^*$. Moreover, for any $x\in X$, we have 
 \begin{align*}
-    \lim_{n\to\infty} T^n(x) = x^*, \,\,\text{where}\,\, T^n = \underbrace{T \circ T \circ\cdots\circ T}_{n}
+    \lim_{n\to\infty} T^n(x) = x^*, \,\,{\rm where}\,\, T^n = \underbrace{T \circ T \circ\cdots\circ T}_{n}
 \end{align*}
 \end{theorem}
 \begin{proof}
@@ -1787,6 +1805,8 @@ Now we have
 Hence the mapping $T:\mathbb{R}^n\to\mathbb{R}^n$ is a contraction and therefore it has a unique fixed point, which is the unique solution to (\ref{equ_4}).
 \end{proof}
 
+\medskip
+
 \begin{exercise}
 Prove that if $\left|a\right| < 1/2$, then the system of equations
 \begin{align*}
@@ -1850,7 +1870,209 @@ Given $f,h\in C([0,1],\mathbb{R})$, we have
     & \leq d_\infty(f,h) \underbrace{\int^1_0 e^{-t^2} \text{dt}}_{=\, k < 1}
 \end{align*}
 Thus, we proved that $T:C([0,1],\mathbb{R})\to C([0,1],\mathbb{R})$ is a contraction and hence there is a unique $f\in C([0,1],\mathbb{R})$ such that $T(f) = f$.
-\end{proof} 
+\end{proof}
+
+\medskip
+
+Now we show how to use the Banach theorem in the proof of one of the most important results in the theory of ordinary differential equations. Consider a continuous function $f(t,x)$ defined in a neighborhood of $(t_0,x_0)\in\mathbb{R}^2$. Assume the following Lipschitz condition: there is a $K > 0$ such that 
+$$\left|f(t,x_1) - f(t,x_2)\right| \leq K \left|x_1 - x_2\right|$$
+for all $(t,x_1), (t,x_2)$ in a neighborhood of $(t_0,x_0)$.
+\begin{theorem}
+Under the above assumption, the differential equation 
+\begin{equation}\label{equ_5}
+    \dv{x}{t} = f(x,t), x(t_0) = x_0
+\end{equation}
+has unique $C^1$ solution in a neighborhood of $t_0$, i.e., there is a $\delta > 0$ such that there is a unique $C^1$ function $x = \varphi(t)$ defined for $t_0 - \delta < t < t_0 + \delta$ satisfying 
+\begin{align*}
+    \left\{
+    \begin{aligned}
+        \dv{\varphi}{t} & = f\left(t,\varphi(t)\right),\, {\rm for}\,\, t_0 - \delta < t < t_0 + \delta\\
+        \varphi(t_0) & = x_0
+    \end{aligned}
+    \right.
+\end{align*}
+\end{theorem}
+\begin{proof}
+$x = \varphi(t)$ is a solution to equation (\ref{equ_5}) if and only if 
+$$\varphi(t) = x_0 + \int^t_{t_0} f(s,\varphi(s))\, \text{d}s$$
+i.e, if $\varphi$ is a fixed point of the following transformation $T$:
+\begin{align*}
+    T(\varphi)(t) = x_0 + \int^t_{t_0} f(s,\varphi(s))\, \text{d}s.
+\end{align*}
+
+There is a neighborhood $\Omega$ of $(x_0,t_0)$ such that $\left|f(t,x)\right|\leq L$ in $\Omega$ and $f$ satisfies the Lipschitz condition. Then we choose $\delta$ small enough such that the closed rectangle with sides $2\delta$ and $2L\delta$ centered at $(t_0,x_0)$ is contained in $\Omega$, i.e., $\left|t - t_0\right| \leq \delta, \left|x - x_0\right| \leq L\delta \Rightarrow (t,x)\in\Omega$. We can also assume that $\delta L < 1$. Consider the following function spaces 
+\begin{align*}
+    \mathcal{C}& = C\left([t_0 - \delta, t_0 + \delta], \mathbb{R}\right) \\
+    \mathcal{M}& = \left\{\varphi\in\mathcal{C} | \varphi(t_0) = x_0, \left|\varphi(t) - x_0\right| \leq L\delta, \right\} \, {\rm for}\,\, t \in [t_0 - \delta, t_0 + \delta]
+\end{align*}
+Then $\mathcal{M}$ is a closed subset of $\mathcal{C}$ and hence it is a compact metric space with respect to the metric 
+\begin{align*}
+    d_\infty(\varphi_1, \varphi_2) = \sup_{t_0 - \delta \leq t \leq t_0 + \delta} \left|\varphi_1(t) - \varphi_2(t)\right|
+\end{align*}
+
+Define $T:\mathcal{M}\to\mathcal{C}$ by
+\begin{align*}
+    T(\varphi)(t) = x_0 + \int^t_{t_0} f(s,\varphi(s))\, \text{d}s.
+\end{align*}
+the this mapping $T$ is well defined because the function $T(\varphi)$ is continuous. Indeed, we have 
+\begin{align*}
+    \left|T(\varphi)(t_1) - T(\varphi)(t-2)\right| \leq \left|\int^{t_2}_{t_1} f(s,\varphi(s))\, \text{d}s \right| \leq L |t_1 - t_2|
+\end{align*}
+Clearly, $\varphi$ is a solution of equation (\ref{equ_5}) if and only if it is a fixed point of $T$. Also, the mapping $T$ does not only maps $\mathcal{M}$ to $\mathcal{C}$, but it maps $\mathcal{M}$ to $\mathcal{M}$. Indeed, $T(\varphi)(t_0) = x_0$ and  
+\begin{align*}
+    \left|T(\varphi)(t) - x_0\right| \leq \int^{t}_{t_0} \left|f(s,\varphi(s))\right|\, \text{d}s \leq \delta L.
+\end{align*}
+
+Moreover, $T$ is a contraction of $\mathcal{M}$. Indeed, we have 
+\begin{align*}
+    d_\infty\left(T(\varphi_1), T(\varphi_2)\right) & = \sup_{t} \left|\int^{t}_{t_0} \left(f(s,\varphi_1(s)) - f(s,\varphi_2(s)\right) \, \text{d}s\right|\\
+    & \leq \delta L \sup_{s} \left|\varphi_1(s) - \varphi_2(s) \right| \\
+    & = \underbrace{\delta L}_{< 1} \sup_{s} d_\infty(\varphi_1, \varphi_2)
+\end{align*}
+Thus $T$ has a unique fixed point by the Contraction Principle. The proof is complete.
+\end{proof}
+
+\medskip
+
+\subsection{Arzelà-Ascoli Theorem}
+\begin{definition}
+Let $A\subset X$ be a subset of a metric space $(X,d_X)$, and let $(Y,d_Y)$ be another metric space. Let $\mathcal{F}\subset C(A,Y)$ be a family of continuous functions from $A$ to $Y$. We say that the family $\mathcal{F}$ is equiconitnuous if for $\forall\varepsilon > 0$, there exists $\delta > 0$ such that if $\forall f\in\mathcal{F}, \forall x,y\in A$ and $d_X(x,y) < \delta$, then $d_Y(f(x),f(y)) < \varepsilon$.
+
+In particular, every function in $\mathcal{F}$ is uniformly continuous, but equiconitnuity is a stronger condition than the uniform continuity of every function in $\mathcal{F}$, since it requires for every $\varepsilon > 0$, there exists a $\delta > 0$ that works for every $f\in\mathcal{F}$. In another words, equiconitnuity indicates that every function in $\mathcal{F}$ is uniformly continuous in the same way.
+\end{definition}
+
+\medskip
+
+\begin{theorem}[Arzelà-Ascoli Theorem]
+Let $E\subset X$ be compact. Then the set $\mathcal{C}\subset C(E,\mathbb{R}^n)$ is compact if and only if it is bounded, closed and equicontinuous.
+\end{theorem}
+
+\medskip
+
+A subset of the Euclidean space is compact if and only if it is bounded and closed, and in general being bounded and closed is a necessary condition for the compactness, but not a sufficient one. Now we consider a corollary and some exercise before we present the proof of Arzelà-Ascoli theorem.
+
+\begin{corollary}
+Let $E\subset X$ be compact. If $\mathcal{F}\subset C(E,\mathbb{R}^n)$ is bounded and equicontinuous, then every sequence in $\mathcal{F}$ has a uniformly convergent subsequence.
+\end{corollary}
+\begin{proof}
+It suffices to prove that ${\rm cl}(\mathcal{F})$ is compact, i.e., bounded and closed and equicontinuous. Clearly it is bounded and closed. It remains to prove equicontinuity. We have for $\forall\varepsilon > 0$, there exists $\delta > 0$ such that if $\forall f\in\mathcal{F}, \forall x,y\in E$ and $d(x,y) < \delta$, then $\|f(x),f(y)\| < \varepsilon/2$. 
+
+And we want to prove that for $\forall\varepsilon > 0$, there exists $\delta > 0$ such that if $\forall f\in{\rm cl}(\mathcal{F}), \forall x,y\in E$ and $d(x,y) < \delta$, then $\|f(x),f(y)\| < \varepsilon/2$. Let $\varepsilon > 0$ be arbitrary and let $\delta > 0$ be the same as in the first condition. Let $f\in{\rm cl}(\mathcal{F})$ and $x,y\in E$. Then there exists $f_i\in \mathcal{F}$ such that $f_i$ uniformly converges to $f$. Hence, we have
+\begin{align*}
+    d(x,y) < \delta & \Rightarrow \|f_i(x) - f_i(y)\| < \varepsilon/2 \\
+    & \Rightarrow \|f(x) - f(y)\| \leq  \varepsilon/2 < \varepsilon
+\end{align*}
+since $f_i(x)\to f(x)$ and $f_i(y)\to f(y)$. The proof is complete.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Let $\mathcal{F}\subset C([0,1],\mathbb{R})$ be bounded, closed and equicontinuous. Let $I:\mathcal{F}\to \mathbb{R}$ be defined by 
+$$I(f) = \int^1_0 f(x) \, {\rm d}x$$
+Prove that there is $f_0\in\mathcal{F}$ at which the value of $I$ is maximized.
+\end{exercise}
+\begin{proof}
+$\mathcal{F}\subset C([0,1],\mathbb{R})$ is continuous, since 
+\begin{align*}
+    \left|I(f) - I(f_i)\right| \leq \int^1_0 \left|f(x) - f_i(x)\right| \to 0
+\end{align*}
+if $f_i \to f$ in $C([0,1],\mathbb{R})$, i.e., $f_i$ uniformly converges to $f$. Since $\mathcal{F}$ is compact, $I$ attains maximun in $\mathcal{F}$.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Let the functions $f_n:[a,b]\to\mathbb{R}$ be uniformly bounded and continuous. Define the set 
+\begin{align*}
+    F_n(x) = \int^x_0 f_n(t)\, {\rm d}t, a\leq x\leq b
+\end{align*}
+Prove that $F_n$ has a uniformly convergent subsequence.
+\end{exercise}
+\begin{proof}
+It suffices to prove that the family $\mathcal{F} = \{F_n \,|\, n = 1,2,3,\cdots\}$ is bounded and equicontinuous. 
+
+Uniform boundedness of $\{f_n\}$ means that there is a constant $M > 0$ such that $|f_n(t)|\leq M$ for $\forall n > 0$ and all $\forall t\in[a,b]$. Hence we have $|F_n(x)|\leq M|b-a|$ for $\forall x\in[a,b]$. Thus, $d_\infty(F_n, 0)\leq M|b-a|$, which implies that the family $\mathcal{F}$ is contained in the ball centered at the zero function with radius $M|b-a|$, i.e., $\mathcal{F}$ is bounded. 
+
+The family $\mathcal{F}$ is also equicontinuous. Indeed, let $\varepsilon > 0$ be arbitrary. Take $\delta < \varepsilon/M$, if $|x - y| < \delta$, then we have 
+\begin{align*}
+    \left|F_n(x) - F_n(y)\right| = \left|\int^y_x F_n(t)\, {\rm d}t \right| \leq \delta M < \varepsilon
+\end{align*}
+Since the family $\mathcal{F}$ is bounded and equicontinuous, it has a uniformly convergent subsequence.
+\end{proof}
+
+\medskip
+
+Now we present the proof of Arzelà-Ascoli theorem.
+
+\begin{proof}
+~\begin{enumerate}
+    \item ($\Rightarrow$) Let $\mathcal{F}\subset C(E,\mathbb{R}^n)$ be compact. Obviously $\mathcal{F}$ is bounded and closed. It remains to prove that that $\mathcal{F}$ is equicontinuous. 
+    
+    Prove by contradiction and suppose $\mathcal{F}$ is not equicontiunous, we have $\exists \varepsilon > 0$, for $\forall \delta > 0$, there exists $f\in\mathcal{F}$ and $x,y\in E$ such that if $d(x,y) < \delta$, then $\|f(x) - f(y)\| \geq \varepsilon$. 
+    
+    In particular, for $\delta = 1/n$ we can find $f_n\in\mathcal{F}$ and $x_n, y_n\in E$ such that $d(x_n,y_n) < 1/n$ and $\|f_n(x_n) - f_n(y_n)\| \geq \varepsilon$. Since $\mathcal{F}$ is compact, the $\{f_n\}$ has a convergent subsequence $\{f_{n_k}\}$ uniformly converging to $f$. Since $E$ is also compact, the function $f$ is uniformly continuous on $E$. Then we have 
+    \begin{align*}
+        \varepsilon & \leq \|f_{n_k}\left(x_{n_k}\right) - f_{n_k}\left(y_{n_k}\right)\| \\
+        & \leq \underbrace{\|f_{n_k}\left(x_{n_k}\right) - f\left(y_{n_k}\right)\|}_{\longrightarrow 0, \,f_{n_k}\rightrightarrows f} + \underbrace{\|f\left(x_{n_k}\right) - f\left(y_{n_k}\right)\|}_{\longrightarrow 0,\, d(x_{n_k},y_{n_k})\to 0} + \underbrace{\|f\left(y_{n_k}\right) - f_{n_k}\left(y_{n_k}\right)\|}_{\longrightarrow 0, \,f_{n_k}\rightrightarrows f} \\
+        & \to 0
+    \end{align*}
+    which is contradicted with the assumption above.
+    \item ($\Leftarrow$) Suppose now that $\mathcal{F}\subset C(E,\mathbb{R}^n)$ is bounded, closed and equicontinuous. It suffices to prove that $\mathcal{F}$ is compact. 
+    
+    Let $f_n\in\mathcal{F}$. We want to prove that $f_n$ has a subsequence that is uniformly convergent. Since $E$ is compact, it has a countable dense subset 
+    $$\{x_1, x_2, x_3,\cdots \}\subset E$$
+    The sequence $\{f_n(x_1)\}$ is bounded in $\mathbb{R}$, so it has a convergent subsequence. Denote this subsequence by 
+    \begin{align*}
+        f_{11}(x_1), f_{12}(x_1), f_{13}(x_1), \cdots 
+    \end{align*}
+    which converges in $\mathbb{R}^n$. Now the sequence $\{f_{1n}(x_2)\}$ is bounded in $\mathbb{R}^n$, so it has a convergent subsequence, denoted by 
+    \begin{align*}
+        f_{21}(x_2), f_{22}(x_2), f_{23}(x_2), \cdots 
+    \end{align*}
+    which converges in $\mathbb{R}^n$. Now the sequence $\{f_{2n}(x_3)\}$ is bounded in $\mathbb{R}^n$, so it has a convergent subsequence, denoted by
+    \begin{align*}
+        f_{31}(x_3), f_{32}(x_3)& , f_{33}(x_3), \cdots \\
+        & \vdots
+    \end{align*}
+    
+    Continue this process and we can have
+    \begin{align*}
+        & f_{11}, f_{12}, f_{13}, f_{14} \cdots \\
+        & f_{21}, f_{22}, f_{23}, f_{24}\cdots \\
+        & f_{31}, f_{32}, f_{33}, f_{34}\cdots \\
+        & f_{41}, f_{42}, f_{43}, f_{44}\cdots \\
+        & \cdots
+    \end{align*}
+    where sequence in each line is a subsequence of the previous line. We select a subsequence along the diagonal  $\{f_{11}, f_{22}, f_{33},\cdots\}$. We claim that the sequence $\{f_{nn}(x_k)\}$ is convergent for every $k = 1,2,3,\cdots$. Indeed, the sequence 
+    \begin{align*}
+        f_{11}(x_k), f_{22}(x_k), f_{33}(x_k),\cdots
+    \end{align*}
+    is a subsequence of the convergent sequence $f_{k1}(x_k), f_{k2}(x_k), f_{k3}(x_k),\cdots$ starting from $n = k$. 
+    
+    The method described above of selecting the subsequence $\{f_{nn}\}$ is called the diagonal method. Hence the sequence of functions $f_{nn}$ is convergent at every point of a dense subset $\{x_1, x_2, x_3,\cdots\}$ of $E$. We will prove that the sequence $\{f_{nn}\}$ is actually convergent of $E$ and this is an uniform convergence, 
+    
+    Let $\varepsilon > 0$ be arbitrary. Take $\delta > 0$ as in the definition of equicontinuity. Then there is $k$ such that for $\forall x\in X$ and $\exists i \in \{1,2,\cdots, k\}$, $d(x,x_i) < \delta$, because of the density of $\{x_1, x_2, \cdots \}$ in $E$. Since the sequence $\{f_{nn}(x_i)\}$ is convergent for $i = 1,2,\cdots,k$, then there is $N > 0$ such that for every $n,m \geq N$, we have
+    \begin{align*}
+        \|f_{nn}(x_i) - f_{mm}(x_i)\| < \varepsilon, i = 1,2,\cdots,k
+    \end{align*}
+    Now we have
+    \begin{align*}
+        \|f_{nn}(x) - f_{mm}(x)\| \, \leq\, & \|f_{nn}(x) - f_{nn}(x_i)\| + \|f_{nn}(x_i) - f_{mm}(x_i)\| \\
+        + & \|f_{nn}(x_i) - f_{mm}(x)\| < 3\varepsilon
+    \end{align*}
+    Hence $\{f_{nn}(x)\}$ is convergent as a Cauchy sequence, and we denote the limit by 
+    $$f(x) = \lim_{n\to\infty}f_{nn}(x)$$
+    
+    For $n, m \geq N$, we have 
+    \begin{align*}
+        \|f_{nn}(x) - \underbrace{f_{mm}(x)}_{\to f(x)} \| < 3\varepsilon
+    \end{align*}
+    which yields that for $n \geq N$, $\|f_{nn}(x) - f(x) \|\leq 3\varepsilon$ and this proves that $f_{nn}$ uniformly converges to $f$. The proof is complete.
+\end{enumerate} 
+\end{proof}
+
+
 
 
 

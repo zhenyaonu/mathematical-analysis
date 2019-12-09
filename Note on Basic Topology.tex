@@ -724,21 +724,21 @@ A metric space $X$ is compact if and only if it is complete and totally bounded.
     
     Since $X$ is totally bounded , then it has a finite open covering of balls with radius $1$, i.e.,
     \begin{align*}
-        X = \bigcup^{N_1}_{i=1}B(x_i^{(1)},1)
+        X = \bigcup^{N_1}_{i=1}B\left(x_i^{(1)},1\right)
     \end{align*}
     Hence, infinitely many elements of sequence $\{x_n\}$ belong to at least one of the balls, saying $B(x_{i_1}^{(1)},1)$. This ball has a finite open covering by balls with radius of $\frac{1}{2}$, i.e.,
     \begin{align*}
-        B(x_{i_1}^{(1)},1) = \bigcup^{N_2}_{i=1}B\left(x_i^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1) 
+        B(x_{i_1}^{(1)},1) = \bigcup^{N_2}_{i=1}B\left(x_i^{(2)},\frac{1}{2}\right)\cap B\left(x_i^{(1)},1\right)
     \end{align*}
     Still, infinitely many elements of the sequence belong to at least one of the set on the right hand side, saying $B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1)$. And this set has a finite open covering by balls of radius of $\frac{1}{3}$, i.e.,
     \begin{align*}
-        B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1) = \bigcup^{N_3}_{i=1} B\left(x_{i}^{(3)},\frac{1}{3}\right)\cap B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1)
+        B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1) = \bigcup^{N_3}_{i=1} B\left(x_{i}^{(3)},\frac{1}{3}\right)\cap B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B\left(x_i^{(1)},1\right)
     \end{align*}
     Still, infinitely many elements of the sequence belong to at least one of the set on the right hand side, and we continue this process and pick a subsequence from the given sequence $\{x_n\}$ such that 
     \begin{align*}
-        x_{n_1} &\in B(x_{i_1}^{(1)},1) \\
-        x_{n_2} &\in B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1) \\
-        x_{n_3} &\in B\left(x_{i_3}^{(3)},\frac{1}{3}\right)\cap B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B(x_{i_1}^{(1)},1)\\
+        x_{n_1} &\in B\left(x_i^{(1)},1\right) \\
+        x_{n_2} &\in B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B\left(x_i^{(1)},1\right) \\
+        x_{n_3} &\in B\left(x_{i_3}^{(3)},\frac{1}{3}\right)\cap B\left(x_{i_2}^{(2)},\frac{1}{2}\right)\cap B\left(x_i^{(1)},1\right)\\
         & \vdots
     \end{align*}
     

@@ -601,7 +601,7 @@ We say that a subset $A\subset X$ of a metric space is compact if every sequence
 $ $
 \begin{enumerate}
     \item By an open cover of a set $A$ in a metric space $X$ we mean a collection $\{G_\alpha\}$ of open subsets of $X$ such that $A\subset \bigcup_\alpha G_\alpha$.
-    \item A subset $A$ of a metric space $X$ is said to be compact if every open vector of $A$ contains a finite subcover.
+    \item A subset $A$ of a metric space $X$ is said to be compact if every open cover of $A$ contains a finite subcover.
 \end{enumerate}
 \end{definition}
 
@@ -1381,11 +1381,11 @@ Now we define a metric space with $l^\infty = \{x = (x_1,x_2,\cdots) | \|x\|_\in
 
 \begin{exercise}
 Show that the Hilbert cube 
-$$H = \{x = (x_1,x_2,\cdots) | 0\leq x_i \leq 2^{-i}, i = 1,2,\cdots\}$$
+$$\mathcal{H} = \{x = (x_1,x_2,\cdots) | 0\leq x_i \leq 2^{-i}, i = 1,2,\cdots\}$$
 is a compact subset of $l^\infty$.
 \end{exercise}
 \begin{proof}
-Let $x^{(n)} = \left(x_1^{(n)},x_2^{(n)},\cdots \right)\in H$, and using diagonal method, we can find a sequence $\{x^{(n_k)}\}$ such that for $\forall i$, $x_i^{(n_k)}$ converges, such that $x_i^{(n_k)}\to x_i$, with $0\leq x_i^{(n_k)}\leq 2^{-i}$. Then we have $0\leq x_i\leq 2^{-i}$, which implies that $x = \left(x_1, x_2, \cdots \right)\in H$. 
+Let $x^{(n)} = \left(x_1^{(n)},x_2^{(n)},\cdots \right)\in \mathcal{H}$, and using diagonal method, we can find a sequence $\{x^{(n_k)}\}$ such that for $\forall i$, $x_i^{(n_k)}$ converges, such that $x_i^{(n_k)}\to x_i$, with $0\leq x_i^{(n_k)}\leq 2^{-i}$. Then we have $0\leq x_i\leq 2^{-i}$, which implies that $x = \left(x_1, x_2, \cdots \right)\in \mathcal{H}$. 
 
 It remains to show that $x^{(n_k)}\stackrel{l^\infty}{\longrightarrow}x$. Given $\varepsilon > 0$, let $N > 0$ be such that $2^{-N} < \varepsilon/2$. Also, there exists $K$, for $\forall k \geq K$, such that $\left|x_i^{(n_k)} - x_i\right| < \varepsilon/2, i = 1,2,\cdots, N$. Then for $i > N$, we have 
 $\left|x_i^{(n_k)} - x_i\right| < \left|x_i^{(n_k)}\right| + |x_i| < \varepsilon$
@@ -1618,7 +1618,7 @@ is continuous and satisfies (\ref{map_unit_circle}). In other direction, if $f:[
     \Tilde{f}(\cos 0,\sin 0) = f(0) = f(2\pi) = \Tilde{f}(\cos 2\pi,\sin 2\pi)
 \end{align*}
 
-In particular, the trigonometric polynomials define a class of continuous functions on $S$. Because of the properties $(1),(2)$ and $(3)$ proved above, this class of functions on $S$ form an algebra. Since $S$ is compact, then the conditions of Stone-Weierstrass theorem are satisfied. \\
+In particular, the trigonometric polynomials define a class of continuous functions on $S$. Because of the properties $(1),(2)$ and $(3)$ proved above, this class of functions on $S$ form an algebra. Since $S$ is compact, then the conditions of Stone-Weierstrass theorem are satisfied. 
 
 Now if $f:\mathbb{R}\to\mathbb{R}$ is $2\pi$-periodic and continuous, then for a corresponding continuous function $\Tilde{T}$ on $S$, there is a function $T_\varepsilon$ associated with a trigonometric polynomial such that 
 $$|\Tilde{T}_\varepsilon - \Tilde{f}| < \varepsilon \,\, \text{on} \,\, S$$

@@ -1,0 +1,757 @@
+\documentclass[12pt,leqno]{amsart}
+\pagestyle{plain}
+\usepackage{latexsym,amsmath,amssymb}
+\usepackage{amsthm}
+%\usepackage[notref,notcite]{showkeys}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{pifont}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{thmtools}
+\usepackage{wrapfig}
+\usepackage{extarrows}
+\usepackage{breqn}
+
+\usepackage{enumitem}
+\graphicspath{ {images/} }
+
+\setlength{\oddsidemargin}{1pt}
+\setlength{\evensidemargin}{1pt}
+\setlength{\marginparwidth}{30pt} % these gain 53pt width
+\setlength{\topmargin}{1pt}       % gains 26pt height
+\setlength{\headheight}{1pt}      % gains 11pt height
+\setlength{\headsep}{1pt}         % gains 24pt height
+%\setlength{\footheight}{12 pt} 	  % cannot be changed as number must fit
+\setlength{\footskip}{24pt}       % gains 6pt height
+\setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
+\setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
+
+\title{Sections and Chapters}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{remark}{Remark}[section]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\numberwithin{equation}{subsection}
+
+
+
+\def\dsp{\def\baselinestretch{1.35}\large
+\normalsize}
+%%%%This makes a double spacing. Use this with 11pt style. If you
+%%%%want to use this just insert \dsp after the \begin{document}
+%%%%The correct baselinestretch for double spacing is 1.37. However
+%%%%you can use different parameter.
+
+
+\def\U{{\mathcal U}}
+
+\begin{document}
+
+\centerline{\bf Homework 8 for Math 1530}
+\centerline{Zhen Yao}
+
+\bigskip
+
+\noindent
+{\bf Problem 84.}
+Let $(X,d)$ be a metric space. Prove that the set
+$
+A = \{x\in X:\ d(x,x_0)>1\}
+$
+is open, where $x_0\in X$ is any fixed point.
+\begin{proof}
+For any $x\in A$, we can know that $d(x,x_0) - 1 > 0$, then there exists $r > 0$ such that $d(x,x_0) - 1 > r$. Then for any point $y\in B(x,r)$, we have $d(y,x_0) \geq d(x,x_0) - d(x,y) > d(x,x_0) - r > 1$, which implies that $y\in A$. Then, for any $x\in A$, there is an open ball $B(x,r)$ such that $B(x,r)\subset A$. Thus, $A$ is open.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 85.}
+Show that the following sets are not compact, by exhibiting an open
+cover with no finite subcover
+\begin{enumerate}[label=(\alph*)]
+ \item $\{ x\in\mathbb{R}^n:\, |x|<1\}$.
+ \item $\mathbb{Z}\subset\mathbb{R}$.
+\end{enumerate}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item Considering the collection of open covers $B = \left(0, 1 - \frac{1}{n}\right)$. Then this collection of open covers does not have a collection of finite subcovers. Thus, $\{ x\in\mathbb{R}^n:\, |x|<1\}$ is not compact. 
+    \item Considering he collection of open covers $B = \left(0, \frac{1}{2}\right)$. Then we can know this collection has no finite subcovers since $\mathbb{Z}$ is not bounded.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 86.}
+Is it true that in a metric space the closed ball equals to the closure of the open ball, that is
+$\bar{B}(x,r)={\rm cl}\,(B(x,r))$, where
+$$
+B(x,r)=\{y:\, d(x,y)< r\}
+\quad
+\text{and}
+\quad
+\bar{B}(x,r)=\{y:\, d(x,y)\leq r\}?
+$$
+\begin{proof}
+It is not always true. Now consider the any set $X$, where $x,y\in X$ and a discrete metric space, where
+\begin{align*}
+    d(x,y) = \left\{
+    \begin{aligned}
+    & 1, \text{if} \quad x \neq y\\
+    & 0, \text{if} \quad x = y
+    \end{aligned}
+    \right.
+\end{align*}
+Then the open unit ball of radius $1$ around any point $x$: $B(x,1)$ is the set $\{x\}$ and its closure ${\rm cl}\,(B(x,r))$ is also this set. But the closed ball $\bar{B}(x,y)=\{y:\, d(x,y)\leq 1\}$ is the whole set $X$. This is a counter example. 
+\end{proof}
+
+\medskip
+
+
+\noindent
+{\bf Problem 87.}
+Let $(x_n)_{n=1}^\infty$ be a sequence of points in $\mathbb{R}^3$ such that $\Vert x_{n+1}-x_n\Vert\leq 1/(n^2+n)$, $n\geq 1$. Show that $(x_n)$ converges.
+\begin{proof}
+Prove by contradiction and suppose that $\{x_n\}_{n=1}^\infty$ dose not converges. Every convergent sequence in a metric space is a Cauchy sequence. Then since $\{x_n\}_{n=1}^\infty$ dose not converges, by definition we have $\exists \varepsilon > 0$, then for $\forall n > m$, we have $\Vert x_n - x_m\Vert\geq\varepsilon$. 
+
+Also, as $n$ increases, for $\varepsilon$ be given above, there exists $n$ such that $1/(n^2 + n) < \varepsilon$, denote the first $n$ satisfying such property by $N_1$. Then, for $n > m \geq N_1$, we have  $\Vert x_n - x_m\Vert\leq 1/(N_1^2+N_1) < \varepsilon$, which is a contradiction.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 88.}
+Prove that if $K_1$ and $K_2$ are nonempty compact and disjoint subsets of
+a metric space $X$, then the set $A=K_1\cup K_2$ is disconnected.
+\begin{proof}
+We denote $U = {\rm cl}\,(K_1)$ and $V = {\rm cl}\,(K_2)$. Then we have $A \subset U\cup V$, $A\cap U \neq \varnothing$ and $A\cap V\neq \varnothing$. Since $K_1$ and $K_2$ are compact and disjoint subsets of a metric space $X$, then $K_1$ and $K_2$ are all closed and $K_1\cap K_2 = \varnothing$. Then all limit points of $K_1$ and $K_2$ belong to $K_1$ and $K_2$ respectively, which means ${\rm cl}\,(K_1)\cap {\rm cl}\,(K_2) = \varnothing$. Then, $A \cap (U\cap V) = \varnothing$. By definition, $A$ is disconnected.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 89.}
+Prove that $(\mathbb{R}^n,\varrho)$, where
+$$
+\varrho(x,y) =\frac{\Vert x-y\Vert}{1+\Vert x-y\Vert}
+$$
+is a metric space.
+\begin{proof}
+We can verify as below:
+~\begin{enumerate}
+    \item $\varrho(x,y) > 0$ if $x \neq y$ since $\Vert x-y\Vert > 0$.
+    \item $\varrho(x,y) = 0$ if $x = y$ since $\Vert x-y\Vert = 0$.
+    \item $\varrho(x,y) = \varrho(y,x)$.
+    \item For $x,y,z\in\mathbb{R}^n$, we have
+    \begin{align*}
+        \varrho(x,z) + \varrho(z,y) & = \frac{\Vert x-z\Vert}{1 + \Vert x-z\Vert} + \frac{\Vert y-z\Vert}{1 + \Vert y-z\Vert} \\
+        & \geq \frac{\Vert x-z\Vert}{1 + \Vert x-z\Vert + \Vert y-z\Vert} + \frac{\Vert y-z\Vert}{1 + \Vert x-z\Vert + \Vert y-z\Vert} \\
+        & = \frac{\Vert x-z\Vert + \Vert y-z\Vert}{1 + \Vert x-z\Vert + \Vert y-z\Vert} \\
+        & = 1 - \frac{1}{1 + \Vert x-z\Vert + \Vert y-z\Vert} \\
+        & \geq 1 - \frac{1}{1 + \Vert x-y\Vert} \\
+        & = \varrho(x,y)
+    \end{align*}
+\end{enumerate}
+Then $(\mathbb{R}^n,\varrho)$ is indeed a metric space.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 90.}
+Prove that every compact metric space is separable.
+\begin{proof}
+Suppose $X$ is a compact metric space, and then immediately we have $X$ is totally bounded. We need to prove that $X$ contains a countable dense subset. Then for $\forall\varepsilon > 0$, there exists a finite covering of $X$ by balls of radius $\varepsilon$. 
+
+Now we consider that $X$ is covered by finite balls with radius $1$, and we extract the center of each ball. And we denote the set without these centers of radius $1$ by $B(X\setminus\{x\},1)$. Then consider finite balls with radius $\frac{1}{2}$ and there are finite such balls that cover $X$, and we extract the center of all such balls and denote the set by $B(X\setminus\{x\},1/2)$. We can continuous this process for ever $n, n\in\mathbb{N}$, and there are finite balls with radius $1/n$ covering $X$. And we can know that $\bigcup^\infty_{n=1}B(X\setminus\{x\},1/n)$ can cover $X$ and this is countable union of dense subsets of $X$. 
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 91.}
+Provide an example of a complete metric space that is not separable.
+\begin{proof}
+Take the metric space $(X,d)$ where $X = \mathbb{R}$, and $d$ is discrete metric. Then we can know that in discrete metric, every subset $S\subset X$ are closed and then ${\rm cl}\,(S) = S$. When $X = \mathbb{R}$, the only dense subset of $\mathbb{R}$ is itself, which is not countable.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 92.}
+Let $X$ be a complete metric space and let $V_n$, $n = 1,2,3,\ldots$ be open and dense sets. Prove that $\bigcap^\infty_{n=1} V_n$ is dense in $X$.
+\begin{proof}
+It suffices to show that for every open set $U\subset X$, we have $U \bigcap \left(\bigcap^\infty_{n=1} V_n\right) \neq \varnothing$. 
+
+Now we can define $U_n = \left(\cap_{1\leq i\leq n}V_i\right)\bigcap U$. Then we have $\overline{U_n}\subset U_{n-1}$ and $\{U_n\}$ is decreasing sequence of open sets in the sense that ${\rm diam}\, U_n$ is decreasing. Now we choose $u_i\in U_i$ and then $\{u_i\}$ is a Cauchy sequence in $X$. Since $X$ is a complete metric space, then every Cauchy sequence is convergent. Thus we have $\lim_{i\to\infty}u_i\to u^* \in X$. Then we can know that $U \bigcap \left(\bigcap^\infty_{n=1} V_n\right) \neq \varnothing$, then $\bigcap^\infty_{n=1} V_n$ is dense in $X$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 93.}
+Use previous problem to prove that the set of irrational numbers cannot be written as a union of countably many closed subsets of $\mathbb{R}$.
+
+\begin{proof}
+Prove by contradiction and suppose that $\mathbb{R}\setminus\mathbb{Q}$ can be written as a union of countably many closed subsets, we can assume $\mathbb{R}\setminus\mathbb{Q} = \bigcup_{n\in\mathbb{N}}F_n$, where $F_n$ is closed in $\mathbb{R}$. Then
+\begin{align*}
+    \mathbb{Q} = \mathbb{R}\setminus \bigcup_{n\in\mathbb{N}}F_n = \bigcap_{n\in\mathbb{N}}\left(\mathbb{R}\setminus F_n\right) = \bigcap_{n\in\mathbb{N}} U_n
+\end{align*}
+where $U_n = \mathbb{R}\setminus F_n$, which is open. Clearly, each of $U_n$ is dense. Since $\mathbb{Q}$ is countable, we can write $\mathbb{Q} = \{q_n\}_{n\in\mathbb{N}}$ and set $V_n = U_n\setminus \{q_n\}$. Then $V_n$ is also open and dense in $\mathbb{R}$, and we have 
+\begin{align*}
+    \bigcap_{n\in\mathbb{N}} V_n = \varnothing
+\end{align*}
+which is contradicted with Problem 92. Then the proof is complete.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 94.}
+Prove that $\ell^1$ is a metric space, where
+$$
+\ell^1=\left\{x=(x_1,x_2,\ldots):\, \sum_{n=1}^\infty |x_i|<\infty\right\}
+\quad
+d(x,y)=\Vert x-y\Vert_1=\sum_{n=1}^\infty |x_n-y_n|.
+$$
+\begin{proof}
+We verify
+\begin{enumerate}
+    \item $d(x,y) > 0$ if $x\neq y$ since $x_i \neq y_i$ for some $i$ and then  $\sum_{n=1}^\infty |x_n-y_n| > 0$.
+    \item $d(x,y) = 0$ if $x = y$ since $\Vert x_i - y_i\Vert = 0$ for all $i\in\mathbb{N}$.
+    \item $d(x,y) = d(y,x)$.
+    \item For $x,y,z\in \ell^1$, we have 
+    \begin{align*}
+        d(x,z) + d(z, y) & = \sum_{n=1}^\infty |x_n-z_n| + \sum_{n=1}^\infty |z_n-y_n| \\
+        & = \sum_{n=1}^\infty |x_n-z_n| + |y_n-z_n| \\
+        & \geq \sum_{n=1}^\infty |x_n-y_n| \\
+        & = d(x,y)
+    \end{align*}
+\end{enumerate}
+Thus, $\ell^1$ is a metric space.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 95.}
+Prove that $\ell^1$ is complete.
+\begin{proof}
+We choose a Cauchy sequence $\left\{x_n = \left(x_1^{(n)}, x_2^{(n)},\cdots\right)\right\}$ and then we have 
+\begin{align*}
+    \left|x_i^{(n)} - x_i^{(m)}\right| \leq \|x_n - x_m\|_1, i\in\mathbb{N}
+\end{align*}
+then every $\{x_i\}$ is Cauchy sequence and then converges to a real number, denoted by $z_i$. Then we have $x_n\to z = (z_1, z_2,\cdots)$. 
+
+Now we need to show that $z$ is in $\ell^1$. We have 
+\begin{align*}
+    \|z\| = \lim_{N\to\infty}\sum^N_{i=1}\left|z_i\right| \, & = \lim_{N\to\infty}\left(\lim_{n\to\infty} \sum^N_{i=1} \left|x^{(n)}_i\right|\right) \\
+    & = \lim_{n\to\infty}\left(\lim_{N\to\infty} \sum^N_{i=1} \left|x^{(n)}_i\right|\right)
+\end{align*}
+where we interchange the order of limit since it is the sum of finite numbers. Since $\{x_n\}$ is Cauchy sequence, then it is bounded. Then for some $M > 0$, we have $\|x_n\| < M$ for all $n$. Thus, for any $N$, we have
+\begin{align*}
+    \sum^N_{i=1} \left|x^{(n)}_i\right| \leq \sum^\infty_{i=1} \left|x^{(n)}_i\right| = \|x_n\| < M
+\end{align*}
+Then we take $n\to\infty$, we have 
+\begin{align*}
+    \sum^N_{i=1} \left|z_i\right| \leq \|x_n\| < M
+\end{align*}
+Since this holds for arbitrary $N$, we can know that $\|z\| < M$. Thus, $z\in\ell^1$, which implies $\ell^1$ is complete.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 96.}
+Prove that $\ell^1$ is separable.
+\begin{proof}
+For $x = (x_1,x_2,\cdots)\in\ell^1$, we have $\sum^\infty_{i=1}\left| x_i\right| < \infty$. Then, we can know that there exists a $N > 0$, such that for $i > N$, we have $\sum^\infty_{i = N+1}\left| x_i\right| < \varepsilon/2$. Now take a sequence $\{z_1,z_2,\cdots, z_N, 0,0,\cdots \},z_1,\cdots,z_N\in\mathbb{Q}$ satisfying $\sum^N_{i=1}\left|z_i - x_i\right| < \varepsilon/2$. Denote $z = (z_1,z_2,\cdots, z_N, 0,0,\cdots)$ and we have
+\begin{align*}
+    \|x - z\|_1 < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon 
+\end{align*}
+Therefore, $x\in \ell^1$ can be approximated by elements of a countable subset $\{z_1,\cdots, z_N, 0,\cdots\}$, which consisting of rational numbers and $0$. Now we set $Z_j = \{z_1,\cdots, z_j, 0,\cdots\}, z_1,\cdots,z_j\in\mathbb{Q}$ and then clearly, $\bigcup^n_{j=1}Z_j$ is a countable union of countable sets. Thus, $\ell^1$ is separable. 
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 97.}
+Prove that if $x\in\ell^1$ and $r> 0$, then the closed ball  in $\ell^1$
+$$
+\bar{B}(x,1)=\{z\in\ell^1: \Vert x-z\Vert_1\leq 1\}
+$$
+is not compact.\footnote{This provides an example of a complete metric space where bounded and closed sets are not necessarily compact.}
+\begin{proof}
+Consider the element $e_i = \left(0,\cdots,0, \underbrace{1/2}_{i\,{\rm th}}, 0,\cdots \right)$, $i\in \mathbb{N}$. Then the sequence $\{e_n\}^\infty_{n=0}$ does not have convergent subsequence in $\ell^1$, since $\|e_n - e_m\|_1 = 1$ for all $n,m\in\mathbb{N}$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 98.}
+Let
+$$
+\ell^\infty=\left\{x=(x_1,x_2,\ldots):\, \sup_{n}|x_n|<\infty\right\}
+\quad
+d(x,y)=\Vert x-y\Vert_\infty=\sup_{n} |x_n-y_n|.
+$$
+Prove that the metric space $\ell^\infty$ is not separable.
+\begin{proof}
+Consider the element $x_I = (x^I_1, x^I_2,\cdots)\in\ell^1$ and for any subset $I$ of positive integers $\mathbb{N}$, $x^I_i$ is defined by
+\begin{align*}
+    x^I_i = \left\{
+    \begin{aligned}
+    & 1, \text{if} \quad i \in I\\
+    & 0, \text{if} \quad i \notin I
+    \end{aligned}
+    \right.
+\end{align*}
+Then we have $d(x_I, x_J) = 1$ for different subset $I$ and $J$. Then we consider the collection of balls with radius $1/2$:
+\begin{align*}
+    \mathbb{M} = \left\{B\left(x_I, \frac{1}{2}\right), I\subset\mathbb{N}\right\}
+\end{align*}
+and this is an uncountable collection of disjoint open balls. Now set $S$ be a dense  subset in  $\ell^\infty$, then each ball in $\mathbb{M}$ must contain at least one point of $S$, and these points are all disjoint, which means $S$ is uncountable infinite. Thus, $\ell^\infty$ is not separable.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 99.}
+Prove that for every separable metric space $(X,d)$ there is an isometric embedding
+$\kappa:X\to\ell^\infty$.\\
+{\bf Hint:}
+{\em Let $x_0\in X$ and let $\{ x_i\}_{i=1}^\infty$ be a countable and a dense subset. For each $x\in X$
+consider a sequence $(d(x,x_i)-d(x_i,x_0))_{i=1}^\infty$.}
+\begin{proof}
+Consider the map $\kappa: X\to (d(x,x_i)-d(x_i,x_0))_{i=1}^\infty \in \ell^\infty$, then we have 
+\begin{align*}
+    d_{\ell^\infty}(x,y) & = \sup_i \left|d(x,x_i) - d(x_i,x_0) - d(y,x_i) + d(x_i,x_0)\right| \\
+    & = \sup_i \left|d(x,x_i) - d(y,x_i)\right| \\
+    & \leq d(x,y)
+\end{align*}
+Then there exists a constant $c > 0$ such that $d_{\ell^\infty}(x,y) < cd(x,y)$, which means $\kappa$ is an isometric embedding.
+\end{proof}
+
+\medskip
+
+
+
+\noindent
+{\bf Problem 100.}
+Let $X\subset\mathbb{R}^n$ be a compact set.
+Prove that the set
+$$
+Y=\big\{ y\in\mathbb{R}^n:\, \mbox{$|x-y|=2019$ for some $x\in X$}\big\}
+$$
+is compact.
+\begin{proof}
+For every $y\in Y$, we have $\left|x - y\right| = 2019$ for some $x\in X$. Then we can know that $y$ lies on the ball centered at $x$ with radius $2019$. Then $Y$ is bounded, since if not, there exists $y\in Y$ such that $\left|x - y\right| > 2019$, which is a contradiction. 
+
+Suppose the sequence $\{y_n\}^\infty_{n=1}\in Y$, and $y_n\to y^*$. It suffices to show that $y^*\in Y$. Indeed, we have 
+\begin{align*}
+    \left|y^* - x\right| &\leq \left|y_n - x\right| + \left|y^* - y_n\right|\to 2019 \\
+    \left|y^* - x\right| &\geq \left|y_n - x\right| - \left|y^* - y_n\right|\to 2019
+\end{align*}
+as $n\to\infty$. Then we can know that $y^*\in Y$. Now we proved that $Y$ is bounded and closed, $Y$ is compact follows naturally.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 101.}
+Construct an example of a decreasing family of connected sets
+$$
+C_1\supset C_2\supset C_3\supset\ldots,
+$$
+such that the intersection
+$\bigcap_{i=1}^\infty C_i$ is disconnected. (It is enough if you define $C_i$
+on a picture.)
+\begin{proof}
+We can define $C_n$ as below
+\begin{align*}
+    C_n = \left(\mathbb{R}\times \{0\}\right) \cup \left(\mathbb{R}\times \{1\}\right) \cup \left\{(x,y) | x\geq n, 0\leq y\leq 1\right\}
+\end{align*}
+Then $C_n$ contains two horizontal lines and part of the regions between them, and it is clear $C_n$ is connected. However, the intersection of $C_n$ is just two parallel lines, which is not connected. 
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 102.}
+Let $(f_n)_{n=1}^\infty$, $f_n:[0,1]\to\mathbb{R}$ be sequence of continuous functions such that
+\begin{itemize}
+\item[(a)] $f_n(x)\geq 0$ for all $x$ and $n$,
+\item[(b)] $f_{n+1}\leq f_n$ for all $n$,
+\item[(c)] $\displaystyle\lim_{n\to\infty} f_n(x)=0$ for all $x\in\mathbb{R}$.
+\end{itemize}
+Prove that $f_n\rightrightarrows 0$ converges uniformly to $0$.
+\begin{proof}
+Given $\varepsilon > 0$, it suffices to prove that there exists $N > 0$, such that if $\forall n > N$ and $\forall x\in[0,1]$, then $0\leq f_n(x) < \varepsilon$. 
+
+For any $x\in[0,1]$, let $N_x$ be the least integer such that $f_{N_x}(x) < \varepsilon$. Then for $n > N_x$, $f_n(x) < \varepsilon$. Since $f_{N_x}$ is continuous function, then there exists an open neighborhood $U_x\in[0,1]$ of $x$ such that for every $z\in U_x$, $f_{N_x}(z) < \varepsilon$. 
+
+Since $[0,1]$ is compact, then there exists a finite open covering such that $[0,1]\subset U_{x_1}\cup U_{x_2}\cup \cdots \cup U_{x_k}$. Now we pick $N = \max\{N_{x_1}, N_{x_2},\cdots, N_{x_k}\}$, where $N_{x_j}$ is the least integer such that $f_N_{x_j}(x_j) < \varepsilon$. Then if $n > N$ and for $x\in[0,1]$, then $x\in U_{x_i}$ for some $i\in\{1,2,\cdots,k\}$, then we have $0\leq f_n(x) \leq f_N(x) \leq f_{N_{x_i}(x)} < \varepsilon$. Thus, $f_n$ converges uniformly to $0$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 103.}
+Let $F:\mathbb{R}^n\to\mathbb{R}$ be a norm, that is for all $x,y\in\mathbb{R}^n$ and $t\in\mathbb{R}$,
+\begin{itemize}
+\item[(a)] $F(x)\geq 0$ and $F(x)=0$ if and only if $x=0$,
+\item[(b)] $F(x+y)\leq F(x)+F(y)$,
+\item[(c)] $F(tx)=|t|F(x)$.
+\end{itemize}
+Prove that there are constants $A,B>0$ such that
+$$
+A\Vert x\Vert\leq F(x)\leq B\Vert x\Vert
+\quad
+\text{for all $x\in\mathbb{R}^n$.}
+$$
+\begin{proof}
+~\begin{enumerate}
+    \item We claim that $F$ is bounded on unit sphere $\{\|x\| = 1\}$. \\
+    Let $\{e_1,e_2,\cdots,e_n\}$ be orthonormal basis for $\mathbb{R}^n$, then any $x\in\mathbb{R}^n$ can be written as
+    \begin{align*}
+        x = \sum^n_{i=1} c_ie_i
+    \end{align*}
+    If $\|x\| = 1$, then we have $|c_i| \leq 1$. And we have 
+    \begin{align*}
+        F(x) = F\left(\sum^n_{i=1} c_ie_i\right) \leq \sum^n_{i=1} |c_i| F(e_i) \leq \sum^n_{i=1} F(e_i) = B
+    \end{align*}
+    Then there exists a $B > 0$.
+    \item Now we claim $F$ is continuous. \\
+    If $x \neq y$, then we have $y = x + \|y-x\|\cdot \frac{y-x}{\|y-x\|}$. Thus, we have
+    \begin{align*}
+        & F(y) \leq F(x) + \|y-x\| F \left(\frac{y-x}{\|y-x\|}\right) \\
+        \Rightarrow & F(y) - F(x) \leq B\|y-x\|
+    \end{align*}
+    Now we switch $x$ and $y$, then we have $F(x) - F(y) \leq B\|y-x\|$. Thus we have $|F(x) - F(y)|\leq B \|y-x\|$, which implies $F$ is continuous. \\
+
+    Now we complete the proof. Since $F$ is continuous, so it obtains its minimum $A$ on the compact unit sphere, i.e.,
+    \begin{align*}
+        & A = \inf_{\|x\| = 1}F(x) = F(x_0) > 0 \\
+        \Rightarrow & A\leq F(x) \leq B, \|x\| = 1
+    \end{align*}
+    Now if $\|x\|\neq 0$ is any point in $\mathbb{R}^n$, then 
+    \begin{align*}
+        & F(x) = F\left(\|x\|\cdot\frac{x}{\|x\|}\right) = \|x\|\cdot F\left(\frac{x}{\|x\|}\right) \\
+        \Rightarrow & A\|x\|\leq F(x)\leq B\|x\|
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 104.}
+Prove that if $X$ is a metric space and $f:X\times [0,1]\to\mathbb{R}$ is continuous, then
+$$
+g:X\to\mathbb{R},
+\quad
+g(x)=\sup_{t\in [0,1]} f(x,t)
+$$
+is continuous.
+\begin{proof}
+Prove by contradiction and suppose $g$ is not continuous, i.e., there exists a $\varepsilon > 0$, for $\forall \delta > 0$, $\exists x_0 \in[0,1]$ such that if $d(x,x_0) > \delta$, then $\left|g(x) - g(x_0)\right| \geq \varepsilon$.
+
+Fix such $\varepsilon$ and pick $\delta = 1/n$, then there exists $x_n$ such that if $d(x_n,x_0) < 1/n$, then $\left|g(x_n) - g(x_0)\right| \geq \varepsilon$, which implies 
+\begin{align*}
+    \left|\sup_t f(x_n,t) - \sup_t f(x_0,t)\right| \geq \varepsilon
+\end{align*}
+then there exist $t_n,t_0\in[0,1]$ such that $f(x_n,t_n) = \sup_t f(x_n,t), f(x_0,t_0) = \sup_t f(x_0,t)$. Then 
+\begin{align*}
+    \left|f(x_n,t_n) -f(x_0,t_0)\right| \geq \varepsilon
+\end{align*}
+where $x_n\to x_0$. Since $\{t_n\}$ is a bounded sequence in $[0,1]$, then there exists a convergent subsequence $\{t_{n_k}\}$ such that $t_{n_k}\to s$, and then $f(x_{n_k},t_{n_k})\to f(x_n,s)$. Then we have  
+\begin{align*}
+    f\left(x_{n_k},t_{n_k}\right) & = \sup_t f\left(x_{n_k},t \right) \geq f\left(x_{n_k},t_0\right) \\
+    f(x_n,t_0) & = \sup_t f\left(x_n,t \right) \geq f(x_n,s)
+\end{align*}
+Then we have 
+\begin{align*}
+    f(x_n,t_0) \leftarrow f\left(x_{n_k},t_0\right) \leq f\left(x_{n_k},t_{n_k}\right) \rightarrow f(x_n,s) \leq f(x_n,t_0)
+\end{align*}
+which means $f\left(x_{n_k},t_{n_k}\right) \to f(x_n,t_0)$, and this is a contradiction to the assumption above.
+\end{proof}
+
+\medskip
+
+
+\noindent
+{\bf Problem 105.}
+Prove that is $A\subset X$ is a dense subset of a metric pace $X$, and $f:A\to\mathbb{R}$ is continuous, then there is a unique function $F:X\to\mathbb{R}$ such that $F(x)=f(x)$ for all $x\in A$. Prove then that $F$ is uniformly continuous.
+\begin{proof}
+Since $A$ is dense, then any $x\in X$ is a limit point of $A$, i.e., we can pick a sequence $\{a_k^x\}\in A$ such that $a_k^x \to x$. Since $f$ is continuous on $X$, then for $\forall \varepsilon > 0$ and $x\in X$, there exists $\delta_x > 0$ such that if $d(x,y) < \delta_x$, then $\left|f(x) - f(y)\right| < \varepsilon$. For such $\delta_x$, we can find a $N > 0$, such that if $\forall l, k > N$, then $d\left(a_k^x, a_l^x\right) < \delta_x$, and hence 
+$$\left|f(a_k^x) - f(a_l^x)\right| < \varepsilon$$
+then we know that $\left\{f(a_k^x)\right\}^\infty_{k = 1}$ is a Cauchy sequence. Thus it is convergent. 
+
+Now we define 
+$$F(x) = \lim_{k\to\infty}f(a_k^x)$$
+And we define $\delta = \min\{\delta_x| x\in X\}$. Then if $d(x,y) < \delta$, then there exists $K > 0$ such that for $\forall k > K$, we have $d\left(a^x_k, a^y_k\right) < \delta$. Thus
+\begin{align*}
+    \left|f(a_k^x) - f(a_y^y)\right| < \varepsilon \Rightarrow \left|F(x) - F(y)\right| < \varepsilon
+\end{align*}
+which implies that $F(x)$ is uniformly continuous. 
+\end{proof}
+
+\medskip
+
+
+\noindent
+{\bf Problem 106.}
+Let $f:A\to X$ be a mapping between a dense subset $A\subset\mathbb{R}^n$ and a complete metric space $(X,d)$. Assume that $d(f(x),f(y))\leq |x-y|$ for all $x,y\in A$.
+\begin{itemize}
+\item[(a)] Prove that there is a mapping $F:\mathbb{R}^n\to X$ such that $d(F(x),F(y))\leq |x-y|$ for all $x,y\in \mathbb{R}^n$ and $F(x)=f(x)$ whenever $x\in A$.
+\item[(b)] Provide an example showing that the claim in (a) is not true if we do not assume that the space $(X,d)$ is complete.
+\end{itemize}
+\begin{proof}
+~\begin{itemize}
+    \item[(a)] Since $A\subset \mathbb{R}^n$ is dense, then any $x\in \mathbb{R}^n$ is a limit point of $A$. Then we can find a sequence $\{a^x_k\}^\infty_{k=1}\in A$ such that $a^x_k\to x$. Also, for $\forall \varepsilon > 0$ and $\forall x,y\in\mathbb{R}^n$, there exists a $\delta =\varepsilon$, such that if $|x-y| <\delta$, then $d(F(x),F(y)) \leq |x-y| < \varepsilon$. For such $\varepsilon$, we could find $N > 0$, such that if $\forall k,l > K$, then $|a^x_l - a^x_k| < \varepsilon$, and hence
+    \begin{align*}
+        \left|f(a^x_l) - f(a^x_k)\right| < \varepsilon
+    \end{align*}
+    then we know that $\{f(a^x_k)\}^\infty_{k=1}$ is a Cauchy sequence. Since $X$ is a complete metric space, then this Cauchy sequence converges. 
+    
+    Now we can define 
+    \begin{align*}
+        F(x) = \lim_{k\to\infty}f(a^x_k)
+    \end{align*}
+    and we can compute for
+    \begin{align*}
+        d(F(x),F(y)) & = d\left(\lim_{k\to\infty}f(a^x_k), \lim_{k\to\infty}f(a^y_k)\right) \\
+        & \leq \left|\lim_{k\to\infty}a^x_k, \lim_{k\to\infty}a^y_k\right| \\
+        & \leq \left|a^x_k, x\right| + \left|x, y\right| + \left|y, a^y_k\right| \rightarrow \left|x, y\right|
+    \end{align*}
+    Then we have $d(F(x),F(y)) \leq \left|x, y\right|$ for $x,y\in\mathbb{R}^n$. 
+    
+    For $x\in A$, we have $F(x) = \lim_{k\to\infty}f(a^x_k) = f(x)$, since $\{f(a^x_k)\}$ is Cauchy sequence and $a^x_k\to x$. If not, then there exists $\varepsilon > 0$, and $\forall \delta > 0$, $\exists K$ such that if $\forall k > K$, $\left|a^x_k - x\right| < \delta$, then $\left|f(a^x_k) - f(x)\right| \geq \varepsilon$. We can take $\delta = \varepsilon$, then this is contradicted with $d(f(a^x_k),f(x))\leq |a^x_k - x| < \varepsilon$.
+    \item[(b)] If $(X,d)$ is discrete metric space, then the claim in (a) is not true. 
+\end{itemize}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 107.}
+Show that the Hilbert cube
+$$
+\mathcal{H}=\{x=(x_1,x_2,\ldots):\, 0\leq x_n\leq 2^{-n}\ \text{for each}\ n\in\mathbb{N}\}
+$$
+is compact when equipped with the $\ell^1$ metric
+$\displaystyle d(x,y)=\sum_{n=1}^\infty|x_n-y_n|$.
+\begin{proof}
+Let $x^{(n)} = \left(x^{(n)}_1, x^{(n)}_2, \cdots\right)$, and with diagonal method, we can find a subsequence $\left\{x^{(n_k)}\right\}$ such that $\left\{x^{(n_k)}_i\right\}$ converges for $\forall i\in\mathbb{N}$, in the sense $x_i^{(n_k)}\to x_i$, where $0\leq x_i^{(n_k)}\leq 2^{-i}$. Thus we have $0\leq x_i \leq 2^{-i}$, which implies that $x = \left(x_1, x_2,\cdots\right)\in \mathcal{H}$. 
+
+It remains to prove that $x^{(n_k)}\stackrel{l^1}{\longrightarrow}x$. Given $\varepsilon > 0$, and we can find a $N_1 > 0$, such that 
+$$\sum^\infty_{i = N_1 +1}2^{-i} < \varepsilon$$
+since the series $\sum^\infty_{i=n}2^{-i}$ is a decreasing sequence as $n$ increases, which convegeing to $0$. Then we can have
+\begin{align*}
+    \sum^\infty_{i = N_1 + 1} \left|x_i^{(n_k)} - x_i\right| < \sum^\infty_{i = N_1 +1}2^{-i} < \varepsilon
+\end{align*}
+Since $x_i^{(n_k)}\to x_i$ for $\forall i\in\mathbb{N}$, then there exists $N_2 > 0$ such that for all $k > N_2$, $\left|x_i^{(n_k)} - x_i\right| < \varepsilon/N_1, i\leq N_1$. Thus, now we take $N = N_1 + N_2$, then for all $k > N$, we have 
+\begin{align*}
+    \sum^\infty_{i = 1}\left|x_i^{(n_k)} - x_i\right| & =  \sum^{N_1}_{i = 1}\left|x_i^{(n_k)} - x_i\right| + \sum^\infty_{i = N_1 + 1} \left|x_i^{(n_k)} - x_i\right| \\
+    & < N_1 \frac{\varepsilon}{N} + \varepsilon \\
+    & < N \frac{\varepsilon}{N} + \varepsilon \\
+    & < 2 \varepsilon \\
+    \Rightarrow &\, x^{(n_k)}\stackrel{l^1}{\longrightarrow}x
+\end{align*}
+The proof is complete.
+\end{proof}
+
+\medskip
+
+
+
+\noindent
+{\bf Problem 108.}
+Let $f_n:\mathbb{R}^k\to\mathbb{R}^m$ be continuous maps $(n=1,2,\ldots)$ Let $K\subset\mathbb{R}^k$ be compact. Prove that if $f_n\rightrightarrows f$ uniformly on $K$, then the set
+$$
+S=f(K)\cup\bigcup_{n=1}^\infty f_n(K)
+\quad
+\text{is compact.}
+$$
+\begin{proof}
+It suffices to prove that $S$ is bounded and closed. 
+\begin{enumerate}
+    \item First, we prove that $S$ is bounded. Since $f$ is continuous and $K$ is compact, then we have $f(K)$ is also compact, thus bounded. Since $f_n$ uniformly converges to $f$, then for $\forall\varepsilon > 0$, there exists $N > 0$ and $\delta > 0$ such that for $\forall n \geq N$ and $\forall x\in K$, $\|f_n(x) - f(x)\| \leq \varepsilon$. Then this also holds for $\varepsilon = 1$ for $n \geq N$. Then $\bigcup^\infty_{n = N}f_n(K)$ is also bounded since it is the set of all points that within distance $1$ to a compact set $f(K)$.  Also, $\bigcup^{N-1}_{n = 0}f_n(K)$ is also bounded since it is finite sum of compact sets.
+    \item Second, we prove that $S$ is closed. For every sequence $\{y_i\}^\infty_{i=1}\in S$ such that $y_i\to y$, we need to prove that $y\in S$. If infinitely many $y_i$'s belong to $f(K)$ or $f_n(K)$ for some $n\in\mathbb{N}$, then $y_i$ converges to a point in $f(K)$ or $f_n(K)$ since both are compact sets, which implies $y\in S$. 
+    
+    Otherwise, if every $f_n(K)$ only contians finite components of $\{y_i\}$, then there is a subsequence $\{y_{i_j}\}^\infty_{j = 1}$ such that $y_{i_j}\in f_{n_{i_j}}(K)$, and $y_{i_j} = f_{n_{i_j}}(x_{i_j}), x_{i_j}\in K$. Since $K$ is compact, then $x_{i_j}$ has a convergent subsequence $\{x_{i_{j_l}}\}$ such that $x_{i_{j_l}} \to x \in K$. And since $f_n$ uniformly converges to $f$, then we have 
+    \begin{align*}
+        y\leftarrow y_{i_{j_l}} = f_{n_{i_{j_l}}}\left(x_{i_{j_l}} \right) \to f(x)\in f(K) \subset S
+    \end{align*}
+    Thus, $y = f(x)\in S$.
+\end{enumerate}
+
+The proof is complete.
+\end{proof}
+
+\medskip
+
+
+\noindent
+{\bf Problem 109.}
+Let $f_n:X\to\mathbb{R}$, $n=1,2,\ldots$ be a sequence of continuous functions on a metric space $X$ such that the series $\sum_{n=1}^\infty f_n(x)$ converges for all $x\in X$ and
+$$
+\sup_{x\in X}\left(\sum_{n=1}^\infty f_n(x)^2\right)^{1/2}<\infty.
+$$
+Prove that if a series of real numbers $c_n$, $n=1,2,\ldots$ satisfies $\sum_{n=1}^\infty c_n^2<\infty$, then the series
+$$
+\sum_{n=1}^\infty c_nf_n(x)
+$$
+converges uniformly to a continuous function.
+\begin{proof}
+Define $f(x) = \sum_{n=1}^\infty c_n f_n(x)$, and we can prove that $p(x)$ also converges for $x\in X$. Indeed, with Cauchy–Schwarz inequality, we have
+\begin{align*}
+    \sum_{n=1}^\infty c_nf_n(x) & \leq \left(\sum_{n=1}^\infty c_n^2\right)^{\frac{1}{2}} \left(\sum_{n=1}^\infty f_n(x)^2\right)^{\frac{1}{2}} \\
+    & \leq \left(\sum_{n=1}^\infty c_n^2\right)^{\frac{1}{2}} \sup_{x\in X} \left(\sum_{n=1}^\infty f_n(x)^2\right)^{\frac{1}{2}} < \infty
+\end{align*}
+
+It remains to prove that $f(x) = \lim_{n\to\infty}\sum_{n=1}^\infty c_n f_n(x)$ is a continuous function. Since $\sum_{n=1}^\infty c_nf_n(x) < \infty$, then $\lim_{n\to\infty} c_n f_n = 0$. Thus, for every $\varepsilon > 0$, there exists $N > 0$, such that for $n > N$, $\sum_{n=N+1}^\infty c_nf_n(x) < \infty$. Also, for the same $\varepsilon$, we can choose $\delta > 0$ such that if $|x - y| < \delta$, then 
+\begin{align*}
+    \left|f_n(x) - f_n(y)\right| < \frac{\varepsilon^2}{N \left(\sum_{n=1}^\infty c_n^2\right)}
+\end{align*}
+for all $n = 1,2,\cdots$. Indeed, we could find such $\delta$ since $f_n$'s are continuous functions. Thus, if $|x - y| < \delta$, we have 
+\begin{align*}
+    \left|f(x) - f(y)\right| & \leq \sum_{n=1}^\infty c_n \left|f_n(x) - f_n(y)\right|\\
+    & = \sum_{n=1}^N c_n \left|f_n(x) - f_n(y)\right| + \sum_{n=N+1}^\infty c_n \left|f_n(x) - f_n(y)\right|\\
+    & \leq \left(\sum_{n=1}^N c_n^2\right)^{\frac{1}{2}} \left(\sum_{n=1}^N \left|f_n(x) - f_n(y)\right|^2\right)^{\frac{1}{2}} + \varepsilon \\
+    & \leq 2 \varepsilon 
+\end{align*}
+Thus, $f$ is a continuous function as defined above. The proof is complete.
+\end{proof}
+
+Here is method II.
+\begin{proof}
+We can find a $A$ such that 
+$$\sup_{x\in X}\left(\sum_{n=1}^\infty f_n(x)^2\right)^{1/2} \leq A < \infty$$
+Also for $\forall \varepsilon > 0$, there exists $N_0 > 0$ such that for $M > N > N_0$, we have 
+\begin{align*}
+    \sum^M_{n = N}c_n^2 < \frac{\varepsilon^2}{A^2}
+\end{align*}
+Then we have
+\begin{align*}
+    \left|\sum^M_{n = N}c_n f_n(x) \right| & \leq \left(\sum^M_{n = N}c_n^2\right)^{\frac{1}{2}} \left(\sum^M_{n = N}f_n(x)^2\right)^{\frac{1}{2}} \\
+    & < \left(\frac{\varepsilon^2}{A^2}\right)^{\frac{1}{2}} = \varepsilon
+\end{align*}
+For such $x\in X$, $f(x)  = \sum^\infty_{n = 1}c_n f_n(x)$ converges. We fix $N$ and let $M\to\infty$, then we have
+\begin{align*}
+    \left|f(x) - \sum^{N-1}_{n = 1}c_n f_n(x) \right| = \left|\sum^{\infty}_{n = N}c_n f_n(x) \right| \leq \varepsilon
+\end{align*}
+
+Thus, for $\forall\varepsilon > 0$, there exits $N_0 > 0$ such that for $\forall N > N_0$ and $\forall x\in X$, we have 
+\begin{align*}
+    \left|f(x) - \sum^{N-1}_{n = 1}c_n f_n(x) \right| \leq \varepsilon
+\end{align*}
+which implies $\sum^\infty_{n=1}c_n f_n(x) \rightrightarrows f(x)$. 
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 110.}
+A graph of a mapping $f:X\to Y$ is defined as
+$$
+G_f=\{ (x,y)\in X\times Y:\, y=f(x)\}.
+$$
+Prove that if $X$ is a metric space and $Y$ is a compact metric space, then the map $f:X\to Y$ is continuous if and only if $G_f$ is a closed subset of $X\times Y$.
+\begin{proof}
+~\begin{enumerate}
+    \item ($\Rightarrow$) We can pick a sequence $\{x_n\}^\infty_{n=1}\in X$ such that $y_n = f(x_n)$. Since $Y$ is compact, then there is a subsequence $\{y_{n_k}\}$ converging to a point in $Y$, denoted by $y$. Then we have $y_{n_k}\to y$, and if $Y$ is compact, then it is closed, which implies that $y\in Y$. Also, we can find a $x\in X$ such that $x = f(y)$. With $f$ being continuous, we can claim that $x_{n_k}\to x$. Thus, $\left(x_{n_k},y_{n_k}\right)\to(x,y)\in G_f$, which implies that $G_f$ is closed.
+    \item ($\Leftarrow$) Suppose  $G_f$ is a closed subset of $X\times Y$, then convergent sequence $\{\left(x_n, y_n\right)\}\in G_f$ converges to a point in $G_f$, denoted by $(x,y)$, where $y_n = f(x_n)$. Then we have $\left(x_n, f(x_n)\right) \to (x,f(x))\in G_f$. Since every convergent sequence in metric space is Cauchy sequence, then for every $\varepsilon > 0$, we can find $\delta > 0$, such that for $\forall x, x_n \in X$, if $d_X(x,x_n) < \delta$, then  $d_Y(f(x),f(x_n)) < \varepsilon$. Thus, $f$ is continuous.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+
+\noindent
+{\bf Problem 111.}
+Let $(X,d)$ be a compact metric space and $z\in Z$. Let $T:X\to X$ be a mapping that satisfies $d(x,y)\leq d(T(x),T(y))$ for all $x,y\in X$, that is the distances are non-decreasing under the mapping $T$. Define $\{x_n\}$ by
+$$
+x_1=T(z)
+\quad
+\text{and}
+\quad
+x_{n+1}=T(x_n) \ \text{for $n\geq 1$.}
+$$
+Prove that there is a subsequence of $\{ x_n\}$ which converges to $z$.
+\begin{proof}
+Prove by contradiction and suppose that there is no subsequence of $\{ x_n\}$  converging to $z$. Then we have $d(x_n, z) \geq \varepsilon, \forall n\in\mathbb{N}$. Let $n > M$, then 
+\begin{align*}
+    d\left(T^{n}(z), T^{m}(z)\right) & \geq d\left(T^{n-1}(z), T^{m-1}(z)\right) \\
+    & \geq \cdots \\
+    & \geq d\left(T^{n-m}(z), z\right) \\
+    & \geq \varepsilon
+\end{align*}
+but $X$ is compact, then $\{x_n\}$ should have convergent subsequence, which is a  contradiction. The proof is complete.
+\end{proof}
+
+\medskip
+
+
+\noindent{\bf Problem 112.}
+Let $(X,d)$ be a compact metric space and $f:X\to\mathbb{R}$ be a continuous function. Prove that for any $\varepsilon>0$, there is $C>0$ such that
+$$
+|f(x)-f(y)|\leq Cd(x,y)+\varepsilon
+\quad
+\text{for all $x,y\in X$.}
+$$
+\begin{proof}
+Since $f$ is continuous function, then for $\forall\varepsilon > 0$, there exists a $\delta > 0$, such that if $d(x,y) < \delta$, then $\left|f(x) - f(y)\right| < \varepsilon$. Then we can find an $r > 0$ such that $\left|f(x) - f(y)\right| \leq \varepsilon - r$. Thus we have
+\begin{align*}
+    \left|f(x) - f(y)\right| & \leq \varepsilon - \frac{r}{d(x,y)}d(x,y) \\
+    & \leq \varepsilon - \frac{r}{\delta}d(x,y)
+\end{align*}
+we can define $C = - \frac{r}{\delta}$. Thus, we actually find the $C$ for the $\varepsilon$ above.
+\end{proof}
+
+\medskip
+
+
+\noindent
+{\bf Problem 113.}
+Let $(X,d)$ be a metric space and $f:X\to X$ be a contraction mapping. Prove that if a non-empty and compact set $K\subset X$ satisfies $f(K)=K$, then $K$ contains exactly one point.
+\begin{proof}
+Prove by contradiction and suppose $K$ has more than one point. Then $K$ must has at least two points $x_1$ and $x_2$. Without losing generality, we can assume $K = \{x_1, x_2\}$. Since $f$ is a contraction mapping, then we have $d(f(x_1),f(x_2)) < d(x_1,x_2)$. Also, $f(K) = K$, then there are only two choices: one is that $f(x_1) = x_1, f(x_2) = x_2$ and another one is $f(x_1) = x_2, f(x_2) = x_1$. In both case we have $d(f(x_1),f(x_2)) = d(x_1,x_2)$, which is a contradiction.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 114.}
+Let $(X,d)$ be a compact metric space. Prove that if $f:X\to X$ satisfies $d(f(x),f(y))<d(x,y)$ for all $x,y\in X$, $x\neq y$, then, there is a unique point $x\in X$ such that $f(x)=x$.
+\begin{proof}
+This is exactly Banach Contraction Principle.
+\end{proof}
+
+\noindent
+{\bf Problem 115.}
+Find an example of a function $f:\mathbb{R}\to\mathbb{R}$ such that
+$$
+|f(x)-f(y)|<|x-y|
+\quad
+\text{  for all $x,y\in\mathbb{R}$, $x\neq y$.}
+$$
+and $f$ has no fixed point. You can find an explicit formula for $f$, but you do not have to. It is enough if you find a convincing argument that such a function exists. You do not have to be very precise, but your argument has to be convincing.
+\begin{proof}
+Take $f(x) = \ln\left(1 + e^x\right)$.
+\end{proof}
+
+\medskip
+
+
+\end{document}

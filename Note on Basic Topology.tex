@@ -1274,8 +1274,8 @@ Let $\{f_n\}^\infty_{n=1}, f_n:[0,1]\to\mathbb{R}$ be a sequence of continuous f
     \item $f_{n+1}\leq f_n$.
     \item $\forall x\in [0,1], f_n(x)\to 0$.
 \end{enumerate}
-\end{exercise}
 Then $f_n$ uniformly converges to $0$.
+\end{exercise}
 \begin{proof}
 Given $\varepsilon > 0$, we need to find $N > 0$ such that if $\forall n \geq N$ and $\forall x\in [0,1]$, then $0 < f_n(x) < \varepsilon$.
 
@@ -1283,6 +1283,8 @@ For $x\in [0,1]$, let $N_x$ be the least integer such that $f_{N_x} < \varepsilo
 
 Since $[0,1]$ is compact, then there exists a finite open covering such that $[0,1]\subset U_{x_1}\cup U_{x_2} \cup \cdots \cup U_{x_k}$. Now we pick $N = \max\{N_{x_1},N_{x_2},\cdots,N_{x_k}\}$, where $N_{x_j}$ is the least number such that $f_{N_{x_j}}(x_j) < \varepsilon$. If $n\geq N$ and for $x\in[0,1]$, then $x\in U_{x_i}$ for some $i\in\{1,2,\cdots, k\}$, which implies $0 \leq f_n(x) \leq f_N(x) \leq f_{N_i}(x) < \varepsilon$.
 \end{proof}
+
+\medskip
 
 \begin{exercise}
 Let $F:\mathbb{R}^n\to\mathbb{R}$ be a norm, i.e., for $\forall x,y\in \mathbb{R}^n$ and $t\in\mathbb{R}$, we have
@@ -1355,6 +1357,92 @@ Thus, we have
 \end{align*}
 which means $f(x_{n_k},t_{n_k})\to f(x_0,t_0)$, and this is a contradiction to the assumption above.
 \end{proof}
+
+\medskip
+
+\begin{exercise}
+If $f:\mathbb{R}^n\to\mathbb{R}^m$ is a continuous mapping, which maps open sets to open sets and $f^{-1}(K)$ is compact whenever $K$ is compact. Show that $f(\mathbb{R}^n) = \mathbb{R}^m$.
+\end{exercise}
+\begin{proof}
+It suffices to show that $f(\mathbb{R}^n)$ is open and closed at the same time. 
+\begin{enumerate}
+    \item $f(\mathbb{R}^n)$ being open is obvious, since $f$ maps open set to open set.
+    \item For every $y\in{\rm cl}(f(\mathbb{R}^n))$, we need to prove that $y\in f(\mathbb{R}^n)$. Pick a sequence $\{y_n\}^\infty_{n = 1}\in \mathbb{R}^m$ such that $y = \lim_{n\to\infty}y_n = \lim_{n\to\infty} f(x_n)$. The set $K = \{y\}\cup \{y_1, y_2, \cdots\}$ is compact, since every open covering has a finite subcovering. Then we know $x_n\in f^{-1}(K)$, and $f^{-1}(K)$ is compact. Then there exists a subsequence $\{x_{n_k}\}$ converging to $x$. Then we have $y\Leftarrow y_{n_k} = f(x_{n_k}) \to f(x)$, thus, $y = f(x)\in f(\mathbb{R}^n)$, which implies $f(\mathbb{R}^n)$ is closed.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+If $f:K\to K$ is a continuous, one-to-one and onto function, and $K$ is compact. Prove that $f^{-1}:K\to K$ is continuous.
+\end{exercise}
+\begin{proof}
+It suffices to prove that if $y_n\to y$, then $x_n = f^{-1}(y_n)\to f(y) = x$. Suppose by contrary that $x_n \nrightarrow x$. Then for any $\varepsilon > 0$, we have $d\left(x_{n_k}, x\right)\geq \varepsilon, x_{n_k}\in\{x_n\}$. Since $K$ is compact, then there is a convergent subsequence $x_{n_{k_l}}$ of $\{x_{n_k}\}$ such that $x_{n_{k_l}}\to\Tilde{x}$ and $\Tilde{x}\neq x$. Also, we have 
+\begin{align*}
+    y \Leftarrow y_{n_{k_l}} = f\left(x_{n_{k_l}}\right) \to f(\Tilde{x}) \\
+    \Rightarrow y = f(x) = f(\Tilde{x}), x \neq \Tilde{x}
+\end{align*}
+which is contradicted with $f$ being one-to-one. The proof is complete. 
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+Prove that if $E\subset\mathbb{R}^n$ is not compact, then there exists a continuous and unbounded function $f:E\to\mathbb{R}$.
+\end{exercise}
+\begin{proof}
+Since $E$ is not compact, then $E$ is not bounded or not closed. 
+\begin{enumerate}
+    \item If $E$ is not bounded, we can take $f(x) = |x|$.
+    \item If $E$ is not closed, then there exists a sequence $E \ni\{x_i\}^\infty_{n = 1} \to x \notin E$, then we take $f(x_i) = \frac{1}{|x_i - x|}$.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\begin{definition}
+$E\subset X$ is a Gs set if there are open sets $U_i, i = 1,2,\cdots$ such that $E = \cap^\infty_{i=1}U_i$.
+\end{definition}
+\begin{exercise}
+Prove that if $f:X\to\mathbb{R}$ is a continuous function, then the set $\{x\in X |\, f\, {\rm is \,\, continuous\,\, at}\, x\}$ is Gs set.
+\end{exercise}
+\begin{proof}
+We can know  that $f$ is continuous at $x$ if and only if for $\forall n \in\mathbb{N}$, there exists $M\in\mathbb{N}$ such that if $\forall z,w$ satisfying $d(x,z) < 1/m, d(x,w) < 1/m$, then $|f(z) - f(w)| < 1/n$. Indeed, if $f$ is continuous, then $\forall n \in\mathbb{N}$, there exists $M\in\mathbb{N}$, such that if $d(\xi,x) < 1/m$, then $|f(\xi) - f(x)| < 1/2n$. Then, for $d(x,z) < 1/m, d(x,w) < 1/m$, we have $$|f(z) - f(w)| < |f(z) - f(x)| + |f(x) - f(w)| < 1/n.$$
+
+The set 
+\begin{align*}
+    & \{x\in X |\, f\, {\rm is \,\, continuous\,\, at}\, x\} = \\
+    & \bigcap^\infty_{n=1} \bigcup^\infty_{m=1} \left\{x |\, \forall z,w, d(x,z) < \frac{1}{m}, d(x,w) < \frac{1}{m} \Rightarrow |f(z) - f(w)| < \frac{1}{n} \right\} \\
+    & = \bigcap^\infty_{n=1} \bigcup^\infty_{m=1} A_{n,m} = \bigcap^\infty_{n=1} U_n
+\end{align*}
+where $U_n = \cup^\infty_{m=1} A_{n,m}$. Then it suffices to prove that $U_n$'s are open. 
+
+If $x\in U_n$, then there exists $M_0 > 0$ such that $d(x,z) < 1/M_0, d(x,w) < 1/M_0$, then $|f(z) - f(w)| < 1/n$. Now we prove that $B\left(x,\frac{1}{2M_0}\right)\subset U_n$. 
+
+And it suffices to prove that if $d(x,x') < 1/2M_0$, then $x'\in A_{n,2M_0}\subset U_n$, i.e., if $d(x', z) < 1/2M_0, d(x', w) < 1/2M_0$, then we have $|f(z) - f(w)| < 1/n$. Indeed, suppose $d(x', z) < 1/2M_0, d(x', w) < 1/2M_0$, then we have 
+\begin{align*}
+    d(x,z) & \leq d(x,x') + d(x', z) < \frac{1}{2M_0} = \frac{1}{M_0} + \frac{1}{2M_0} = \frac{1}{M_0} \\
+    d(x,w) & \leq d(x,x') + d(x', w) < \frac{1}{2M_0} = \frac{1}{M_0} + \frac{1}{2M_0} = \frac{1}{M_0}
+\end{align*}
+Then we have $|f(z) - f(w)| < 1/n$. Thus, $x'\in A_{n,2M_0}$, which implies $U_n$'s are open. The proof is complete.
+\end{proof}
+
+\medskip
+
+\begin{exercise}
+There is no continuous and one-to-one function $f:\mathbb{R}^2\to\mathbb{R}$.
+\end{exercise}
+\begin{proof}
+Consider function $g = f|_{S'}: S'\to\mathbb{R}$ being continuous and one-to-one, where $S'$ is a unit circle. Since $S'$ is compact and connected, $g(S')$ is also compact and connected. Indeed, if $f:\mathbb{R}^2\to\mathbb{R}$ is continuous, then its image is connected, that is an interval in $\mathbb{R}$. However if we remove any point from $\mathbb{R}^2$ it remains connected, however if we remove a point whose image is in the interior of the interval then the image cannot be still connected if the function is injective.
+
+Here we present two solutions:
+\begin{enumerate}
+    \item Consider $c \in (a,b)$ and $g(z) = c, z\in S'$. Then we have $g(S'\setminus \{z\}) = [a,c)\cup (c,b]$, where $S'\setminus \{z\}$ is connected and $[a,c)\cup (c,b]$ is disconnected.
+    \item Consider $a = g(z_1), b = g(z_2)$, where $z_1, z_2\in S'$. And we denote one arc between $z_1$ and $z_2$ by $C_1$, and the other one $C_2$. Then we have $g(C_1) = [a,b]$ and $g(C_2) = [a,b]$, thus $g$ is not one-to-one.
+\end{enumerate}
+\end{proof}
+
+\medskip
 
 \begin{theorem}
 If $A\subset U$ is a dense subset of a metric space, i.e., $\text{cl}(A) = X$, and $f:A\to\mathbb{R}$ is uniformly continuous, then there is a unique continuous function $F:X\to\mathbb{R}$ such that $F(x) = f(x)$ for all $x\in A$. Moreover, $F$ is uniformly continuous.
@@ -2072,7 +2160,27 @@ Now we present the proof of Arzelà-Ascoli theorem.
 \end{enumerate} 
 \end{proof}
 
+\medskip
 
+\begin{exercise}
+Let $\{f_n\}^\infty_{n=1}, f_n:\mathbb{R}\to\mathbb{R}$ be a sequence of continuous functions such that:
+\begin{enumerate}
+    \item $f_n(0) = 0$.
+    \item $|f_{n}'(x)|\leq e^{x^2}$ for all $x\in\mathbb{R}$.
+\end{enumerate}
+Prove that a subsequence of $\{f_n\}$ converges to a continuous function.
+\end{exercise}
+\begin{proof}
+Since $f$ is continuous, then for $\forall M \in\mathbb{N}$, $\{f_n |\, x\in [-M,M]\}^\infty_{n = 1}$ is bounded and equicontinuous. Then we have $-e^{M^2} \leq f_n'(x) \leq e^{M^2}$. And we have
+\begin{align*}
+    \left|f_n(x)\right| & = \left|f_n(x) - f_n(0)\right| = \left|f_n'(\xi) x\right| \leq e^{M^2}M
+\end{align*}
+which implies $f_n(x)$ is bounded. Also, 
+\begin{align*}
+    \left|f_n(x) - f_n(y)\right| = \left|f_n'(\xi)(y - x)\right| \leq e^{M^2}|y - x|
+\end{align*}
+Since $f_n(x)$ is bounded, then $\{f_n|x\in [-1,1]\}$ has uniformly convergent subsequence $\{f_{1n}\}$. The sequence $\{f_{1n}|x\in [-2,2]\}$ has uniformly convergent subsequence $\{f_{2n}\}$. And the sequence $\{f_{2n}|x\in [-3,3]\}$ has uniformly convergent subsequence $\{f_{3n}\}$. We can continue this process and get a sequence $\{f_{nn}\}$ which is uniformly convergent on every interval $[-M, M]$, which is diagonal method.
+\end{proof}
 
 
 

@@ -167,11 +167,16 @@ Then we have $\nabla f(0,0) = \left(\frac{\partial f}{\partial x}(0,0), \frac{\p
 Let $f\in C^1(\mathbb{R}^2)$ be such that $f(1,1)=1$ and $\nabla f(1,1)=(a,b)$.
 Let $\varphi(x)=f(x,f(x,f(x,x)))$. Find $\varphi(1)$ and $\varphi'(1)$.
 \begin{proof}
-First, we have $\varphi(1) = f(1,f(1,f(1,1))) = f(1,f(1,1)) = f(1,1) = 1$. Second, we have
+First, we have $\varphi(1) = f(1,f(1,f(1,1))) = f(1,f(1,1)) = f(1,1) = 1$. Second, set $\varphi(x) = f(x, h(x))$, where $h(x) = f(x, f(x,x)) = f(x,g(x))$. Then we have
 \begin{align*}
-    \varphi'(1) & = \left(\frac{\partial f}{\partial x}(1,1), \frac{\partial f}{\partial f(x,f(x,x))} \left(\frac{\partial f(x,f(x,x))}{\partial x}, \frac{\partial f(x,f(x,x))}{\partial f(x,x)} \nabla f(x,x) \right)(1,1) \right) \\
-    & = \nabla f(1,1)=(a,b).
+    \varphi'(x) = \partial_1 f(x, h(x)) + \partial_2 f(x, h(x)) h'(x),
 \end{align*}
+where 
+\begin{align*}
+    h'(x) & = \partial_1 f(x,g(x)) + \partial_2 f(x,g(x)) g'(x) \\
+    g'(x) & = \partial_1 f(x,x) + \partial_2 f(x,x) .
+\end{align*}
+Then $g'(1) = a+b, g(1) = 1$ and $h'(1) = \partial_1 f(1,1) + \partial_2 f(1,1) (a+b) =a + b(a+b)$. Thus, $\varphi'(1) = a + b (a + b(a+b))$.
 \end{proof}
 
 \medskip
@@ -218,8 +223,21 @@ $$
 $$
 is of class $C^1$. Find $D\Phi(x)$.
 \begin{proof}
+For $x \in \mathbb{R}^n, x \neq 0$, we have
 \begin{align*}
-    D\Phi(x) & = \left(|x|^\alpha + \alpha x_1 |x|^{\alpha-1}, \cdots, |x|^\alpha + \alpha x_n |x|^{\alpha-1} \right).
+    \partial_i \Phi_j(x) & = \partial_i \left(x_j |x|^\alpha \right) 
+    \\
+    & = (\partial_i x_j) |x|^\alpha + x_j \alpha |x|^{\alpha-1} \frac{x_j}{|x|},
+\end{align*}
+where $\partial_i x_j = 0$ or $1$. Then we have
+\begin{align*}
+    \partial_i \Phi_j(0) & = \lim_{h\to 0} \frac{\Phi_j(0,\cdots, h, \cdots, 0) - 0}{h} \\
+    &  = \left\{
+    \begin{aligned}
+        0, i\neq j\\
+        \lim_{h\to 0} \frac{h |h|^\alpha - 0}{h}, i = j
+    \end{aligned}
+    \right.
 \end{align*}
 \end{proof}
 
@@ -329,5 +347,15 @@ We have
 \end{align*}
 where it is like the Binomial theorem.
 \end{proof}
+
+
+
+
+
+
+
+
+
+
 \end{document}
 

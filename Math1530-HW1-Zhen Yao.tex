@@ -1,0 +1,441 @@
+\documentclass[12pt,leqno]{amsart}
+\pagestyle{plain}
+\usepackage{latexsym,amsmath,amssymb}
+%\usepackage[notref,notcite]{showkeys}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{amssymb}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+
+\setlength{\oddsidemargin}{1pt}
+\setlength{\evensidemargin}{1pt}
+\setlength{\marginparwidth}{30pt} % these gain 53pt width
+\setlength{\topmargin}{1pt}       % gains 26pt height
+\setlength{\headheight}{1pt}      % gains 11pt height
+\setlength{\headsep}{1pt}         % gains 24pt height
+%\setlength{\footheight}{12 pt} 	  % cannot be changed as number must fit
+\setlength{\footskip}{24pt}       % gains 6pt height
+\setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
+\setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
+
+
+
+\def\dsp{\def\baselinestretch{1.35}\large
+\normalsize}
+%%%%This makes a double spacing. Use this with 11pt style. If you
+%%%%want to use this just insert \dsp after the \begin{document}
+%%%%The correct baselinestretch for double spacing is 1.37. However
+%%%%you can use different parameter.
+
+
+\def\U{{\mathcal U}}
+
+\begin{document}
+
+\centerline{\bf Homework 1 for MATH 1530}
+\centerline{Zhen Yao}
+
+\bigskip
+
+\medskip
+
+\noindent
+{\bf Problem 1.}
+Use the equivalence
+\begin{equation}
+\label{Leq7}
+p\wedge (q\vee r) \quad \equiv \quad (p\wedge q)\vee (p\wedge r)
+\end{equation}
+to prove
+$$
+p\vee (q\wedge r) \quad \equiv \quad (p\vee q)\wedge (p\vee r).
+$$
+To this end apply \eqref{Leq7} to $\neg p$, $\neg q$, $\neg r$ in
+place of $p$, $q$, $r$, and negate the statement using De Morgan's Laws.
+\begin{proof}
+Place $\neg p$, $\neg q$, $\neg r$ into the first equation, and we can have
+\begin{align*}
+    (\neg p) \wedge \left( (\neg q) \vee (\neg r) \right) & \equiv (\neg p \wedge \neg q) \vee (\neg p \wedge \neg r)
+\end{align*}
+and we negate the statement by using De Morgan's Laws several times, which yields
+\begin{align*}
+    \neg \left( (\neg p) \wedge \left( (\neg q) \vee (\neg r) \right) \right) & \equiv \neg (\neg p \wedge \neg q) \wedge \neg (\neg p \wedge \neg r) \\
+    \Rightarrow p \vee \neg \left( (\neg q) \vee (\neg r) \right) & \equiv (p \vee q) \wedge (p \vee r) \\
+    \Rightarrow p \vee (q \wedge r) & \equiv (p \vee q) \wedge (p \vee r)
+\end{align*}
+\end{proof}
+
+
+\medskip
+
+\noindent
+{\bf Problem 2.}
+Negate the statement\footnote{This is a true statement known as uniform continuity of the function
+$\sin x$. However, you are not asked to prove the statement only to negate it.}
+$$
+    \forall \varepsilon>0\ \ \exists \delta>0 \ \ \forall x\in\mathbb{R}\ \ \forall y\in\mathbb{R}
+    \ \
+    (|x-y|<\delta \ \Rightarrow \ |\sin x - \sin y|<\varepsilon).
+$$
+\begin{proof}
+$$
+    \exists \varepsilon>0\ \ \forall \delta>0 \ \ \exists x\in\mathbb{R}\ \ \exists y\in\mathbb{R}\ \
+    (|x-y|<\delta \ \wedge \ |\sin x - \sin y| \geq \varepsilon).
+    $$
+\end{proof}
+
+
+\medskip
+
+\noindent
+{\bf Problem 3.}
+Negate the statement: {\em For all real numbers $x,y$ satisfying $x<y$, there
+is a rational number $q$ such that $x<q<y$.} Formulate
+the negation as a sentence and not as a formula involving quantifiers.
+\begin{proof}
+Formulate the statement into formula is that 
+$$
+    \forall x \in\mathbb{R}\ \ \forall y\in\mathbb{R}\ \exists q \in \mathbb{Q}\ \ ( x < y \Rightarrow x < q < y)
+$$
+The negation of this formula is 
+$$
+    \exists x \in\mathbb{R}\ \ \exists y\in\mathbb{R}\ \forall q \in \mathbb{Q}\ \ ( x < y \wedge ((q \leq x) \vee (q \geq y)) )
+$$
+So the sentence is: {\em There exist real numbers $x,y$ satisfying $x<y$, then for any rational number $q \in \mathbb{Q}$, $q$ satisfies the condition $q \leq x$ or $y \leq q$.}
+\end{proof}
+
+
+\medskip
+
+\noindent
+{\bf Problem 4.}
+Use an argument by contradiction prove that $\sqrt{3}$ is irrational.
+\begin{proof}
+Let's assume that $\sqrt{3}$ is a rational number. Then $\sqrt{3} = p/q$ for some positive integers and we assume $p$ and $q$ have no common factors. Then we have 
+\begin{align*}
+    3 = \frac{p^2}{q^2}, \qquad \qquad p^2 = 3 q^2
+\end{align*}
+(1)Firstly, if $p$ is an even number, and the square of an even number is still even, so $3q^2$ is an even number. The $q^2$ is an even number since $3$ is odd, then we have $q$ is also an even number. Thus, $p$ and $q$ are all even number and have common factor $2$, which contradicts our assumption. \\
+(2)Secondly, if $p$ is an odd number, and the square of an odd number is still odd, so $3q^2$ is an odd number. The $q^2$ is an odd number since $3$ is odd, then we have $q$ is also an odd number. Now both $p$ and $q$ are odd number, then we can set $p = 2n + 1$ and $q = 2m + 1$ where $n$ and $m$ are some positive integers. And we have
+\begin{align*}
+    4n^2 + 4n + 1 &= 3(4m^2 + 4m + 1) \\
+    \Rightarrow 2n^2 + 2n &= 6m^2 + 6m + 1
+\end{align*}
+The left side is even and the right side is odd, which is impossible. Also this condition contradicts our assumption. So $\sqrt{3}$ is not a rational number.
+\end{proof}
+
+
+
+\medskip
+
+\noindent
+{\bf Problem 5.}
+Prove the following statement\footnote{Compare with Example~1.12.}
+$$
+    \forall \varepsilon>0\ \ \exists n_0\in\mathbb{N}\ \ \forall n\in\mathbb{N} \quad
+    (n\geq n_0\ \Rightarrow \ n^{-1}\leq \varepsilon).
+$$
+\begin{proof}
+Suppose to the contrary that the statement is false, then its negation is true
+\begin{align*}
+    \exists \varepsilon>0\ \ \forall n_0\in\mathbb{N}\ \ \exists n\in\mathbb{N} \quad
+    (n\geq n_0\ \wedge \ n^{-1} > \varepsilon)
+\end{align*}
+There exist a $\varepsilon > 0$ such that for every $n_0$, there is $n$ such that $n\geq n_0$ and $n^{-1} > \varepsilon$, and it is true for $n_0 = \frac{2}{\varepsilon}$. This means that for $n_0 = \frac{2}{\varepsilon}$, there is a $n$ such that
+$$
+    n \geq \frac{2}{\varepsilon} \qquad \textbf{and} \qquad \frac{1}{n} > \varepsilon \Rightarrow n < \frac{1}{\varepsilon}
+$$
+These two inequalities contradict each other. The proof is complete. 
+\end{proof}
+
+
+\medskip
+
+\noindent
+{\bf Problem 6.}
+Find a mistake in the solution to Problem 9 provided on page 19 in my notes and write a correct solution.
+\begin{proof}
+(1)The mistake is that $\left|f(x)-f(y)\right| < \varepsilon$ for all $\varepsilon > 0$ does not imply that $\left|f(x)-f(y)\right| < 0$, we cannot have $\left|f(x)-f(y)\right| = 0$. So the proof is not correct.\\
+\hspace*{2em}(2) The continuous functions satisfy the condition. clearly the continuous functions satisfy this conditions since it is defined as this way. Suppose that a function $f$ satisfies this condition, then we have for any $\varepsilon > 0$, and for any $x,y \in \mathbb{R}$, there exists a $\delta > 0$, such that 
+\begin{align*}
+    \left| x - y \right| < \delta \Rightarrow \left|f(x)-f(y)\right| < \varepsilon
+\end{align*}
+then we have 
+\begin{align*}
+    \lim_{x \rightarrow y} f(x) = f(y)
+\end{align*}
+since $y \in \mathbb{R}$ is arbitrary, so function $f$ is continuous in every point $y \in \mathbb{R}$. Thus, the function $f$ that satisfies the condition is a continuous function.
+\end{proof}
+
+\noindent
+{\bf Problem 7.}
+{ Prove that for any set $A$ and any family of sets $\{ A_i\}_{i\in I}$
+$$
+A\setminus \bigcup_{i\in I} A_i =\bigcap_{i\in I} (A\setminus A_i)\, ,
+$$
+$$
+A\setminus \bigcap_{i\in I} A_i = \bigcup_{i\in I} (A\setminus A_i)\, .
+$$}
+\begin{proof}
+(1)We have
+\begin{align*}
+    x \in A\setminus \bigcup_{i\in I} A_i & = x\in A \wedge \neg \left(x \in \bigcup_{i\in I} A_i\right) \\
+    & = x\in A \wedge \neg \left(x \in A_1 \vee  \cdots \vee x \in A_i \cdots, i \in I \right) \\
+    & = x\in A \wedge \left(x \notin A_1 \wedge \cdots \wedge x\notin A_i \cdots \right) \\
+    & = (x \in A \wedge x \notin A_1) \wedge \cdots \wedge (x \in A \wedge x \notin A_i) \cdots \\
+    & = (x \in A \setminus A_1) \wedge \cdots \wedge (x \in A \setminus A_i) \cdots \\
+    & = x \in (A \setminus A_1) \wedge \cdots \wedge (A \setminus A_i) \\
+    & = x \in \bigcap_{i\in I} (A\setminus A_i)
+\end{align*}
+\hspace*{2em}(2)We have
+\begin{align*}
+    x \in A\setminus \bigcap_{i\in I} A_i & = x\in A \wedge \neg \left(x \in \bigcap_{i\in I} A_i \right) \\
+    & = x\in A \wedge \neg (x\in A_1 \wedge \cdots \wedge x\in A_i \cdots) \\
+    & = x\in A \wedge (x\notin A_1 \vee \cdots \vee x\notin A_i \cdots) \\
+    & = (x\in A \wedge x\notin A_1) \vee \cdots \vee(x\in A \wedge x\notin A_i) \cdots \\
+    & = x \in (A \setminus A_1) \vee \cdots \vee x \in (A \setminus A_i) \cdots \\
+    & = x \in \bigcup_{i\in I} (A\setminus A_i)
+\end{align*}
+The proof is complete.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 8.}
+{ Prove that if $f:X\to Y$ is a function and $A_1,A_2,A_3,\ldots$ are subsets of $X$, then
+$$
+f\left(\bigcup_{i=1}^\infty A_i\right) =
+\bigcup_{i=1}^\infty f(A_i)\, ,
+$$
+and
+\begin{equation}
+\label{Seq1}
+f\left( \bigcap_{i=1}^\infty A_i\right) \subset
+\bigcap_{i=1}^\infty f(A_i).
+\end{equation}
+Provide an example to show that we do not necessarily have equality in (\ref{Seq1})}
+\begin{proof}
+(1)First, if $y\in f\left(\bigcup_{i=1}^\infty A_i\right)$, then we can have $y = f(x)$ for some $x \in \bigcup_{i=1}^\infty A_i$. Then we can know there exist one subset $A_k$ such that $x \in A_k$, then we have $y = f(x) \in f(A_k) \subset \bigcup_{i=1}^\infty A_i$. We proved that
+\begin{align*}
+    & f\left(\bigcup_{i=1}^\infty A_i\right) \Rightarrow \bigcup_{i=1}^\infty f(A_i) \\
+    & f\left(\bigcup_{i=1}^\infty A_i\right) \subset \bigcup_{i=1}^\infty f(A_i)
+\end{align*}
+If $y \in \bigcup_{i=1}^\infty f(A_i)$, then there exist one $A_m$ such that $y \in f(A_m)$. Then we have $y = f(x)$ for some $x \in A_m$. Since $A_m \subset \bigcup_{i=1}^\infty A_i$, then $y = f(x) \in f\left(\bigcup_{i=1}^\infty A_i\right)$. We proved that
+\begin{align*}
+    \bigcup_{i=1}^\infty f(A_i) \subset f\left(\bigcup_{i=1}^\infty A_i\right) 
+\end{align*}
+i.e.,
+\begin{align*}
+    f\left(\bigcup_{i=1}^\infty A_i\right) = \bigcup_{i=1}^\infty f(A_i)
+\end{align*}
+\hspace*{2em}(2)If $y \in f\left( \bigcap_{i=1}^\infty A_i\right)$, then $y = f(x)$ for some $x \in \bigcap_{i=1}^\infty A_i$. Thus, $x \in A_k$ for every $A_k, k = 1,2,3,\cdots$, so we have $y = f(x) \in f(A_k)$ for every $A_k$, and then $y = f(x) \in \bigcap f(A_i)$ which implies 
+\begin{align*}
+    & y \in f\left( \bigcap_{i=1}^\infty A_i\right) \Rightarrow \bigcap_{i=1}^\infty f(A_i) \\
+    & y \in f\left( \bigcap_{i=1}^\infty A_i\right) \subset \bigcap_{i=1}^\infty f(A_i)
+\end{align*}
+Example: Let $f(x) = x^2, x\in \mathbb{R}$, and $A_1 = [-4,0], A_2 = [0,4]$. Then we have $f(A_1) = [0, 16]$ and $f(A_2) = [0, 16]$, so $f(A_1) \bigcap f(A_2)  = [0, 16]$. However, $A_1 \bigcap A_2 = \emptyset$, then $f(A_1 \bigcap A_2) = \emptyset$. Then we have, in this case, $f(A_1) \bigcap f(A_2) \nRightarrow f(A_1 \bigcap A_2)$.
+
+\end{proof}
+
+\medskip
+
+
+\noindent
+{\bf Problem 9.}
+{ Prove that if $f:X\to Y$ is one-to-one and $A_1,A_2,A_3,\ldots$ are subsets of $X$, then
+$$
+f\left(\bigcap_{i=1}^\infty A_i\right) =
+\bigcap_{i=1}^\infty f(A_i)\, .
+$$}
+\begin{proof}
+If $y \in \bigcap_{i=1}^\infty f(A_i)$, then there exist one $x \in X$ such that $y = f(x) \in \bigcap_{i=1}^\infty f(A_i)$. Then we have $f(x) \in f(A_k)$ for every $k$, then we get $x \in \bigcap_{i=1}^\infty A_i$. Hence, $y = f(x) \in f\left(\bigcap_{i=1}^\infty A_i\right)$, which implies
+\begin{align*}
+    & \bigcap_{i=1}^\infty f(A_i) \Rightarrow f\left(\bigcap_{i=1}^\infty A_i\right) \\
+    & \bigcap_{i=1}^\infty f(A_i) \subset f\left(\bigcap_{i=1}^\infty A_i\right)
+\end{align*}
+Since we already know that $f\left(\bigcap_{i=1}^\infty A_i\right) \subset \bigcap_{i=1}^\infty f(A_i)$, then we proved that, if $f$ is one-to-one function, then 
+\begin{align*}
+    \bigcap_{i=1}^\infty f(A_i) = f\left(\bigcap_{i=1}^\infty A_i\right)
+\end{align*}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 10.}
+{ Prove that $5^{2n}-1$ is divisible by $8$ for all $n\in \mathbb{N}$.}
+\begin{proof}
+(1)For $n = 1$, $5^2 - 1 = 24 = 3 \cdot 8$, which is divisible by $8$.\\
+\hspace*{2em}(2)For $n > 1$, suppose that $5^{2n}-1$ is divisible by $8$. We need to prove that $5^{2(n+1)}-1$ is divisible by $8$. By assumption, that $5^{2n}-1 = 8k$ for some $k \in \mathbb{N}$. We have
+\begin{align*}
+    5^{2(n+1)}-1 & = 5^{2n}5^2 - 1 = 25 \cdot (8k + 1) - 1 = 25 \cdot 8k + 3 \cdot 8 \\
+    & = 8 \cdot (25 k + 3)
+\end{align*}
+which is divisible by $8$.
+\end{proof}
+
+
+\noindent
+{\bf Problem 11.}
+{ Prove that
+$\displaystyle
+1 + \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{3}} + \cdots + \frac{1}{\sqrt{n}}
+\geq \sqrt{n}.
+$}
+
+\begin{proof}
+(1)For $n = 1$, we have $1 \geq 1$, which is true.\\
+\hspace*{2em}(2)Suppose the inequality is true for $n = k$, then we need to prove it for $k + 1$
+\begin{align*}
+    1 + \frac{1}{\sqrt{2}} + \cdots + \frac{1}{\sqrt{k}} + \frac{1}{\sqrt{k + 1}} \geq \sqrt{k} + \frac{1}{\sqrt{k + 1}} 
+\end{align*}
+Now all we need to prove is that $\sqrt{k} + \frac{1}{\sqrt{k + 1}} \geq \sqrt{k + 1}$, and we have
+\begin{align*}
+    \sqrt{k} + \frac{1}{\sqrt{k + 1}} - \sqrt{k + 1} & = \frac{1}{\sqrt{k + 1}} \left(\sqrt{k(k + 1)} + 1 - (k + 1)\right) \\
+    & = \frac{1}{\sqrt{k + 1}} \left(\sqrt{k^2 + k} - k\right) \\
+    & > 0
+\end{align*}
+It is easy to see that $\sqrt{k^2 + k} - k > 0$, then the proof is complete.
+\end{proof}
+
+
+
+\medskip
+
+\noindent
+{\bf Problem 12.}
+{ Let $a_1,\ldots, a_n, b_1,\ldots, b_n$ be positive numbers.
+Prove that
+$$
+\prod_{i=1}^n (a_i+b_i)^{1/n} \geq
+\prod_{i=1}^n a_i^{1/n} +
+\prod_{i=1}^n b_i^{1/n}\, .
+$$
+{\bf Hint:} Divide both sides by the expression on the left hand side and use the arithmetic-geometric mean inequality.}
+
+\begin{proof}
+Divide the right side of the equation by $\prod_{i=1}^n (a_i+b_i)$ and apply arithmetic-geometric mean inequality, then we have 
+\begin{align*}
+    & \prod_{i=1}^n \left(\frac{a_i}{a_i + b_i}\right)^{1/n} \leq \frac{1}{n} \sum^n_{i=1} \frac{a_i}{a_i + b_i} \\
+    \text{and} \quad & \prod_{i=1}^n \left(\frac{b_i}{a_i + b_i}\right)^{1/n} \leq \frac{1}{n} \sum^n_{i=1} \frac{b_i}{a_i + b_i}
+\end{align*}
+Adding these two inequalities and we have 
+\begin{align*}
+    \prod_{i=1}^n \left(\frac{1}{a_i + b_i} \right)^\frac{1}{n} \left(\prod_{i=1}^n a_i^{1/n} + \prod_{i=1}^n b_i^{1/n} \right) \leq \frac{1}{n} \sum^n_{i=1} 1 = \frac{1}{n} n = 1
+\end{align*}
+And multiplying both sides with $\prod_{i=1}^n \left(a_i + b_i\right)^\frac{1}{n}$, we can have final result
+\begin{align*}
+    \prod_{i=1}^n a_i^{1/n} + \prod_{i=1}^n b_i^{1/n} \leq \prod_{i=1}^n \left(a_i + b_i\right)^\frac{1}{n}
+\end{align*}
+\end{proof}
+
+
+\medskip
+
+\noindent
+{\bf Problem 13.}
+Prove that Schwartz inequality
+$$
+\left|\sum_{i=1}^n a_i\, b_i\right| \leq \left(\sum_{i=1}^n a_i^2\right)^{1/2}\left(\sum_{i=1}^n b_i^2\right)^{1/2}.
+$$
+
+\begin{proof}
+(1)For $n = 1$, we have $\|a_1 b_1\| \leq a_1 b_1$. It is true.\\
+\hspace*{2em}(2)For $n = 2$, by arithmetic-geometric mean inequality, we have 
+\begin{align*}
+    (a_1 b_1 + a_2 b_2)^2 & = a_1^2 b_1^2 + 2a_1 a_2 b_1 b_2 + a_2^2 b_2^2\\
+    & \leq a_1^2 b_1^2 + a_2^2 b_2^2 + (a_1^2 b_2^2 + a_2^2 b_1^2) \\
+    & = (a_1^2 + a_2^2)(b_1^2 + b_2^2)
+\end{align*}
+Then the inequality holds for $n = 2$.\\
+\hspace*{2em}(3)Suppose the inequality holds for $n = k > 2$, then we need to show that it still holds for $n = k + 1$. We have
+\begin{align*}
+    \left(\sum^{k+1}_{i=1} a_i b_i\right)^2 & = \left(\sum^{k}_{i=1} a_i b_i\right)^2 + 2 a_{k+1} b_{k+1} \left(\sum^{k}_{i=1} a_i b_i\right) + (a_{k+1}b_{k+1})^2 \\
+    & \leq \left(\sum^{k}_{i=1} a_i^2 \right) \left(\sum^{k}_{i=1} b_i^2 \right) + 2 a_{k+1} b_{k+1} \left(\sum^{k}_{i=1} a_i b_i\right) + (a_{k+1}b_{k+1})^2
+\end{align*}
+Meanwhile, we also have
+\begin{align*}
+    \left(\sum^{k+1}_{i=1} a_i^2 \right) \left(\sum^{k+1}_{i=1} b_i^2 \right) & = \left(\sum^{k}_{i=1} a_i^2 \right) \left(\sum^{k}_{i=1} b_i^2 \right) + b_{k+1}^2 \left(\sum^{k}_{i=1} a_i^2 \right) + a_{k+1}^2 \left(\sum^{k}_{i=1} b_i^2 \right) + (a_{k+1}b_{k+1})^2
+\end{align*}
+Then we only have to prove that 
+\begin{align*}
+    b_{k+1}^2 \left(\sum^{k}_{i=1} a_i^2 \right) + a_{k+1}^2 \left(\sum^{k}_{i=1} b_i^2 \right) \geq 2 a_{k+1} b_{k+1} \left(\sum^{k}_{i=1} a_i b_i\right)
+\end{align*}
+By by arithmetic-geometric mean inequality, we have 
+\begin{align*}
+    \frac{b_{k+1}}{a_{k+1}} \left(\sum^{k}_{i=1} a_i^2 \right) + \frac{a_{k+1}}{b_{k+1}} \left(\sum^{k}_{i=1} b_i^2 \right) \geq 2 \sqrt{\left(\sum^{k}_{i=1} a_i^2 \right) \left(\sum^{k}_{i=1} b_i^2 \right)}
+\end{align*}
+multiplying both sides with $b_{k+1} a_{k+1}$ and we have 
+\begin{align*}
+    b_{k+1}^2 \left(\sum^{k}_{i=1} a_i^2 \right) + a_{k+1}^2 \left(\sum^{k}_{i=1} b_i^2 \right) & \geq 2 a_{k+1} b_{k+1} \sqrt{\left(\sum^{k}_{i=1} a_i^2 \right) \left(\sum^{k}_{i=1} b_i^2 \right)} \\
+    & \geq 2 a_{k+1} b_{k+1} \left(\sum^{k}_{i=1} a_i b_i\right)
+\end{align*}
+where the the last step is from the assumption that the inequality holds for $n = k$. The proof is complete.
+\end{proof}
+
+
+\medskip
+
+\noindent
+{\bf Problem 14.}
+Use the Schwarz inequality to prove that if $a_1,\ldots,a_n>0$, then
+$$
+\frac{n}{\frac{1}{a_1}+\ldots+\frac{1}{a_n}}\leq \frac{a_1+\ldots+a_n}{n}\, .
+$$
+
+\begin{proof}
+By Schwarz inequality, we have 
+\begin{align*}
+    (a_1 + \cdots + a_n)\left(\frac{1}{a_1} + \cdots + \frac{1}{a_n} \right) & \geq \left(\sum^n_{i=1}a_i \frac{1}{a_i} \right)^2 \\
+    & \geq n^2
+\end{align*}
+then we rearrange the inequality, which implies 
+\begin{align*}
+    \frac{a_1 + \cdots + a_n}{n} \geq \frac{n}{\frac{1}{a_1} + \cdots + \frac{1}{a_n}}
+\end{align*}
+The proof is complete.
+\end{proof}
+
+
+
+
+
+
+
+\end{document}
+
+\medskip
+
+\noindent
+{\bf Problem 8.}
+{ Prove that
+$\displaystyle
+1 + \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{3}} + \cdots + \frac{1}{\sqrt{n}}
+\geq \sqrt{n}.
+$}
+
+\medskip
+
+\noindent
+{\bf Problem 9.}
+{ Let $a_1,\ldots, a_n, b_1,\ldots, b_n$ be positive numbers.
+Prove that
+$$
+\prod_{i=1}^n (a_i+b_i)^{1/n} \geq
+\prod_{i=1}^n a_i^{1/n} +
+\prod_{i=1}^n b_i^{1/n}\, .
+$$
+{\bf Hint:} Use the arithmetic-geometric mean inequality.}
+
+
+
+
+\end{document}

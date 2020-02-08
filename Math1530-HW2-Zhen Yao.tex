@@ -1,0 +1,323 @@
+\documentclass[12pt,leqno]{amsart}
+\pagestyle{plain}
+\usepackage{latexsym,amsmath,amssymb}
+%\usepackage[notref,notcite]{showkeys}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{amssymb}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+
+
+\setlength{\oddsidemargin}{1pt}
+\setlength{\evensidemargin}{1pt}
+\setlength{\marginparwidth}{30pt} % these gain 53pt width
+\setlength{\topmargin}{1pt}       % gains 26pt height
+\setlength{\headheight}{1pt}      % gains 11pt height
+\setlength{\headsep}{1pt}         % gains 24pt height
+%\setlength{\footheight}{12 pt} 	  % cannot be changed as number must fit
+\setlength{\footskip}{24pt}       % gains 6pt height
+\setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
+\setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
+
+
+
+\def\dsp{\def\baselinestretch{1.35}\large
+\normalsize}
+%%%%This makes a double spacing. Use this with 11pt style. If you
+%%%%want to use this just insert \dsp after the \begin{document}
+%%%%The correct baselinestretch for double spacing is 1.37. However
+%%%%you can use different parameter.
+
+
+\def\U{{\mathcal U}}
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+
+
+\centerline{\bf Homework 2 for Math 1530}
+\centerline{Zhen Yao}
+
+
+
+
+
+
+
+\bigskip
+
+
+\medskip
+
+\noindent
+{\bf Problem 15.}
+Find $\sup A$ and $\inf A$, where
+$$
+A=\left\{\frac{n^2+2n-3}{n+1}:\
+n=1,2,3,\ldots\right\}\, .
+$$
+
+\begin{proof}
+We have
+\begin{align*}
+    \frac{n^2+2n-3}{n+1} & = \frac{(n+1)^2 - 4}{n+1} =  (n+1) - \frac{4}{n+1}
+\end{align*}
+\hspace*{2em}Substituting $n+1$ as $t > 1$, we can define a function $f(t) = t - 4/t$. Then, we have
+\begin{align*}
+    f'(t) = 1 + \frac{4}{t^2} > 0
+\end{align*}
+which means that $f(t)$ is increasing as $t \rightarrow \infty$. Thus, we have $\sup A = +\infty$. \\
+\hspace*{2em}On the other hand, since $f(t)$ is increasing, we can have $\inf A = f(2) = 0$.
+\end{proof}
+
+
+\noindent
+{\bf Problem 16.}
+Prove that is $A,B\subset\mathbb{R}$ are bounded and non-empty, then
+$$
+\sup(A+B)=\sup A +\sup B,
+\quad
+\text{where}
+\quad
+A+B=\{x+y:\, x\in A,\ y\in B\}.
+$$
+\begin{proof}
+(1) First, we set $M = \sup A$ and $N = \sup B$. Then for $\forall x \in A$ and  $\forall y \in B$, we have $x + y \leq M = N$. Thus, $M + N$ is an upper bound of $A+B$.\\
+\hspace*{2em}(2)Since $M = \sup A$ and $N = \sup B$, then for $\forall \varepsilon > 0$, $\exists x \in A$ such that $x > M - \frac{\varepsilon}{2}$ and $\exists y \in B$ such that $y > N - \frac{\varepsilon}{2}$. Thus, we have
+\begin{align*}
+    x + y > M + N - \varepsilon
+\end{align*}
+which means $M + N$ is the least upper bound of $A + B$. The proof is complete.
+\end{proof}
+
+
+\noindent
+{\bf Problem 17.}
+Prove that is $A,B\subset (0,\infty)$ are bounded and non-empty, then
+$$
+\sup(A\cdot B)=\sup A \cdot\sup B,
+\quad
+\text{where}
+\quad
+A\cdot B=\{xy:\, x\in A,\ y\in B\}.
+$$
+\begin{proof}
+(1)First, we set $M = \sup A$ and $N = \sup B$. Then for $\forall x \in A$ and  $\forall y \in B$, we have $x \cdot y \leq M \cdot N$ since $A, B \subset (0, \infty)$. Thus, $MN$ is an upper bound of $A \cdot B$.\\
+\hspace*{2em}(2)Second, for $\forall \varepsilon > 0$, $\exists x \in A$ such that $x > M - \frac{\varepsilon}{2N}$, and $\exists y \in B$ such that $y > N - \frac{\varepsilon}{2M}$. Thus, we have
+\begin{align*}
+    x \cdot y & > \left( M - \frac{\varepsilon}{2N} \right) \left( N - \frac{\varepsilon}{2M} \right) \\
+    & > MN  - \frac{\varepsilon}{2} - \frac{\varepsilon}{2} + \frac{\varepsilon^2}{MN} \\
+    & > MN  - \varepsilon
+\end{align*}
+which means that $MN$ is a least upper bound of $a \cdot B$. The proof is complete.
+\end{proof}
+
+
+\noindent
+{\bf Problem 18.}
+Prove that if $\lim_{n\to\infty} a_n = \infty$, then
+$$
+\lim_{n\to\infty} \frac{a_1+a_2+\ldots+a_n}{n}=\infty.
+$$
+\begin{proof}
+Since $\lim_{n\to\infty} = \infty$, then $\forall M \in \mathbb{R}$, there exist an $n_0$ such $\forall n > 2n_0, a_n > 2M$, then we have 
+\begin{align*}
+    \frac{a_1 + a_2 + \cdots + a_{n_0}}{n} & > \frac{a_1 + \cdots + a_n_0 + 2M(n - n_0)}{n} \\
+    & = 2M - \frac{2n_0 M}{n} + \frac{a_1 + \cdots + a_{n_0}}{n}\\
+    & > 2M - M = M
+\end{align*}
+Then the proof is complete.
+\end{proof}
+
+
+\noindent
+{\bf Problem 19.}
+Prove that if $\lim_{n\to\infty} a_n = g\in\mathbb{R}$ and $a_n>0$ for all $n$, then
+$$
+\lim_{n\to\infty} \sqrt[n]{a_1a_2\cdots a_n} = g.
+$$
+\begin{proof}
+(1)Since $\lim_{n\to\infty} a_n = g$, we can know that there exists $M > 0$ such that for all $n$
+\begin{align*}
+    | a_n - g | \leq M \Rightarrow g - M \leq a_n \leq g + M
+\end{align*}
+Also, based on the definition of limit, we can know that for $\forall \varepsilon > 0$, $\exists n_0$ such that $\forall n > n_0$, $| a_n - g | < \varepsilon$. Using arithmetic-geometric mean inequality, we have
+\begin{align*}
+    \sqrt[n]{a_1 \cdots a_n} & \leq \frac{a_1 + \cdots + a_n}{n} \\
+    \sqrt[n]{a_1 \cdots a_n} - g & \leq \frac{a_1 + \cdots + a_n}{n} - g 
+\end{align*}
+Since we already know that if $\lim_{n\to\infty} a_n = g$, then $\lim_{n\to\infty} \frac{a_1 + \cdots + a_n}{n} = g$, thus we have 
+\begin{align*}
+    \sqrt[n]{a_1 \cdots a_n} - g < \varepsilon
+\end{align*}
+\hspace*{2em}(2)Now we want to prove $- \varepsilon < \sqrt[n]{a_1 \cdots a_n} - g$. And we already know $\forall \varepsilon > 0$, $\exists n_0$ such that $\forall n > n_0$, $| a_n - g | < \varepsilon \Rightarrow g-\varepsilon < a_n < g+\varepsilon$, thus we have
+\begin{align*}
+    (a_1 \cdots a_{n_0-1})(g-\varepsilon)^{n-n_0+1} & \leq a_1 \cdots a_n \leq (a_1 \cdots a_{n_0-1})(g+\varepsilon)^{n-n_0+1} \\
+    (g-M)^{n_0-1} (g-\varepsilon)^{n-n_0+1} & \leq a_1 \cdots a_n \leq (g+M)^{n_0-1} (g+\varepsilon)^{n-n_0+1}
+\end{align*}
+which yields
+\begin{align*}
+    (g^{n_0-1} - (n_0-1)g^{n_0-2}M + \cdots) & (g^{n-n_0+1} - (n-n_0+1)g^{n-n_0}\varepsilon + \cdots) \leq a_1 \cdots a_n \\
+    & g^n - (n-n_0+1)g^{n-1}\varepsilon \leq a_1 \cdots a_n
+\end{align*}
+Now we just have to change the condition that $\forall \varepsilon > 0$, $\exists n_0$ such that $\forall n > n_0$, $ | a_n - g | < \varepsilon/ \left( g^{n-1}(n-n_0+1) \right)$, then we have $g^n - \varepsilon < a_1 \cdots a_n$. Then we have $\lim_{n\rightarrow \infty} a_1 \cdots a_n = g^n$, which gives us $\lim_{n\to\infty} \sqrt[n]{a_1a_2\cdots a_n} = g$.
+\end{proof}
+
+\noindent
+{\bf Problem 20.}
+Prove that the sequence defined by
+$$
+a_1=0, \qquad \text{$a_{n+1}=\sqrt{6+a_n}$ for $n\geq 1$}
+$$
+is convergent and find its limit.
+
+\noindent
+{\bf Remark.}
+It is natural to denote the limit of this sequence by
+$$
+\sqrt{6+\sqrt{6+\sqrt{6+\ldots}}}
+$$
+\begin{proof}
+We assume the sequence is convergent and its limit is $g$. Then we have 
+\begin{align*}
+    a_{n+1} & = \sqrt{6 + a_n}, a_0 = 0 \\
+    \Rightarrow g & = \sqrt{6 + g} \\
+    \Rightarrow g & = 3
+\end{align*}
+Now we have to prove $3$ is the limit of this sequence. \\
+\hspace*{2em}(1)Since $a_{n+1} & = \sqrt{6 + a_n} \Rightarrow a_{n+1} > a_n$, this sequence is increasing. \\
+\hspace*{2em}(2)Now we need to prove this sequence is bounder above. Assume that $a_n \leq 3$, then we have $a_{n+1} \leq \sqrt{6 + 3} = 3$, which means this sequence is bounded above and the limit is $3$.
+\end{proof}
+
+
+\noindent
+{\bf Problem 21.}
+Prove that
+$$
+2\cos\left(\frac{\pi}{2^{n+1}}\right)=\underbrace{\sqrt{2+\sqrt{2+\sqrt{2+\ldots+\sqrt{2}}}}}_{\text{$n$ {\rm square roots}}}.
+$$
+\begin{proof}
+Based on the previous problem, we can know that $\lim \sqrt{2+\sqrt{2+\sqrt{2+\ldots+\sqrt{2}}}} = 2$. And as $n \rightarrow \infty$, $ \lim_{n\rightarrow \infty} 2\cos\left(\frac{\pi}{2^{n+1}}\right) = 2 \cos 0 = 2$. The proof is complete.
+\end{proof}
+
+\noindent
+{\bf Problem 22.}
+Find the limit
+$$
+\lim_{n\to\infty} 2^n\underbrace{\sqrt{2-\sqrt{2+\sqrt{2+\sqrt{2+\ldots+\sqrt{2}}}}}}_{\text{$n$ square roots}}.
+$$
+That is not a typo. We have one ``$-$'' and the rest are ``$+$'' signs.
+\begin{proof}
+Substituting $\sqrt{2+\sqrt{2+\sqrt{2+\ldots+\sqrt{2}}}}$ with $2 \cos \left(\frac{\pi}{2^{n}}\right)$ and set the limit of above sequence as $A$, we have 
+\begin{align*}
+    A &= \lim_{n\to\infty} 2^n \sqrt{2 - 2 \cos \left( \frac{\pi}{2^{n}} \right)} \\ 
+    & = \lim_{n\to\infty} 2^n \sqrt{4 \sin^2 \frac{\pi}{2^{n+1}} } \\
+    & = \lim_{n\to\infty} 2^{n+1} \sin \frac{\pi}{2^{n+1}} \\
+    & = \pi
+\end{align*}
+\end{proof}
+
+
+\noindent
+{\bf Problem 23.}
+Find the limit
+$\displaystyle
+\lim_{n\to\infty}
+\frac{n}{e^{1+\frac{1}{2}+\cdots +\frac{1}{n}}}\, .
+$
+\begin{proof}
+Take $\ln$ on this sequence and we have 
+\begin{align*}
+    \lim_{n\to\infty} \ln \left(\frac{n}{e^{1+\frac{1}{2}+\cdots +\frac{1}{n}}} \right) & = \lim_{n\to\infty} \ln n - (\ln e + \ln e^{\frac{1}{2}} + \cdots + \ln e^{\frac{1}{n}}) \\
+    & = - \gamma
+\end{align*}
+which means $\lim_{n\to\infty}
+\frac{n}{e^{1+\frac{1}{2}+\cdots +\frac{1}{n}}} = e^{- \gamma}$.
+\end{proof}
+
+
+\noindent
+{\bf Problem 24.}
+Find the limit
+$\displaystyle \lim_{n\to\infty} \sin\left(2\pi\sqrt{n^2+1}\right)$.
+\begin{proof}
+\begin{align*}
+    \lim_{n\to\infty} \sin \left(2\pi\sqrt{n^2+1}\right) & = \lim_{n\to\infty} \sin\left(2\pi n \sqrt{1 + \frac{1}{n^2}}\right) \\
+    & = \lim_{n\to\infty} \sin\left(2\pi n\right) \\
+    & = 0
+\end{align*}
+
+\end{proof}
+
+\noindent
+{\bf Problem 25.}
+Prove that the sequence $\sin n$ is divergent.
+\begin{proof}
+Suppose that $\sin n$ is convergent and the limit is $g$. Then we have $\lim \sin(2n) = g \Rightarrow 2 \sin (n) \cos (n) = g$. Since $\sin^2(n) + \cos^2(n) = 1$, we have $\cos n = \sqrt{1 - g^2}$. Using $\lim \sin(2n) = g \Rightarrow 2 \sin (n) \cos (n) = g$, we have 
+\begin{align*}
+    2 g \sqrt{1-g^2} = g \Rightarrow g = -1,0,1
+\end{align*}
+Also we have $\cos (2n) = \cos^2(n) - \sin^2(n) = 1 - 2g^2$, and $\cos(2n) = \sqrt{1 - \sin^2(2n)} = \sqrt{1 - g^2}$, then
+\begin{align*}
+    1 - 2g^2 = \sqrt{1 - g^2} \Rightarrow g = 0
+\end{align*}
+Now consider $\sin(n+1) = g$, which gives $\sin n \cos 1 + \cos n \sin 1 = g$, then we have 
+\begin{align*}
+    g \cos 1 + \sin 1 = g
+\end{align*}
+where $g \neq 0$. This contradicts with above result. So $\sin n$ is divergent.
+\end{proof}
+
+
+\noindent
+{\bf Problem 26.}
+Prove that the sequence
+$$
+\left(1+\frac{1}{n}\right)^{n+1}
+$$
+is decreasing.
+\begin{proof}
+(1)Set $f(n) = \left(1+\frac{1}{n}\right)^{n+1} = e^{\ln \left(1+\frac{1}{n}\right)^{n+1}} = \exp \left((n+1) \ln \left(1+\frac{1}{n}\right) \right)$, then we set a function 
+\begin{align*}
+    f(x) = \exp \left((x+1) \ln \left(1+\frac{1}{x}\right) \right)
+\end{align*}
+where $x\in [1,\infty)$, and 
+\begin{align*}
+    f'(x) & = f(x) \left(\ln \left(1+\frac{1}{x}\right) - \frac{x+1}{x^2+x} \right) \\
+    & = f(x) \left(\ln \left(1+\frac{1}{x}\right) - \frac{1}{x} \right)
+\end{align*}
+Now we need to determine the value of $\left(\ln \left(1+\frac{1}{x}\right) - \frac{1}{n} \right) = g(x)$, then we have
+\begin{align*}
+    g'(x) & = -\frac{1}{x^2 + x} + \frac{1}{x^2} > 0, x \geq 1
+\end{align*}
+which means $g(x)$ is increasing on $(1,\infty)$. Also, $\lim_{x\rightarrow \infty} g(x) = 0$, which implies that $f'(x) < 0$ for $x \in [1, \infty)$. Then we can know that $f(x)$ is decreasing on $[1,\infty)$, substituting $x$ by $n$ shows that the sequence is decreasing. The proof is complete. \\
+\hspace*{2em}(2)Another better approach is: 
+\begin{align*}
+    \frac{f(n)}{f(n+1)} & = \frac{\left(1 + \frac{1}{n}\right)^{n+1}}{\left(1 + \frac{1}{n+1}\right)^{n+2}} \frac{1}{1 + \frac{1}{n+1}} \\
+    & = \left(1 + \frac{1}{n^2 + 2n} \right)^{n+1} \frac{1}{1 + \frac{1}{n+1}} \\
+    & \geq \left(1 + \frac{n+1}{n^2 + 2n} \right) \frac{1}{1 + \frac{1}{n+1}} \\
+    & \geq \left(1 + \frac{n+1}{n^2 + 2n + 1} \right) \frac{1}{1 + \frac{1}{n+1}} \\
+    & = 1
+\end{align*}
+The third step follows from $(1+x)^n \geq 1 + nx$. Then we know $f(n)\geq f(n+1)$, which implies it is a decreasing sequence.
+\end{proof}
+
+\end{document}
+

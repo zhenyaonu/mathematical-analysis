@@ -1,0 +1,192 @@
+\documentclass[12pt,leqno]{amsart}
+\pagestyle{plain}
+\usepackage{latexsym,amsmath,amssymb}
+%\usepackage[notref,notcite]{showkeys}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+\setlength{\oddsidemargin}{1pt}
+\setlength{\evensidemargin}{1pt}
+\setlength{\marginparwidth}{30pt} % these gain 53pt width
+\setlength{\topmargin}{1pt}       % gains 26pt height
+\setlength{\headheight}{1pt}      % gains 11pt height
+\setlength{\headsep}{1pt}         % gains 24pt height
+%\setlength{\footheight}{12 pt} 	  % cannot be changed as number must fit
+\setlength{\footskip}{24pt}       % gains 6pt height
+\setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
+\setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
+
+
+
+\def\dsp{\def\baselinestretch{1.35}\large
+\normalsize}
+%%%%This makes a double spacing. Use this with 11pt style. If you
+%%%%want to use this just insert \dsp after the \begin{document}
+%%%%The correct baselinestretch for double spacing is 1.37. However
+%%%%you can use different parameter.
+\def\U{{\mathcal U}}
+
+
+
+\begin{document}
+
+\centerline{\bf Homework 4 for Math 1530}
+\centerline{Zhen Yao}
+
+\bigskip
+
+\noindent
+{\bf Problem 35.}
+Prove that if a sequence $\{ a_n\}$ is bounded and $\displaystyle a_{n+1}\geq a_n-\frac{1}{2^n}$
+for all $n$, then the sequence $\{a_n\}$ is convergent.
+\begin{proof}
+Since $\{a_n\}$ is bounded, then sequence $\{a_n\}$ has a least upper bound, denoted by $M = \sup \{a_n\}$. And for $\forall m \in \mathbb{N}$ and $n>m$, we have  
+\begin{align*}
+    M \geq a_n \geq a_m - \frac{1}{2^m} - \frac{1}{2^{m+1}} - \cdots - \frac{1}{2^{n-1}} \geq a_m - \sum^\infty_{i=m}\frac{1}{2^i}
+\end{align*}
+then there exists $N$ such that for $\forall m > N$, $\sum^\infty_{i=m}\frac{1}{2^i} \leq \varepsilon/2$, which implies $\forall n > m > N$, $|a_n - a_m| < \varepsilon/2$. \\
+\hspace*{3em}For $\forall n > N$, we can find the first $a_K, K > N$ such that $a_K > M - \varepsilon/2$. Then for $\varepsilon > 0$ and $\forall n > K$, we have
+\begin{align*}
+    |a_n - M| \leq |a_n - a_K| + |a_K - M| < \varepsilon
+\end{align*}
+Then $\{a_n\}$ is convergent.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 36.}
+Find the limit
+$\displaystyle\lim_{n\to\infty} n\sin(2\pi e n!)$.
+\begin{proof}
+We know that $e = \sum^\infty_{n=0}1/n!$, then we have 
+\begin{align*}
+    \lim_{n\to\infty} n\sin(2\pi e n!) & = \lim_{n\to\infty} n\sin\left(2\pi n! \left(\sum^n_{k=0}\frac{1}{k!} + \sum^\infty_{k=n+1}\frac{1}{k!} \right)\right) \\
+    & = \lim_{n\to\infty} n\sin\left(2\pi n! \left( \sum^\infty_{k=n+1}\frac{1}{k!} \right)\right)
+\end{align*}
+since $\lim_{n\to\infty} n! \left( \sum^\infty_{k=n+1}\1/k! \right) = 0$, and we denote it by $A_n$, then we have
+\begin{align*}
+    \lim_{n\to\infty} n\sin(2\pi e n!) & = \lim_{n\to\infty} n\sin(2\pi A_n) \\
+    & = \lim_{n\to\infty} 2\pi n A_n \frac{\sin(2\pi A_n)}{2\pi A_n} \\
+    & = \lim_{n\to\infty} 2\pi n A_n \\
+    & = 2 \pi
+\end{align*}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 37.}
+Find the limit
+$$
+\lim_{n\to\infty} n^3\left(\sqrt{n^2+\sqrt{n^4+1}}-n\sqrt{2}\right).
+$$
+\begin{proof}
+Denote the limit by $A$, and we have
+\begin{align*}
+    A & = n^3\left(\sqrt{n^2+\sqrt{n^4+1}}-n\sqrt{2}\right) \left(\frac{(\sqrt{n^2+\sqrt{n^4+1}}+n\sqrt{2})}{(\sqrt{n^2+\sqrt{n^4+1}}+n\sqrt{2})} \right) \\
+    & = n^3 \frac{\sqrt{n^4+1}-n^2}{(\sqrt{n^2+\sqrt{n^4+1}}+n\sqrt{2})} \\
+    & = n^3 \frac{1}{(\sqrt{n^2+\sqrt{n^4+1}}+n\sqrt{2})(\sqrt{n^2+\sqrt{n^4+1}}+n^2)} \\
+    & = \frac{1}{(2\sqrt{2})(1+1)} \\
+    & = \frac{\sqrt{2}}{8}
+\end{align*}
+
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 38.}
+Suppose that $\{a_n\}_n$ is a sequence such that for every integer $k\geq 2$ the sequence $\{a_{k\cdot n}\}_n$ is convergent.
+Does it follow that the sequence $\{a_n\}_n$  is convergent?
+\begin{proof}
+No, it is not always convergent. Take $a_n=1$ when $n$ is prime number, and $a_n=0$ when $n$ is composite number. Then the sequence $\{a_{kn}\}_n$ is convergent, since $a_{kn}=0$ when $n>1$. But $\{a_n\}$ is not convergent since there are infinitely many prime numbers.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 39.}
+Prove that if $\{a_n\}_n$ is a sequence such that each of the sequences $\{a_{2n}\}_n$,
+$\{ a_{2n+1}\}_n$ and $\{ a_{3n}\}_n$ is convergent, then $\{ a_n\}_n$ is convergent too.
+\begin{proof}
+(1)Since the sequences $\{a_{2n}\}_n$, $\{ a_{2n+1}\}_n$ and $\{ a_{3n}\}_n$ are convergent, then they have the same limit. If not, we can assume that they have different limit, say $\lim_{n\to\infty} a_{2n} = M$, $\lim_{n\to\infty} a_{2n+1} = N$, $\lim_{n\to\infty} a_{3n} = P$, then for $\forall \varepsilon > 0$, there exists $N > 0$ such that for $\forall n > N$, we have $|a_{2n} - M| < \varepsilon$, $|a_{2n+1} - N| < \varepsilon$ and $|a_{3n} - P| < \varepsilon$. Then for certain $n = 3k$, where $k$ is an integer, we have $|a_{6k} - M| < \varepsilon$, and $|a_{6k} - P| < \varepsilon$, which means $M = P$. Similarly, we can know $M=N=P$. \\
+\hspace*{3em}(2)For any $a_m$ where $m > N$, we can know that $a_n$ belongs to one of $\{a_{2n}\}_n$,
+$\{ a_{2n+1}\}_n$ and $\{ a_{3n}\}_n$, such that $|a_m - M|<\varepsilon$. Thus, $\{a_n\}$ is convergent.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 40.}
+Prove that there is a sequence such that the set of all possible limits of subsequences is the whole interval $[0,1]$.
+\begin{proof}
+Take $a_n = f(n) = |\sin n|$. Since $|\sin n|$ is dense in the interval $[0,1]$, so all the possible limits of subsequences is the whole interval.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 41.}
+Prove that if $\displaystyle\lim_{n\to\infty} a_n=a\in\mathbb{R}$, then for any sequence $\{ b_n\}$
+$$
+\limsup_{n\to\infty} (a_n+b_n)= a+\limsup_{n\to\infty} b_n.
+$$
+\begin{proof}
+(1)If $\limsup_{n\to\infty}b_n = \infty$, then the equation holds. \\
+\hspace*{3em}(2)Consider the case $\limsup_{n\to\infty}b_n$ is finite. Suppose $A_k=\sup\{a_n,n\geq k\}$, $B_k=\sup\{b_n,n\geq k\}$ and $C_k=\sup\{a_n+b_n,n\geq k\}$. For $\forall n\geq k$, we have $a_n+b_n\leq A_k+B_k$. Then we have 
+\begin{align*}
+    &\sup_{n\geq k}(a_n+b_n)\leq \sup_{n\geq k} a_k + \sup_{n\geq k} b_k \\
+    \Rightarrow & \lim_{k\to\infty}\sup_{n\geq k}(a_n+b_n)\leq \lim_{k\to\infty}\sup_{n\geq k} a_k + \lim_{k\to\infty}\sup_{n\geq k} b_k \\
+    \Rightarrow & \limsup_{n\to\infty}(a_n+b_n) \leq a + \limsup_{n\to\infty} b_n
+\end{align*}
+On the other hand, we write $b_n=(b_n+a_n)+(-a_n)$, and with the result above, we have
+\begin{align*}
+    &\limsup_{n\to\infty}b_n \leq \limsup_{n\to\infty}(a_n+b_n) + \limsup_{n\to\infty}(-a_n) \\
+    \Rightarrow & \limsup_{n\to\infty}b_n \leq \limsup_{n\to\infty}(a_n+b_n) - a\\
+    \Rightarrow & \limsup_{n\to\infty}(a_n+b_n) \geq a +\limsup_{n\to\infty}b_n
+\end{align*}
+Then we proved that $\limsup_{n\to\infty} (a_n+b_n)= a+\limsup_{n\to\infty} b_n$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 42.}
+Let $c_0$ be the class of all sequences $\{x_n\}$ such that $\displaystyle\lim_{n\to\infty} x_n=0$. Prove that if
+$\{a_n\}$ is a bounded sequence, then
+$$
+\inf_{(x_n)\in c_0}\left(\sup_{n\in\mathbb{N}}\{ a_n+x_n\}\right) = \limsup_{n\to\infty} a_n.
+$$
+\begin{proof}
+For $\forall \varepsilon>0$, let $c_k$ be the class of all sequences $\{x_n\}$ such that $\forall n\geq k$, $|x_n|<\varepsilon/2$. Then we know $c_1\subset c_2 \subset \cdots \subset c_0$. Then we have $\inf_{(x_n)\in c_0}\left(\sup_{n\in\mathbb{N}}\{a_n+x_n\} \right)=\lim_{k\to\infty}\inf_{(x_n)\in c_k}\left(\sup_{n\in\mathbb{N}}\{a_n+x_n\} \right)$. \\
+\hspace*{3em}For a certain $k$, we have $\inf_{(x_n)\in c_k} \left( \sup_{n\in\mathbb{N}} \{a_n+x_n\} \right)=\inf_{(x_n)\in c_k} \left( \sup_{n\geq k} \{a_n+x_n\} \right)$, since we can find a sequence $\{x_n\}$ such that makes $a_i+x_i, 1\leq i\leq k-1$ small enough and the supremum of $\{a_n+x_n\}$ will be after $k$th terms. For $\forall n\geq k$, $|x_n|<\varepsilon/2$. Then we have 
+\begin{align*}
+    &\sup_{n\geq k}\left(a_n-\varepsilon/2 \right) < \sup_{n\geq k}\left(a_n+x_n \right) < \sup_{n\geq k}\left(a_n+\varepsilon/2 \right) \\
+    \Rightarrow & \sup_{n\geq k}a_n-\varepsilon/2  < \sup_{n\geq k}\left(a_n+x_n \right) < \sup_{n\geq k}a_n +\varepsilon/2 \\
+    \Rightarrow & \left|\sup_{n\geq k}(a_n+x_n) - \sup_{n\geq k}a_n\right| < \frac{\varepsilon}{2}
+\end{align*}
+which implies 
+\begin{align*}
+    \left|\inf_{(x_n)\inc_k}\left( \sup_{n\geq k}(a_n+x_n) \right)- \sup_{n\geq k}a_n\right| < \frac{\varepsilon}{2}
+\end{align*}
+Also, there exists a $k_0\in\mathbb{N}$ such that $\left|\sup_{n\geq k} a_n - \limsup_{n\to\infty}a_n \right|<\varepsilon/2$. Then for $\forall k\geq k_0$, we have 
+\begin{align*}
+    &\left|\inf_{(x_n)\inc_k}\left( \sup_{n\geq k}(a_n+x_n) \right)- \limsup_{n\to\infty}a_n\right|\\
+    \leq & \left|\inf_{(x_n)\inc_k}\left( \sup_{n\geq k}(a_n+x_n) \right)- \sup_{n\geq k_2}a_n\right| + \left|\sup_{n\geq k} a_n - \limsup_{n\to\infty}a_n \right| = \varepsilon
+\end{align*}
+Then 
+\begin{align*}
+    \inf_{(x_n)\in c_0}\left(\sup_{n\in\mathbb{N}}\{ a_n+x_n\}\right) = \lim_{k\to\infty}\inf_{(x_n)\inc_k}\left( \sup_{n\geq k}(a_n+x_n) \right) = \limsup_{n\to\infty}a_n
+\end{align*}
+\end{proof}
+
+
+
+\medskip
+
+
+
+\end{document}

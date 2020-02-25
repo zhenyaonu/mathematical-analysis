@@ -1,0 +1,497 @@
+\documentclass[12pt,leqno]{amsart}
+\pagestyle{plain}
+\usepackage{latexsym,amsmath,amssymb}
+\usepackage{amsthm}
+%\usepackage[notref,notcite]{showkeys}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{pifont}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{thmtools}
+\usepackage{wrapfig}
+\usepackage{extarrows}
+\usepackage{breqn}
+\usepackage{physics}
+\usepackage{afterpage}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{mathrsfs}
+\usepackage{scalerel}
+\usepackage{stackengine,wasysym}
+\usepackage{aligned-overset}
+\usepackage{stackengine}
+\usepackage{mathtools}
+\usepackage{nccmath}
+\graphicspath{ {images/} }
+
+\setlength{\oddsidemargin}{1pt}
+\setlength{\evensidemargin}{1pt}
+\setlength{\marginparwidth}{30pt} % these gain 53pt width
+\setlength{\topmargin}{1pt}       % gains 26pt height
+\setlength{\headheight}{1pt}      % gains 11pt height
+\setlength{\headsep}{1pt}         % gains 24pt height
+%\setlength{\footheight}{12 pt} 	  % cannot be changed as number must fit
+\setlength{\footskip}{24pt}       % gains 6pt height
+\setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
+\setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\setcounter{problem}{0}
+%\numberwithin{problem}{chapter}
+\renewcommand\theproblem{\arabic{problem}}
+
+
+\def\dsp{\def\baselinestretch{1.35}\large
+\normalsize}
+%%%%This makes a double spacing. Use this with 11pt style. If you
+%%%%want to use this just insert \dsp after the \begin{document}
+%%%%The correct baselinestretch for double spacing is 1.37. However
+%%%%you can use different parameter.
+
+\def\U{{\mathcal U}}
+
+
+\begin{document}
+
+\centerline{\bf Homework 3 for Math 1540}
+\centerline{Zhen Yao}
+
+\bigskip
+
+
+\noindent
+{\bf Problem 33.}
+Prove that:
+\begin{enumerate}[label=(\alph*)]
+    \item There is a unique continuous function $f:[0,1]\to\mathbb{R}$ such that
+    $$
+    f(x)=1+\int_0^x t^2f(t)\, dt
+    \quad
+    \text{for all $x\in [0,1]$.}
+    $$
+    \item
+    The function from (a) is of class $f\in C^\infty(0,1)$.
+    \end{enumerate}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item Consider the mapping $T: C([0,1],\mathbb{R})\to C([0,1],\mathbb{R})$ defined by 
+    \begin{align*}
+        T(f)(x) = g(x) + \int^x_0 t^2 f(t^2)\, dt.
+    \end{align*}
+    Clearly, $f$ is a solution to the problem if and only if $T(t) = f$. Since $C([0,1],\mathbb{R})$ is compact, then we need to prove that $T(f)$ is a contraction.
+    
+    Given $f,h \in C([0,1],\mathbb{R})$, we have
+    \begin{align*}
+        d_\infty(T(f),T(h)) & = \sup_{x\in[0,1]} \left|\int^x_0 t^2 f(t^2)\, dt - \int^x_0 t^2 h(t^2)\, dt\right| \\
+        & \leq \sup_{x\in[0,1]} \int^x_0 \left|f(t^2) - h(t^2)\right|t^2\, dt \\
+        & \leq d_\infty (f,h) \int^1_0 t^2\, dt \\
+        & = \frac{1}{3} d_\infty (f,h)
+    \end{align*}
+    which implies that $T$ is a contraction. And the result follows.
+    
+    \item We have $f'(x) = x^2 f(x)$, then clearly $f\in C^\infty(0,1)$.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 34.}
+Prove that if $f:\mathbb{R}^n\to\mathbb{R}$ satisfies $|f(x)-f(y)|\leq M\Vert x-y\Vert^{3/2}$, then $f$ is constant.
+\begin{proof}
+It suffice to show that $Df(x) = 0$ on $\mathbb{R}^n$. By definition, we have 
+\begin{align*}
+    \frac{\|f(x+h) - f(x) - 0\cdot h\|}{\|h\|} \leq \frac{M \|h\|^{3/2}}{\|h\|} = M \|h\|^{\frac{1}{2}} \xrightarrow[]{h\to\infty} 0,
+\end{align*}
+which implies $Df(x) = 0$. Hence, $f$ is constant.
+\end{proof}
+
+
+\medskip
+
+\noindent
+{\bf Problem 35.}
+Prove that if the partial derivatives $\partial f/\partial x_1$ and $\partial f/\partial x_2$  of a function $f:\mathbb{R}^2\to\mathbb{R}$ exist at every point of
+$\mathbb{R}^2$, and the partial derivative $\partial f/\partial x_1$ is continuous on $\mathbb{R}^2$, then $f$ is differentiable at every point of $\mathbb{R}^2$.
+\begin{proof}
+Let $y = (y_1, y_2), x = (x_1, x_2) \in \mathbb{R}^2$, then we have
+\begin{align*}
+    f(y_1, y_2) - f(x_1, x_2) & = f(y_1, y_2) - f(x_1, y_2) + f(x_1, y_2) - f(x_1, x_2) \\
+    & = \frac{\partial f}{\partial x_1}(\xi, y_2) (y_1 - x_1) + \frac{\partial f}{\partial x_2}(x_1,x_2)(y_2 - x_1) + \varphi(y_2 - x_2)|y_2 - x_2|.
+\end{align*}
+By definition, we have
+\begin{align*}
+    & \frac{\left|f(y_1, y_2) - f(x_1, x_2) - \sum^2_{i=1}\frac{\partial f}{\partial x_i}(x_1, x_2)(y_i - x_i) \right|}{\|y - x\|} \\
+    \leq & \underbrace{\left|\frac{\partial f}{\partial x_1}(\xi, y_2) - \frac{\partial f}{\partial x_1}(x_1, y_2)\right|}_{\xrightarrow[y\to x]{} 0}\cdot \underbrace{\frac{|y_1 - x_1|}{\|y - x\|}}_{\leq 1} + \underbrace{|\varphi(y_2 - x_2)|}_{\xrightarrow[y\to x]{} 0} \cdot \underbrace{\frac{|y_2 - x_2|}{\|y - x\|}}_{\leq 1} \to 0.
+\end{align*}
+Hence, $f$ is differentiable at every point of $\mathbb{R}^2$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 36.}
+Prove that if $f\in C^1(\mathbb{R}^n)$ and $\nabla f$ is $L$-Lipschitz, $\Vert \nabla f(x)-\nabla f(y)\Vert\leq L\Vert x-y\Vert$, $x,y\in\mathbb{R}^n$, then
+$$
+\frac{|f(y)-f(x)-\nabla f(x)(y-x)|}{\Vert y-x\Vert}\leq L\Vert y-x\Vert
+\quad
+\text{for all $x,y\in\mathbb{R}^n$.}
+$$
+\begin{proof}
+Since $f\in C^1(\mathbb{R}^n)$, then $f(y) - f(x) = \nabla f(\xi)(y - x)$, where $\xi \in \overline{xy}$. Then we have
+\begin{align*}
+    LHS & = \frac{\left|\nabla f(\xi)(y - x) - \nabla f(x)(y-x) \right|}{\|y-x\|} \\
+    & \leq \| \nabla f(x)-\nabla f(y)\|  \\
+    & \leq L \|y-x\|.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 37.}
+Let $f\in C^2(\mathbb{R}^2)$. Suppose that $\nabla f=0$ on a compact set
+$E\subset\mathbb{R}^2$. Prove that there is a constant $M>0$ such that
+$|f(x)-f(y)|\leq M|x-y|^2$ for all $x,y\in E$. \\
+\textbf{Hint:} Cannot use mean-value theorem here, since $f(y) - f(x) = f'(\xi)(y-x)$ and maybe $\xi \notin E$.
+\begin{proof}
+Based on Problem 38, we have
+\begin{align*}
+    f(y) - f(x) & = \nabla f(x)(y-x) + \int^1_0 (1-t) (y-x)^T f(x+t(y-x)) (y-x)\, dt.
+\end{align*}
+Then we have 
+\begin{align*}
+    \left|f(y) - f(x)\right| \leq  |y-x|^2 \int^1_0 \left|D^2f(x+t(y-x))\right|\, dt.
+\end{align*}
+Since $E$ is compact, then $E \subset \overline{B}$, where $\overline{B}$ is a closed ball. And we can set $M = \sup_{\xi \in \overline{B}}\left|D^2 f(\xi)\right|$, then we find the $M$ that satisfies the condition.
+\end{proof}
+
+\medskip
+
+
+\noindent
+{\bf Problem 38.}
+Suppose that $f\in C^2(\mathbb{R}^n)$ has a local minimum at $x=0$ and $f(0)=0$. Prove that for any $x\in\mathbb{R}^n$
+$$
+f(x)=\int_0^1 (1-t)x^TD^2f(tx)x\, dt,
+$$
+where $x\in\mathbb{R}^n$ is a column vector and $x^T$ is the horizontal vector.
+\begin{proof}
+For any $g\in C^2(\mathbb{R}^n)$, we can derive second order Taylor expansion with integral remainder 
+\begin{align*}
+    g(1) - g(0) & = \int^1_0 g'(t)\, dt \\
+    & = - \int^1_0 g'(t)(1-t)'\, dt \\
+    & = -g'(t)(1-t)\Big|^1_0 + \int^1_0 g''(t)(1-t)\, dt \\
+    & = g'(0) + \int^1_0 g''(t)(1-t)\, dt, 
+\end{align*}
+which implies $$g(1) = g(0) + g'(0) + \int^1_0 g''(t)(1-t)\, dt.$$ 
+
+Now we set $g(t) = f(x+t(y-x))$, and we have 
+\begin{align*}
+    g'(t) & = Df(x+t(y-x)) (y-x) \\
+    g''(t) & = (y-x)^T D^2 f(x+t(y-x)) (y-x)
+\end{align*}
+and then 
+\begin{align*}
+    f(y) - f(x) = g(1) - g(0) = g'(0) + \int^1_0 g''(t)(1-t)\, dt.
+\end{align*}
+Hence, we have
+\begin{align*}
+    f(y) = f(x) + Df(x)(y-x) + \int^1_0 (1-t) (y-x)^T D^2 f(x+t(y-x)) (y-x)\, dt,
+\end{align*}
+letting $y\to x$ and $x\to 0$, we have
+\begin{align*}
+    f(x) = \int_0^1 (1-t)x^T D^2f(tx) x\, dt.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 39.}
+We know that $f\in C^2(\mathbb{R})$ is convex if and only if $f''\geq 0$ on $\mathbb{R}$. Prove that $f\in C^2(\mathbb{R}^n)$ is convex if and only if
+$H_x(f)=D^2f(x)$ is positive semidefinite for all $x\in\mathbb{R}^n$.
+\begin{proof}
+$f$ is convex if and only if its restriction to any line in $\mathbb{R}^n$ is convex. This is equivalent to that $\forall x\in \mathbb{R}^n, \forall v \in \mathbb{R}^n, \|v\| = 1$, $g(t) = f(x+tv)$ is convex. Then we have $g''(t) \geq 0$. Since we have 
+\begin{align*}
+    g'(t) & = \sum^n_{i=1} \frac{\partial f}{\partial x_i}(x+tv) v_i \\
+    g''(t) & = \sum^n_{i=1} \frac{\partial^2 f}{\partial x_i^2}(x+tv) v_i v_j\\
+    & = v^T D^2f(x+tv)v,
+\end{align*}
+then $f$ is convex if and only if $\forall x\in \mathbb{R}^n, \forall v \in \mathbb{R}^n, \|v\| = 1$, $v^T D^2f(x+tv)v \geq 0$. Hence, $D^2f(x) \geq 0, \forall x \in \mathbb{R}^n$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 40.}
+Prove that $x_0\in\mathbb{R}^n$ is a critical point of $f\in C^2(\mathbb{R}^n)$, and $H_{x_0}(f)$ is positive definite, then there are $M>0$ and $\varepsilon>0$ such that
+$$
+f(x)\geq f(x_0)+M\Vert x-x_0\Vert^2
+\quad
+\text{whenever $\Vert x-x_0\Vert<\varepsilon$.}
+$$
+\begin{proof}
+With $Df(x_0) = 0$ and $H_{x_0}(f)$ is positive definite, we have $f$ has local minimum at $x_0$. Then 
+\begin{align*}
+    f(x) & = f(x_0) + Df(x_0)(x-x_0) + \frac{1}{2} (x-x_0)^T D^2f(\xi) (x-x_0), \xi \in \overline{xy} \\
+    & = f(x_0) + \frac{1}{2} (x-x_0)^T D^2f(\xi) (x-x_0),
+\end{align*}
+and we want to prove $\exists M, \exists \varepsilon, |\xi - x_0| < \varepsilon$ such that $v^T D^2f(\xi)v \geq M\|v\|^2$. 
+
+Suppose not, then there exists $\xi_i \to x_0, \|v_i\| = 1$, such that $v_i^T D^2f(\xi_i)v_i \leq 1/i$. Then we have $D^2f(\xi_i) \to D^2f(x_0)$ as $\xi_i\to x_0$ and hence $D^2f(x_0) \leq 0$, which is a contradiction.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 41.}
+Let $f:\mathbb{R}^n\to\mathbb{R}$ be a given function. Prove that if there are $M>0$ and $\varepsilon>0$ such that
+$$
+f(x)\geq f(x_0)+M\Vert x-x_0\Vert
+\quad
+\text{whenever $\Vert x-x_0\Vert<\varepsilon$,}
+$$
+then $f$ is not differentiable at $x_0$.
+\begin{proof}
+Suppose $f$ is differentiable at $x_0$. $f(x) = f(x_0) + D f(\xi) (x-x_0), \xi \in \overline{x x_0}$. Then let $\xi_i\to x_0$, and we have $D f(\xi_i) \to D f(x_0)$ which is finite. Then, as $x_i\to x_0$, we have 
+\begin{align*}
+    f(x_i) = f(x_0) + D f(\xi_i)(x_i - x_0) \to f(x_0),
+\end{align*}
+which is a contraction.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 42.}
+Consider an open ball $B=B(a,r)\subset\mathbb{R}^n$. Prove that the function
+$$
+\varphi(x)
+          = \left\{\begin{array}{ccc}
+            \exp\left(\frac{1}{|x-a|^2-r^2}\right)       &  \mbox{if $x\in B$}\, , \\
+             0     &  \mbox{if $x\in \mathbb{R}^n\setminus B$}\, ,
+               \end{array}
+        \right.
+$$
+in infinitely differentiable on $\mathbb{R}^n$.
+\begin{proof}
+Consider the function 
+\begin{align*}
+    g(x) = \left\{
+        \begin{aligned}
+        & \exp \left(- \frac{1}{r^2 - |x|^2}\right), x\in B, \\
+        & 0, x\in \mathbb{R}^n\setminus B,
+        \end{aligned}
+    \right.
+\end{align*}
+And we can know that $g$ is infinitely differentiable everywhere but when $|x| = r^2$. Indeed, for $|x| < r^2$, we have
+\begin{align*}
+    Dg(x) & = - 2 g(x) \frac{|x|^{1/2}}{(r^2 - |x|^2)^2} \left(x_1,\cdots,x_n \right)
+\end{align*}
+with induction we can prove that $g^{(k)}(x) = P\left(|x|^{-1}\right)g(x)$, where $P\left(|x|^{-1}\right)$ is a polynomial of $|x|^{-1}$. Thus, $g$ is infinitely differentiable when $|x| \neq r^2$.
+
+Also, by definition, for any $a \in \mathbb{R}^n, |a| = r^2$, we have
+\begin{align*}
+    Dg(a) = \lim_{h\to 0^-} \frac{g(a - h) - g(a)}{|h|}
+\end{align*}
+Since $B = B(a,r)\subset\mathbb{R}^n$ is compact in $\mathbb{R}^n$, then with mean-value theorem, we have 
+\begin{align*}
+    \frac{g(a - h) - g(a)}{|h|} = Dg(\xi),
+\end{align*}
+and as $h\to 0^-$, $\xi \to a$, and then
+\begin{align*}
+    Dg(a) = \lim_{h\to 0^-} \frac{g(a - h) - g(a)}{|h|} = \lim_{h\to 0^-} Dg(\xi) = 0.
+\end{align*}
+Also, by induction we can prove that $D^{(k)}g(a) = 0$, hence $g$ is differentiable everywhere. Now let $f(x) = g(x-a)$, then the proof is complete.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 43.}
+A $C^2$ function $f:\mathbb{R}^2\to\mathbb{R}$ is called harmonic if
+$$
+\frac{\partial^2 f}{\partial x^2} +
+\frac{\partial^2 f}{\partial y^2} = 0\, .
+$$
+Prove that if a harmonic function has a local maximum at $(x_0,y_0)$, then
+{\em all} second order partial derivatives of $f$ vanish at $(x_0,y_0)$.
+\begin{proof}
+Since $f$ has a local maximum at $(x_0, y_0)$, then its Hessian is negative semidefinite at this point, and when consider it on a vector $v = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$, we have
+\begin{align*}
+    v^T H_{x_0}(f) v = f_{xx}(x_0,y_0) + f_{yy}(x_0,y_0) + 2 f_{xy}(x_0,y_0) \leq 0.
+\end{align*}
+Also, with Sylvester's criterion, we have
+\begin{align*}
+    f_{xx}(x_0,y_0) \leq 0,
+\end{align*}
+and 
+\begin{align*}
+    f_{xx}(x_0,y_0) f_{yy}(x_0,y_0) - f^2_{xy}(x_0,y_0) \geq 0.
+\end{align*}
+Combining these implies that all second order partial derivatives of $f$ vanish at $(x_0,y_0)$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 44.}
+Suppose that a function $f:\mathbb{R}^2\to\mathbb{R}$ of class $C^2$
+satisfies the inequality $f_{xx}+f_{yy}\geq 0$ at every point
+of $\mathbb{R}^2$. Suppose also that all its critical points are non-degenerate, i.e. the matrix of second order derivatives
+at the critical point has non-zero determinant.
+Prove that $f$ cannot have local maximum.
+\begin{proof}
+Suppose that $f$ has local maximum at its critical point $x_0$, then we have $f_{xx} < 0$, and $f_{xx}f_{yy} - f_{xy}^2 > 0$, which implies $f_{xx}f_{yy} > 0$ and $f_{yy} < 0$. This is a contradiction with the fact that $f_{xx}+f_{yy}\geq 0$ at every point of $\mathbb{R}^2$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 45.}
+Let $f \in C^2(\Omega) \cap C^0(\overline{\Omega})$, where $\Omega \subset \mathbb{R}^n$ is open and bounded.
+Let $\Delta f = \sum_{i=1}^n \partial^2f/\partial x_i^2$ be the Laplace operator.
+\begin{enumerate}
+    \item[(a)] Show that if for some $\varepsilon > 0$ and $x_0 \in \Omega$ we have $\Delta f(x_0) \geq \varepsilon$, then $f$ has no local maximum at $x_0$.
+    
+    \item[(b)] Conclude that if $\Delta f(x) \geq \varepsilon$ for some $\varepsilon > 0$ and all $x \in \Omega$, then we have $\sup_{\Omega} f = \sup_{\partial \Omega} f$.
+    
+    \item[(c)] Conclude that if $\Delta f(x) \geq 0$ for all $x \in \Omega$, then we have $\sup_{\Omega} f = \sup_{\partial \Omega} f$.
+\end{enumerate}
+{\bf Hint for part (c):} {\em Observe that $\Delta |x|^2 = 2n$. Use it to modify a function $f$ in (c) so that you can apply part (b).}
+\begin{proof}
+~\begin{enumerate}
+    \item[(a)] Local maximum requires that $H_{x_0}(f)$ is positive semidefinitely, which means the trace $\partial^2f/\partial x_i^2, i = 1,2,\cdots,n$ of $H_{x_0}(f)$ are not positive. This is a contradiction with the fact $\Delta f(x_0) \geq \varepsilon$, then $f$ has no local maximum at $x_0$.
+    
+    \item[(b)] With (a), we can know that $f$ has no local maximum in $\Omega \setminus \partial \Omega$. Thus, $\sup_{\Omega} f = \sup_{\partial \Omega} f$.
+    
+    \item[(c)] Let $f_\varepsilon(x) = f(x) + \varepsilon |x|^2$, then $\Delta f_\varepsilon(x) = \Delta f(x) + 2 \varepsilon n$. Then, we have
+    \begin{align*}
+        \sup_{\Omega} f(x) \leq \sup_{\Omega} f_\varepsilon(x) \leq \sup_{\partial\Omega} f_\varepsilon(x) \leq \sup_{\partial \Omega} f(x) + 2 \varepsilon n \xrightarrow{\varepsilon \to 0} \sup_{\partial \Omega} f(x).
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 46.}
+Let $A=\left(a_{ij}\right)$ be an $n\times n$ matrix. The {\em cofactor} $A_{i,j}$
+is the product of $(-1)^{i+j}$ with the $(n-1)\times(n-1)$ determinant of $A$ obtained by deleting the
+$i$th row and $j$th column in $A$.  Prove that
+$$
+\frac{\partial}{\partial a_{ij}}(\det A)=A_{ij}.
+$$
+\begin{proof}
+The determinant of $A$ is 
+\begin{align*}
+    \det A = \sum^n_{i=1} a_{ij} A_{i,j},
+\end{align*}
+then it follows that
+\begin{align*}
+    \frac{\partial}{\partial a_{ij}}(\det A)=A_{i,j}.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 47.}
+Let $A(t)=\left(x_{ij}(t)\right):(a,b)\to\mathbb{R}^{n\times n}$ be a smooth matrix-valued curve.
+Prove that if $A(0)=I$, then
+$$
+\dv{}{t}\Bigg|_{t=0}(\det A(t))=\sum_{i=1}^n x_{ii}'(0)={\rm tr}\, A'(0).
+$$
+\begin{proof}
+Denote the determinant function of a matrix by $d$ as $\det A = d(r_1, r_2 \cdots, r_n)$, where $r_n$ are rows of $A$. Then we have
+\begin{align*}
+    \dv{}{t} \det A(t) = d(r_1',r_2,\cdots,r_n) + d(r_1,r_2',\cdots,r_n) + \cdots + d(r_1,\cdots,r_n').
+\end{align*}
+When $t = 0$, the right hand side become the trace of $A'(0)$. Indeed, the first term $d(r_1',r_2,\cdots,r_n)$ at $t = 0$ will be
+\begin{align*}
+    \det \begin{pmatrix}
+        x_{11}' & x_{12}' & \cdots & x_{1n}' \\
+        0       & 1       & \cdots & 0 \\
+        \vdots  & \ddots  & \ddots & \vdots \\
+        0       & 0       & \cdots & 1
+    \end{pmatrix} = x_{11}'(0),
+\end{align*}
+thus, we have $\dv{}{t}\Big|_{t=0}(\det A(t))=\sum_{i=1}^n x_{ii}'(0)$.
+\end{proof}
+
+\medskip
+
+\noindent{\bf Method II for Problem 47.}
+\begin{proof}
+From last problem, we have for the determinant function $\det: \mathbb{R}^{n^2} \to \mathbb{R}$,
+\begin{align*}
+    (\nabla \det)(A) = \left[A_{ij}\right]_{n\times n}.
+\end{align*}
+Then we have 
+\begin{align*}
+    \dv{}{t} \det A(t) & = (\nabla \det(A))\cdot A'(t) \\
+    & =  \underbrace{\left[A_{ij}\right]\cdot \left[x_{ij}'\right]}_{\text{scalar product}} \\
+    & = \sum^n_{i,j = 1} A_{ij}(t) x_{ij}'(t).
+\end{align*}
+Also, we have $\left[A_{ij}(0)\right] = \delta_{ij}$, hence 
+\begin{align*}
+    \dv{}{t}\Bigg|_{t=0}(\det A(t)) = \sum^n_{i,j = 1} \delta_{ij} x_{ij}'(0) = \sum_{i=1}^n x_{ii}'(0).
+\end{align*}
+\end{proof}
+
+
+\medskip
+
+\noindent
+{\bf Problem 48.}
+Let $M_{n\times n}$ denote the vector space of real $n\times n$ matrices.
+Define a map $f:M_{n\times n}\to M_{n\times n}$ by $f(X)=X^2$.
+Find the derivative of $f$.
+\begin{proof}
+$Df(X) = X' X + X X'$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 49.}
+The class of invertible matrices
+$GL(n,\mathbb{R})$ forms an open subset in the space of all $n\times n$ matrices $M_{n\times n}=\mathbb{R}^{n^2}$.
+Let $F:GL(n,\mathbb{R})\to GL(n,\mathbb{R})$, $F(A)=A^{-1}$.
+Prove that the function $F$ is $C^\infty$ smooth (as a mapping from $\mathbb{R}^{n^2}$ to $\mathbb{R}^{n^2}$) and that
+for any $A\in\mathbb{R}^{n\times n}$ we have
+$$
+DF(A)B=-A^{-1}\circ B\circ A^{-1}
+\quad
+\text{for all $B\in \mathbb{R}^{n\times n}$}
+$$
+\begin{proof}
+Since $AA^{-1} = I$, then $A' A^{-1} + A \left(A^{-1}\right)' = 0$. Thus, $DF(A) = \left(A^{-1}\right)' = - A^{-1} A' A^{-1}$. We can prove by induction that $F(A)$ is infinitely differentiable.
+
+For any $B \in \mathbb{R}^{n\times n}$, we can have 
+\begin{align*}
+    F(A+B) - F(A) & = \left(A+B\right)^{-1} - A^{-1} \\
+    & = \left(A \left(I+A^{-1}B \right) \right)^{-1} - A^{-1} \\
+    & = \left(\left(I+A^{-1}B \right) - I \right) A^{-1},
+\end{align*}
+Then, for $B$ small enough, we have
+\begin{align*}
+    F(A+B) - F(A) - \left(- A^{-1} B A^{-1}\right) & = \left(\left(I+A^{-1}B \right) - I + A^{-1} B\right) A^{-1} \\
+    & = \left(\sum^\infty_{k=0}(-1)^k \left(A^{-1}B\right)^k  - I + A^{-1} B\right) A^{-1} \\
+    & = \sum^\infty_{k=2}(-1)^k \left(A^{-1}B\right)^k A^{-1} \\
+    & \to 0.
+\end{align*}
+Hence, $DF(A)B = -A^{-1} B A^{-1}$.
+\end{proof}
+
+
+
+
+
+
+\end{document}

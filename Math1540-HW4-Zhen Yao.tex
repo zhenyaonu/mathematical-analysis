@@ -1,0 +1,535 @@
+\documentclass[12pt,leqno]{amsart}
+\pagestyle{plain}
+\usepackage{latexsym,amsmath,amssymb}
+\usepackage{amsthm}
+%\usepackage[notref,notcite]{showkeys}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{pifont}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{thmtools}
+\usepackage{wrapfig}
+\usepackage{extarrows}
+\usepackage{breqn}
+\usepackage{physics}
+\usepackage{afterpage}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{mathrsfs}
+\usepackage{scalerel}
+\usepackage{stackengine,wasysym}
+\usepackage{aligned-overset}
+\usepackage{stackengine}
+\usepackage{mathtools}
+\usepackage{nccmath}
+\graphicspath{ {images/} }
+
+\setlength{\oddsidemargin}{1pt}
+\setlength{\evensidemargin}{1pt}
+\setlength{\marginparwidth}{30pt} % these gain 53pt width
+\setlength{\topmargin}{1pt}       % gains 26pt height
+\setlength{\headheight}{1pt}      % gains 11pt height
+\setlength{\headsep}{1pt}         % gains 24pt height
+%\setlength{\footheight}{12 pt} 	  % cannot be changed as number must fit
+\setlength{\footskip}{24pt}       % gains 6pt height
+\setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
+\setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\setcounter{problem}{0}
+%\numberwithin{problem}{chapter}
+\renewcommand\theproblem{\arabic{problem}}
+
+
+\def\dsp{\def\baselinestretch{1.35}\large
+\normalsize}
+%%%%This makes a double spacing. Use this with 11pt style. If you
+%%%%want to use this just insert \dsp after the \begin{document}
+%%%%The correct baselinestretch for double spacing is 1.37. However
+%%%%you can use different parameter.
+
+\def\U{{\mathcal U}}
+
+\begin{document}
+
+
+\centerline{\bf Homework 4 for Math 1540}
+\centerline{Zhen Yao}
+
+\bigskip
+
+
+\noindent
+{\bf Problem 50.}
+Let $f:\mathbb{R}^n\to\mathbb{R}$ be convex. Prove that if partial derivatives
+$$
+\frac{\partial f}{\partial x_i}(x_0),
+\quad
+i=1,2,\ldots,n,
+$$
+exist, then $f$ is differentiable at $x_0$.
+\begin{proof}
+Let $A = \left[\frac{\partial f}{\partial x_1}(x_0), \cdots, \frac{\partial f}{\partial x_n}(x_0)\right]$, and we need to prove that 
+\begin{align*}
+    \phi(h) = f(x_0+h) - f(x_0) - Ah
+\end{align*}
+satisfies $\frac{\phi(h)}{\|h\|} \to 0$ as $h \to 0$. $\phi(h)$ is convex and we denote by $h = \left(h_1, \cdots, h_n \right) = e_1 h_1 + \cdots + e_n h_n$, then we have 
+\begin{align*}
+    \phi(h) & = \phi \left(\frac{1}{n} \sum^n_{i=1} h_i n e_i \right) \\
+    & \leq \frac{1}{n}\sum^n_{i=1} h_i n e_i = \sum^n_{i=1} h_i \frac{\phi(h_i n e_i)}{h_i n} \\
+    & \leq \|h\| \sum^n_{i=1} \left|\frac{\phi(h_i n e_i)}{h_i n}\right|,
+\end{align*}
+similarly, 
+\begin{align*}
+    \phi(-h) \leq \|h\| \sum^n_{i=1} \left|\frac{\phi( - h_i n e_i)}{ - h_i n}\right|.
+\end{align*}
+Also, we have $0 = \phi \left(\frac{h + (-h)}{2}\right) \leq \frac{\phi(h) + \phi(-h)}{2}$, which implies $\phi(h) \leq - \phi(-h)$, then 
+\begin{align*}
+    0 \xleftarrow{h \to 0} - \sum^n_{i=1} \left|\frac{\phi( - h_i n e_i)}{ - h_i n}\right| \leq \frac{\phi(h)}{\|h\|} \leq \sum^n_{i=1} \left|\frac{\phi( h_i n e_i)}{ h_i n}\right| \xrightarrow{h \to 0} 0,
+\end{align*}
+where in the last step we used the fact that partial derivatives $\frac{\partial f}{\partial x_i}(x_0), i=1,2,\ldots,n$ exist, then we have $\phi(t e_i) = f(x_0+t e_i) - f(x_0) - \frac{\partial f}{\partial x_i}(x_0)t$ and 
+\begin{align*}
+    \lim_{t\to 0}\frac{\phi(t e_i)}{t} = \lim_{t\to 0} \frac{f(x_0+t e_i) - f(x_0)}{t} - \frac{\partial f}{\partial x_i}(x_0) = 0.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 51.}
+Let $Q:C^\infty(\mathbb{R}^n)\to\mathbb{R}$ be a linear mapping such that $Qf\geq 0$ whenever $f\in C^\infty(\mathbb{R}^n)$ satisfies $f(0)=0$ and $f(x)\geq 0$ in a neighborhood of $0$. Prove that there are real numbers $a_{ij}$, $b_i$ and $c$ such that
+$$
+Qf=\sum_{i,j=1}^n a_{ij}\frac{\partial^2 f}{\partial x_i\partial x_j}(0)+\sum_{i=1}^n b_i\frac{\partial f}{\partial x_i}(0)+cf(0)
+\quad
+\text{for all $f\in C^\infty(\mathbb{R}^n)$.}
+$$
+\begin{proof}
+We have 
+\begin{align*}
+    f(x) = f(0) + \sum^n_{i=1} \frac{\partial f}{\partial x_i}(0) x_i + \frac{1}{2} \sum_{i,j} \frac{\partial^2 f}{\partial x_i \partial x_j}(0) x_i x_j + \varphi(x),
+\end{align*}
+and let $c = Q(0), b_i = Q(x_i), a_{ij} = \frac{1}{2}Q(x_i x_j)$, then we have 
+\begin{align*}
+    Qf = \sum_{i,j=1}^n a_{ij}\frac{\partial^2 f}{\partial x_i\partial x_j}(0) + \sum_{i=1}^n b_i\frac{\partial f}{\partial x_i}(0) + cf(0) + Q\varphi.
+\end{align*}
+We need to prove that $Q\varphi = 0$. Since $\varphi(x) = o(|x|^2)$, then there exists $\varepsilon > 0$, such that $\varepsilon |x|^2 - \varphi(x) \geq 0$ near $0$. Then, $Q \left(\varepsilon |x|^2 - \varphi(x) \right) \geq 0$, which implies $Q\varphi \leq \varepsilon Q\left(|x|^2\right)$, and then $Q\varphi \leq 0$ as $\varepsilon \to 0$. Similarly, $Q \left(\varepsilon |x|^2 + \varphi(x) \right) \geq 0$ and we have $-Q\varphi \leq \varepsilon Q \left(|x|^2\right)$. Then, $Q\varphi \geq 0$ and hence $Q\varphi = 0$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 52.}
+Define $f:\mathbb{R}^2\to\mathbb{R}$ by
+$$
+f(x)=
+\begin{cases}
+\frac{x^2(y^4+2x)}{x^2+y^4} & \text{if $(x,y)\neq (0,0)$,}\\
+0                           & \text{if $(x,y)=(0,0)$.}
+\end{cases}
+$$
+Prove that $f$ is differentiable at $(0,0)$.
+\begin{proof}
+We have 
+\begin{align*}
+    f_x(0,0) & = \lim_{s\to 0} \frac{f(s,0) - f(0,0)}{s} = \lim_{s\to 0} \frac{2s^3/s^2}{s} = 2 \\
+    f_y(0,0) & = \lim_{s\to 0} \frac{f(0,s) - f(0,0)}{s} = 0
+\end{align*}
+and we need to show that the limit equals zero, which is 
+\begin{align*}
+    & \lim_{(s,t)\to (0,0)} \frac{f(s,t) - f(0,0) - f_x(0,0)s - f_y(0,0)t}{\sqrt{s^2 + t^2}} \\
+    = & \lim_{(s,t)\to (0,0)} \frac{s^2 t^4 - 2s t^4}{(s^2+t^4)\sqrt{s^2 + t^2}},
+\end{align*}
+also,
+\begin{align*}
+    \left|\frac{s^2 t^4 - 2s t^4}{(s^2+t^4)\sqrt{s^2 + t^2}}\right| \leq \left|\frac{s^2 t^4 - 2s t^4}{2 |s| t^2 |t|}\right| = \left| \frac{|st|}{2} - t \right| \xrightarrow{(s,t)\to (0,0)} 0,
+\end{align*}
+where we used the fact that $s^2 + t^4 \geq 2|s|t^2$ and $\sqrt{s^2 + t^2} \geq |t|$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 53.}
+Let $f:\mathbb{R}^2\to\mathbb{R}$ be defined by
+$$
+f(x)=
+\begin{cases}
+xy\frac{x^2-y^2}{x^2+y^2} & \text{if $(x,y)\neq (0,0)$,}\\
+0                           & \text{if $(x,y)=(0,0)$.}
+\end{cases}
+$$
+Prove that the mixed partial derivatives
+$\frac{\partial^2 f}{\partial x\partial y}$ and
+$\frac{\partial^2 f}{\partial y\partial x}$
+exist everywhere in $\mathbb{R}^2$, but
+$$
+\frac{\partial^2 f}{\partial x\partial y}(0,0)\neq
+\frac{\partial^2 f}{\partial y\partial x}(0,0).
+$$
+\begin{proof}
+When $(x,y) \neq (0,0)$, with $f(x,y) = - f(y,x)$
+\begin{align*}
+    \frac{\partial f}{\partial x}(x,y) & = \frac{y(x^4 + 4x^2y^2 - y^4)}{\left(x^2 + y^2\right)^2}\\
+    \frac{\partial f}{\partial y}(x,y) & = - \frac{\partial f}{\partial x}(y,x) = - \frac{y(x^4 + 4x^2y^2 - y^4)}{\left(x^2 + y^2\right)^2},
+\end{align*}
+then $\frac{\partial^2 f}{\partial x\partial y}, \frac{\partial^2 f}{\partial y\partial x}$ exist at $(x,y) \neq (0,0)$. Also, 
+\begin{align*}
+    \frac{\partial^2 f}{\partial y \partial x}(0,0) & = \frac{\partial}{\partial y}\left(\frac{\partial f}{\partial x}\right)(0,0) = \dv{}{y}\Bigg|_{y=0} \left(\frac{\partial f}{\partial x}(0,y)\right) = \dv{}{y}\Bigg|_{y=0} \left(- \frac{y^5}{y^4}\right) = -1, \\
+    \frac{\partial^2 f}{\partial x\partial y}(0,0) & = \frac{\partial}{\partial x}\left(\frac{\partial f}{\partial y}\right)(0,0) = \dv{}{x}\Bigg|_{x=0} \left(\frac{\partial f}{\partial y}(x,0)\right) = \dv{}{x}\Bigg|_{x=0} \left(\frac{x^5}{x^4}\right) = 1.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 54.}
+Prove that the function
+$$
+f(x)=
+\begin{cases}
+\frac{x|y|}{\sqrt{x^2+y^2}} & \text{if $(x,y)\neq (0,0)$,}\\
+0                           & \text{if $(x,y)=(0,0)$.}
+\end{cases}
+$$
+has all directional derivatives $D_vf(0,0)$ at the origin, but $f$ is not differentiable at $(0,0)$.
+\begin{proof}
+For $v = (a,b) \neq (0,0)$, 
+\begin{align*}
+    D_vf(0,0) & = \lim_{t\to 0} \frac{f(ta,tb) - f(0,0)}{t} \\ 
+    & = \lim_{t\to 0} \frac{1}{t} \frac{ta|tb|}{|t|\sqrt{a^2+b^2}} \\
+    & = \lim_{t\to 0} \frac{a|b|}{\sqrt{a^2+b^2}},
+\end{align*}
+and $D_vf(0,0)$ is not linear with respect to $v$, thus, not differentiable.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 55.}
+Let $f:\mathbb{R}^n\to\mathbb{R}^n$ be a mapping of class $C^1$. Prove that if $\operatorname{rank} Df(x_0)=n$, then $f$ is injective in a neighborhood of $x_0$. Prove it directly, without using the inverse function theorem.
+\begin{proof}
+Since $\operatorname{rank} Df(x_0) = n$, then $M = f^{-1}(0) = \{x \in \mathbb{R}^n | f(x) = 0\}$ is $0$-dimensional submanifold. Thus, $M = \{0\}$, which implies $f$ is injective.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 56.}
+Assume that $f:\mathbb{R}^n\to\mathbb{R}^m$ is differentiable and $\operatorname{rank} Df(x)=n$ for all $x\in\mathbb{R}^n$. Prove that if $S\subset\mathbb{R}^n$ is bounded, then for every $y\in\mathbb{R}^m$, the set
+$$
+S\cap f^{-1}(y)=\{x\in S:\, f(x)=y\}
+$$
+is finite.\\
+{\bf Remark.} Since we do not assume continuity of $Df$, we cannot use the inverse function theorem.
+\begin{proof}
+Since $f$ is differentiable and $\operatorname{rank} Df(x) = n$, then for any $x\in \mathbb{R}^m$, $f$ is injective in a neighborhood $U$ of $x$. Then for any $y\in \mathbb{R}^m$, there exists a unique $x \in \mathbb{R}^m$ in its neighborhood, and thus $S\cap f^{-1}(y)$ is finite.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 57.}
+Let $\Omega=\{(x,y)\in\mathbb{R}^2:\, x>0, 0<y<2\pi\}$.
+Prove that the mapping $f:\Omega\to\mathbb{R}^2$,
+$f(x,y)=(x\cos y,x\sin y)$ is a diffeomorphism of $\Omega$
+onto an open subset of $\mathbb{R}^2$. Find $f(\Omega)$.
+{\bf Hint:} A picture will help. Have you seen a similar mapping in Calculus~3?
+\begin{proof}
+Since
+\begin{align*}
+    Jf(x) = \det \begin{pmatrix}
+        \cos y & -x \sin y \\
+        \sin y & -x \cos y
+    \end{pmatrix} = x \neq 0,
+\end{align*}
+the mapping $f$ is diffeomorphism and hence invertible in a neighborhood of any point $(x,y) \in \mathbb{R}^2$. Suppose $f(x_1, y_1) = f(x_2, y_2)$, then we have
+\begin{align*}
+    x_1 \cos y_1 & = x_2 \sin y_2 \\
+    x_1 \sin y_1 & = x_2 \sin y_2
+\end{align*}
+which implies $x_1 = x_2$ and $y_1 = y_2$. Thus, $f$ is invertible and hence $f$ is diffeomorphism of $\Omega$ onto an open subset of $\mathbb{R}^2$. Also, $f(\Omega) = \mathbb{R}^2$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 58.}
+Find a diffeomorphism of $\mathbb{R}^2$ onto the open unit disc $x^2+y^2<1$.
+\begin{proof}
+$f(x,y) = \left(\frac{x}{\sqrt{x^2+y^2}+1}, \frac{y}{\sqrt{x^2+y^2}+1}\right)$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 59.}
+Find a diffeomorphism of the upper half plane $y>0$ onto the first quadrant
+$x>0$, $y>0$.
+\begin{proof}
+$f(x,y) = \left(e^x, y\right)$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 60.}
+Suppose that $f\in C^1(\mathbb{R})$ is such that $|f'(x)|<1$ for all $x\in\mathbb{R}$.
+Prove that the mapping $F:\mathbb{R}^2\to\mathbb{R}^2$,
+$F(x,y)=(x+f(y), y-f(x))$
+is a diffeomorphism in a neighborhood of any point $(x,y)\in\mathbb{R}^2$.
+\begin{proof}
+Since
+\begin{align*}
+    JF(x) = \det \begin{pmatrix}
+        1 & f'(y) \\
+        - f'(x) & 1
+    \end{pmatrix} = 1 + f'(x)f'(y) \neq 0,
+\end{align*}
+the mapping $F$ is diffeomorphism and hence invertible in a neighborhood of any point $(x,y) \in \mathbb{R}^2$
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 61.}
+Prove that a complex polynomial
+$P(z)=a_0z^n+a_1 z^{n-1} + \ldots + a_n$
+regarded as a function
+$P:\mathbb{R}^2\to\mathbb{R}^2$ is a diffeomorphism in a neighborhood of $z_0\in\mathbb{C}$
+if and only if $P'(z_0)\neq 0$, where
+$P'(z)=na_0 z^{n-1} + (n-1)a_1 z^{n-2} + \ldots + a_1$.
+\begin{proof}
+~\begin{enumerate}[label=(\arabic*)]
+    \item If $P$ is a diffeomorphism in a neighborhood of $z_0 = x_0 + i y_0 \in\mathbb{C}$, we can write $P$ as $P(z_0) = u(x_0, y_0) + i v(x_0, y_0)$, where $u,v$ are real functions. Then, with the Cauchy-Riemann equations $u_x = v_y, u_y = -v_x$, we have
+    \begin{align*}
+        JP(z_0) & = \det \begin{pmatrix}
+        u_x(z_0) & u_y(z_0) \\
+        v_x(z_0) & v_y(z_0)
+        \end{pmatrix} \\
+        & = u_x(z_0) v_y(z_0) - u_y(z_0) v_x(z_0) \\
+        & = u_x^2(z_0) + u_y^2(z_0) = v_x^2(z_0) + v_y^2(z_0) \neq 0,
+    \end{align*}
+    which implies $u_x, u_y, v_x, v_y \neq 0$. Also, with Wirtinger derivatives, we have 
+    \begin{align*}
+        \frac{\partial P}{\partial z} &= \frac12\left(\frac{\partial P}{\partial x} - i\frac{\partial P}{\partial y}\right)\\
+        &= \frac12\left(u_x+iv_x - i(u_y+iv_y)\right)\\
+        &= \frac12\left((u_x+v_y) + i(v_x-u_y)\right)\\
+        &= u_x + iv_x,
+    \end{align*}
+    and then $P'(z_0) \neq 0$.
+    
+    \item If $P'(z_0) \neq 0$, then $u_x(z_0), v_x(z_0)$. Thus, $JP(z_0) \neq 0$, which implies $P$ is a diffeomorphism in a neighborhood of $z_0 \in\mathbb{C}$.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 62.}
+Let $f:\mathbb{R}\to\mathbb{R}$ be $C^1$ and let
+\begin{eqnarray*}
+u & = & f(x) \\
+v & = & -y+xf(x).
+\end{eqnarray*}
+If $f'(x_0)\neq 0$, show that this transformation is locally
+invertible near $(x_0,y_0)$ and the inverse has the form
+\begin{eqnarray*}
+x & = & g(u) \\
+y & = & -v+ug(u).
+\end{eqnarray*}
+\begin{proof}
+Since 
+\begin{align*}
+    \det \begin{pmatrix}
+        u_x & u_y \\
+        v_x & v_y
+    \end{pmatrix} = - f'(x_0) \neq 0,
+\end{align*}
+then $F: (x,y) \to (u,v)$ is invertible in an open neighborhood $U$ of $(x_0,y_0)$ and for an open neighborhood $W$ of $(u(x_0),v(y_0))$, $F^{-1}: W\to U$ is of class $C^1$. Then there exists $g$ such that $f^{-1}(u) = x = g(u)$ and then $y = -v + ug(u)$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 63.}
+Prove that the system of equations
+$$
+\begin{cases}
+xyz+x^2+y = 0\\
+z+x^2y^2z^2 = 0
+\end{cases}
+$$
+has a solution of the form $y=y(x), z=z(x)$ in a neighborhood of
+$(0,0,0)$.
+\begin{proof}
+Denote 
+\begin{align*}
+    F_1(x,y,z) & = xyz + x^2 + y \\
+    F_2(x,y,z) & = z + x^2y^2z^2
+\end{align*}
+and we have
+\begin{align*}
+    \Delta = \begin{vmatrix}
+        \frac{\partial F_1}{\partial y} & \frac{\partial F_1}{\partial z} \\
+        \frac{\partial F_2}{\partial y} & \frac{\partial F_2}{\partial z}
+    \end{vmatrix} = \begin{vmatrix}
+        xz + 1 & xy \\
+        2 x^2 z^2 y & 1 + 2 x^2 y^2 z
+    \end{vmatrix} = 1 + xz + 2 x^2 y^2 z
+\end{align*}
+and at point $(0,0,0)$, we have $\Delta(0,0,0) = 1 \neq 0$. Then with implicit function theorem, the system has a solution of the form $y=y(x), z=z(x)$ in a neighborhood of
+$(0,0,0)$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 64.}
+Let $F(x,y)=x^3y^2+3x^2y^3-xy+2x-y^2+1$, $(x,y)\in\mathbb{R}^2$. Prove that
+there exist functions $g,h\in C^\infty$ defined on an open neighborhood
+$U\subset\mathbb{R}$ of $0$, such that $F(x,g(x))=0=F(x,h(x))$ and
+$g(x)<h(x)$ for every $x\in U$. Find $g'(0)$, $h'(0)$.
+\begin{proof}
+Suppose $F(0,y_0) = 0$, then we have $y_0 = -1$ or $y_0 = 1$. Also, we have $F_y(0,y) = -2y$, then $F_y(0,1) \neq 0$ and $F_y(0,-1) \neq 0$. With implicit function theorem, there exists a neighborhood $U$ of $0$ and a neighborhood $V$ of $y_0$ such that for every $x\in U$, there is exactly one $y\in V$ satisfying $F(x, f(x)) = 0$. 
+
+For $y_0 = -1$, we have $F(x, g(x)) = 0$, where $g:U \to V_1$ and $V_1$ is a neighborhood of $-1$. Also, for $y_0 = 1$, we have $F(x, h(x)) = 0$, where $h:U \to V_2$ and $V_2$ is a neighborhood of $1$. And $V_1 \cap V_2 = \varnothing$, since if it is not, it contradicts with there is only one $y$ such that $F(x,y) = 0$. Then we have $g(x) < h(x)$. 
+
+Also, consider $F(x, g(x)) = 0$, we have $F_x(0,g(0)) = - g(0) + 2 - 2g(0) g'(0) = 0$, with $g(0) = -1$ we have $g'(0) = -\frac{3}{2}$. Similarly, we have $h'(0) = \frac{1}{2}$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 65.}
+Let $F$ be as in Problem~64. Prove that there is a function $g\in C^\infty$
+defined on an open neighborhood $U$ of $0$ such that $F(g(y),y)=0$
+for every $y\in U$. Find $g'(0)$.
+\begin{proof}
+Suppose $F(x_0, 0) = 0$, then we have $x_0 = -\frac{1}{2}$. Also, we have $F_x(x_0, 0) = 3 \neq 0$. With implicit function theorem, there exists a neighborhood $V$ of $0$ and a neighborhood $U$ of $x_0$ such that for every $y\in V$, there is exactly one $x\in U$ satisfying $F(g(y), y) = 0$.
+
+Also, consider $F(g(y), y) = 0$, we have $F_y(g(0), 0) = - g(0) + 2 g'(0) = 0$, with $g(0) = -\frac{1}{2}$, we have $g'(0) = -\frac{1}{4}$.
+\end{proof}
+
+\medskip
+
+
+\noindent
+{\bf Problem 66.}
+Suppose that $F:\mathbb{R}^3\to\mathbb{R}$ is of class $C^1$.
+$F(0,0,0)=0$, $F_x(0,0,0)\neq 0$, $F_y(0,0,0)\neq 0$,
+$F_z(0,0,0)\neq 0$. The implicit function theorem implies
+that the equation $F(x,y,z)=0$ can uniquely be solved in a
+neighborhood of the point $(0,0,0)$
+as $x=x(y,z)$ or $y=y(x,z)$ or $z=z(x,y)$. Prove that
+at every point in some neighborhood of $(0,0,0)$ we have
+$$
+\frac{\partial z}{\partial x} \frac{\partial x}{\partial y}
+\frac{\partial y}{\partial z}=-1\, .
+$$
+\begin{proof}
+Since $F(x,y,z(x,y)) = 0$, we have
+\begin{align*}
+    F_x(x,y,z(x,y))\frac{\partial x}{\partial x} + F_y(x,y,z(x,y))\frac{\partial y}{\partial x} + 
+    F_z(x,y,z(x,y))\frac{\partial z}{\partial x} = 0,
+\end{align*}
+which implies $F_x + F_z \frac{\partial z}{\partial x} = 0$ and hence $\frac{\partial z}{\partial x} = - \frac{F_x}{F_z}$. Similarly, $F(x,y(x,z),z) = 0$ yields $\frac{\partial y}{\partial z} = - \frac{F_z}{F_y}$ and $F(x(y,z),y,z) = 0$ yields $\frac{\partial x}{\partial y} = - \frac{F_y}{F_x}$. Thus, 
+\begin{align*}
+    \frac{\partial z}{\partial x} \frac{\partial x}{\partial y} \frac{\partial y}{\partial z} = (-1)^3 \frac{F_x}{F_z} \frac{F_z}{F_y} \frac{F_y}{F_x} = -1.
+\end{align*}
+\end{proof}
+
+\medskip
+
+
+\noindent
+{\bf Problem 67.}
+Let $F=F(x,y):\mathbb{R}^2\to\mathbb{R}$ be of class $C^1$ such that
+$\partial F/\partial y\neq 0$ on $\mathbb{R}^2$.
+Prove that if the set
+$S=\{ (x,y)\, |\, F(x,y)=0\}$ is nonempty, then it is of the form
+$S=\{ (x,g(x))\, |\, x\in U\}$, where $g:U\to\mathbb{R}$ is a $C^1$ function
+defined on an open set $U\subset\mathbb{R}$.
+\begin{proof}
+For $(x_0, y_0) \in S$, then $F(x_0, y_0) = 0$ and $F_y(x_0, y_0) \neq 0$. Then there exists a neighborhood $U$ of $x_0$ and a neighborhood $V$ of $y_0$ such that for any $x\in U$, there exists only one $y\in V$, $F(x, g(x)) = 0$. And $S$ in the neighborhood $U \times V$ of $(x_0, y_0)$ is a graph of a function $y = g(x)$. 
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 68.}
+Prove that the equation $xe^z=y(z+x)$ defines $z$ as a function of $(x,y)$ in a neighborhood of the point
+$(x_0,y_0,z_0)=(2,1,0)$. Then find the Taylr polynomial
+of degree $2$ of the function $z=z(x,y)$ centered at the point
+$(2,1)$.
+\begin{proof}
+Let $F(x,y,z) = y(z+x) - x e^z$, then $F(2,1,0) = 0$ and $F_z(2,1,0) = -1 \neq 0$. Then there is a neighborhood of $U$ of $(2,1)$ and a neighborhood $V$ of $0$, such that for any $z\in V$, there exists only one $(x,y) \in U$, $F(x,y,z(x,y)) = 0$. Thus, the equation defines $z$ as a function of $(x,y)$ in a neighborhood of the point
+$(2,1,0)$. 
+
+Also, Taylor series of $z(x,y)$ is 
+\begin{align*}
+    z(x,y) = z(2,1) + \frac{\partial z}{\partial x}(2,1) (x-2) + \frac{\partial z}{\partial y}(2,1) (y-1),
+\end{align*}
+and we can compute for $\frac{\partial z}{\partial x}(2,1)$ and $\frac{\partial z}{\partial y}(2,1)$ by taking derivative of $F(x,y,z(x,y))$ with respect to $x$ and $y$, which yields $\frac{\partial z}{\partial x}(2,1) = 0, \frac{\partial z}{\partial y}(2,1) = 2$. Thus, we have 
+\begin{align*}
+    z(x,y) = 2 (y-1).
+\end{align*}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 69.}
+Show that there is a polynomial $P(x,y,z)$ of order $4$ such that
+the set $P(x,y,z)=0$ is a torus. Show that the gradient of $P$ is nonzero at every point of the torus and conclude that the torus is locally a graph of a smooth function of two variables.
+\begin{proof}
+Considering polynomial $P(x,y,z) = (x^2 + y^2 + z^2 + R^2 - r^2)^2 - 4R^2(x^2 + y^2), R > r$, then $P(x,y,z) = 0$ is a torus. And we have 
+\begin{align*}
+    \Delta P = \begin{bmatrix}
+        P_x \\
+        P_y \\
+        P_z
+    \end{bmatrix} = \begin{bmatrix}
+        4 (x^2 + y^2 + z^2 + R^2 - r^2)x - 8 R^2 x\\
+        4 (x^2 + y^2 + z^2 + R^2 - r^2)y - 8 R^2 y \\
+        4 (x^2 + y^2 + z^2 + R^2 - r^2)z
+    \end{bmatrix}
+    \neq 0, \forall x,y,z
+\end{align*}
+since $\Delta P = 0$ only at $(0,0,0)$ but $(0,0,0)$ is not a point in this torus. Then at least one of $P_x, P_y$ and $P_z$ is not zero, thus the torus is locally a graph of a smooth function of two variables.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 70.}
+Show that there is no polynomial $P(x,y,z)$ of order less than $4$ such
+that the set $P(x,y,z)=0$ is a torus.
+\begin{proof}
+
+\end{proof}
+
+\medskip
+
+
+\noindent
+{\bf Problem 71.}
+The cylinder $(x-1)^2+y^2 = 1$ intersects with the sphere $x^2+y^2+z^2=4$ along a curve. This curve has a self-intersection (the curve looks like "8"). Find the angle at which the curve intersects with itself.
+\begin{proof}
+The curve intersects itself at point $(2,0,0)$, and denote $x - 1 = \cos \theta$, then we have $y = \sin \theta$ and $z = \pm \sqrt{2 - 2\cos \theta}$. The the curve can be represented as 
+$$F(t) = \{(1+\cos \theta, \sin \theta, \pm \sqrt{2 - 2\cos \theta} )\}$$
+Then the tangent vectors at point $(2,0,0)$ are 
+\begin{align*}
+    v & = \left(-\sin \theta, \cos \theta, \pm \frac{\sin \theta}{\sqrt{2 - 2\cos \theta}}\right)\Bigg|_{\theta = 0} \\
+    & = \left(0, 1, 0\right).
+\end{align*}
+Then the angle at which the curve intersects with itself is $\theta = 0$.
+\end{proof}
+
+
+\end{document}
+
+

@@ -54,444 +54,482 @@
 
 \def\U{{\mathcal U}}
 
-
 \begin{document}
 
-\centerline{\bf Homework 3 for Math 1540}
+
+\centerline{\bf Homework 4 for Math 1540}
 \centerline{Zhen Yao}
 
 \bigskip
 
 
 \noindent
-{\bf Problem 33.}
-Prove that:
-\begin{enumerate}[label=(\alph*)]
-    \item There is a unique continuous function $f:[0,1]\to\mathbb{R}$ such that
-    $$
-    f(x)=1+\int_0^x t^2f(t)\, dt
-    \quad
-    \text{for all $x\in [0,1]$.}
-    $$
-    \item
-    The function from (a) is of class $f\in C^\infty(0,1)$.
-    \end{enumerate}
+{\bf Problem 50.}
+Let $f:\mathbb{R}^n\to\mathbb{R}$ be convex. Prove that if partial derivatives
+$$
+\frac{\partial f}{\partial x_i}(x_0),
+\quad
+i=1,2,\ldots,n,
+$$
+exist, then $f$ is differentiable at $x_0$.
 \begin{proof}
-~\begin{enumerate}[label=(\alph*)]
-    \item Consider the mapping $T: C([0,1],\mathbb{R})\to C([0,1],\mathbb{R})$ defined by 
+Let $A = \left[\frac{\partial f}{\partial x_1}(x_0), \cdots, \frac{\partial f}{\partial x_n}(x_0)\right]$, and we need to prove that 
+\begin{align*}
+    \phi(h) = f(x_0+h) - f(x_0) - Ah
+\end{align*}
+satisfies $\frac{\phi(h)}{\|h\|} \to 0$ as $h \to 0$. $\phi(h)$ is convex and we denote by $h = \left(h_1, \cdots, h_n \right) = e_1 h_1 + \cdots + e_n h_n$, then we have 
+\begin{align*}
+    \phi(h) & = \phi \left(\frac{1}{n} \sum^n_{i=1} h_i n e_i \right) \\
+    & \leq \frac{1}{n}\sum^n_{i=1} h_i n e_i = \sum^n_{i=1} h_i \frac{\phi(h_i n e_i)}{h_i n} \\
+    & \leq \|h\| \sum^n_{i=1} \left|\frac{\phi(h_i n e_i)}{h_i n}\right|,
+\end{align*}
+similarly, 
+\begin{align*}
+    \phi(-h) \leq \|h\| \sum^n_{i=1} \left|\frac{\phi( - h_i n e_i)}{ - h_i n}\right|.
+\end{align*}
+Also, we have $0 = \phi \left(\frac{h + (-h)}{2}\right) \leq \frac{\phi(h) + \phi(-h)}{2}$, which implies $\phi(h) \leq - \phi(-h)$, then 
+\begin{align*}
+    0 \xleftarrow{h \to 0} - \sum^n_{i=1} \left|\frac{\phi( - h_i n e_i)}{ - h_i n}\right| \leq \frac{\phi(h)}{\|h\|} \leq \sum^n_{i=1} \left|\frac{\phi( h_i n e_i)}{ h_i n}\right| \xrightarrow{h \to 0} 0,
+\end{align*}
+where in the last step we used the fact that partial derivatives $\frac{\partial f}{\partial x_i}(x_0), i=1,2,\ldots,n$ exist, then we have $\phi(t e_i) = f(x_0+t e_i) - f(x_0) - \frac{\partial f}{\partial x_i}(x_0)t$ and 
+\begin{align*}
+    \lim_{t\to 0}\frac{\phi(t e_i)}{t} = \lim_{t\to 0} \frac{f(x_0+t e_i) - f(x_0)}{t} - \frac{\partial f}{\partial x_i}(x_0) = 0.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 51.}
+Let $Q:C^\infty(\mathbb{R}^n)\to\mathbb{R}$ be a linear mapping such that $Qf\geq 0$ whenever $f\in C^\infty(\mathbb{R}^n)$ satisfies $f(0)=0$ and $f(x)\geq 0$ in a neighborhood of $0$. Prove that there are real numbers $a_{ij}$, $b_i$ and $c$ such that
+$$
+Qf=\sum_{i,j=1}^n a_{ij}\frac{\partial^2 f}{\partial x_i\partial x_j}(0)+\sum_{i=1}^n b_i\frac{\partial f}{\partial x_i}(0)+cf(0)
+\quad
+\text{for all $f\in C^\infty(\mathbb{R}^n)$.}
+$$
+\begin{proof}
+We have 
+\begin{align*}
+    f(x) = f(0) + \sum^n_{i=1} \frac{\partial f}{\partial x_i}(0) x_i + \frac{1}{2} \sum_{i,j} \frac{\partial^2 f}{\partial x_i \partial x_j}(0) x_i x_j + \varphi(x),
+\end{align*}
+and let $c = Q(0), b_i = Q(x_i), a_{ij} = \frac{1}{2}Q(x_i x_j)$, then we have 
+\begin{align*}
+    Qf = \sum_{i,j=1}^n a_{ij}\frac{\partial^2 f}{\partial x_i\partial x_j}(0) + \sum_{i=1}^n b_i\frac{\partial f}{\partial x_i}(0) + cf(0) + Q\varphi.
+\end{align*}
+We need to prove that $Q\varphi = 0$. Since $\varphi(x) = o(|x|^2)$, then there exists $\varepsilon > 0$, such that $\varepsilon |x|^2 - \varphi(x) \geq 0$ near $0$. Then, $Q \left(\varepsilon |x|^2 - \varphi(x) \right) \geq 0$, which implies $Q\varphi \leq \varepsilon Q\left(|x|^2\right)$, and then $Q\varphi \leq 0$ as $\varepsilon \to 0$. Similarly, $Q \left(\varepsilon |x|^2 + \varphi(x) \right) \geq 0$ and we have $-Q\varphi \leq \varepsilon Q \left(|x|^2\right)$. Then, $Q\varphi \geq 0$ and hence $Q\varphi = 0$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 52.}
+Define $f:\mathbb{R}^2\to\mathbb{R}$ by
+$$
+f(x)=
+\begin{cases}
+\frac{x^2(y^4+2x)}{x^2+y^4} & \text{if $(x,y)\neq (0,0)$,}\\
+0                           & \text{if $(x,y)=(0,0)$.}
+\end{cases}
+$$
+Prove that $f$ is differentiable at $(0,0)$.
+\begin{proof}
+We have 
+\begin{align*}
+    f_x(0,0) & = \lim_{s\to 0} \frac{f(s,0) - f(0,0)}{s} = \lim_{s\to 0} \frac{2s^3/s^2}{s} = 2 \\
+    f_y(0,0) & = \lim_{s\to 0} \frac{f(0,s) - f(0,0)}{s} = 0
+\end{align*}
+and we need to show that the limit equals zero, which is 
+\begin{align*}
+    & \lim_{(s,t)\to (0,0)} \frac{f(s,t) - f(0,0) - f_x(0,0)s - f_y(0,0)t}{\sqrt{s^2 + t^2}} \\
+    = & \lim_{(s,t)\to (0,0)} \frac{s^2 t^4 - 2s t^4}{(s^2+t^4)\sqrt{s^2 + t^2}},
+\end{align*}
+also,
+\begin{align*}
+    \left|\frac{s^2 t^4 - 2s t^4}{(s^2+t^4)\sqrt{s^2 + t^2}}\right| \leq \left|\frac{s^2 t^4 - 2s t^4}{2 |s| t^2 |t|}\right| = \left| \frac{|st|}{2} - t \right| \xrightarrow{(s,t)\to (0,0)} 0,
+\end{align*}
+where we used the fact that $s^2 + t^4 \geq 2|s|t^2$ and $\sqrt{s^2 + t^2} \geq |t|$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 53.}
+Let $f:\mathbb{R}^2\to\mathbb{R}$ be defined by
+$$
+f(x)=
+\begin{cases}
+xy\frac{x^2-y^2}{x^2+y^2} & \text{if $(x,y)\neq (0,0)$,}\\
+0                           & \text{if $(x,y)=(0,0)$.}
+\end{cases}
+$$
+Prove that the mixed partial derivatives
+$\frac{\partial^2 f}{\partial x\partial y}$ and
+$\frac{\partial^2 f}{\partial y\partial x}$
+exist everywhere in $\mathbb{R}^2$, but
+$$
+\frac{\partial^2 f}{\partial x\partial y}(0,0)\neq
+\frac{\partial^2 f}{\partial y\partial x}(0,0).
+$$
+\begin{proof}
+When $(x,y) \neq (0,0)$, with $f(x,y) = - f(y,x)$
+\begin{align*}
+    \frac{\partial f}{\partial x}(x,y) & = \frac{y(x^4 + 4x^2y^2 - y^4)}{\left(x^2 + y^2\right)^2}\\
+    \frac{\partial f}{\partial y}(x,y) & = - \frac{\partial f}{\partial x}(y,x) = - \frac{y(x^4 + 4x^2y^2 - y^4)}{\left(x^2 + y^2\right)^2},
+\end{align*}
+then $\frac{\partial^2 f}{\partial x\partial y}, \frac{\partial^2 f}{\partial y\partial x}$ exist at $(x,y) \neq (0,0)$. Also, 
+\begin{align*}
+    \frac{\partial^2 f}{\partial y \partial x}(0,0) & = \frac{\partial}{\partial y}\left(\frac{\partial f}{\partial x}\right)(0,0) = \dv{}{y}\Bigg|_{y=0} \left(\frac{\partial f}{\partial x}(0,y)\right) = \dv{}{y}\Bigg|_{y=0} \left(- \frac{y^5}{y^4}\right) = -1, \\
+    \frac{\partial^2 f}{\partial x\partial y}(0,0) & = \frac{\partial}{\partial x}\left(\frac{\partial f}{\partial y}\right)(0,0) = \dv{}{x}\Bigg|_{x=0} \left(\frac{\partial f}{\partial y}(x,0)\right) = \dv{}{x}\Bigg|_{x=0} \left(\frac{x^5}{x^4}\right) = 1.
+\end{align*}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 54.}
+Prove that the function
+$$
+f(x)=
+\begin{cases}
+\frac{x|y|}{\sqrt{x^2+y^2}} & \text{if $(x,y)\neq (0,0)$,}\\
+0                           & \text{if $(x,y)=(0,0)$.}
+\end{cases}
+$$
+has all directional derivatives $D_vf(0,0)$ at the origin, but $f$ is not differentiable at $(0,0)$.
+\begin{proof}
+For $v = (a,b) \neq (0,0)$, 
+\begin{align*}
+    D_vf(0,0) & = \lim_{t\to 0} \frac{f(ta,tb) - f(0,0)}{t} \\ 
+    & = \lim_{t\to 0} \frac{1}{t} \frac{ta|tb|}{|t|\sqrt{a^2+b^2}} \\
+    & = \lim_{t\to 0} \frac{a|b|}{\sqrt{a^2+b^2}},
+\end{align*}
+and $D_vf(0,0)$ is not linear with respect to $v$, thus, not differentiable.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 55.}
+Let $f:\mathbb{R}^n\to\mathbb{R}^n$ be a mapping of class $C^1$. Prove that if $\operatorname{rank} Df(x_0)=n$, then $f$ is injective in a neighborhood of $x_0$. Prove it directly, without using the inverse function theorem.
+\begin{proof}
+Since $\operatorname{rank} Df(x_0) = n$, then $M = f^{-1}(0) = \{x \in \mathbb{R}^n | f(x) = 0\}$ is $0$-dimensional submanifold. Thus, $M = \{0\}$, which implies $f$ is injective.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 56.}
+Assume that $f:\mathbb{R}^n\to\mathbb{R}^m$ is differentiable and $\operatorname{rank} Df(x)=n$ for all $x\in\mathbb{R}^n$. Prove that if $S\subset\mathbb{R}^n$ is bounded, then for every $y\in\mathbb{R}^m$, the set
+$$
+S\cap f^{-1}(y)=\{x\in S:\, f(x)=y\}
+$$
+is finite.\\
+{\bf Remark.} Since we do not assume continuity of $Df$, we cannot use the inverse function theorem.
+\begin{proof}
+Since $f$ is differentiable and $\operatorname{rank} Df(x) = n$, then for any $x\in \mathbb{R}^m$, $f$ is injective in a neighborhood $U$ of $x$. Then for any $y\in \mathbb{R}^m$, there exists a unique $x \in \mathbb{R}^m$ in its neighborhood, and thus $S\cap f^{-1}(y)$ is finite.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 57.}
+Let $\Omega=\{(x,y)\in\mathbb{R}^2:\, x>0, 0<y<2\pi\}$.
+Prove that the mapping $f:\Omega\to\mathbb{R}^2$,
+$f(x,y)=(x\cos y,x\sin y)$ is a diffeomorphism of $\Omega$
+onto an open subset of $\mathbb{R}^2$. Find $f(\Omega)$.
+{\bf Hint:} A picture will help. Have you seen a similar mapping in Calculus~3?
+\begin{proof}
+Since
+\begin{align*}
+    Jf(x) = \det \begin{pmatrix}
+        \cos y & -x \sin y \\
+        \sin y & -x \cos y
+    \end{pmatrix} = x \neq 0,
+\end{align*}
+the mapping $f$ is diffeomorphism and hence invertible in a neighborhood of any point $(x,y) \in \mathbb{R}^2$. Suppose $f(x_1, y_1) = f(x_2, y_2)$, then we have
+\begin{align*}
+    x_1 \cos y_1 & = x_2 \sin y_2 \\
+    x_1 \sin y_1 & = x_2 \sin y_2
+\end{align*}
+which implies $x_1 = x_2$ and $y_1 = y_2$. Thus, $f$ is invertible and hence $f$ is diffeomorphism of $\Omega$ onto an open subset of $\mathbb{R}^2$. Also, $f(\Omega) = \mathbb{R}^2$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 58.}
+Find a diffeomorphism of $\mathbb{R}^2$ onto the open unit disc $x^2+y^2<1$.
+\begin{proof}
+$f(x,y) = \left(\frac{x}{\sqrt{x^2+y^2}+1}, \frac{y}{\sqrt{x^2+y^2}+1}\right)$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 59.}
+Find a diffeomorphism of the upper half plane $y>0$ onto the first quadrant
+$x>0$, $y>0$.
+\begin{proof}
+$f(x,y) = \left(e^x, y\right)$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 60.}
+Suppose that $f\in C^1(\mathbb{R})$ is such that $|f'(x)|<1$ for all $x\in\mathbb{R}$.
+Prove that the mapping $F:\mathbb{R}^2\to\mathbb{R}^2$,
+$F(x,y)=(x+f(y), y-f(x))$
+is a diffeomorphism in a neighborhood of any point $(x,y)\in\mathbb{R}^2$.
+\begin{proof}
+Since
+\begin{align*}
+    JF(x) = \det \begin{pmatrix}
+        1 & f'(y) \\
+        - f'(x) & 1
+    \end{pmatrix} = 1 + f'(x)f'(y) \neq 0,
+\end{align*}
+the mapping $F$ is diffeomorphism and hence invertible in a neighborhood of any point $(x,y) \in \mathbb{R}^2$
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 61.}
+Prove that a complex polynomial
+$P(z)=a_0z^n+a_1 z^{n-1} + \ldots + a_n$
+regarded as a function
+$P:\mathbb{R}^2\to\mathbb{R}^2$ is a diffeomorphism in a neighborhood of $z_0\in\mathbb{C}$
+if and only if $P'(z_0)\neq 0$, where
+$P'(z)=na_0 z^{n-1} + (n-1)a_1 z^{n-2} + \ldots + a_1$.
+\begin{proof}
+~\begin{enumerate}[label=(\arabic*)]
+    \item If $P$ is a diffeomorphism in a neighborhood of $z_0 = x_0 + i y_0 \in\mathbb{C}$, we can write $P$ as $P(z_0) = u(x_0, y_0) + i v(x_0, y_0)$, where $u,v$ are real functions. Then, with the Cauchy-Riemann equations $u_x = v_y, u_y = -v_x$, we have
     \begin{align*}
-        T(f)(x) = g(x) + \int^x_0 t^2 f(t^2)\, dt.
+        JP(z_0) & = \det \begin{pmatrix}
+        u_x(z_0) & u_y(z_0) \\
+        v_x(z_0) & v_y(z_0)
+        \end{pmatrix} \\
+        & = u_x(z_0) v_y(z_0) - u_y(z_0) v_x(z_0) \\
+        & = u_x^2(z_0) + u_y^2(z_0) = v_x^2(z_0) + v_y^2(z_0) \neq 0,
     \end{align*}
-    Clearly, $f$ is a solution to the problem if and only if $T(t) = f$. Since $C([0,1],\mathbb{R})$ is compact, then we need to prove that $T(f)$ is a contraction.
-    
-    Given $f,h \in C([0,1],\mathbb{R})$, we have
+    which implies $u_x, u_y, v_x, v_y \neq 0$. Also, with Wirtinger derivatives, we have 
     \begin{align*}
-        d_\infty(T(f),T(h)) & = \sup_{x\in[0,1]} \left|\int^x_0 t^2 f(t^2)\, dt - \int^x_0 t^2 h(t^2)\, dt\right| \\
-        & \leq \sup_{x\in[0,1]} \int^x_0 \left|f(t^2) - h(t^2)\right|t^2\, dt \\
-        & \leq d_\infty (f,h) \int^1_0 t^2\, dt \\
-        & = \frac{1}{3} d_\infty (f,h)
+        \frac{\partial P}{\partial z} &= \frac12\left(\frac{\partial P}{\partial x} - i\frac{\partial P}{\partial y}\right)\\
+        &= \frac12\left(u_x+iv_x - i(u_y+iv_y)\right)\\
+        &= \frac12\left((u_x+v_y) + i(v_x-u_y)\right)\\
+        &= u_x + iv_x,
     \end{align*}
-    which implies that $T$ is a contraction. And the result follows.
+    and then $P'(z_0) \neq 0$.
     
-    \item We have $f'(x) = x^2 f(x)$, then clearly $f\in C^\infty(0,1)$.
+    \item If $P'(z_0) \neq 0$, then $u_x(z_0), v_x(z_0)$. Thus, $JP(z_0) \neq 0$, which implies $P$ is a diffeomorphism in a neighborhood of $z_0 \in\mathbb{C}$.
 \end{enumerate}
 \end{proof}
 
 \medskip
 
 \noindent
-{\bf Problem 34.}
-Prove that if $f:\mathbb{R}^n\to\mathbb{R}$ satisfies $|f(x)-f(y)|\leq M\Vert x-y\Vert^{3/2}$, then $f$ is constant.
+{\bf Problem 62.}
+Let $f:\mathbb{R}\to\mathbb{R}$ be $C^1$ and let
+\begin{eqnarray*}
+u & = & f(x) \\
+v & = & -y+xf(x).
+\end{eqnarray*}
+If $f'(x_0)\neq 0$, show that this transformation is locally
+invertible near $(x_0,y_0)$ and the inverse has the form
+\begin{eqnarray*}
+x & = & g(u) \\
+y & = & -v+ug(u).
+\end{eqnarray*}
 \begin{proof}
-It suffice to show that $Df(x) = 0$ on $\mathbb{R}^n$. By definition, we have 
-\begin{align*}
-    \frac{\|f(x+h) - f(x) - 0\cdot h\|}{\|h\|} \leq \frac{M \|h\|^{3/2}}{\|h\|} = M \|h\|^{\frac{1}{2}} \xrightarrow[]{h\to\infty} 0,
-\end{align*}
-which implies $Df(x) = 0$. Hence, $f$ is constant.
-\end{proof}
-
-
-\medskip
-
-\noindent
-{\bf Problem 35.}
-Prove that if the partial derivatives $\partial f/\partial x_1$ and $\partial f/\partial x_2$  of a function $f:\mathbb{R}^2\to\mathbb{R}$ exist at every point of
-$\mathbb{R}^2$, and the partial derivative $\partial f/\partial x_1$ is continuous on $\mathbb{R}^2$, then $f$ is differentiable at every point of $\mathbb{R}^2$.
-\begin{proof}
-Let $y = (y_1, y_2), x = (x_1, x_2) \in \mathbb{R}^2$, then we have
-\begin{align*}
-    f(y_1, y_2) - f(x_1, x_2) & = f(y_1, y_2) - f(x_1, y_2) + f(x_1, y_2) - f(x_1, x_2) \\
-    & = \frac{\partial f}{\partial x_1}(\xi, y_2) (y_1 - x_1) + \frac{\partial f}{\partial x_2}(x_1,x_2)(y_2 - x_1) + \varphi(y_2 - x_2)|y_2 - x_2|.
-\end{align*}
-By definition, we have
-\begin{align*}
-    & \frac{\left|f(y_1, y_2) - f(x_1, x_2) - \sum^2_{i=1}\frac{\partial f}{\partial x_i}(x_1, x_2)(y_i - x_i) \right|}{\|y - x\|} \\
-    \leq & \underbrace{\left|\frac{\partial f}{\partial x_1}(\xi, y_2) - \frac{\partial f}{\partial x_1}(x_1, y_2)\right|}_{\xrightarrow[y\to x]{} 0}\cdot \underbrace{\frac{|y_1 - x_1|}{\|y - x\|}}_{\leq 1} + \underbrace{|\varphi(y_2 - x_2)|}_{\xrightarrow[y\to x]{} 0} \cdot \underbrace{\frac{|y_2 - x_2|}{\|y - x\|}}_{\leq 1} \to 0.
-\end{align*}
-Hence, $f$ is differentiable at every point of $\mathbb{R}^2$.
-\end{proof}
-
-\medskip
-
-\noindent
-{\bf Problem 36.}
-Prove that if $f\in C^1(\mathbb{R}^n)$ and $\nabla f$ is $L$-Lipschitz, $\Vert \nabla f(x)-\nabla f(y)\Vert\leq L\Vert x-y\Vert$, $x,y\in\mathbb{R}^n$, then
-$$
-\frac{|f(y)-f(x)-\nabla f(x)(y-x)|}{\Vert y-x\Vert}\leq L\Vert y-x\Vert
-\quad
-\text{for all $x,y\in\mathbb{R}^n$.}
-$$
-\begin{proof}
-Since $f\in C^1(\mathbb{R}^n)$, then $f(y) - f(x) = \nabla f(\xi)(y - x)$, where $\xi \in \overline{xy}$. Then we have
-\begin{align*}
-    LHS & = \frac{\left|\nabla f(\xi)(y - x) - \nabla f(x)(y-x) \right|}{\|y-x\|} \\
-    & \leq \| \nabla f(x)-\nabla f(y)\|  \\
-    & \leq L \|y-x\|.
-\end{align*}
-\end{proof}
-
-\medskip
-
-\noindent
-{\bf Problem 37.}
-Let $f\in C^2(\mathbb{R}^2)$. Suppose that $\nabla f=0$ on a compact set
-$E\subset\mathbb{R}^2$. Prove that there is a constant $M>0$ such that
-$|f(x)-f(y)|\leq M|x-y|^2$ for all $x,y\in E$. \\
-\textbf{Hint:} Cannot use mean-value theorem here, since $f(y) - f(x) = f'(\xi)(y-x)$ and maybe $\xi \notin E$.
-\begin{proof}
-Based on Problem 38, we have
-\begin{align*}
-    f(y) - f(x) & = \nabla f(x)(y-x) + \int^1_0 (1-t) (y-x)^T f(x+t(y-x)) (y-x)\, dt.
-\end{align*}
-Then we have 
-\begin{align*}
-    \left|f(y) - f(x)\right| \leq  |y-x|^2 \int^1_0 \left|D^2f(x+t(y-x))\right|\, dt.
-\end{align*}
-Since $E$ is compact, then $E \subset \overline{B}$, where $\overline{B}$ is a closed ball. And we can set $M = \sup_{\xi \in \overline{B}}\left|D^2 f(\xi)\right|$, then we find the $M$ that satisfies the condition.
-\end{proof}
-
-\medskip
-
-
-\noindent
-{\bf Problem 38.}
-Suppose that $f\in C^2(\mathbb{R}^n)$ has a local minimum at $x=0$ and $f(0)=0$. Prove that for any $x\in\mathbb{R}^n$
-$$
-f(x)=\int_0^1 (1-t)x^TD^2f(tx)x\, dt,
-$$
-where $x\in\mathbb{R}^n$ is a column vector and $x^T$ is the horizontal vector.
-\begin{proof}
-For any $g\in C^2(\mathbb{R}^n)$, we can derive second order Taylor expansion with integral remainder 
-\begin{align*}
-    g(1) - g(0) & = \int^1_0 g'(t)\, dt \\
-    & = - \int^1_0 g'(t)(1-t)'\, dt \\
-    & = -g'(t)(1-t)\Big|^1_0 + \int^1_0 g''(t)(1-t)\, dt \\
-    & = g'(0) + \int^1_0 g''(t)(1-t)\, dt, 
-\end{align*}
-which implies $$g(1) = g(0) + g'(0) + \int^1_0 g''(t)(1-t)\, dt.$$ 
-
-Now we set $g(t) = f(x+t(y-x))$, and we have 
-\begin{align*}
-    g'(t) & = Df(x+t(y-x)) (y-x) \\
-    g''(t) & = (y-x)^T D^2 f(x+t(y-x)) (y-x)
-\end{align*}
-and then 
-\begin{align*}
-    f(y) - f(x) = g(1) - g(0) = g'(0) + \int^1_0 g''(t)(1-t)\, dt.
-\end{align*}
-Hence, we have
-\begin{align*}
-    f(y) = f(x) + Df(x)(y-x) + \int^1_0 (1-t) (y-x)^T D^2 f(x+t(y-x)) (y-x)\, dt,
-\end{align*}
-letting $y\to x$ and $x\to 0$, we have
-\begin{align*}
-    f(x) = \int_0^1 (1-t)x^T D^2f(tx) x\, dt.
-\end{align*}
-\end{proof}
-
-\medskip
-
-\noindent
-{\bf Problem 39.}
-We know that $f\in C^2(\mathbb{R})$ is convex if and only if $f''\geq 0$ on $\mathbb{R}$. Prove that $f\in C^2(\mathbb{R}^n)$ is convex if and only if
-$H_x(f)=D^2f(x)$ is positive semidefinite for all $x\in\mathbb{R}^n$.
-\begin{proof}
-$f$ is convex if and only if its restriction to any line in $\mathbb{R}^n$ is convex. This is equivalent to that $\forall x\in \mathbb{R}^n, \forall v \in \mathbb{R}^n, \|v\| = 1$, $g(t) = f(x+tv)$ is convex. Then we have $g''(t) \geq 0$. Since we have 
-\begin{align*}
-    g'(t) & = \sum^n_{i=1} \frac{\partial f}{\partial x_i}(x+tv) v_i \\
-    g''(t) & = \sum^n_{i=1} \frac{\partial^2 f}{\partial x_i^2}(x+tv) v_i v_j\\
-    & = v^T D^2f(x+tv)v,
-\end{align*}
-then $f$ is convex if and only if $\forall x\in \mathbb{R}^n, \forall v \in \mathbb{R}^n, \|v\| = 1$, $v^T D^2f(x+tv)v \geq 0$. Hence, $D^2f(x) \geq 0, \forall x \in \mathbb{R}^n$.
-\end{proof}
-
-\medskip
-
-\noindent
-{\bf Problem 40.}
-Prove that $x_0\in\mathbb{R}^n$ is a critical point of $f\in C^2(\mathbb{R}^n)$, and $H_{x_0}(f)$ is positive definite, then there are $M>0$ and $\varepsilon>0$ such that
-$$
-f(x)\geq f(x_0)+M\Vert x-x_0\Vert^2
-\quad
-\text{whenever $\Vert x-x_0\Vert<\varepsilon$.}
-$$
-\begin{proof}
-With $Df(x_0) = 0$ and $H_{x_0}(f)$ is positive definite, we have $f$ has local minimum at $x_0$. Then 
-\begin{align*}
-    f(x) & = f(x_0) + Df(x_0)(x-x_0) + \frac{1}{2} (x-x_0)^T D^2f(\xi) (x-x_0), \xi \in \overline{xy} \\
-    & = f(x_0) + \frac{1}{2} (x-x_0)^T D^2f(\xi) (x-x_0),
-\end{align*}
-and we want to prove $\exists M, \exists \varepsilon, |\xi - x_0| < \varepsilon$ such that $v^T D^2f(\xi)v \geq M\|v\|^2$. 
-
-Suppose not, then there exists $\xi_i \to x_0, \|v_i\| = 1$, such that $v_i^T D^2f(\xi_i)v_i \leq 1/i$. Then we have $D^2f(\xi_i) \to D^2f(x_0)$ as $\xi_i\to x_0$ and hence $D^2f(x_0) \leq 0$, which is a contradiction.
-\end{proof}
-
-\medskip
-
-\noindent
-{\bf Problem 41.}
-Let $f:\mathbb{R}^n\to\mathbb{R}$ be a given function. Prove that if there are $M>0$ and $\varepsilon>0$ such that
-$$
-f(x)\geq f(x_0)+M\Vert x-x_0\Vert
-\quad
-\text{whenever $\Vert x-x_0\Vert<\varepsilon$,}
-$$
-then $f$ is not differentiable at $x_0$.
-\begin{proof}
-Suppose $f$ is differentiable at $x_0$. $f(x) = f(x_0) + D f(\xi) (x-x_0), \xi \in \overline{x x_0}$. Then let $\xi_i\to x_0$, and we have $D f(\xi_i) \to D f(x_0)$ which is finite. Then, as $x_i\to x_0$, we have 
-\begin{align*}
-    f(x_i) = f(x_0) + D f(\xi_i)(x_i - x_0) \to f(x_0),
-\end{align*}
-which is a contraction.
-\end{proof}
-
-\medskip
-
-\noindent
-{\bf Problem 42.}
-Consider an open ball $B=B(a,r)\subset\mathbb{R}^n$. Prove that the function
-$$
-\varphi(x)
-          = \left\{\begin{array}{ccc}
-            \exp\left(\frac{1}{|x-a|^2-r^2}\right)       &  \mbox{if $x\in B$}\, , \\
-             0     &  \mbox{if $x\in \mathbb{R}^n\setminus B$}\, ,
-               \end{array}
-        \right.
-$$
-in infinitely differentiable on $\mathbb{R}^n$.
-\begin{proof}
-Consider the function 
-\begin{align*}
-    g(x) = \left\{
-        \begin{aligned}
-        & \exp \left(- \frac{1}{r^2 - |x|^2}\right), x\in B, \\
-        & 0, x\in \mathbb{R}^n\setminus B,
-        \end{aligned}
-    \right.
-\end{align*}
-And we can know that $g$ is infinitely differentiable everywhere but when $|x| = r^2$. Indeed, for $|x| < r^2$, we have
-\begin{align*}
-    Dg(x) & = - 2 g(x) \frac{|x|^{1/2}}{(r^2 - |x|^2)^2} \left(x_1,\cdots,x_n \right)
-\end{align*}
-with induction we can prove that $g^{(k)}(x) = P\left(|x|^{-1}\right)g(x)$, where $P\left(|x|^{-1}\right)$ is a polynomial of $|x|^{-1}$. Thus, $g$ is infinitely differentiable when $|x| \neq r^2$.
-
-Also, by definition, for any $a \in \mathbb{R}^n, |a| = r^2$, we have
-\begin{align*}
-    Dg(a) = \lim_{h\to 0^-} \frac{g(a - h) - g(a)}{|h|}
-\end{align*}
-Since $B = B(a,r)\subset\mathbb{R}^n$ is compact in $\mathbb{R}^n$, then with mean-value theorem, we have 
-\begin{align*}
-    \frac{g(a - h) - g(a)}{|h|} = Dg(\xi),
-\end{align*}
-and as $h\to 0^-$, $\xi \to a$, and then
-\begin{align*}
-    Dg(a) = \lim_{h\to 0^-} \frac{g(a - h) - g(a)}{|h|} = \lim_{h\to 0^-} Dg(\xi) = 0.
-\end{align*}
-Also, by induction we can prove that $D^{(k)}g(a) = 0$, hence $g$ is differentiable everywhere. Now let $f(x) = g(x-a)$, then the proof is complete.
-\end{proof}
-
-\medskip
-
-\noindent
-{\bf Problem 43.}
-A $C^2$ function $f:\mathbb{R}^2\to\mathbb{R}$ is called harmonic if
-$$
-\frac{\partial^2 f}{\partial x^2} +
-\frac{\partial^2 f}{\partial y^2} = 0\, .
-$$
-Prove that if a harmonic function has a local maximum at $(x_0,y_0)$, then
-{\em all} second order partial derivatives of $f$ vanish at $(x_0,y_0)$.
-\begin{proof}
-Since $f$ has a local maximum at $(x_0, y_0)$, then its Hessian is negative semidefinite at this point, and when consider it on a vector $v = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$, we have
-\begin{align*}
-    v^T H_{x_0}(f) v = f_{xx}(x_0,y_0) + f_{yy}(x_0,y_0) + 2 f_{xy}(x_0,y_0) \leq 0.
-\end{align*}
-Also, with Sylvester's criterion, we have
-\begin{align*}
-    f_{xx}(x_0,y_0) \leq 0,
-\end{align*}
-and 
-\begin{align*}
-    f_{xx}(x_0,y_0) f_{yy}(x_0,y_0) - f^2_{xy}(x_0,y_0) \geq 0.
-\end{align*}
-Combining these implies that all second order partial derivatives of $f$ vanish at $(x_0,y_0)$.
-\end{proof}
-
-\medskip
-
-\noindent
-{\bf Problem 44.}
-Suppose that a function $f:\mathbb{R}^2\to\mathbb{R}$ of class $C^2$
-satisfies the inequality $f_{xx}+f_{yy}\geq 0$ at every point
-of $\mathbb{R}^2$. Suppose also that all its critical points are non-degenerate, i.e. the matrix of second order derivatives
-at the critical point has non-zero determinant.
-Prove that $f$ cannot have local maximum.
-\begin{proof}
-Suppose that $f$ has local maximum at its critical point $x_0$, then we have $f_{xx} < 0$, and $f_{xx}f_{yy} - f_{xy}^2 > 0$, which implies $f_{xx}f_{yy} > 0$ and $f_{yy} < 0$. This is a contradiction with the fact that $f_{xx}+f_{yy}\geq 0$ at every point of $\mathbb{R}^2$.
-\end{proof}
-
-\medskip
-
-\noindent
-{\bf Problem 45.}
-Let $f \in C^2(\Omega) \cap C^0(\overline{\Omega})$, where $\Omega \subset \mathbb{R}^n$ is open and bounded.
-Let $\Delta f = \sum_{i=1}^n \partial^2f/\partial x_i^2$ be the Laplace operator.
-\begin{enumerate}
-    \item[(a)] Show that if for some $\varepsilon > 0$ and $x_0 \in \Omega$ we have $\Delta f(x_0) \geq \varepsilon$, then $f$ has no local maximum at $x_0$.
-    
-    \item[(b)] Conclude that if $\Delta f(x) \geq \varepsilon$ for some $\varepsilon > 0$ and all $x \in \Omega$, then we have $\sup_{\Omega} f = \sup_{\partial \Omega} f$.
-    
-    \item[(c)] Conclude that if $\Delta f(x) \geq 0$ for all $x \in \Omega$, then we have $\sup_{\Omega} f = \sup_{\partial \Omega} f$.
-\end{enumerate}
-{\bf Hint for part (c):} {\em Observe that $\Delta |x|^2 = 2n$. Use it to modify a function $f$ in (c) so that you can apply part (b).}
-\begin{proof}
-~\begin{enumerate}
-    \item[(a)] Local maximum requires that $H_{x_0}(f)$ is positive semidefinitely, which means the trace $\partial^2f/\partial x_i^2, i = 1,2,\cdots,n$ of $H_{x_0}(f)$ are not positive. This is a contradiction with the fact $\Delta f(x_0) \geq \varepsilon$, then $f$ has no local maximum at $x_0$.
-    
-    \item[(b)] With (a), we can know that $f$ has no local maximum in $\Omega \setminus \partial \Omega$. Thus, $\sup_{\Omega} f = \sup_{\partial \Omega} f$.
-    
-    \item[(c)] Let $f_\varepsilon(x) = f(x) + \varepsilon |x|^2$, then $\Delta f_\varepsilon(x) = \Delta f(x) + 2 \varepsilon n$. Then, we have
-    \begin{align*}
-        \sup_{\Omega} f(x) \leq \sup_{\Omega} f_\varepsilon(x) \leq \sup_{\partial\Omega} f_\varepsilon(x) \leq \sup_{\partial \Omega} f(x) + 2 \varepsilon n \xrightarrow{\varepsilon \to 0} \sup_{\partial \Omega} f(x).
-    \end{align*}
-\end{enumerate}
-\end{proof}
-
-\medskip
-
-\noindent
-{\bf Problem 46.}
-Let $A=\left(a_{ij}\right)$ be an $n\times n$ matrix. The {\em cofactor} $A_{i,j}$
-is the product of $(-1)^{i+j}$ with the $(n-1)\times(n-1)$ determinant of $A$ obtained by deleting the
-$i$th row and $j$th column in $A$.  Prove that
-$$
-\frac{\partial}{\partial a_{ij}}(\det A)=A_{ij}.
-$$
-\begin{proof}
-The determinant of $A$ is 
-\begin{align*}
-    \det A = \sum^n_{i=1} a_{ij} A_{i,j},
-\end{align*}
-then it follows that
-\begin{align*}
-    \frac{\partial}{\partial a_{ij}}(\det A)=A_{i,j}.
-\end{align*}
-\end{proof}
-
-\medskip
-
-\noindent
-{\bf Problem 47.}
-Let $A(t)=\left(x_{ij}(t)\right):(a,b)\to\mathbb{R}^{n\times n}$ be a smooth matrix-valued curve.
-Prove that if $A(0)=I$, then
-$$
-\dv{}{t}\Bigg|_{t=0}(\det A(t))=\sum_{i=1}^n x_{ii}'(0)={\rm tr}\, A'(0).
-$$
-\begin{proof}
-Denote the determinant function of a matrix by $d$ as $\det A = d(r_1, r_2 \cdots, r_n)$, where $r_n$ are rows of $A$. Then we have
-\begin{align*}
-    \dv{}{t} \det A(t) = d(r_1',r_2,\cdots,r_n) + d(r_1,r_2',\cdots,r_n) + \cdots + d(r_1,\cdots,r_n').
-\end{align*}
-When $t = 0$, the right hand side become the trace of $A'(0)$. Indeed, the first term $d(r_1',r_2,\cdots,r_n)$ at $t = 0$ will be
+Since 
 \begin{align*}
     \det \begin{pmatrix}
-        x_{11}' & x_{12}' & \cdots & x_{1n}' \\
-        0       & 1       & \cdots & 0 \\
-        \vdots  & \ddots  & \ddots & \vdots \\
-        0       & 0       & \cdots & 1
-    \end{pmatrix} = x_{11}'(0),
+        u_x & u_y \\
+        v_x & v_y
+    \end{pmatrix} = - f'(x_0) \neq 0,
 \end{align*}
-thus, we have $\dv{}{t}\Big|_{t=0}(\det A(t))=\sum_{i=1}^n x_{ii}'(0)$.
-\end{proof}
-
-\medskip
-
-\noindent{\bf Method II for Problem 47.}
-\begin{proof}
-From last problem, we have for the determinant function $\det: \mathbb{R}^{n^2} \to \mathbb{R}$,
-\begin{align*}
-    (\nabla \det)(A) = \left[A_{ij}\right]_{n\times n}.
-\end{align*}
-Then we have 
-\begin{align*}
-    \dv{}{t} \det A(t) & = (\nabla \det(A))\cdot A'(t) \\
-    & =  \underbrace{\left[A_{ij}\right]\cdot \left[x_{ij}'\right]}_{\text{scalar product}} \\
-    & = \sum^n_{i,j = 1} A_{ij}(t) x_{ij}'(t).
-\end{align*}
-Also, we have $\left[A_{ij}(0)\right] = \delta_{ij}$, hence 
-\begin{align*}
-    \dv{}{t}\Bigg|_{t=0}(\det A(t)) = \sum^n_{i,j = 1} \delta_{ij} x_{ij}'(0) = \sum_{i=1}^n x_{ii}'(0).
-\end{align*}
-\end{proof}
-
-
-\medskip
-
-\noindent
-{\bf Problem 48.}
-Let $M_{n\times n}$ denote the vector space of real $n\times n$ matrices.
-Define a map $f:M_{n\times n}\to M_{n\times n}$ by $f(X)=X^2$.
-Find the derivative of $f$.
-\begin{proof}
-$Df(X) = X' X + X X'$.
+then $F: (x,y) \to (u,v)$ is invertible in an open neighborhood $U$ of $(x_0,y_0)$ and for an open neighborhood $W$ of $(u(x_0),v(y_0))$, $F^{-1}: W\to U$ is of class $C^1$. Then there exists $g$ such that $f^{-1}(u) = x = g(u)$ and then $y = -v + ug(u)$.
 \end{proof}
 
 \medskip
 
 \noindent
-{\bf Problem 49.}
-The class of invertible matrices
-$GL(n,\mathbb{R})$ forms an open subset in the space of all $n\times n$ matrices $M_{n\times n}=\mathbb{R}^{n^2}$.
-Let $F:GL(n,\mathbb{R})\to GL(n,\mathbb{R})$, $F(A)=A^{-1}$.
-Prove that the function $F$ is $C^\infty$ smooth (as a mapping from $\mathbb{R}^{n^2}$ to $\mathbb{R}^{n^2}$) and that
-for any $A\in\mathbb{R}^{n\times n}$ we have
+{\bf Problem 63.}
+Prove that the system of equations
 $$
-DF(A)B=-A^{-1}\circ B\circ A^{-1}
-\quad
-\text{for all $B\in \mathbb{R}^{n\times n}$}
+\begin{cases}
+xyz+x^2+y = 0\\
+z+x^2y^2z^2 = 0
+\end{cases}
 $$
+has a solution of the form $y=y(x), z=z(x)$ in a neighborhood of
+$(0,0,0)$.
 \begin{proof}
-Since $AA^{-1} = I$, then $A' A^{-1} + A \left(A^{-1}\right)' = 0$. Thus, $DF(A) = \left(A^{-1}\right)' = - A^{-1} A' A^{-1}$. We can prove by induction that $F(A)$ is infinitely differentiable.
-
-For any $B \in \mathbb{R}^{n\times n}$, we can have 
+Denote 
 \begin{align*}
-    F(A+B) - F(A) & = \left(A+B\right)^{-1} - A^{-1} \\
-    & = \left(A \left(I+A^{-1}B \right) \right)^{-1} - A^{-1} \\
-    & = \left(\left(I+A^{-1}B \right) - I \right) A^{-1},
+    F_1(x,y,z) & = xyz + x^2 + y \\
+    F_2(x,y,z) & = z + x^2y^2z^2
 \end{align*}
-Then, for $B$ small enough, we have
+and we have
 \begin{align*}
-    F(A+B) - F(A) - \left(- A^{-1} B A^{-1}\right) & = \left(\left(I+A^{-1}B \right) - I + A^{-1} B\right) A^{-1} \\
-    & = \left(\sum^\infty_{k=0}(-1)^k \left(A^{-1}B\right)^k  - I + A^{-1} B\right) A^{-1} \\
-    & = \sum^\infty_{k=2}(-1)^k \left(A^{-1}B\right)^k A^{-1} \\
-    & \to 0.
+    \Delta = \begin{vmatrix}
+        \frac{\partial F_1}{\partial y} & \frac{\partial F_1}{\partial z} \\
+        \frac{\partial F_2}{\partial y} & \frac{\partial F_2}{\partial z}
+    \end{vmatrix} = \begin{vmatrix}
+        xz + 1 & xy \\
+        2 x^2 z^2 y & 1 + 2 x^2 y^2 z
+    \end{vmatrix} = 1 + xz + 2 x^2 y^2 z
 \end{align*}
-Hence, $DF(A)B = -A^{-1} B A^{-1}$.
+and at point $(0,0,0)$, we have $\Delta(0,0,0) = 1 \neq 0$. Then with implicit function theorem, the system has a solution of the form $y=y(x), z=z(x)$ in a neighborhood of
+$(0,0,0)$.
 \end{proof}
 
+\medskip
+
+\noindent
+{\bf Problem 64.}
+Let $F(x,y)=x^3y^2+3x^2y^3-xy+2x-y^2+1$, $(x,y)\in\mathbb{R}^2$. Prove that
+there exist functions $g,h\in C^\infty$ defined on an open neighborhood
+$U\subset\mathbb{R}$ of $0$, such that $F(x,g(x))=0=F(x,h(x))$ and
+$g(x)<h(x)$ for every $x\in U$. Find $g'(0)$, $h'(0)$.
+\begin{proof}
+Suppose $F(0,y_0) = 0$, then we have $y_0 = -1$ or $y_0 = 1$. Also, we have $F_y(0,y) = -2y$, then $F_y(0,1) \neq 0$ and $F_y(0,-1) \neq 0$. With implicit function theorem, there exists a neighborhood $U$ of $0$ and a neighborhood $V$ of $y_0$ such that for every $x\in U$, there is exactly one $y\in V$ satisfying $F(x, f(x)) = 0$. 
+
+For $y_0 = -1$, we have $F(x, g(x)) = 0$, where $g:U \to V_1$ and $V_1$ is a neighborhood of $-1$. Also, for $y_0 = 1$, we have $F(x, h(x)) = 0$, where $h:U \to V_2$ and $V_2$ is a neighborhood of $1$. And $V_1 \cap V_2 = \varnothing$, since if it is not, it contradicts with there is only one $y$ such that $F(x,y) = 0$. Then we have $g(x) < h(x)$. 
+
+Also, consider $F(x, g(x)) = 0$, we have $F_x(0,g(0)) = - g(0) + 2 - 2g(0) g'(0) = 0$, with $g(0) = -1$ we have $g'(0) = -\frac{3}{2}$. Similarly, we have $h'(0) = \frac{1}{2}$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 65.}
+Let $F$ be as in Problem~64. Prove that there is a function $g\in C^\infty$
+defined on an open neighborhood $U$ of $0$ such that $F(g(y),y)=0$
+for every $y\in U$. Find $g'(0)$.
+\begin{proof}
+Suppose $F(x_0, 0) = 0$, then we have $x_0 = -\frac{1}{2}$. Also, we have $F_x(x_0, 0) = 3 \neq 0$. With implicit function theorem, there exists a neighborhood $V$ of $0$ and a neighborhood $U$ of $x_0$ such that for every $y\in V$, there is exactly one $x\in U$ satisfying $F(g(y), y) = 0$.
+
+Also, consider $F(g(y), y) = 0$, we have $F_y(g(0), 0) = - g(0) + 2 g'(0) = 0$, with $g(0) = -\frac{1}{2}$, we have $g'(0) = -\frac{1}{4}$.
+\end{proof}
+
+\medskip
 
 
+\noindent
+{\bf Problem 66.}
+Suppose that $F:\mathbb{R}^3\to\mathbb{R}$ is of class $C^1$.
+$F(0,0,0)=0$, $F_x(0,0,0)\neq 0$, $F_y(0,0,0)\neq 0$,
+$F_z(0,0,0)\neq 0$. The implicit function theorem implies
+that the equation $F(x,y,z)=0$ can uniquely be solved in a
+neighborhood of the point $(0,0,0)$
+as $x=x(y,z)$ or $y=y(x,z)$ or $z=z(x,y)$. Prove that
+at every point in some neighborhood of $(0,0,0)$ we have
+$$
+\frac{\partial z}{\partial x} \frac{\partial x}{\partial y}
+\frac{\partial y}{\partial z}=-1\, .
+$$
+\begin{proof}
+Since $F(x,y,z(x,y)) = 0$, we have
+\begin{align*}
+    F_x(x,y,z(x,y))\frac{\partial x}{\partial x} + F_y(x,y,z(x,y))\frac{\partial y}{\partial x} + 
+    F_z(x,y,z(x,y))\frac{\partial z}{\partial x} = 0,
+\end{align*}
+which implies $F_x + F_z \frac{\partial z}{\partial x} = 0$ and hence $\frac{\partial z}{\partial x} = - \frac{F_x}{F_z}$. Similarly, $F(x,y(x,z),z) = 0$ yields $\frac{\partial y}{\partial z} = - \frac{F_z}{F_y}$ and $F(x(y,z),y,z) = 0$ yields $\frac{\partial x}{\partial y} = - \frac{F_y}{F_x}$. Thus, 
+\begin{align*}
+    \frac{\partial z}{\partial x} \frac{\partial x}{\partial y} \frac{\partial y}{\partial z} = (-1)^3 \frac{F_x}{F_z} \frac{F_z}{F_y} \frac{F_y}{F_x} = -1.
+\end{align*}
+\end{proof}
 
+\medskip
+
+
+\noindent
+{\bf Problem 67.}
+Let $F=F(x,y):\mathbb{R}^2\to\mathbb{R}$ be of class $C^1$ such that
+$\partial F/\partial y\neq 0$ on $\mathbb{R}^2$.
+Prove that if the set
+$S=\{ (x,y)\, |\, F(x,y)=0\}$ is nonempty, then it is of the form
+$S=\{ (x,g(x))\, |\, x\in U\}$, where $g:U\to\mathbb{R}$ is a $C^1$ function
+defined on an open set $U\subset\mathbb{R}$.
+\begin{proof}
+For $(x_0, y_0) \in S$, then $F(x_0, y_0) = 0$ and $F_y(x_0, y_0) \neq 0$. Then there exists a neighborhood $U$ of $x_0$ and a neighborhood $V$ of $y_0$ such that for any $x\in U$, there exists only one $y\in V$, $F(x, g(x)) = 0$. And $S$ in the neighborhood $U \times V$ of $(x_0, y_0)$ is a graph of a function $y = g(x)$. 
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 68.}
+Prove that the equation $xe^z=y(z+x)$ defines $z$ as a function of $(x,y)$ in a neighborhood of the point
+$(x_0,y_0,z_0)=(2,1,0)$. Then find the Taylr polynomial
+of degree $2$ of the function $z=z(x,y)$ centered at the point
+$(2,1)$.
+\begin{proof}
+Let $F(x,y,z) = y(z+x) - x e^z$, then $F(2,1,0) = 0$ and $F_z(2,1,0) = -1 \neq 0$. Then there is a neighborhood of $U$ of $(2,1)$ and a neighborhood $V$ of $0$, such that for any $z\in V$, there exists only one $(x,y) \in U$, $F(x,y,z(x,y)) = 0$. Thus, the equation defines $z$ as a function of $(x,y)$ in a neighborhood of the point
+$(2,1,0)$. 
+
+Also, Taylor series of $z(x,y)$ is 
+\begin{align*}
+    z(x,y) = z(2,1) + \frac{\partial z}{\partial x}(2,1) (x-2) + \frac{\partial z}{\partial y}(2,1) (y-1),
+\end{align*}
+and we can compute for $\frac{\partial z}{\partial x}(2,1)$ and $\frac{\partial z}{\partial y}(2,1)$ by taking derivative of $F(x,y,z(x,y))$ with respect to $x$ and $y$, which yields $\frac{\partial z}{\partial x}(2,1) = 0, \frac{\partial z}{\partial y}(2,1) = 2$. Thus, we have 
+\begin{align*}
+    z(x,y) = 2 (y-1).
+\end{align*}
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 69.}
+Show that there is a polynomial $P(x,y,z)$ of order $4$ such that
+the set $P(x,y,z)=0$ is a torus. Show that the gradient of $P$ is nonzero at every point of the torus and conclude that the torus is locally a graph of a smooth function of two variables.
+\begin{proof}
+Considering polynomial $P(x,y,z) = (x^2 + y^2 + z^2 + R^2 - r^2)^2 - 4R^2(x^2 + y^2), R > r$, then $P(x,y,z) = 0$ is a torus. And we have 
+\begin{align*}
+    \Delta P = \begin{bmatrix}
+        P_x \\
+        P_y \\
+        P_z
+    \end{bmatrix} = \begin{bmatrix}
+        4 (x^2 + y^2 + z^2 + R^2 - r^2)x - 8 R^2 x\\
+        4 (x^2 + y^2 + z^2 + R^2 - r^2)y - 8 R^2 y \\
+        4 (x^2 + y^2 + z^2 + R^2 - r^2)z
+    \end{bmatrix}
+    \neq 0, \forall x,y,z
+\end{align*}
+since $\Delta P = 0$ only at $(0,0,0)$ but $(0,0,0)$ is not a point in this torus. Then at least one of $P_x, P_y$ and $P_z$ is not zero, thus the torus is locally a graph of a smooth function of two variables.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 70.}
+Show that there is no polynomial $P(x,y,z)$ of order less than $4$ such
+that the set $P(x,y,z)=0$ is a torus.
+\begin{proof}
+
+\end{proof}
+
+\medskip
+
+
+\noindent
+{\bf Problem 71.}
+The cylinder $(x-1)^2+y^2 = 1$ intersects with the sphere $x^2+y^2+z^2=4$ along a curve. This curve has a self-intersection (the curve looks like "8"). Find the angle at which the curve intersects with itself.
+\begin{proof}
+The curve intersects itself at point $(2,0,0)$, and denote $x - 1 = \cos \theta$, then we have $y = \sin \theta$ and $z = \pm \sqrt{2 - 2\cos \theta}$. The the curve can be represented as 
+$$F(t) = \{(1+\cos \theta, \sin \theta, \pm \sqrt{2 - 2\cos \theta} )\}$$
+Then the tangent vectors at point $(2,0,0)$ are 
+\begin{align*}
+    v & = \left(-\sin \theta, \cos \theta, \pm \frac{\sin \theta}{\sqrt{2 - 2\cos \theta}}\right)\Bigg|_{\theta = 0} \\
+    & = \left(0, 1, 0\right).
+\end{align*}
+Then the angle at which the curve intersects with itself is $\theta = 0$.
+\end{proof}
 
 
 \end{document}
+
+

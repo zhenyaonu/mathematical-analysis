@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 \pagestyle{plain}
 %\documentclass{article}
 %\usepackage[utf8]{inputenc}
@@ -271,16 +271,213 @@ Indeed, for any $\varepsilon > 0$, choose $a < 1$ such that $|f(r\cos t,r\sin t)
 Thus, we complete the proof\footnote{This method comes from homework for Math1530 Advanced Calculus I: Let $f:[0,1] \to \mathbb{R}$ be continuous function. Prove that $\lim_{n\to\infty} n \int^1_0 x^n f(x)\, dx = f(1)$.}.
 \end{proof}
 
+\newpage
 
+\section{August 2018 Exam}
+\noindent{\bf Problem 1.}
+For $n$ a positive integer, put:
+\begin{align*}
+    t_n = \frac{1}{2n + 1} - \frac{1}{2n + 2} + \frac{1}{2n + 3} - \frac{1}{2n + 4} + \cdots + \frac{1}{4n - 1} - \frac{1}{4n},
+\end{align*}
+with $2n$ terms in the right hand side. Find, with proof, the following limit $\mathcal{T}$:
+\begin{align*}
+    \mathcal{T} = \lim_{n\to\infty} nt_n.
+\end{align*}
+{\bf Hint:} {\em Relate the given limit to suitable Riemann sums for the function $(1 + x)^{-1}$.}
+\begin{proof}
+\begin{align*}
+    \mathcal{T} & = n \left(\frac{1}{2n + 1} + \frac{1}{2n + 3} + \cdots + \frac{1}{4n - 1}\right) - n \left(\frac{1}{2n + 2} + \frac{1}{2n + 4} + \cdots +  \frac{1}{4n}\right) \\
+    & = n \int^2_0 \frac{1}{2 + x}\, dx - 2n \int^1_0 \frac{1}{1 + x}\, dx \\
+    & = n\ln 4 - n\ln 2 - n\ln 2 \\
+    & = 0.
+\end{align*}
+\end{proof}
 
+\medskip
 
+\noindent{\bf Problem 2*.}\cite{4}
+Prove that if $f: [a,b] \to \mathbb{R}$ is continuous, the 
+\begin{align*}
+    \lim_{n\to\infty} \sqrt[n]{\int^b_a |f(x)|^n\, dx} = \sup_{x\in[a,b]} |f(x)|.
+\end{align*}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item Since $f$ is continuous on compact space $[a,b]$, then $f$ attains its maximum at some point $c \in [a,b]$ such that $|f(c)| = \sup_{x\in[a,b]} |f(x)| = M$. Then\footnote{We cannot use $\lim$ here since we could use it unless the limit exists. However, we do not know the limit exists. Thus, we use $\liminf$ and $\limsup$.},
+    \begin{align*}
+        \limsup_{n\to\infty} \sqrt[n]{\int^b_a |f(x)|^n\, dx} & \leq \limsup_{n\to\infty} M (b - a)^{\frac{1}{n}} = \sup_{x\in[a,b]} |f(x)|.
+    \end{align*}
+    
+    \item Given $\varepsilon > 0$, it follows from the continuity of $|f|$ that $|f(x)| \geq M - \varepsilon$ for all $x \in [a,b]$ in some interval $I$ that contains $c$. Then,
+    \begin{align*}
+        \liminf_{n\to\infty} \sqrt[n]{\int^b_a |f(x)|^n\, dx} & \geq  \liminf_{n\to\infty} \sqrt[n]{\int_I |f(x)|^n\, dx} \geq \liminf_{n\to\infty} (M - \varepsilon) |I|^{\frac{1}{n}} = M - \varepsilon.
+    \end{align*}
+    Since the above inequality holds for any $\varepsilon > 0$, then taking $\varepsilon \to 0$ gives
+    \begin{align*}
+        M \leq \liminf_{n\to\infty} \sqrt[n]{\int^b_a |f(x)|^n\, dx} \leq \limsup_{n\to\infty} \sqrt[n]{\int^b_a |f(x)|^n\, dx} \leq M.
+    \end{align*}
+    Thus, the equality holds.
+\end{enumerate}
+\end{proof}
 
+\medskip
 
+\noindent{\bf Problem 3.}
+Let $\mathcal{M}$ denote the space of all real $2 \times 2$ matrices, equipped with the norm $\|A\| = \sqrt{{\rm tr} \left(A^T A\right)}$, for $A \in \mathcal{M}$. Consider the map $F$ from $\mathbb{R}^2$ to $\mathcal{M}$ given by formula, for any $(s,t) \in \mathbb{R}^2$:
+\begin{align*}
+    F(s,t) = \frac{1}{2} 
+    \begin{vmatrix}
+        \cos t + \cos s & \sin t + \sin s \\
+        - \sin t + \sin s & \cos t - \cos s
+    \end{vmatrix}.
+\end{align*}
+Denote by $\mathcal{N} \subset \mathcal{M}$ the space of all real $2 \times 2$ matrices of rank one and norm one. Prove that the image of $F$ is the space $\mathcal{N}$ and that the map $F$ is a local homeomorphism to its image. 
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item \begin{enumerate}[label=\arabic*)]
+        \item Firstly, consider the elementary row operation of $F(s,t)$, which is
+        \begin{align*}
+            F(s,t) \to \frac{1}{2} 
+            \begin{vmatrix}
+                \cos t + \cos s & \sin t + \sin s \\
+                0 & (\cos t - \cos s) + \frac{\sin^2 t - \sin^2 s}{\cos t + \cos s}
+            \end{vmatrix} \to 
+            \frac{1}{2}\begin{vmatrix}
+                \cos t + \cos s & \sin t + \sin s \\
+                0 & 0
+            \end{vmatrix}.
+        \end{align*}
+        Also, $F(s,t)$ has rank one. Also, we have 
+        $$\sqrt{{\rm tr} \left(F^T F\right)} = \sqrt{1/2 (\cos^2 t + \sin^2 t + \cos^2 s + \sin^2 s)} = 1.$$ 
+        Thus, $F$ maps $\mathbb{R}^2$ to $\mathcal{N}$.
+        
+        \item Now we need to prove that $F$ is onto $\mathcal{N}$. For any matrix $A \in \mathcal{N}$, since $\rank A = 1$, we can assume 
+        \begin{align*}
+            A = \begin{vmatrix}
+            a & b \\
+            ka & kb
+            \end{vmatrix},
+        \end{align*}
+        and then with norm being one, we have $(k^2 + 1)(a^2 + b^2) = 1$. 
+        
+        Now take\cite{5}
+        \begin{align*}
+            a & = \frac{\cos t + \cos s }{2} = \cos\left(\frac{t+s}{2}\right) \cos \left(\frac{t-s}{2}\right), \\
+            b & = \frac{\sin t + \sin s }{2} = - \cos \left(\frac{t+s}{2}\right) \sin \left(\frac{t-s}{2}\right),
+        \end{align*}
+        and plug it back into $(k^2 + 1)(a^2 + b^2) = 1$ gives $k^2 = \sin^2 \left(\frac{t-s}{2}\right)/\cos^2 \left(\frac{t-s}{2}\right)$. Choosing $k = - \sin \left( \frac{t-s}{2} \right)/\cos \left( \frac{t-s}{2} \right)$ implies that $A$ can be represent by $F(s,t)$. Thus, $F$ is onto. Hence, the image of $F$ is the space $\mathcal{N}$.
+    \end{enumerate}
+    
+    \item* The space $\mathcal{N}$ can be characterised as
+    \begin{align*}
+        \mathcal{N} = \left\{ \begin{pmatrix}
+            a & b \\ 
+            c & d
+        \end{pmatrix}: a^2 + b^2 + c^2 + d^2=1, ad-bc = 0\right\}.
+    \end{align*}
+    The map $F$ can be viewed from $(s,t)$ to $\begin{pmatrix}
+        x(s,t) & y(s,t) \\ 
+        z(s,t) & w(s,t)
+    \end{pmatrix}$, and the map $\begin{pmatrix}
+        x & y\\ 
+        z & w
+    \end{pmatrix} \to \begin{pmatrix}
+        a & b \\ 
+        c & d
+    \end{pmatrix}$ is a linear transformation and hence a homeomorphism\cite{6}.
+\end{enumerate}
+\end{proof}
 
+\medskip
 
+\noindent{\bf Problem 4*.}
+Let $\mathcal{F} \subset C^\infty[0,1]$ be a uniformly bounded and equicontinuous family of smooth functions on $[0,1]$ such that $f' \in \mathcal{F}$ whenever $f \in \mathcal{F}$. Suppose that 
+\begin{align*}
+    \sup_{x\in[0,1]} \left|f'(x) - g'(x)\right| \leq \frac{1}{2} \sup_{x\in[0,1]} \left|f(x) - g(x)\right|, \,\, {\rm for all}\,\, f, g \in \mathcal{F}.
+\end{align*}
+Show that there exists a sequence $f_n$ of functions in $\mathcal{F}$ that converges uniformly to $Ce^x$ for some real value $C$.\\
+{\bf Hint:} {\em Use the contraction principle. In order to apply the the contraction principle you can use, without proof, the fact that if $X$ is a complete metric space, $A \subset X$ and $T: A \to X$ is uniformly continuous, then $T$ uniformly converges to a continuous map $\overline{T}: \overline{A} \to X$ defined on the closure $\overline{A}$.}
+\begin{proof}
+$\mathcal{F}$ is a subset of the complete metric space $\left(C([0,1]), d_\infty \right)$. Let $\overline{\mathcal{F}}$ be the closure in that space, clearly, $\left(\overline{\mathcal{F}}, d_\infty \right)$ is a complete metric space as a closed subset of a metric space\footnote{If $X$ is a complete metric space, then a subset of $X$ is closed if and only if it is complete.\cite{7}} \footnote{{\bf Theorem:} Let $A \subset X$ be a closed subspace of a complete metric space $(X, d)$, then
+$(A, d)$ is a complete metric space as well.\cite{8}}. The mapping $T: \mathcal{F} \to \mathcal{F} \subset \overline{\mathcal{F}}, Tf = f'$ satisfies
+\begin{align*}
+    d_\infty(Tf, Tg) \leq \frac{1}{2} d_\infty(f, g), \,\, \forall f,g \in \mathcal{F}.
+\end{align*}
+That means $T: \mathcal{F} \to \overline{\mathcal{F}}$ is Lipschitz continuous and hence uniformly continuous\cite{9}. Extend $T$ uniquely to a continuous mapping $\overline{T}: \overline{\mathcal{F}} \to \overline{\mathcal{F}}$ \footnote{Let $\left(X, d_X\right)$ be a metric space, $A \subset X$ is a dense subset and $\left(Y, d_Y\right)$ a complete metric space. If $f: A \to Y$ is uniformly continuous, then there is a unique continuous function $F: X \to Y$ such that $F(x) = f(x)$ for all $x \in A$. Also, $F$ is uniformly continuous.} such that 
+\begin{align*}
+    \overline{T}f = Tf = f', \,\, f \in \mathcal{F}.
+\end{align*}
+Note that 
+\begin{align*}
+    d_\infty \left(\overline{T}f, \overline{T}g \right) \leq \frac{1}{2} d_\infty (f,g), \,\, f, g \in \overline{\mathcal{F}}.
+\end{align*}
+Indeed, if $f, g \in \overline{\mathcal{F}}$, then there exists $\mathcal{F} \ni f_n \rightrightarrows f$ and $\mathcal{F} \ni g_n \rightrightarrows g$. Then,
+\begin{align*}
+    d_\infty \left(\overline{T}f, \overline{T}g \right) = \lim_{n\to\infty} d_\infty \left(\overline{T}f_n, \overline{T}g_n \right) \leq \lim_{n\to\infty} \frac{1}{2} d_\infty \left(f_n, g_n\right) = \frac{1}{2} d_\infty (f,g).
+\end{align*}
+Thus, $\overline{T}: \overline{\mathcal{F}} \to \overline{\mathcal{F}}$ is a contraction. Since $\left(\overline{F}, d_\infty \right)$ is complete, then $\overline{T}$ has a unique fixed point $\overline{T} f = f$. However, we cannot claim that $\overline{T}f = f'$, since $\overline{T}$ is defined as an extension of $Tg = g'$ to the space $\overline{\mathcal{F}}$ of continuous functions. 
 
+However, we can argue as follows. If $g \in \mathcal{F} \subset \overline{\mathcal{F}}$ is any function, with the contraction principle, the iterations $\mathcal{F} \ni g_n = g^{(n)} = T^n g = \overline{T}^n g \rightrightarrows f$ converge uniformly to the unique fixed point of $\overline{T}$. Note that 
+\begin{align*}
+    g_n' = g^{(n+1)} = g_{n+1} \rightrightarrows f.
+\end{align*}
+Since $g_n \rightrightarrows f$, then $g_n' \rightrightarrows f$, and thus $f$ is differentiable and $f = f'$. For the completeness, 
+\begin{align*}
+    f(x) - f(0) \leftarrow g_n(x) - g_n(0) = \int^x_0 g_n'(t)\, dt \to \int^x_0 f_n'(t)\, dt,
+\end{align*}
+and then $f(x) - f(0) = \int^x_0 f_n'(t)\, dt$. Thus, $f'(x) = f(x)$ for $x \in [0,1]$, and hence $f(x) = Ce^x$ for some $C \in \mathbb{R}$. Indeed, 
+\begin{align*}
+    \left(f e^{-x} \right)' = f' e^{-x} - f e^{-x} = 0,
+\end{align*}
+and then $f e^{-x} = C$ for some $C$. Now we proved that if $g \in \mathcal{F}$, then
+\begin{align*}
+    \mathcal{F} \ni g_n = g^{n} \rightrightarrows C e^x.
+\end{align*}
+\end{proof}
 
+\medskip
 
+\noindent{\bf Problem 5*.}
+Let $f: \mathbb{R}^n \to \mathbb{R}^n$ be a mapping of class $C^1$. Prove that there is an open and dense set $\Omega \subset \mathbb{R}^n$ such that the function $R(x) = \rank Df(x)$ is locally constant on $\Omega$, i.e., it is constant in a neighborhood of every point $x \in \Omega$.
+\begin{proof}
+Let $\Omega$ be the set of points where $R(x) = \rank Df(x)$ attains a local maximum, that is
+\begin{align*}
+    \Omega = \left\{x \,|\, \exists \varepsilon_1 > 0, \forall y \in B^n(x, \varepsilon), \rank Df(y) \leq \rank Df(x) \right\}.
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+    \item We claim that $\Omega$ is open and $\rank Df$ is locally constant in $\Omega$. Indeed, $\{\rank Df \geq k\}$ is open \footnote{If $\rank Df(x) \geq k$, then the determinant of a certain $k\times k$ minor of $Df(x)$ is nonzero. Then we can choose a point $y \in B(x, \varepsilon)$ such that $\rank Df(y) \geq k$, since $\det$ function is continuous.}, so if $x \in \Omega$ and $\rank Df(x) = k$, then $\rank Df(y) \geq k$ in $B(x, \varepsilon_2)$. But $\rank Df$ attains locally maximum at $x$, then $\rank Df(y) = k$ in $B^n(x, \varepsilon)$, where $\varepsilon = \min \{\varepsilon_1, \varepsilon_2\}$. In particular, $B^n(x, \varepsilon) \subset \Omega$. This proves that $\Omega$ is open in $\Omega$ and $\rank Df$ is locally constant in $\Omega$. 
+    
+    \item It remains to prove that $\Omega$ is dense, Let $B^n(x, \varepsilon) \subset \mathbb{R}^n$ be any ball. It suffices to show that $\Omega \cap B^n(x, \varepsilon) \neq \varnothing$. Since $\rank Df$ attains only finitely many values, then it attains a global maximum in $B^n(x, \varepsilon)$, which is a local maximum in $\mathbb{R}^n$, so $\Omega \cap B^n(x, \varepsilon) \neq \varnothing$.
+\end{enumerate}
+\end{proof}
+
+\medskip
+
+\noindent{\bf Problem 6.}
+Let $\Phi: \mathbb{R}^2 \to \Phi\left(\mathbb{R}^2\right) \subset \mathbb{R}^2$ be a diffeomorpism. Prove that
+\begin{align*}
+    \int_{B^2(0,1)} \left\|D\Phi \right\| = \int_{\Phi(B^2(0,1))} \left\|D\left(\Phi^{-1}\right) \right\|,
+\end{align*}
+where $\|A\| = \left(\sum^2_{i,j=1} a_{ij}^2\right)^{1/2}$ is the Hilbert-Schmidt norm of the matrix.\\
+{\bf Hint:} {\em Compare $\|A\|$ and $\left\|A^{-1}\right\|$ for a $2 \times 2$ matrix.}
+\begin{proof}
+For $A = \begin{pmatrix} 
+    a & b \\
+    c & d
+\end{pmatrix}$, we have $\|A\| = \left(a^2 + b^2 + c^2 + d^2\right)^{1/2}$, then $A^{-1} = \frac{1}{ad - bc}\begin{pmatrix} 
+    d & -b \\
+    -c & a
+\end{pmatrix}$ and thus $\left\|A^{-1}\right\| = \frac{\left(a^2 + b^2 + c^2 + d^2\right)^{1/2}}{ad - bc}$. 
+
+Now we consider $\Phi: \mathbb{R}^2 \to \Phi\left(\mathbb{R}^2\right) \subset \mathbb{R}^2$, and for $x \in \mathbb{R}^2$, there exists $y \in \mathbb{R}^2$, $\Phi(x) = y$. Then, with inverse function theory,
+\begin{align*}
+    \int_{\Phi(B^2(0,1))} \left\|D\left(\Phi^{-1}\right) \right\| & = \int_{B^2(0,1)} \left\|\left(D\Phi\right)^{-1} \right\| \det (D\Phi) \\
+    & = \int_{B^2(0,1)} \left\|D\Phi \right\|,
+\end{align*}
+since in the last step, we used the fact that for $2 \times 2$ matrix $D\Phi$, we have
+\begin{align*}
+    \left\|\left(D\Phi\right)^{-1} \right\| \det (D\Phi) = \left\|D\Phi \right\|.
+\end{align*}
+\end{proof}
 
 
 

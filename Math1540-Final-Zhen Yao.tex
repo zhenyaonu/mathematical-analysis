@@ -1,0 +1,603 @@
+\documentclass[12pt,leqno]{amsart}
+\pagestyle{plain}
+\usepackage{latexsym,amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{pifont}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{thmtools}
+\usepackage{wrapfig}
+\usepackage{extarrows}
+\usepackage{breqn}
+\usepackage{physics}
+\usepackage{afterpage}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{mathrsfs}
+\usepackage{scalerel}
+\usepackage{stackengine,wasysym}
+\usepackage{aligned-overset}
+\usepackage{stackengine}
+\usepackage{mathtools}
+\usepackage{nccmath}
+\usepackage{float}
+\usepackage{url}
+\usepackage{esint}
+\graphicspath{ {images/} }
+%\usepackage[notref,notcite]{showkeys}
+
+\setlength{\oddsidemargin}{1pt}
+\setlength{\evensidemargin}{1pt}
+\setlength{\marginparwidth}{30pt} % these gain 53pt width
+\setlength{\topmargin}{1pt}       % gains 26pt height
+\setlength{\headheight}{1pt}      % gains 11pt height
+\setlength{\headsep}{1pt}         % gains 24pt height
+%\setlength{\footheight}{12 pt} 	  % cannot be changed as number must fit
+\setlength{\footskip}{24pt}       % gains 6pt height
+\setlength{\textheight}{650pt}    % 528 + 26 + 11 + 24 + 6 + 55 for luck
+\setlength{\textwidth}{460pt}     % 360 + 53 + 47 for luck
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\setcounter{problem}{0}
+%\numberwithin{problem}{chapter}
+\renewcommand\theproblem{\arabic{problem}}
+
+
+\def\dsp{\def\baselinestretch{1.35}\large
+\normalsize}
+%%%%This makes a double spacing. Use this with 11pt style. If you
+%%%%want to use this just insert \dsp after the \begin{document}
+%%%%The correct baselinestretch for double spacing is 1.37. However
+%%%%you can use different parameter.
+
+
+\def\U{{\mathcal U}}
+
+\begin{document}
+
+\renewcommand{\thepage}{}
+
+\noindent {\Large \bf $\phantom{aaaaaaaaaaaaaaaaaaa}$ Name:
+	$\underline{{\rm Zhen \,\, Yao}\phantom{aaaaaaaaaaaaaaaa}}$
+	
+	\vspace{3cm}
+	
+	\centerline{\bf\Large Advanced Calculus 2}
+	
+	\vspace{.3cm}
+	
+	\centerline{\bf \large Instructor Piotr Haj\l{}asz}
+	
+	\vspace{.3cm}
+	
+	\centerline{\bf\Large Final Exam}
+	
+	\vspace{.3cm}
+	
+	\centerline{\bf \large Due on May 1, 2020} }
+
+
+
+\vspace{1cm}
+
+{\LARGE
+	\begin{center}
+		\begin{tabular}{|c|c|c|} \hline
+			Problem & Possible points & Score \\
+			\hline 1       &        10    &      \\
+			\hline 2       &        10    &      \\
+			\hline 3       &        10    &      \\
+			\hline 4       &        10    &      \\
+			\hline 5       &        10    &      \\
+			\hline 6       &        10    &      \\
+			\hline 7       &        10    &      \\
+			\hline 8       &        10    &      \\
+			\hline 9       &        10    &      \\
+			\hline 10      &        10    &      \\
+			\hline 11      &        10    &      \\
+			\hline 12      &        10    &      \\
+			\hline Total   &        120      &    \\
+			\hline
+		\end{tabular}
+	\end{center}
+}
+\bigskip
+
+You need 100 points so 2 problems is a bonus.
+
+\newpage
+
+
+
+\noindent
+{\bf Problem 1.}
+Suppose $f:\mathbb{R}^2_+\to\mathbb{R}$ is a continuous function defined on
+$$
+\mathbb{R}^2_+=\{(x,y):\, x\in\mathbb{R},\ y>0\}.
+$$
+Assume also that the limits
+$$
+g(u,v)=\lim_{t\to 0}\frac{f((u+t)\cos v,(u+t)\sin v)-f(u\cos v,u\sin v)}{t},
+$$
+and
+$$
+h(u,v)=\lim_{t\to 0}\frac{f(u\cos (v+t)),u\sin (v+t))-f(u\cos v,u\sin v)}{t},
+$$
+exist and define continuous functions $g,h$ on the domain
+$$
+D=\{(u,v):\, u>0,\ 0<v<\pi\}.
+$$
+Prove that the function $f$ is differentiable on $\mathbb{R}^2_+$.
+\begin{proof}
+Let $\Phi: D \to \mathbb{R}^2_+$ defined as $\Phi(u,v) = (u \cos v, u \sin v)$ is diffeomorphism, since $D\Phi(u,v) = \begin{bmatrix} \cos v & -u \sin v \\ \sin v & u \cos v \end{bmatrix} = u > 0$. Also,
+\begin{align*}
+    g(u,v) = \frac{\partial (f \circ \Phi)}{\partial u}, \quad h(u,v) = \frac{\partial (f \circ \Phi)}{\partial v}
+\end{align*}
+and partial derivatives of $f \circ \Phi$ are continuous, and then $f \circ \Phi \in C^1$. Thus, $f = (f \circ \Phi) \circ \Phi^{-1} \in C^1$.
+\end{proof}
+
+
+\medskip
+
+\noindent
+{\bf Problem 2.}
+Let $f\in C^1(\mathbb{R})$ be a continuously differentiable function such that $|f'(x)|\leq 1/2$ for all $x\in\mathbb{R}$. Define
+$g:\mathbb{R}^2\to\mathbb{R}^2$ by
+$$
+g(x,y)=(x+f(y),y+f(x)).
+$$
+Prove that
+\begin{enumerate}
+	\item $g$ is a diffeomorphism,
+	\item $g(\mathbb{R}^2)=\mathbb{R}^2$,
+	\item the area $|g([0,1]^2)|$ of the image of the unit square belongs to the interval $[3/4,5/4]$.
+\end{enumerate}
+
+\noindent
+{\bf Hint:} Among other tools use the contraction principle.
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item For part (a) and (b), it suffices to show that $\det Dg > 0$ on $\mathbb{R}^2$ and for every $(x_0, y_0)$, there is a unique $(x,y)$ such that $g(x,y) = (x_0, y_0)$. We have
+    \begin{align*}
+        \det Dg(x,y) = \begin{vmatrix}
+            1 & f'(y) \\
+            f'(x) & 1
+        \end{vmatrix} = 1 - f'(x)f'(y) \geq \frac{3}{4} > 0.
+    \end{align*}
+    To prove the existence of a unique solution to $g(x,y) = (x_0, y_0)$, use the contraction principle. Let
+    \begin{align*}
+        T(x,y) & = - g(x,y) + (x,y) + (x_0, y_0) \\
+        & = (x_0-f(y), y_0-f(x)).
+    \end{align*}
+    Then,
+    \begin{align*}
+        T(x,y) - T(x',y') & = (x_0-f(y), y_0-f(x)) - (x_0-f(y'), y_0-f(x')) \\
+        & = (f(y') - f(y), f(x') - f(x)) \\
+        & = \left(f'(\xi)(y'-y), f'(\zeta)(x'-x)\right),
+    \end{align*}
+    and then 
+    \begin{align*}
+        \left|T(x,y) - T(x',y')\right| & = \sqrt{|f(y') - f(y)|^2 + |f(x') - f(x)|^2} \\
+        & \leq \frac{1}{2} \sqrt{|y' - y|^2 + |x' - x|^2}.
+    \end{align*}
+    Thus, $T$ is a contraction. Hence there is a unique fixed point $(x,y)$ of $T$ such that $(x_0-f(y), y_0-f(x)) = (x,y)$, and it follows that $$g(x,y) = (x+f(y), y+f(x)) = (x_0, y_0).$$ Thus, $g$ is a diffeomorphism.
+    
+    \setcounter{enumi}{2}
+    \item Since $\det Dg = 1 - f'(x)f'(y) \in \left[\frac{3}{4}, \frac{5}{4}\right]$, then
+    \begin{align*}
+        \left|g([0,1]^2)\right| = \int_{[0,1]^2} |\det Dg| \in \left[\frac{3}{4}, \frac{5}{4}\right].
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+
+\medskip
+
+
+\noindent
+{\bf Problem 3.}
+Prove that the tangent planes to the surface $S$ defined by $x^2+y^2-z^2=1$ at the points
+$(x,y,0)\in S$ are parallel to the $z$-axis.
+\begin{proof}
+The gradient vector of $S$ at point $(x,y,0)$ is $(2x, 2y, -2z)|_{z=0} = (2x,2y,0)$. And this vector is certainly orthogonal to the tangent planes to $S$ at $(x,y,0)$, and also it is orthogonal to $z$-axis. Thus, these tangent planes are parallel to the $z$-axis.
+\end{proof}
+
+
+\medskip
+
+
+
+
+\noindent
+{\bf Problem 4.}
+Prove that if $f:[0,1]\to [0,1]$ is a continuous function then its graph as
+a subset of $\mathbb{R}^2$ has measure zero.
+\begin{proof}
+Since $f$ is continuous on a compact set, then $f$ is uniformly continuous, i.e., for any $\varepsilon > 0$, there exists $\delta > 0$, such that if $|x - y| < \delta$, then $|f(x) - f(y)| \leq \varepsilon/2$. Now let $\delta = 1/n$ for some $n$ such that above condition holds. Denote the set $\left[f\left(\frac{k}{n}\right), f\left(\frac{k+1}{n}\right)\right] \times \left[f\left(\frac{k}{n}\right) - \frac{\varepsilon}{2}, f\left(\frac{k}{n}\right) + \frac{\varepsilon}{2}\right]$ by $P_k, k = 0,1,\cdots,n-1$\, then the volume $|P_k| = \frac{\varepsilon}{n}$. Then, the graph $G_f$ of $f$ satisfies $G_f \subset \bigcup^n_{k=1} P_k$ and then 
+\begin{align*}
+    |G_f| = \sum^n_{i=1} |P_k| = n \frac{\varepsilon}{n} = \varepsilon \to 0.
+\end{align*}
+Thus, the graph of $f$ has measure zero.
+\end{proof}
+
+
+\medskip
+
+
+\noindent
+{\bf Problem 5.}
+Let $f:\mathbb{R}^3\to\mathbb{R}^2$ be a continuous function. Let $K\subset\mathbb{R}^3$ be a compact set such that $|f(x)-f(y)|\leq 2012|x-y|^{2}$
+for all $x,y\in K$. Prove that the set $f(K)\subset\mathbb{R}^2$ has measure zero as a subset of $\mathbb{R}^2$.
+\begin{proof}
+Since $K$ is compact, then there exists $M > 0$ such that $K \subset [-M,M]^3$ and $K$ can be covered by $n^3$ closed cubes $Q_i$ of side-length $2M/n$, whose diameter is $2\sqrt{3}M/n$. Each such cube can be covered by a closed ball of radius $2\sqrt{3}M/n$ centered at any point of the cube. Then, $K$ can be covered by no more than $n^3$ balls $B\left(x_i, 2\sqrt{3}M/n\right), x_i \in K$, such that $Q_i \cap K \neq \varnothing$ and $Q_i \cap K \subset B\left(x_i, 2\sqrt{3}M/n\right)$. Now, 
+\begin{align*}
+    f\left( B\left(x_i, 2\sqrt{3}M/n\right)\right) \subset B \left(f(x_i), 2012 \left(2\sqrt{3}M/n\right)^2 \right),
+\end{align*}
+also, $K \subset \bigcup^k_i B\left(x_i, 2\sqrt{3}M/n\right)$, $k \leq n^3$, then,
+\begin{align*}
+    f(K) \subset \bigcup^k_i B \left(f(x_i), 2012 \left(2\sqrt{3}M/n\right)^2 \right).
+\end{align*}
+Denote $2012 \left(2\sqrt{3}M/n\right)^2$ by $r_i$, then
+\begin{align*}
+    \sum^k_{i=1} r_i^2 \leq c n^{-4} n^3 = c n^{-1} \xrightarrow[]{n\to\infty} 0.
+\end{align*}
+Thus, $f(K)$ has measure zero.
+\end{proof}
+
+
+
+\medskip
+
+\noindent
+{\bf Problem 6.}
+Assume that $f : [0, 1]\to [0, 1]$ is a continuous function such that the set
+$\{x\in [0, 1] :\,  f(x) = 1\}$ has measure zero. Prove directly (without using any results like monotone or
+dominated convergence theorem) that
+$$
+\lim_{n\to\infty} \int_0^1 f(x)^n\, dx =0.
+$$
+\begin{proof}
+Let $E = \{x \in [0,1] | f(x) = 1\}$. For fixed $\varepsilon > 0$, since $E$ has zero measure, then $E \subset \bigcup^k_{i=1}I_i$, where $I_i$ are open and $\sum^k_{i=1}|I_i| < \varepsilon/2$, i.e., $\bigcup^k_{i=1}I_i$ are a covering of $E$ by open intervals of total lengths less than $\varepsilon/2$. 
+
+By compactness of $[0,1]$, $[0,1]\setminus \bigcup^k_{i=1}I_i$ is closed and hence compact. Then $f$ attains maximum $M$ on this set, which is strictly less than $1$, and hence $|f(x)| \leq M < 1$ for all $x \in [0,1]\setminus \bigcup^k_{i=1}I_i$. Then,
+\begin{align*}
+    f(x) \leq \begin{cases}
+        1, & x \in \bigcup^k_{i=1}I_i, \\
+        M^n, & x \notin \bigcup^k_{i=1}I_i.
+    \end{cases}
+\end{align*}
+and then we have
+\begin{align*}
+    \int^1_0 f^n\, dx & \leq 1 \cdot \left|\sum^k_{i=1} I_i \right| + M^n \cdot 1, \\
+    & \leq \frac{\varepsilon}{2} + M^n.
+\end{align*}
+Since $M < 1$, then there exists $N > 0$ such that for all $n \geq N$, $M^n < \varepsilon/2$. Thus, for all $n \geq N$, $\int^1_0 f^n\, dx \leq \varepsilon \to 0$.
+\end{proof}
+
+
+\medskip
+
+
+
+\noindent
+{\bf Problem 7.}
+Let $\gamma:\mathbb{R}\to\mathbb{R}^n$ and $\mathbf{v}_i:\mathbb{R}\to\mathbb{R}^n$, $i=1,2,\ldots,n-1$, be $C^\infty$ smooth functions such that
+for any $t\in\mathbb{R}$ the vectors
+$$
+\gamma'(t),\mathbf{v}_1(t),\ldots,\mathbf{v}_{n-1}(t)
+$$
+form an orthonormal basis of $\mathbb{R}^n$ (here we differentiate $\gamma$ but {\bf do not} differentiate $\mathbf{v}_i$, $i=1,2,\ldots,n-1$).
+
+Consider the mapping $\Phi:\mathbb{R}^n\to\mathbb{R}^n$ defined by
+$$
+\Phi(x_1,\ldots,x_n)=\gamma(x_n)+\sum_{i=1}^{n-1} x_i\mathbf{v}_i(x_n).
+$$
+\begin{itemize}
+	\item[(a)] Find the derivative $D\Phi(x_1,\ldots,x_n)$;
+	\item[(b)] Prove that $\Phi$ is a diffeomorphism in a neighborhood of and point of the form $(0,\ldots,0,x_n)$;
+	\item[(c)] Find the limit
+	$$
+	\lim_{r\to 0}
+	\frac{|\Phi(B^n(0,r))|}{|B^n(0,r)|}\, ,
+	$$
+	where $B^n(0,r)$ denotes the ball of radius $r$ centered at the origin and $|A|$ stands for the volume of the set $A$.
+\end{itemize}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item 
+    \begin{align*}
+        D\Phi(x_1,\cdots,x_n) = \begin{pmatrix}
+            \mathbf{v}_1(x_n) &  &  &  &  \\
+            & \mathbf{v}_2(x_n) &  &  &  \\
+            &  & \ddots &  & \\
+            &  &  & \mathbf{v}_{n-1}(x_n) \\
+            &  &  &  & \gamma'(x_n) + \sum^{n-1}_{i=1}x_i \mathbf{v}_i'(x_n)
+        \end{pmatrix}.
+    \end{align*}
+    
+    \item 
+    \begin{align*}
+        D\Phi(0,\ldots, 0, x_n) = \begin{pmatrix}
+            \mathbf{v}_1(x_n) &  &  &  &  \\
+            & \mathbf{v}_2(x_n) &  &  &  \\
+            &  & \ddots &  & \\
+            &  &  & \mathbf{v}_{n-1}(x_n) \\
+            &  &  &  & \gamma'(x_n)
+        \end{pmatrix}.
+    \end{align*}
+    is an orthogonal matrix and then $\det D\Phi(0,\ldots, 0, x_n) = \pm 1 \neq 0$. Then it remains to show that $\Phi$ is bijection. And this is obvious. Thus, $\Phi$ is a diffeomorphism in a neighborhood of a point of the form $(0,\ldots,0,x_n)$.
+    
+    \item By the change of variable, we have
+    \begin{align*}
+        \left|\Phi(B^n(0,r))\right| = \int_{B^n(0,r)} |J_\Phi|\, dA
+    \end{align*}
+    and $|J_\Phi| \to 1$ as $r \to 0$, Then for any $\varepsilon > 0$, there exists $r$ such that $\left||J_\Phi| - 1\right| < \varepsilon$, and then
+    \begin{align*}
+        \left|\frac{|\Phi(B^n(0,r))|}{|B^n(0,r)|} - 1\right| = \left|\frac{\int_{B^n(0,r)} |J_\Phi|\, dA}{|B^n(0,r)|} - 1\right|< \varepsilon.
+    \end{align*}
+    Thus, the limit is equal to $1$.
+\end{enumerate}
+\end{proof}
+
+
+\medskip
+
+
+\noindent
+{\bf Problem 8.}
+Prove that if $K\in C^1(\mathbb{R}^2\setminus
+\{ (0,0)\})$ satisfies the estimate
+$$
+|\nabla K(x)|\leq \frac{1}{|x|^3} \quad \mbox{for all $x\neq (0,0)$}
+$$
+then there is a constant $C>0$ such that
+$$
+\iint_{\{x\in\mathbb{R}^2:\, |x|>2|y|\}} |K(x-y)-K(x)|\, dx\leq C
+$$
+for all $y\in\mathbb{R}^2$.\\
+{\bf Hint:} {\em Use the mean value theorem to estimate
+	$|K(x-y)-K(x)|$ and then integrate in polar coordinates.}
+\begin{proof}
+Denote the left hand side by $I$. If $y = 0$, then $I = 0$. We can assume $|y| > 0$, and the point of interval connecting $x$ to $x - y$ are of form $x - ty, t \in [0,1]$. Then, with $|x| > 2|y|$,
+\begin{align*}
+    |x - ty| > |x| - |y| > \frac{|x|}{2}.
+\end{align*}
+With mean value theorem, 
+\begin{align*}
+    |K(x-y) - K(x)| & \leq |\nabla K(x-ty)| \cdot |(x - y) - x| \\
+    & \leq \frac{|y|}{|x-ty|^3} \\
+    & \leq \frac{8|y|}{|x|^3}.
+\end{align*}
+Thus,
+\begin{align*}
+    \iint_{|x|>2|y|} |K(x-y)-K(x)|\, dx & \leq \iint_{|x|>2|y|} \frac{8|y|}{|x|^3}\, dx \\
+    & = 8|y| \int^{2\pi}_0 \int^\infty_{2|y|} \frac{1}{r^3}r\, dr d\theta \\
+    & = 8|y| 2\pi \left(- r^{-1}\right)\Big|_{2|y|}^\infty = 8 \pi.
+\end{align*}
+\end{proof}
+
+
+\medskip
+
+
+
+
+
+\noindent
+{\bf Problem 9.}
+Use Green's theorem to prove the following result:
+If the vertices of a polygon, in counterclockwise order, are
+$(x_1,y_1)$, $(x_2,y_2)$, \ldots,$(x_n,y_n)$, then the area of the
+polygon is
+$$
+A=\frac{1}{2}
+\sum_{i=1}^n(x_iy_{i+1}-x_{i+1}y_i),
+$$
+where we use notation $x_{n+1}=x_1$, $y_{n+1}=y_1$.
+\begin{proof}
+By Green's theorem, the area is
+\begin{align*}
+    A = \frac{1}{2} \int_C x\, dy - y\, dx = \frac{1}{2} \sum^n_{i=1} \int^{(x_{i+1}, y_{i+1})}_{(x_{i}, y_{i})} x\, dy - y\, dx.
+\end{align*}
+Let $\alpha(t) = \left(x_i + t(x_{i+1} - x_{i}), y_i + t(y_{i+1} - y_{i}) \right), t\in [0,1]$ is a parameterization of the segment connecting $(x_{i}, y_{i})$ to $(x_{i+1}, y_{i+1})$. Let $\gamma(t) = (x(t), y(t)) \to \mathbb{R}^2, t \in [a,b]$, then 
+\begin{align*}
+    \int_\gamma P\, dx + Q\, dy = \int^b_a \left(P(x(t),y(t))x'(t) + Q(x(t),y(t))y'(t) \right)\, dt
+\end{align*}
+Then,
+\begin{align*}
+    \int^{(x_{i+1}, y_{i+1})}_{(x_{i}, y_{i})} x\, dy - y\, dx & = \int^1_0 (x_i + t(x_{i+1} - x_{i}))(y_{i+1} - y_i) - (y_i + t(y_{i+1} - y_{i}))(x_{i+1} - x_i)\, dt \\
+    & = \left(tx_i + \frac{t^2}{2}(x_{i+1} - x_i)\right) (y_{i+1} - y_i)\Bigg|^1_0 \\
+    & - \left(ty_i + \frac{t^2}{2} (y_{i+1} - y_i)\right) (x_{i+1} - x_i)\Bigg|^1_0 \\
+    & = x_i y_{i+1} - x_{i+1} y_i,
+\end{align*}
+and hence,
+\begin{align*}
+    A = \frac{1}{2} \sum_{i=1}^n (x_i y_{i+1} - x_{i+1} y_i).
+\end{align*}
+\end{proof}
+
+
+\medskip
+
+\noindent
+{\bf Problem 10.}
+Let $\Omega\subset\mathbb{R}^2$ be a bounded
+domain with $C^1$ boundary and let $\Phi:\mathbb{R}^2\to\mathbb{R}^2$,
+$\Phi(x,y)=(u(x,y), v(x,y))$,
+be a
+$C^2$ diffeomorphism. Prove that
+$$
+\int_{\partial\Omega} uv_x\, dx + uv_y\, dy = \pm|\Phi(\Omega)|\, ,
+$$
+where $|\Phi(\Omega)|$ denotes the area of $\Phi(\Omega)$
+and $\partial\Omega$ has positive orientation.
+Show on examples that both cases $+|\Phi(\Omega)|$ and
+$-|\Phi(\Omega)|$ are possible.
+
+\begin{proof}
+By Green's theorem, $\int_{\partial \Omega} P\, dx + Q\, dy = \iint_D \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}$, then
+\begin{align*}
+    \int_{\partial\Omega} uv_x\, dx + uv_y\, dy & = \iint_\Omega \frac{\partial}{\partial x} \left(uv_y \right) - \frac{\partial}{\partial y} \left(uv_x \right) \\
+    & = \iint_\Omega u_xv_y + u v_{yx} - u_y v_x - u v_{xy} \\
+    & = \iint_\Omega u_xv_y - u_y v_x,
+\end{align*}
+where in the last step we used the fact that $\Phi \in C^2$. Moreover, 
+\begin{align*}
+    \iint_\Omega u_xv_y - u_y v_x = \iint_\Omega \begin{vmatrix}
+        u_x & u_y \\
+        v_x & v_y
+    \end{vmatrix} = \iint_\Omega \det D\Phi.
+\end{align*}
+In particular, with change of variable, we have
+\begin{align*}
+    \int_{\Phi(\Omega)} f = \int_{\Omega} (f\circ \Phi) |\det D\Phi|,
+\end{align*}
+setting $f = 1$ gives
+\begin{align*}
+    \int_{\Omega} |\det D\Phi| = |\Phi(\Omega)|.
+\end{align*}
+Thus, 
+\begin{align*}
+    \int_{\partial\Omega} uv_x\, dx + uv_y\, dy = 
+    \begin{cases}
+        |\Phi(\Omega)|, & \det D\Phi > 0, \\
+        - |\Phi(\Omega)|, & \det D\Phi < 0.
+    \end{cases}
+\end{align*}
+
+Taking $\Phi(x,y) = (x,y)$, then the integral equals to $|\Phi(\Omega)|$, if we take $\Phi(x,y) = (-x,y)$, then the integral equals to $-|\Phi(\Omega)|$.
+\end{proof}
+
+\medskip
+
+\noindent
+{\bf Problem 11.}
+Let $f$ be a polynomial of total degree at most three in $(x, y, z) \in \mathbb{R}^3$.  Prove that:
+$$
+\int_{x^2 + y^2 + z^2 \le 1} f(x, y, z)\hspace{1.5pt} dx\hspace{1.5pt}  dy \hspace{1.5pt} dz =
+\frac{4\pi f((0, 0, 0)) }{3} +  \frac{2\pi \left(\Delta f\right)((0, 0, 0))}{15}.
+$$
+Here $\displaystyle{\Delta =  \frac{\partial^2}{\partial x^2}  +  \frac{\partial^2}{\partial y^2} +
+	\frac{\partial^2}{\partial z^2}}$ is the Laplacian operator on $\mathbb{R}^3$.
+\begin{proof}
+With Taylor's formula, 
+\begin{align*}
+    f(x) = f(0) + \sum^3_{i=1} \frac{\partial f}{\partial x_i}(0) x_i + \frac{1}{2} \sum^3_{i,j=1} \frac{\partial^2 f}{\partial x_i \partial x_i}(0)x_i x_i + \frac{1}{6} \sum^3_{i,j,k=1} \frac{\partial^3 f}{\partial x_i \partial x_i \partial x_k}(0)x_i x_i x_k + R.
+\end{align*}
+and since $f$ is a polynomial of degree at most $3$, then the remainder $R = 0$. Also, with the property of odd function,
+\begin{align*}
+    \int_B x_i\, dx = 0,\quad \int_B x_i x_i x_k\, dx = 0,
+\end{align*}
+and
+\begin{align*}
+    \int_B x_i x_i\, dx = 0,\,\, i\neq j.
+\end{align*}
+Then, 
+\begin{align*}
+    \int_B f(x, y, z)\, dx\,dy\,dz = f(0) \underbrace{\int_B\, dx}_{4\pi/3}  + \frac{1}{2} \sum^3_{i=1} \frac{\partial^2 f}{\partial x^2_i}(0) \int_B x_i^2\, dx,
+\end{align*}
+also, with 
+\begin{align*}
+    \int_B x_1^2\, dx = \int_B x_2^2\, dx = \int_B x_3^2\, dx & = \frac{1}{3} \int_B |x|^2\, dx \\
+    & = \int^1_0 \int_{S(r)} r^2\, d\sigma\, dr \\
+    & = \int^1_0 r^2 \cdot 4\pi r^2\, dr = \frac{4\pi}{5},
+\end{align*}
+the proof is completed. 
+\end{proof}
+
+
+\medskip
+
+\noindent
+{\bf Problem 12.}
+Suppose that $K\in C^\infty(\mathbb{R}^2\setminus \{ 0\})$ and
+$$
+K(x)=\frac{K(x/\Vert x\Vert)}{\Vert x\Vert}
+\quad
+\text{for all $x\in\mathbb{R}^2\setminus\{0\}$.}
+$$
+\begin{itemize}
+	\item[(a)] Prove that $\nabla K(tx)=t^{-2}\nabla K(x)$ for $x\neq 0$ and $t>0$.
+	\item[(b)] Use the divergence theorem to prove that (on both sides we integrate vector valued functions)
+	$$
+	\int_{\{1\leq \Vert x\Vert\leq 2019\}} \nabla K(x)\, dx=
+	\int_{\partial \{1\leq \Vert x\Vert\leq 2019\}} K(x)\vec{\mathbf{n}}\, d\sigma(x).
+	$$
+	\item[(c)] Prove that
+	$$
+	\int_{\{1\leq \Vert x\Vert\leq 2019\}} \nabla K(x)\, dx=0.
+	$$
+\end{itemize}
+{\bf Hint.} {\em Show first that
+	$K(tx)=t^{-1}K(x)$ for $x\neq 0$, $t>0$. In (a) differentiate $K(tx)$. Part (a) is not needed for parts (b) and (c).}
+\begin{proof}
+~\begin{enumerate}[label=(\alph*)]
+    \item Note that 
+    \begin{align*}
+        K(tx) = \frac{K(tx/\Vert tx\Vert)}{\Vert tx\Vert} = t^{-1} \frac{K(x/\Vert x\Vert)}{\Vert x\Vert} = t^{-1} K(x).
+    \end{align*}
+    Then, 
+    \begin{align*}
+        t^{-1} \frac{\partial K}{\partial x_i}(x) = \frac{\partial }{\partial x_i}(t^{-1} K(x)) = \frac{\partial }{\partial x_i}(K(tx)) = \frac{\partial K}{\partial x_i}(tx) \cdot t,
+    \end{align*}
+    which gives,
+    \begin{align*}
+        \frac{\partial K}{\partial x_i}(tx) = t^{-2} \frac{\partial K}{\partial x_i}(x).
+    \end{align*}
+    Thus,
+    \begin{align*}
+        \nabla K(tx) = t^{-2} \nabla K(x).
+    \end{align*}
+    
+    \item With divergence theorem, $\int_\Omega \div \vec{F} = \int_{\partial \Omega} \vec{F}\cdot \vec{\mathbf{n}}$, if $F(x) = (K(x), 0)$, then $\div F = \frac{\partial K}{\partial x_1}$ and then
+    \begin{align*}
+        \int_{\{1\leq \Vert x \Vert\leq 2019\}} \frac{\partial K}{\partial x_1} = \int_{\partial\{1\leq \Vert x \Vert\leq 2019\}} F \cdot \vec{\mathbf{n}} \, d\sigma(x) = \int_{\partial\{1\leq \Vert x \Vert\leq 2019\}} K(x) n_1 \, d\sigma(x),
+    \end{align*}
+    where in the last step we used $F \cdot \vec{\mathbf{n}} = (K(x), 0)\cdot (n_1, n_2) = K(x) n_1$.
+    
+    
+    Similarly, if $F(x) = (0,K(x))$, then $\div F = \frac{\partial K}{\partial x_2}$ and then
+    \begin{align*}
+        \int_{\{1\leq \Vert x \Vert\leq 2019\}} \frac{\partial K}{\partial x_2} = \int_{\partial\{1\leq \Vert x \Vert\leq 2019\}} K(x) n_2 \, d\sigma(x).
+    \end{align*}
+    Thus, 
+    \begin{align*}
+        \int_{\{1\leq \Vert x\Vert\leq 2019\}} \nabla K(x)\, dx = \int_{\partial \{1\leq \Vert x\Vert\leq 2019\}} K(x)\vec{\mathbf{n}}\, d\sigma(x).
+    \end{align*}
+    
+    \item 
+    \begin{align*}
+        \int_{\{1\leq \Vert x\Vert\leq 2019\}} \nabla K(x)\, dx & = \int_{\partial \{1\leq \Vert x\Vert\leq 2019\}} K(x)\vec{\mathbf{n}}\, d\sigma(x) \\
+        & = - \int_{\Vert x\Vert = 1} K(x) \frac{x}{\Vert x\Vert}\, d\sigma(x) + \int_{\Vert x\Vert = 2019} K(x) \frac{x}{\Vert x\Vert}\, d\sigma(x).
+    \end{align*}
+    Note that $K(2019 x) = 2019^{-1} K(x)$. Use standard parameterization of the circle, we have
+    \begin{align*}
+        \int_{\gamma} f\, dx dy = \int^b_a f(x(t), y(t)) \sqrt{\Dot{x}(t)^2 + \Dot{y}(t)^2} \, dt,
+    \end{align*}
+    where $\gamma: [a,b] \to \mathbb{R}$ and $|\Dot{\gamma}(t)| = \sqrt{\Dot{x}(t)^2 + \Dot{y}(t)^2}$. Take $\gamma(t) = 2019 (\cos t, \sin t)$, then 
+    \begin{align*}
+        \int_{\Vert x\Vert = 2019} K(x) \frac{x}{\Vert x\Vert}\, d\sigma(x) & = \int^{2\pi}_0 K(2019 \cos t, 2019 \sin t) \frac{(2019 \cos t, 2019 \sin t)}{2019} 2019 \, dt \\
+        & = \int^{2\pi}_0 K(\cos t, \sin t) \frac{(\cos t, \sin t)}{1} \, dt \\
+        & = \int_{\Vert x\Vert = 1} K(x) \frac{x}{\Vert x\Vert}\, d\sigma(x).
+    \end{align*}
+    Thus, 
+    \begin{align*}
+        \int_{\{1\leq \Vert x\Vert\leq 2019\}} \nabla K(x)\, dx = 0.
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+
+\medskip
+
+
+
+
+\end{document}
+
+
